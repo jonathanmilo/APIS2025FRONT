@@ -1,10 +1,11 @@
+import Barra_busqueda_productos from "./Barra_busqueda_productos";
 function Header() {
     return (
         <>
             <header className="bg-dark text-white p-3 fixed-top w-100 container">
                 <div className="row">
                     <div className="col"> TPO</div>
-                    <div className="col">barra de búsqueda</div>
+                    <div className="col"><Barra_busqueda_productos></Barra_busqueda_productos></div>
                     <div className="col">
                         <div className="container">
                             <ul class="nav justify-content-end pills">
