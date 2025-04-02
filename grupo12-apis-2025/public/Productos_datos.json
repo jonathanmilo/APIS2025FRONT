@@ -1,0 +1,163 @@
+{
+    "productos": [
+      { "id_producto":1,
+        "nombre": "Laptop HP Pavilion",
+        "descripcion": "Laptop de 15 pulgadas con procesador Intel Core i5 y 8GB de RAM",
+        "categoria": "Electrónicos",
+        "precio": 899.99,
+        "id_vendedor": "VEN001"
+      },
+      {
+        "id_producto":2,
+        "nombre": "Smartphone Samsung Galaxy S21",
+        "descripcion": "Teléfono inteligente con pantalla AMOLED de 6.2 pulgadas y 128GB de almacenamiento",
+        "categoria": "Electrónicos",
+        "precio": 799.99,
+        "id_vendedor": "VEN002"
+      },
+      {
+        "id_producto":3,
+        "nombre": "Audífonos Sony WH-1000XM4",
+        "descripcion": "Audífonos inalámbricos con cancelación de ruido y 30 horas de batería",
+        "categoria": "Electrónicos",
+        "precio": 349.99,
+        "id_vendedor": "VEN003"
+      },
+      {
+        "id_producto":4,
+        "nombre": "Camisa de Algodón",
+        "descripcion": "Camisa casual de manga larga, 100% algodón",
+        "categoria": "Ropa",
+        "precio": 29.99,
+        "id_vendedor": "VEN004"
+      },
+      {
+        "id_producto":5,
+        "nombre": "Pantalón Jeans Slim Fit",
+        "descripcion": "Pantalón de mezclilla ajustado, color azul oscuro",
+        "categoria": "Ropa",
+        "precio": 49.99,
+        "id_vendedor": "VEN005"
+      },
+      {
+        "id_producto":6,
+        "nombre": "Zapatos Deportivos Nike Air Max",
+        "descripcion": "Zapatillas para correr con amortiguación Air Max",
+        "categoria": "Calzado",
+        "precio": 129.99,
+        "id_vendedor": "VEN006"
+      },
+      {
+        "id_producto":7,
+        "nombre": "Libro 'El Principito'",
+        "descripcion": "Edición especial en tapa dura del clásico de Antoine de Saint-Exupéry",
+        "categoria": "Libros",
+        "precio": 19.99,
+        "id_vendedor": "VEN007"
+      },
+      {
+        "id_producto":8,
+        "nombre": "Tablet Amazon Fire HD 10",
+        "descripcion": "Tablet de 10.1 pulgadas con 32GB de almacenamiento",
+        "categoria": "Electrónicos",
+        "precio": 149.99,
+        "id_vendedor": "VEN008"
+      },
+      {
+        "id_producto":9,
+        "nombre": "Reloj Inteligente Xiaomi Mi Band 6",
+        "descripcion": "Pulsera inteligente con monitor de ritmo cardíaco y SpO2",
+        "categoria": "Electrónicos",
+        "precio": 59.99,
+        "id_vendedor": "VEN009"
+      },
+      {
+        "id_producto":10,
+        "nombre": "Juego de Sartenes Antiadherentes",
+        "descripcion": "Set de 3 sartenes de diferentes tamaños con revestimiento antiadherente",
+        "categoria": "Hogar",
+        "precio": 79.99,
+        "id_vendedor": "VEN010"
+      },
+      {
+        "id_producto":11,
+        "nombre": "Mochila Impermeable",
+        "descripcion": "Mochila resistente al agua con capacidad de 20L",
+        "categoria": "Accesorios",
+        "precio": 39.99,
+        "id_vendedor": "VEN011"
+      },
+      {
+        "id_producto":12,
+        "nombre": "Cámara GoPro Hero 9",
+        "descripcion": "Cámara deportiva 4K con estabilización HyperSmooth 3.0",
+        "categoria": "Electrónicos",
+        "precio": 399.99,
+        "id_vendedor": "VEN012"
+      },
+      {
+        "id_producto":13,
+        "nombre": "Vestido Floral Veraniego",
+        "descripcion": "Vestido ligero con estampado floral, ideal para verano",
+        "categoria": "Ropa",
+        "precio": 34.99,
+        "id_vendedor": "VEN013"
+      },
+      {
+        "id_producto":14,
+        "nombre": "Botella Térmica de Acero Inoxidable",
+        "descripcion": "Botella de 500ml que mantiene líquidos fríos o calientes por 24 horas",
+        "categoria": "Hogar",
+        "precio": 24.99,
+        "id_vendedor": "VEN014"
+      },
+      {
+        "id_producto":15,
+        "nombre": "Teclado Mecánico RGB",
+        "descripcion": "Teclado gaming con switches Blue y retroiluminación RGB",
+        "categoria": "Electrónicos",
+        "precio": 89.99,
+        "id_vendedor": "VEN015"
+      },
+      {
+        "id_producto":16,
+        "nombre": "Libro 'Cien Años de Soledad'",
+        "descripcion": "Novela clásica de Gabriel García Márquez, edición conmemorativa",
+        "categoria": "Libros",
+        "precio": 22.99,
+        "id_vendedor": "VEN016"
+      },
+      {
+        "id_producto":17,
+        "nombre": "Silla de Oficina Ergonómica",
+        "descripcion": "Silla ajustable con soporte lumbar para largas horas de trabajo",
+        "categoria": "Hogar",
+        "precio": 199.99,
+        "id_vendedor": "VEN017"
+      },
+      {
+        "id_producto":18,
+        "nombre": "Balón de Fútbol Adidas",
+        "descripcion": "Balón oficial tamaño 5, resistente y duradero",
+        "categoria": "Deportes",
+        "precio": 49.99,
+        "id_vendedor": "VEN018"
+      },
+      {
+        "id_producto":19,
+        "nombre": "Set de Maquillaje Profesional",
+        "descripcion": "Kit con 12 sombras, rubor, delineador y pinceles",
+        "categoria": "Belleza",
+        "precio": 59.99,
+        "id_vendedor": "VEN019"
+      },
+      {
+        "id_producto":20,
+        "nombre": "Maletín para Laptop",
+        "descripcion": "Maletín resistente con compartimento para laptop de hasta 15.6 pulgadas",
+        "categoria": "Accesorios",
+        "precio": 45.99,
+        "id_vendedor": "VEN020"
+      }
+    ]
+  }

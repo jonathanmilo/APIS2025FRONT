@@ -1,0 +1,44 @@
+{
+    "usuarios": [
+      {
+        "id": "VEN001",
+        "nombre": "Carlos",
+        "apellido": "Gómez",
+        "mail": "c.gomez@example.com",
+        "productos_vendidos": [1, 5, 9],
+        "productos_comprados": [3, 14]
+      },
+      {
+        "id": "VEN002",
+        "nombre": "Ana",
+        "apellido": "López",
+        "mail": "a.lopez@example.com",
+        "productos_vendidos": [2, 7, 12],
+        "productos_comprados": [6, 18]
+      },
+      {
+        "id": "VEN003",
+        "nombre": "Miguel",
+        "apellido": "Rodríguez",
+        "mail": "m.rodriguez@example.com",
+        "productos_vendidos": [3, 8, 15],
+        "productos_comprados": [4, 11]
+      },
+      {
+        "id": "VEN004",
+        "nombre": "Lucía",
+        "apellido": "Martínez",
+        "mail": "l.martinez@example.com",
+        "productos_vendidos": [4, 10, 19],
+        "productos_comprados": [1, 16]
+      },
+      {
+        "id": "VEN005",
+        "nombre": "Javier",
+        "apellido": "Fernández",
+        "mail": "j.fernandez@example.com",
+        "productos_vendidos": [6, 13, 20],
+        "productos_comprados": [2, 17]
+      }
+    ]
+  }
