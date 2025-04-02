@@ -2,6 +2,7 @@ import { useState } from "react";
 import InicioSesion from "./InicioSesion";
 import Header from "../componentes/Header";
 import data from "../../public/Productos_datos.json";
+import Producto from "../componentes/Producto.jsx";
 
 function Home() {
     const [logeado, setLogeado] = useState(false);
@@ -37,12 +38,11 @@ function Home() {
                 <>
 
                     {productosAMostrar.map((prod) => (
-                        <div key={prod.id_producto || prod.id}> {/* Usa id_producto o id según tu JSON */}
-                            <h3>{prod.nombre}</h3>
-                            <p>Precio: ${prod.precio}</p>
-                            <p>Categoría: {prod.categoria}</p>
-                            <p>Vendedor: {prod.id_vendedor}</p>
-                        </div>
+                        
+                        <Producto 
+                            key={prod.id_producto}
+                            producto={prod}
+                        />
                     ))}
 
                     
