@@ -1,10 +1,11 @@
-function Botones_usuario(){
+function Botones_usuario(usuario){
+    console.log(usuario.usuario)
     return(
 
         <>
-            <ul class="nav justify-content-end pills botones_usuario">
-                                <li class="nav-item">nombre usuario</li>
-                                <li class="nav-item">
+            <ul className="nav justify-content-end pills botones_usuario">
+                                <li className="nav-item"><p>{usuario.usuario.nombre}</p></li>
+                                <li className="nav-item">
                                     <button className="btn-sm"> mis publicaciones</button>
                                 </li>
                                 <li class="nav-item">

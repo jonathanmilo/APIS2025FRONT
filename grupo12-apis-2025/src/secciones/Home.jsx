@@ -2,6 +2,7 @@ import { useState } from "react";
 import InicioSesion from "./InicioSesion";
 import Header from "../componentes/Header";
 import data from "../../public/Productos_datos.json";
+import usuarios from "../../public/usuarios_datos.json";
 import Producto from "../componentes/Producto.jsx";
 
 function Home() {
@@ -12,6 +13,21 @@ function Home() {
     const actualizarValor = (nuevoValor) => {
         setLogeado(nuevoValor);
     };
+    const [usuarioRegistrado, registrado] = useState({
+        nombre: '',
+        email: '',
+        password: ''
+      });
+
+    const registrar =(usuario)=>{
+        const usuarioExistente = usuarios.usuarios.filter(
+            (u) => u.password === usuario.password && u.mail === usuario.mail 
+          );
+        console.log("en home")
+        console.log(usuarioExistente)
+        if (usuarioExistente){
+        registrado(usuarioExistente[0])}
+    }
 
     const handleBuscar = (termino) => {
         if (!termino) {
@@ -30,7 +46,7 @@ function Home() {
 
     return (
         <>
-            <Header onActualizarValor={actualizarValor} buscar={handleBuscar} />
+            <Header onActualizarValor={actualizarValor} buscar={handleBuscar}  usuario={usuarioRegistrado}/>
             <p>TPO grupo 12</p>
             <p>Estado de login: {logeado.toString()}</p>
             
@@ -50,7 +66,7 @@ function Home() {
             ) : (
                 <>
 
-                    <InicioSesion />
+                    <InicioSesion  registro={registrar}/>
                 </>
             )}
         </>

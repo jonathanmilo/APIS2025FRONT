@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-const InicioSesion = () => {
+const InicioSesion = ({registro}) => {
+
   // Estados para los campos del formulario
   const [formData, setFormData] = useState({
     nombre: '',
@@ -48,6 +49,7 @@ const InicioSesion = () => {
     }
 
     // Aquí iría la lógica de autenticación (API, etc.)
+    registro(formData);
     console.log('Datos enviados:', formData);
     alert(`Bienvenido ${formData.nombre || 'usuario'}!`);
   };
@@ -55,9 +57,9 @@ const InicioSesion = () => {
   return (
     <div className="container mt-5">
       <div className="row justify-content-center">
-        <div className="col-md-6 col-lg-4">
-          <div className="card shadow">
-            <div className="card-body p-4">
+        
+          <div className="container shadow">
+            <div className="container p-4">
               <h2 className="text-center mb-4">Iniciar Sesión</h2>
               
               <form onSubmit={handleSubmit}>
@@ -124,7 +126,7 @@ const InicioSesion = () => {
               </form>
             </div>
           </div>
-        </div>
+        
       </div>
     </div>
   );
