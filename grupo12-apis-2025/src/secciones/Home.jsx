@@ -1,66 +1,59 @@
-import React ,{ useState } from "react";
+import React, { useState, useEffect } from "react";
 import InicioSesion from "./InicioSesion";
 import Header from "../componentes/Header";
-import data from "../../public/Productos_datos.json";
 import { usarContextoUsuario } from "../Context.jsx";
-
 import Producto from "../componentes/Producto.jsx";
 
 export function Home() {
-    const usuario =usarContextoUsuario()
-    const [logeado, setLogeado] = useState(false);
-    
-    const [productos] = useState(data.productos || []); // Accede a la propiedad 'productos' del JSON
-    const [productosFiltrados, setProductosFiltrados] = useState([]);
+  const usuario = usarContextoUsuario();
+  const [logeado, setLogeado] = useState(false);
+  const [productos, setProductos] = useState([]);
+  const [productosFiltrados, setProductosFiltrados] = useState([]);
 
-    const actualizarValor = (nuevoValor) => {
-        setLogeado(nuevoValor);
-    };
-    // valida si el usuario del formulario Inicio, coincide con algún usuario del archivo JSON    
-  
+  // Cargar productos desde json-server
+  useEffect(() => {
+    fetch("http://localhost:3001/productos")
+      .then((response) => response.json())
+      .then((data) => {
+        setProductos(data);
+      })
+      .catch((error) => {
+        console.error("Error al cargar productos:", error);
+      });
+  }, []);
 
-    const handleBuscar = (termino) => {
-        if (!termino) {
-            setProductosFiltrados([]);
-            return;
-        }
-        
-        const filtrados = productos.filter(producto => 
-            producto.nombre.toLowerCase().includes(termino.toLowerCase())
-        );
-        setProductosFiltrados(filtrados); // Pasa los productos filtrados, no el término
-    };
+  const actualizarValor = (nuevoValor) => {
+    setLogeado(nuevoValor);
+  };
 
-    // Determina qué productos mostrar (filtrados o todos)
-    const productosAMostrar = productosFiltrados.length > 0 ? productosFiltrados : productos;
+  const handleBuscar = (termino) => {
+    if (!termino) {
+      setProductosFiltrados([]);
+      return;
+    }
 
-    return (
-        <>
-                   
-                <Header onActualizarValor={actualizarValor} buscar={handleBuscar}  />
-
-                <p>TPO grupo 12</p>
-            
-            {!logeado || usuario ? ( // Cambiado a !logeado para lógica correcta
-                <>
-
-                    {productosAMostrar.map((prod) => (
-                        
-                        <Producto 
-                            key={prod.id_producto}
-                            producto={prod}
-                        />
-                    ))}
-
-                    
-                </>
-            ) : (
-                <>
-                    <InicioSesion/>
-                </>
-            )}
-
-        </>
+    const filtrados = productos.filter((producto) =>
+      producto.nombre.toLowerCase().includes(termino.toLowerCase())
     );
+    setProductosFiltrados(filtrados);
+  };
+
+  const productosAMostrar =
+    productosFiltrados.length > 0 ? productosFiltrados : productos;
+
+  return (
+    <>
+      <Header onActualizarValor={actualizarValor} buscar={handleBuscar} />
+
+      {!logeado || usuario ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-2 lg:gap-4 p-3 md:p-5 lg:p-6">
+          {productosAMostrar.map((prod) => (
+            <Producto key={prod.id_producto} producto={prod} />
+          ))}
+        </div>
+      ) : (
+        <InicioSesion />
+      )}
+    </>
+  );
 }
-export default Home
