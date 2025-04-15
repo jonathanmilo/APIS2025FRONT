@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "grupo12-apis-2025": "file:",
+    "@tailwindcss/vite": "^4.1.4",
+    "json-server": "^1.0.0-beta.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.5.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
