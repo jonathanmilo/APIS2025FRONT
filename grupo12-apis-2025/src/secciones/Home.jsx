@@ -1,33 +1,23 @@
-import { useState } from "react";
+import React ,{ useState } from "react";
 import InicioSesion from "./InicioSesion";
 import Header from "../componentes/Header";
 import data from "../../public/Productos_datos.json";
-import usuarios from "../../public/usuarios_datos.json";
+import { usarContextoUsuario } from "../Context.jsx";
+
 import Producto from "../componentes/Producto.jsx";
 
-function Home() {
+export function Home() {
+    const usuario =usarContextoUsuario()
     const [logeado, setLogeado] = useState(false);
+    
     const [productos] = useState(data.productos || []); // Accede a la propiedad 'productos' del JSON
     const [productosFiltrados, setProductosFiltrados] = useState([]);
 
     const actualizarValor = (nuevoValor) => {
         setLogeado(nuevoValor);
     };
-    const [usuarioRegistrado, registrado] = useState({
-        nombre: '',
-        email: '',
-        password: ''
-      });
-
-    const registrar =(usuario)=>{
-        const usuarioExistente = usuarios.usuarios.filter(
-            (u) => u.password === usuario.password && u.mail === usuario.mail 
-          );
-        console.log("en home")
-        console.log(usuarioExistente)
-        if (usuarioExistente){
-        registrado(usuarioExistente[0])}
-    }
+    // valida si el usuario del formulario Inicio, coincide con algún usuario del archivo JSON    
+  
 
     const handleBuscar = (termino) => {
         if (!termino) {
@@ -46,11 +36,12 @@ function Home() {
 
     return (
         <>
-            <Header onActualizarValor={actualizarValor} buscar={handleBuscar}  usuario={usuarioRegistrado}/>
-            <p>TPO grupo 12</p>
-            <p>Estado de login: {logeado.toString()}</p>
+                   
+                <Header onActualizarValor={actualizarValor} buscar={handleBuscar}  />
+
+                <p>TPO grupo 12</p>
             
-            {!logeado ? ( // Cambiado a !logeado para lógica correcta
+            {!logeado || usuario ? ( // Cambiado a !logeado para lógica correcta
                 <>
 
                     {productosAMostrar.map((prod) => (
@@ -65,12 +56,11 @@ function Home() {
                 </>
             ) : (
                 <>
-
-                    <InicioSesion  registro={registrar}/>
+                    <InicioSesion/>
                 </>
             )}
+
         </>
     );
 }
-
-export default Home;
+export default Home

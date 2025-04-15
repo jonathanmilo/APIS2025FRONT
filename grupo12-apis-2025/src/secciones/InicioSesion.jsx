@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-
+import {usarContextoUsuario,cambiarUsuario} from '../Context.jsx'
 const InicioSesion = ({registro}) => {
 
+  const validar=cambiarUsuario()
   // Estados para los campos del formulario
   const [formData, setFormData] = useState({
     nombre: '',
@@ -49,7 +50,7 @@ const InicioSesion = ({registro}) => {
     }
 
     // Aquí iría la lógica de autenticación (API, etc.)
-    registro(formData);
+    validar(formData);
     console.log('Datos enviados:', formData);
     alert(`Bienvenido ${formData.nombre || 'usuario'}!`);
   };
