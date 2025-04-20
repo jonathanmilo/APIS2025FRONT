@@ -1,232 +1,331 @@
 {
-    "productos": [
-      {
-        "id_producto": 1,
-        "nombre": "Laptop HP Pavilion",
-        "descripcion": "Laptop de 15 pulgadas con procesador Intel Core i5 y 8GB de RAM",
-        "categoria": "Electrónicos",
-        "precio": 899.99,
-        "id_vendedor": "VEN001",
-        "images": ["https://www.pcworld.com/wp-content/uploads/2024/08/Lead-1.jpg?quality=50&strip=all"]
-      },
-      {
-        "id_producto": 2,
-        "nombre": "Smartphone Samsung Galaxy S21",
-        "descripcion": "Teléfono inteligente con pantalla AMOLED de 6.2 pulgadas y 128GB de almacenamiento",
-        "categoria": "Electrónicos",
-        "precio": 799.99,
-        "id_vendedor": "VEN002",
-        "images": ["https://resizer.glanacion.com/resizer/v2/probamos-el-galaxy-s21-el-nuevo-telefono-insignia-HAAUTJ3HGBESHJJWTMABYYCSXM.jpg?auth=28c2614d54812b46337c62f37fb5c6e723a9ad51486a06935cd8bf30102b546f&width=1200&height=800&quality=70&smart=false&focal=1015%2C608"]
-      },
-      {
-        "id_producto": 3,
-        "nombre": "Audífonos Sony WH-1000XM4",
-        "descripcion": "Audífonos inalámbricos con cancelación de ruido y 30 horas de batería",
-        "categoria": "Electrónicos",
-        "precio": 349.99,
-        "id_vendedor": "VEN003",
-        "images": ["https://i.blogs.es/7af9e0/sony-wh-1000xm4-analisis/1366_2000.jpg"]
-      },
-      {
-        "id_producto": 4,
-        "nombre": "Camisa de Algodón",
-        "descripcion": "Camisa casual de manga larga, 100% algodón",
-        "categoria": "Ropa",
-        "precio": 29.99,
-        "id_vendedor": "VEN004",
-        "images": ["https://http2.mlstatic.com/D_NQ_NP_689849-MLA83210607593_032025-O.webp"]
-      },
-      {
-        "id_producto": 5,
-        "nombre": "Pantalón Jeans Slim Fit",
-        "descripcion": "Pantalón de mezclilla ajustado, color azul oscuro",
-        "categoria": "Ropa",
-        "precio": 49.99,
-        "id_vendedor": "VEN001",
-        "images": ["https://images-cdn.ubuy.co.in/66ba44395f4f156fb56def8b-men-039-s-denim-slim-fit-jogger.jpg"]
-      },
-      {
-        "id_producto": 6,
-        "nombre": "Zapatos Deportivos Nike Air Max",
-        "descripcion": "Zapatillas para correr con amortiguación Air Max",
-        "categoria": "Calzado",
-        "precio": 129.99,
-        "id_vendedor": "VEN005",
-        "images": ["https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dw6c5fe84d/products/NIHQ2115-100/NIHQ2115-100-6.JPG"]
-      },
-      {
-        "id_producto": 7,
-        "nombre": "Libro 'El Principito'",
-        "descripcion": "Edición especial en tapa dura del clásico de Antoine de Saint-Exupéry",
-        "categoria": "Libros",
-        "precio": 19.99,
-        "id_vendedor": "VEN002",
-        "images": ["https://libreriareginacoeli.com/wp-content/uploads/2022/12/El-principito-tapa-dura-scaled.jpg"]
-      },
-      {
-        "id_producto": 8,
-        "nombre": "Tablet Amazon Fire HD 10",
-        "descripcion": "Tablet de 10.1 pulgadas con 32GB de almacenamiento",
-        "categoria": "Electrónicos",
-        "precio": 149.99,
-        "id_vendedor": "VEN003",
-        "images": ["https://shop.litecorp.com.ar/wp-content/uploads/2021/08/amazonfirehd10456c1689.jpg"]
-      },
-      {
-        "id_producto": 9,
-        "nombre": "Reloj Inteligente Xiaomi Mi Band 6",
-        "descripcion": "Pulsera inteligente con monitor de ritmo cardíaco y SpO2",
-        "categoria": "Electrónicos",
-        "precio": 59.99,
-        "id_vendedor": "VEN001",
-        "images": ["https://static.independent.co.uk/2021/09/06/12/Xiaomi%20Mi%20Smart%20Band%206%20copy.jpg?width=1200&height=1200&fit=crop"]
-      },
-      {
-        "id_producto": 10,
-        "nombre": "Juego de Sartenes Antiadherentes",
-        "descripcion": "Set de 3 sartenes de diferentes tamaños con revestimiento antiadherente",
-        "categoria": "Hogar",
-        "precio": 79.99,
-        "id_vendedor": "VEN004",
-        "images": ["https://http2.mlstatic.com/D_NQ_NP_787722-MLU71971479342_092023-O.webp"]
-      },
-      {
-        "id_producto": 11,
-        "nombre": "Mochila Impermeable",
-        "descripcion": "Mochila resistente al agua con capacidad de 20L",
-        "categoria": "Accesorios",
-        "precio": 39.99,
-        "id_vendedor": "VENXXX",
-        "images": ["https://acdn-us.mitiendanube.com/stores/001/151/665/products/mc0100-foto08-0603223ba89e0937f617175068459221-1024-1024.jpg"]
-      },
-      {
-        "id_producto": 12,
-        "nombre": "Cámara GoPro Hero 9",
-        "descripcion": "Cámara deportiva 4K con estabilización HyperSmooth 3.0",
-        "categoria": "Electrónicos",
-        "precio": 399.99,
-        "id_vendedor": "VEN002",
-        "images": ["https://m.media-amazon.com/images/I/81Szbr4wo5L._AC_SL1500_.jpg"]
-      },
-      {
-        "id_producto": 13,
-        "nombre": "Vestido Floral Veraniego",
-        "descripcion": "Vestido ligero con estampado floral, ideal para verano",
-        "categoria": "Ropa",
-        "precio": 34.99,
-        "id_vendedor": "VEN005",
-        "images": ["https://m.media-amazon.com/images/I/618OpygSsLL._AC_SY580_.jpg"]
-      },
-      {
-        "id_producto": 14,
-        "nombre": "Botella Térmica de Acero Inoxidable",
-        "descripcion": "Botella de 500ml que mantiene líquidos fríos o calientes por 24 horas",
-        "categoria": "Hogar",
-        "precio": 24.99,
-        "id_vendedor": "VENXXX",
-        "images": ["https://http2.mlstatic.com/D_NQ_NP_871285-MLA73845902029_012024-O.webp"]
-      },
-      {
-        "id_producto": 15,
-        "nombre": "Teclado Mecánico RGB",
-        "descripcion": "Teclado gaming con switches Blue y retroiluminación RGB",
-        "categoria": "Electrónicos",
-        "precio": 89.99,
-        "id_vendedor": "VEN003",
-        "images": ["https://http2.mlstatic.com/D_NQ_NP_965969-MLU73180785750_122023-O.webp"]
-      },
-      {
-        "id_producto": 16,
-        "nombre": "Libro 'Cien Años de Soledad'",
-        "descripcion": "Novela clásica de Gabriel García Márquez, edición conmemorativa",
-        "categoria": "Libros",
-        "precio": 22.99,
-        "id_vendedor": "VENXXX",
-        "images": ["https://carlosbattaglini.es/wp-content/uploads/2017/02/librocienan%CC%83osdesoledad.jpg"]
-      },
-      {
-        "id_producto": 17,
-        "nombre": "Silla de Oficina Ergonómica",
-        "descripcion": "Silla ajustable con soporte lumbar para largas horas de trabajo",
-        "categoria": "Hogar",
-        "precio": 199.99,
-        "id_vendedor": "VENXXX",
-        "images": ["https://http2.mlstatic.com/D_NQ_NP_854135-MLA69877864293_062023-O.webp"]
-      },
-      {
-        "id_producto": 18,
-        "nombre": "Balón de Fútbol Adidas",
-        "descripcion": "Balón oficial tamaño 5, resistente y duradero",
-        "categoria": "Deportes",
-        "precio": 49.99,
-        "id_vendedor": "VENXXX",
-        "images": ["https://acdn-us.mitiendanube.com/stores/004/744/746/products/o-28-600x600-1-ab57b0eaf9966addf817166714995266-1024-1024.png"]
-      },
-      {
-        "id_producto": 19,
-        "nombre": "Set de Maquillaje Profesional",
-        "descripcion": "Kit con 12 sombras, rubor, delineador y pinceles",
-        "categoria": "Belleza",
-        "precio": 59.99,
-        "id_vendedor": "VEN004",
-        "images": ["https://http2.mlstatic.com/D_NQ_NP_615958-MLA31612583451_072019-O.webp"]
-      },
-      {
-        "id_producto": 20,
-        "nombre": "Maletín para Laptop",
-        "descripcion": "Maletín resistente con compartimento para laptop de hasta 15.6 pulgadas",
-        "categoria": "Accesorios",
-        "precio": 45.99,
-        "id_vendedor": "VEN005",
-        "images": ["https://www.caselogic.com/-/p/szMUx_tX6DM4GdWr0zOayMCnYgU6s3JAjdzlEuPqF2w/rs:fit/h:480/cb:1.14/w:480/plain/approved/std.lang.all/99/77/689977.jpg"]
-      }
-    ],
-    "usuarios": [
-      {
-        "id": "VEN001",
-        "nombre": "Carlos",
-        "apellido": "Gómez",
-        "email": "c.gomez@example.com",
-        "password": "9gHj4K",
-        "productos_vendidos": [1, 5, 9],
-        "productos_comprados": [3, 14]
-      },
-      {
-        "id": "VEN002",
-        "nombre": "Ana",
-        "apellido": "López",
-        "email": "a.lopez@example.com",
-        "password": "m7nLp3",
-        "productos_vendidos": [2, 7, 12],
-        "productos_comprados": [6, 18]
-      },
-      {
-        "id": "VEN003",
-        "nombre": "Miguel",
-        "apellido": "Rodríguez",
-        "email": "m.rodriguez@example.com",
-        "password": "Qw2eRt",
-        "productos_vendidos": [3, 8, 15],
-        "productos_comprados": [4, 11]
-      },
-      {
-        "id": "VEN004",
-        "nombre": "Lucía",
-        "apellido": "Martínez",
-        "email": "l.martinez@example.com",
-        "password": "5tG8hY",
-        "productos_vendidos": [4, 10, 19],
-        "productos_comprados": [1, 16]
-      },
-      {
-        "id": "VEN005",
-        "nombre": "Javier",
-        "apellido": "Fernández",
-        "email": "j.fernandez@example.com",
-        "password": "zxCVb6",
-        "productos_vendidos": [6, 13, 20],
-        "productos_comprados": [2, 17]
-      }
-    ]
-  }
-  
+  "productos": [
+    {
+      "id_producto": 1,
+      "nombre": "Laptop HP Pavilion",
+      "descripcion": "Laptop de 15 pulgadas con procesador Intel Core i5 y 8GB de RAM",
+      "categoria": "Electrónicos",
+      "precio": 899.99,
+      "id_vendedor": "VEN001",
+      "images": [
+        "https://www.pcworld.com/wp-content/uploads/2024/08/Lead-1.jpg?quality=50&strip=all"
+      ],
+      "descuento": 10,
+      "promocion": true,
+      "sub-categoria": "Portátiles"
+    },
+    {
+      "id_producto": 2,
+      "nombre": "Smartphone Samsung Galaxy S21",
+      "descripcion": "Teléfono inteligente con pantalla AMOLED de 6.2 pulgadas y 128GB de almacenamiento",
+      "categoria": "Electrónicos",
+      "precio": 799.99,
+      "id_vendedor": "VEN002",
+      "images": [
+        "https://resizer.glanacion.com/resizer/v2/probamos-el-galaxy-s21-el-nuevo-telefono-insignia-HAAUTJ3HGBESHJJWTMABYYCSXM.jpg?auth=28c2614d54812b46337c62f37fb5c6e723a9ad51486a06935cd8bf30102b546f&width=1200&height=800&quality=70&smart=false&focal=1015%2C608"
+      ],
+      "descuento": 0,
+      "promocion": true,
+      "sub-categoria": "Smartphones"
+    },
+    {
+      "id_producto": 3,
+      "nombre": "Audífonos Sony WH-1000XM4",
+      "descripcion": "Audífonos inalámbricos con cancelación de ruido y 30 horas de batería",
+      "categoria": "Electrónicos",
+      "precio": 349.99,
+      "id_vendedor": "VEN003",
+      "images": [
+        "https://i.blogs.es/7af9e0/sony-wh-1000xm4-analisis/1366_2000.jpg"
+      ],
+      "descuento": 20,
+      "promocion": true,
+      "sub-categoria": "Audio"
+    },
+    {
+      "id_producto": 4,
+      "nombre": "Camisa de Algodón",
+      "descripcion": "Camisa casual de manga larga, 100% algodón",
+      "categoria": "Ropa",
+      "precio": 29.99,
+      "id_vendedor": "VEN004",
+      "images": [
+        "https://http2.mlstatic.com/D_NQ_NP_689849-MLA83210607593_032025-O.webp"
+      ],
+      "descuento": 0,
+      "promocion": true,
+      "sub-categoria": "Camisas"
+    },
+    {
+      "id_producto": 5,
+      "nombre": "Pantalón Jeans Slim Fit",
+      "descripcion": "Pantalón de mezclilla ajustado, color azul oscuro",
+      "categoria": "Ropa",
+      "precio": 49.99,
+      "id_vendedor": "VEN001",
+      "images": [
+        "https://images-cdn.ubuy.co.in/66ba44395f4f156fb56def8b-men-039-s-denim-slim-fit-jogger.jpg"
+      ],
+      "descuento": 15,
+      "promocion": true,
+      "sub-categoria": "Pantalones"
+    },
+    {
+      "id_producto": 6,
+      "nombre": "Zapatos Deportivos Nike Air Max",
+      "descripcion": "Zapatillas para correr con amortiguación Air Max",
+      "categoria": "Calzado",
+      "precio": 129.99,
+      "id_vendedor": "VEN005",
+      "images": [
+        "https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dw6c5fe84d/products/NIHQ2115-100/NIHQ2115-100-6.JPG"
+      ],
+      "descuento": 0,
+      "promocion": true,
+      "sub-categoria": "Deporte"
+    },
+    {
+      "id_producto": 7,
+      "nombre": "Libro 'El Principito'",
+      "descripcion": "Edición especial en tapa dura del clásico de Antoine de Saint-Exupéry",
+      "categoria": "Libros",
+      "precio": 19.99,
+      "id_vendedor": "VEN002",
+      "images": [
+        "https://libreriareginacoeli.com/wp-content/uploads/2022/12/El-principito-tapa-dura-scaled.jpg"
+      ],
+      "descuento": 5,
+      "promocion": true,
+      "sub-categoria": "Literatura Infantil"
+    },
+    {
+      "id_producto": 8,
+      "nombre": "Tablet Amazon Fire HD 10",
+      "descripcion": "Tablet de 10.1 pulgadas con 32GB de almacenamiento",
+      "categoria": "Electrónicos",
+      "precio": 149.99,
+      "id_vendedor": "VEN003",
+      "images": [
+        "https://shop.litecorp.com.ar/wp-content/uploads/2021/08/amazonfirehd10456c1689.jpg"
+      ],
+      "descuento": 0,
+      "promocion": true,
+      "sub-categoria": "Tablets"
+    },
+    {
+      "id_producto": 9,
+      "nombre": "Reloj Inteligente Xiaomi Mi Band 6",
+      "descripcion": "Pulsera inteligente con monitor de ritmo cardíaco y SpO2",
+      "categoria": "Electrónicos",
+      "precio": 59.99,
+      "id_vendedor": "VEN001",
+      "images": [
+        "https://static.independent.co.uk/2021/09/06/12/Xiaomi%20Mi%20Smart%20Band%206%20copy.jpg?width=1200&height=1200&fit=crop"
+      ],
+      "descuento": 25,
+      "promocion": true,
+      "sub-categoria": "Wearables"
+    },
+    {
+      "id_producto": 10,
+      "nombre": "Juego de Sartenes Antiadherentes",
+      "descripcion": "Set de 3 sartenes de diferentes tamaños con revestimiento antiadherente",
+      "categoria": "Hogar",
+      "precio": 79.99,
+      "id_vendedor": "VEN004",
+      "images": [
+        "https://http2.mlstatic.com/D_NQ_NP_787722-MLU71971479342_092023-O.webp"
+      ],
+      "descuento": 0,
+      "promocion": true,
+      "sub-categoria": "Cocina"
+    },
+    {
+      "id_producto": 11,
+      "nombre": "Mochila Impermeable",
+      "descripcion": "Mochila resistente al agua con capacidad de 20L",
+      "categoria": "Accesorios",
+      "precio": 39.99,
+      "id_vendedor": "VENXXX",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/001/151/665/products/mc0100-foto08-0603223ba89e0937f617175068459221-1024-1024.jpg"
+      ],
+      "descuento": 0,
+      "promocion": false,
+      "sub-categoria": "Viaje"
+    },
+    {
+      "id_producto": 12,
+      "nombre": "Cámara GoPro Hero 9",
+      "descripcion": "Cámara deportiva 4K con estabilización HyperSmooth 3.0",
+      "categoria": "Electrónicos",
+      "precio": 399.99,
+      "id_vendedor": "VEN002",
+      "images": [
+        "https://m.media-amazon.com/images/I/81Szbr4wo5L._AC_SL1500_.jpg"
+      ],
+      "descuento": 30,
+      "promocion": false,
+      "sub-categoria": "Cámaras Deportivas"
+    },
+    {
+      "id_producto": 13,
+      "nombre": "Vestido Floral Veraniego",
+      "descripcion": "Vestido ligero con estampado floral, ideal para verano",
+      "categoria": "Ropa",
+      "precio": 34.99,
+      "id_vendedor": "VEN005",
+      "images": [
+        "https://m.media-amazon.com/images/I/618OpygSsLL._AC_SY580_.jpg"
+      ],
+      "descuento": 0,
+      "promocion": false,
+      "sub-categoria": "Vestidos"
+    },
+    {
+      "id_producto": 14,
+      "nombre": "Botella Térmica de Acero Inoxidable",
+      "descripcion": "Botella de 500ml que mantiene líquidos fríos o calientes por 24 horas",
+      "categoria": "Hogar",
+      "precio": 24.99,
+      "id_vendedor": "VENXXX",
+      "images": [
+        "https://http2.mlstatic.com/D_NQ_NP_871285-MLA73845902029_012024-O.webp"
+      ],
+      "descuento": 0,
+      "promocion": false,
+      "sub-categoria": "Bebida"
+    },
+    {
+      "id_producto": 15,
+      "nombre": "Teclado Mecánico RGB",
+      "descripcion": "Teclado gaming con switches Blue y retroiluminación RGB",
+      "categoria": "Electrónicos",
+      "precio": 89.99,
+      "id_vendedor": "VEN003",
+      "images": [
+        "https://http2.mlstatic.com/D_NQ_NP_965969-MLU73180785750_122023-O.webp"
+      ],
+      "descuento": 0,
+      "promocion": false,
+      "sub-categoria": "Gaming"
+    },
+    {
+      "id_producto": 16,
+      "nombre": "Libro 'Cien Años de Soledad'",
+      "descripcion": "Novela clásica de Gabriel García Márquez, edición conmemorativa",
+      "categoria": "Libros",
+      "precio": 22.99,
+      "id_vendedor": "VENXXX",
+      "images": [
+        "https://carlosbattaglini.es/wp-content/uploads/2017/02/librocienan%CC%83osdesoledad.jpg"
+      ],
+      "descuento": 0,
+      "promocion": false,
+      "sub-categoria": "Novela"
+    },
+    {
+      "id_producto": 17,
+      "nombre": "Silla de Oficina Ergonómica",
+      "descripcion": "Silla ajustable con soporte lumbar para largas horas de trabajo",
+      "categoria": "Hogar",
+      "precio": 199.99,
+      "id_vendedor": "VENXXX",
+      "images": [
+        "https://http2.mlstatic.com/D_NQ_NP_854135-MLA69877864293_062023-O.webp"
+      ],
+      "descuento": 0,
+      "promocion": false,
+      "sub-categoria": "Mobiliario"
+    },
+    {
+      "id_producto": 18,
+      "nombre": "Balón de Fútbol Adidas",
+      "descripcion": "Balón oficial tamaño 5, resistente y duradero",
+      "categoria": "Deportes",
+      "precio": 49.99,
+      "id_vendedor": "VENXXX",
+      "images": [
+        "https://acdn-us.mitiendanube.com/stores/004/744/746/products/o-28-600x600-1-ab57b0eaf9966addf817166714995266-1024-1024.png"
+      ],
+      "descuento": 0,
+      "promocion": false,
+      "sub-categoria": "Fútbol"
+    },
+    {
+      "id_producto": 19,
+      "nombre": "Set de Maquillaje Profesional",
+      "descripcion": "Kit con 12 sombras, rubor, delineador y pinceles",
+      "categoria": "Belleza",
+      "precio": 59.99,
+      "id_vendedor": "VEN004",
+      "images": [
+        "https://http2.mlstatic.com/D_NQ_NP_615958-MLA31612583451_072019-O.webp"
+      ],
+      "descuento": 0,
+      "promocion": false,
+      "sub-categoria": "Maquillaje"
+    },
+    {
+      "id_producto": 20,
+      "nombre": "Maletín para Laptop",
+      "descripcion": "Maletín resistente con compartimento para laptop de hasta 15.6 pulgadas",
+      "categoria": "Accesorios",
+      "precio": 45.99,
+      "id_vendedor": "VEN005",
+      "images": [
+        "https://www.caselogic.com/-/p/szMUx_tX6DM4GdWr0zOayMCnYgU6s3JAjdzlEuPqF2w/rs:fit/h:480/cb:1.14/w:480/plain/approved/std.lang.all/99/77/689977.jpg"
+      ],
+      "descuento": 0,
+      "promocion": false,
+      "sub-categoria": "Equipaje"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "VEN001",
+      "nombre": "Carlos",
+      "apellido": "Gómez",
+      "email": "c.gomez@example.com",
+      "password": "9gHj4K",
+      "productos_vendidos": [1, 5, 9],
+      "productos_comprados": [3, 14]
+    },
+    {
+      "id": "VEN002",
+      "nombre": "Ana",
+      "apellido": "López",
+      "email": "a.lopez@example.com",
+      "password": "m7nLp3",
+      "productos_vendidos": [2, 7, 12],
+      "productos_comprados": [6, 18]
+    },
+    {
+      "id": "VEN003",
+      "nombre": "Miguel",
+      "apellido": "Rodríguez",
+      "email": "m.rodriguez@example.com",
+      "password": "Qw2eRt",
+      "productos_vendidos": [3, 8, 15],
+      "productos_comprados": [4, 11]
+    },
+    {
+      "id": "VEN004",
+      "nombre": "Lucía",
+      "apellido": "Martínez",
+      "email": "l.martinez@example.com",
+      "password": "5tG8hY",
+      "productos_vendidos": [4, 10, 19],
+      "productos_comprados": [1, 16]
+    },
+    {
+      "id": "VEN005",
+      "nombre": "Javier",
+      "apellido": "Fernández",
+      "email": "j.fernandez@example.com",
+      "password": "zxCVb6",
+      "productos_vendidos": [6, 13, 20],
+      "productos_comprados": [2, 17]
+    }
+  ]
+}
