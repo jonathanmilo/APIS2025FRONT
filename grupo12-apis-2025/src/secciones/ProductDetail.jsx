@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Header from '../componentes/Header'
 import Carousel from '../componentes/Carousel'  // Importar el componente del carrusel
+import Footer from '../componentes/Footer'
 
 export function ProductDetail() {
   const { id } = useParams()  // Obtener el ID de la URL
@@ -121,6 +122,8 @@ export function ProductDetail() {
           </section>
         )}
       </div>
+
+      <Footer></Footer>
     </>
   )
 }

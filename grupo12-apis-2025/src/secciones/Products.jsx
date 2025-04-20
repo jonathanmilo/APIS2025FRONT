@@ -4,6 +4,7 @@ import Header from "../componentes/Header";
 import Carousel from "../componentes/Carousel";
 import { usarContextoUsuario } from "../Context.jsx";
 import Producto from "../componentes/Producto.jsx";
+import Footer from "../componentes/Footer.jsx";
 
 export function Products() {
   const usuario = usarContextoUsuario();
@@ -55,6 +56,8 @@ export function Products() {
       ) : (
         <InicioSesion />
       )}
+
+      <Footer></Footer>
     </>
   );
 }

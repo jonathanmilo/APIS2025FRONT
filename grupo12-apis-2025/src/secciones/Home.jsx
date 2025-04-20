@@ -3,6 +3,7 @@ import InicioSesion from "./InicioSesion";
 import Header from "../componentes/Header";
 import { usarContextoUsuario } from "../Context.jsx";
 import Producto from "../componentes/Producto.jsx";
+import Footer from "../componentes/Footer.jsx";
 
 export function Home() {
   const usuario = usarContextoUsuario();
@@ -54,6 +55,8 @@ export function Home() {
       ) : (
         <InicioSesion />
       )}
+
+      <Footer></Footer>
     </>
   );
 }
