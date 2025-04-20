@@ -1,24 +1,10 @@
 // src/componentes/Producto.jsx
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { usarCarrito } from '../Context'; // Importa el hook del carrito
 
 function Producto({ producto }) {
   const { agregarAlCarrito } = usarCarrito(); // Obtén la función para agregar al carrito
-
-  const agregarAlCarrito = (producto) => {
-    setCarrito((prevCarrito) => {
-      const productoExistente = prevCarrito.find((p) => p.id_producto === producto.id_producto);
-      if (productoExistente) {
-        return prevCarrito.map((p) =>
-          p.id_producto === producto.id_producto
-            ? { ...p, cantidad: p.cantidad + 1 }
-            : p
-        );
-      }
-      return [...prevCarrito, { ...producto, cantidad: 1 }]; // Agrega el producto con todos sus datos
-    });
-  };
 
   return (
     <div className="flex justify-center">
@@ -71,7 +57,7 @@ function Producto({ producto }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Producto
+export default Producto;

@@ -43,17 +43,19 @@ export function Context({ children }) {
   };
 
   // Funciones para manejar el carrito
-  const agregarAlCarrito = (producto) => {
+  const agregarAlCarrito = (producto, cantidad = 1) => {
     setCarrito((prevCarrito) => {
       const productoExistente = prevCarrito.find((p) => p.id_producto === producto.id_producto);
       if (productoExistente) {
+        // Si el producto ya existe, incrementa la cantidad
         return prevCarrito.map((p) =>
           p.id_producto === producto.id_producto
-            ? { ...p, cantidad: p.cantidad + 1 }
+            ? { ...p, cantidad: p.cantidad + cantidad }
             : p
         );
       }
-      return [...prevCarrito, { ...producto, cantidad: 1 }];
+      // Si el producto no existe, agrégalo con la cantidad seleccionada
+      return [...prevCarrito, { ...producto, cantidad }];
     });
   };
 
