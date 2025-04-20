@@ -49,7 +49,7 @@ const InicioSesion = ({ registro }) => {
       return;
     }
 
-    // Aquí iría la lógica de autenticación (API, etc.)
+    // Aquí iría la lógica de autenticación (API, etc.) - Lo debemos hacer con el JSON por ahora.
     validar(formData);
     console.log('Datos enviados:', formData);
     alert(`Bienvenido ${formData.nombre || 'usuario'}!`);
