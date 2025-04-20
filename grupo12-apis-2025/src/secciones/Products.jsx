@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import InicioSesion from "./InicioSesion";
 import Header from "../componentes/Header";
+import Carousel from "../componentes/Carousel";
 import { usarContextoUsuario } from "../Context.jsx";
 import Producto from "../componentes/Producto.jsx";
 
@@ -10,44 +11,44 @@ export function Products() {
   const [productos, setProductos] = useState([]);
   const [productosFiltrados, setProductosFiltrados] = useState([]);
 
-  // Cargar productos desde json-server
   useEffect(() => {
     fetch("http://localhost:3001/productos")
-      .then((response) => response.json())
-      .then((data) => {
-        setProductos(data);
-      })
-      .catch((error) => {
-        console.error("Error al cargar productos:", error);
-      });
+      .then(res => res.json())
+      .then(setProductos)
+      .catch(console.error);
   }, []);
 
-  const actualizarValor = (nuevoValor) => {
-    setLogeado(nuevoValor);
-  };
-
-  const handleBuscar = (termino) => {
+  const handleBuscar = termino => {
     if (!termino) {
       setProductosFiltrados([]);
       return;
     }
-
-    const filtrados = productos.filter((producto) =>
-      producto.nombre.toLowerCase().includes(termino.toLowerCase())
+    setProductosFiltrados(
+      productos.filter(p =>
+        p.nombre.toLowerCase().includes(termino.toLowerCase())
+      )
     );
-    setProductosFiltrados(filtrados);
   };
 
-  const productosAMostrar =
-    productosFiltrados.length > 0 ? productosFiltrados : productos;
+  // selecciona sólo los productos en promocion
+  const destacados = productos.filter(p => p.destacado);
+  const lista = productosFiltrados.length ? productosFiltrados : productos;
 
   return (
     <>
-      <Header onActualizarValor={actualizarValor} buscar={handleBuscar} />
+      <Header buscar={handleBuscar} />      
+      {destacados.length > 0 && (
+        <section className="mt-4">
+          <Carousel
+          title="Productos Destacados"
+          items={destacados}/>
+        </section>
+      )}
 
-      {!logeado || usuario ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 md:gap-2 lg:gap-4 p-3 md:p-5 lg:p-6">
-          {productosAMostrar.map((prod) => (
+      {/* Grid principal */}
+      {(!logeado || usuario) ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+          {lista.map(prod => (
             <Producto key={prod.id_producto} producto={prod} />
           ))}
         </div>
