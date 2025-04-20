@@ -2,12 +2,15 @@ import { useState, useContext } from "react";
 import Barra_busqueda_productos from "./Barra_busqueda_productos";
 import Botones_usuario from "./Botones_usuario.jsx";
 import { usarContextoUsuario } from "../Context.jsx";
+import Carrito from "./Carrito"; // Importa el componente Carrito
 
 function Header({ onActualizarValor, buscar }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [carritoVisible, setCarritoVisible] = useState(false); // Estado para mostrar/ocultar el carrito
   const usuario = usarContextoUsuario();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleCarrito = () => setCarritoVisible(!carritoVisible); // Alternar visibilidad del carrito
 
   const handleClick = () => {
     onActualizarValor("Nuevo valor desde Header");
@@ -109,8 +112,23 @@ function Header({ onActualizarValor, buscar }) {
               Iniciar sesión
             </button>
           )}
+
+          {/* Botón para abrir el carrito */}
+          <button
+            onClick={toggleCarrito}
+            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-colors"
+          >
+            Carrito
+          </button>
         </div>
       </div>
+
+      {/* Carrito desplegable */}
+      {carritoVisible && (
+        <div className="absolute top-16 right-4 bg-white shadow-lg rounded-lg p-4 w-80 z-50">
+          <Carrito />
+        </div>
+      )}
     </nav>
   );
 }
