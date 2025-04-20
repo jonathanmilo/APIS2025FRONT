@@ -279,6 +279,20 @@
       "descuento": 0,
       "destacado": false,
       "sub-categoria": "Equipaje"
+    },
+    {
+      "id_producto": 21,
+      "nombre": "Mochila",
+      "descripcion": "Mochila para computadora portátil de 15.6 pulgadas",
+      "categoria": "Accesorios",
+      "precio": 29.99,
+      "id_vendedor": "VEN005",
+      "images": [
+        "https://www.caselogic.com/-/p/TTQeL_ypJdC7vi8xOtzGHqeNdEMdyGVbaLLeMBAgtQY/rs:fit/f:avif/cb:3.7/q:80/h:1200/w:1200/plain/approved/std.lang.all/13/80/601380.jpg"
+      ],
+      "descuento": 0.1,
+      "destacado": false,
+      "sub-categoria": "Equipaje"
     }
   ],
   "usuarios": [

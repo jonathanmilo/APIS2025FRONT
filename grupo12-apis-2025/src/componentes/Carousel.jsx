@@ -1,4 +1,5 @@
-import React from "react";
+// src/componentes/Carousel.jsx
+import React from "react"
 
 export default function Carousel({ title, items }) {
   return (
@@ -34,5 +35,5 @@ export default function Carousel({ title, items }) {
         </div>
       </div>
     </section>
-  );
+  )
 }
