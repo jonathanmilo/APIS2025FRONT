@@ -22,11 +22,11 @@ export default function Carousel({ title, items }) {
                 className="w-full h-40 object-cover"
               />
               <div className="p-3">
-                <h3 className="text-lg font-bold">{prod.nombre}</h3>
-                <p className="text-sm text-gray-500 truncate">
+                <h3 className="text-lg font-bold text-black">{prod.nombre}</h3>
+                <p className="text-sm text-gray-500 truncate text-black">
                   {prod.descripcion}
                 </p>
-                <p className="mt-2 text-xl font-semibold">
+                <p className="mt-2 text-xl font-semibold text-black">
                   ${prod.precio}
                 </p>
               </div>

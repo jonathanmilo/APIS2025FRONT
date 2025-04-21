@@ -50,48 +50,39 @@ function Header({ onActualizarValor, buscar }) {
         <div className="w-full lg:hidden">
           <div className="flex flex-col right-0 fixed bg-white w-screen gap-10 p-3 shadow-lg">
             <div className="text-md font-bold text-gray-600 lg:flex-grow">
-              {/* Enlace a Home */}
               <Link
                 to="/home"
                 className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-3 py-2 rounded hover:bg-blue-700 mr-2"
               >
                 Inicio
               </Link>
-              {/* Enlace a Products */}
               <Link
                 to="/products"
-                className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-3 py-2 rounded hover:bg-blue-700 mr-2"
+                className=" block mt-4 lg:inline-block lg:mt-0 hover:text-white px-3 py-2 rounded hover:bg-blue-700 mr-2"
               >
                 Productos
               </Link>
             </div>
             <div className="flex">
-              <button
-                onClick={handleClick}
-                className="block text-md h-10 px-4  ml-2 bg-lime-500 hover:bg-lime-600 text-white rounded-lg transition-colors lg:mt-0"
+              <Link
+                to="/login"
+                className="block text-md h-10 px-4 ml-2 bg-lime-500 hover:bg-lime-600 text-white rounded-lg transition-colors lg:mt-0"
               >
                 Iniciar Sesión
-              </button>
-
-              <button className=" block text-md h-10 px-4  ml-2 bg-lime-500 hover:bg-lime-600 text-white rounded-lg transition-colors lg:mt-0">
-                Creá tu cuenta
-              </button>
+              </Link>
             </div>
           </div>
         </div>
       )}
 
       <div className="menu w-full flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8 gap-4">
-        {/* Menú lateral */}
         <div className="text-md font-bold lg:flex-grow hidden lg:flex gap-4">
-          {/* Enlace a Home */}
           <Link
             to="/home"
             className="text-gray-600 px-4 py-2 rounded hover:text-lime-500"
           >
             Inicio
           </Link>
-          {/* Enlace a Products */}
           <Link
             to="/products"
             className="text-gray-600 px-4 py-2 rounded hover:text-lime-500"
@@ -110,12 +101,12 @@ function Header({ onActualizarValor, buscar }) {
           {usuario ? (
             <Botones_usuario />
           ) : (
-            <button
-              onClick={handleClick}
+            <Link
+              to="/login"
               className="px-4 py-2 hidden lg:block bg-lime-500 hover:bg-lime-600 text-white font-medium rounded-lg transition-colors"
             >
               Iniciar sesión
-            </button>
+            </Link>
           )}
 
           {/* Botón para abrir el carrito */}
