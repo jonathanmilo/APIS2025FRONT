@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { Link } from "react-router-dom"; // Importa Link
 import Barra_busqueda_productos from "./Barra_busqueda_productos";
 import Botones_usuario from "./Botones_usuario.jsx";
 import { usarContextoUsuario } from "../Context.jsx";
@@ -49,18 +50,20 @@ function Header({ onActualizarValor, buscar }) {
         <div className="w-full lg:hidden">
           <div className="flex flex-col right-0 fixed bg-white w-screen gap-10 p-3 shadow-lg">
             <div className="text-md font-bold text-gray-600 lg:flex-grow">
-              <a
-                href="#responsive-header"
+              {/* Enlace a Home */}
+              <Link
+                to="/home"
                 className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-3 py-2 rounded hover:bg-blue-700 mr-2"
               >
                 Inicio
-              </a>
-              <a
-                href="#responsive-header"
-                className=" block mt-4 lg:inline-block lg:mt-0 hover:text-white px-3 py-2 rounded hover:bg-blue-700 mr-2"
+              </Link>
+              {/* Enlace a Products */}
+              <Link
+                to="/products"
+                className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-3 py-2 rounded hover:bg-blue-700 mr-2"
               >
                 Productos
-              </a>
+              </Link>
             </div>
             <div className="flex">
               <button
@@ -81,18 +84,20 @@ function Header({ onActualizarValor, buscar }) {
       <div className="menu w-full flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8 gap-4">
         {/* Menú lateral */}
         <div className="text-md font-bold lg:flex-grow hidden lg:flex gap-4">
-          <a
-            href="#"
+          {/* Enlace a Home */}
+          <Link
+            to="/home"
             className="text-gray-600 px-4 py-2 rounded hover:text-lime-500"
           >
             Inicio
-          </a>
-          <a
-            href="#"
+          </Link>
+          {/* Enlace a Products */}
+          <Link
+            to="/products"
             className="text-gray-600 px-4 py-2 rounded hover:text-lime-500"
           >
             Productos
-          </a>
+          </Link>
         </div>
 
         {/* Barra de búsqueda */}
