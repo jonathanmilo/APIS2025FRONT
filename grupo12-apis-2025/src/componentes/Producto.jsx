@@ -1,8 +1,11 @@
 // src/componentes/Producto.jsx
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { usarCarrito } from '../Context'; // Importa el hook del carrito
 
 function Producto({ producto }) {
+  const { agregarAlCarrito } = usarCarrito(); // Obtén la función para agregar al carrito
+
   return (
     <div className="flex justify-center">
       <div className="flex flex-col justify-between max-w-sm w-full bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
@@ -36,7 +39,11 @@ function Producto({ producto }) {
             </div>
           </div>
 
-          <button className="w-full bg-lime-500 hover:bg-lime-600 text-white font-medium py-3 rounded-lg transition-colors">
+          {/* Botón para agregar al carrito */}
+          <button
+            className="w-full bg-lime-500 hover:bg-lime-600 text-white font-medium py-3 rounded-lg transition-colors"
+            onClick={() => agregarAlCarrito(producto)} // Llama a la función del carrito
+          >
             Agregar al carrito
           </button>
 
@@ -50,7 +57,7 @@ function Producto({ producto }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Producto
+export default Producto;
