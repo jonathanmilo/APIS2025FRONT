@@ -52,7 +52,7 @@ export function Home() {
 
       {/* Carrousel de productos destacados */}
       {productosDestacados.length > 0 && (
-        <section className="productos-destacados -mt-32 z-10 relative">
+        <section className="productos-destacados -mt-32 z-10 relative lg:mx-20">
           <Carousel title="Productos Destacados" items={productosDestacados} />
         </section>
       )}

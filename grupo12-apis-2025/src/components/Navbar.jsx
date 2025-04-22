@@ -24,7 +24,7 @@ function Navbar({ onActualizarValor, buscar }) {
   };
 
   return (
-    <nav className="flex flex-row gap-5 h-[10vh] lg:h-[12vh] items-center justify-center px-3 bg-white lg:px-12 shadow border-t-2 border-brand-green sticky top-0 z-50">
+    <nav className="flex flex-row gap-5 h-[10vh] md:h-[8vh] lg:h-[13vh] items-center justify-center px-3 bg-white lg:px-12 shadow border-t-2 border-brand-green sticky top-0 z-50">
       <div className="flex flex-row justify-between lg:w-auto w-full lg:border-b-0 lg:pb-0">
         {/* Logo y Nombre */}
 

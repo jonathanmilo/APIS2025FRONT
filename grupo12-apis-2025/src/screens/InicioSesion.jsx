@@ -46,7 +46,7 @@ const InicioSesion = ({ registro }) => {
   // Enviar formulario
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     if (
       !formData.email ||
       !formData.password ||
@@ -56,12 +56,11 @@ const InicioSesion = ({ registro }) => {
       alert("Por favor completa todos los campos correctamente");
       return;
     }
-  
-    validar(formData); // actualiza el contexto
+
+    validar(formData);
     console.log("Datos enviados:", formData);
     alert(`Bienvenido ${formData.nombre || "usuario"}!`);
-    
-    // ✅ Redirigir después de autenticar
+
     navigate("/");
   };
 
@@ -69,14 +68,11 @@ const InicioSesion = ({ registro }) => {
     <>
       <div className="w-screen h-screen flex flex-col">
         <Navbar></Navbar>
-        <div className="flex-grow flex items-center justify-center">
-          <div className="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
-            <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+        <div className="flex-grow flex flex-col items-center justify-center">
+          <div className="relative flex flex-col bg-transparent bg-clip-border text-gray-700 shadow-none">
+            <h4 className="block text-center font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
               Iniciar Sesión
             </h4>
-            <p className="mt-1 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
-              Ingresa tus datos para iniciar sesión.
-            </p>
             <form
               className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
               onSubmit={handleSubmit}
@@ -131,13 +127,51 @@ const InicioSesion = ({ registro }) => {
 
               {/* Botón de envío */}
               <button
-                className="mt-6 block w-full select-none rounded-lg bg-lime-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                className="mt-6 block w-full select-none bg-lime-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg hover:drop-shadow-brand-green-hover focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 type="submit"
                 disabled={errors.email || errors.password}
               >
                 Ingresar
               </button>
             </form>
+
+            {/* Separador */}
+
+            <div className="flex items-center justify-center w-full gap-4 my-6 px-4">
+              <div className="h-px flex-1 bg-gray-300" />
+              <span className="text-gray-400 text-sm">o</span>
+              <div className="h-px flex-1 bg-gray-300" />
+            </div>
+
+            {/* Botón de google */}
+
+            <button class="flex self-center gap-1 bg-white border border-gray-200 shadow-md px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+              <img
+                src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
+                alt=""
+                className="h-6 w-6"
+              />
+              <span>Continuar con Google</span>
+            </button>
+
+            {/* Separador */}
+
+            <div className="flex items-center justify-center w-full gap-4 my-6 px-4">
+              <div className="h-px flex-1 bg-gray-300" />
+              <span className="text-gray-400 text-sm">
+                ¿No tenés una cuenta?
+              </span>
+              <div className="h-px flex-1 bg-gray-300" />
+            </div>
+
+            {/* Botón de registro */}
+
+            <button
+              className="block w-full select-none shadow-lg bg-gray-50 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-gray-400 border-gray-300 border-1 hover:bg-gray-100 cursor-pointer"
+              type="submit"
+            >
+              Registrate
+            </button>
           </div>
         </div>
       </div>

@@ -26,9 +26,9 @@ export default function HomeCarousel() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden md:-mb-90">
+    <section className="relative overflow-hidden md:-mb-50 lg:-mb-90">
       {/* Imagen con degradado usando un pseudo-overlay */}
-      <div className="relative w-full h-[230px] sm:h-[350px] lg:h-[600px]">
+      <div className="relative w-full h-[260px] sm:h-[350px] lg:h-[600px]">
         <img
           src={images[index]}
           alt={`Slide ${index + 1}`}

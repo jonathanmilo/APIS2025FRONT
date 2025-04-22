@@ -8,7 +8,7 @@ function Footer() {
           {/* Primera Fila: Información y Contacto */}
 
           <div>
-            <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
+            <h3 className="mb-6 text-sm font-semibold text-brand-black uppercase">
               Información útil
             </h3>
             <ul>
@@ -54,13 +54,13 @@ function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
+            <h3 className="mb-6 text-sm font-semibold text-brand-black uppercase">
               Todo en un solo lugar
             </h3>
             <ul>
               <li className="mb-4">
                 <div className="flex flex-row items-center gap-2">
-                  <i className="fa-solid fa-check text-gray-900"></i>
+                  <i className="fa-solid fa-check text-brand-black"></i>
                   <p className="text-gray-600">
                     Millones de productos originales.
                   </p>
@@ -68,7 +68,7 @@ function Footer() {
               </li>
               <li className="mb-4">
                 <div className="flex flex-row items-center gap-2">
-                  <i className="fa-solid fa-check text-gray-900"></i>
+                  <i className="fa-solid fa-check text-brand-black"></i>
                   <p className="text-gray-600">
                     Optimizamos tus compras consolidando tu envío.
                   </p>
@@ -76,7 +76,7 @@ function Footer() {
               </li>
               <li className="mb-4">
                 <div className="flex flex-row items-center gap-2">
-                  <i className="fa-solid fa-check text-gray-900"></i>
+                  <i className="fa-solid fa-check text-brand-black"></i>
                   <p className="text-gray-600">
                     Elegí en qué moneda pagar (pesos o dólares).
                   </p>
@@ -85,7 +85,7 @@ function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
+            <h3 className="mb-6 text-sm font-semibold text-brand-black uppercase">
               Comprá con tranquilidad
             </h3>
             <ul>
@@ -98,19 +98,19 @@ function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
+            <h3 className="mb-6 text-sm font-semibold text-brand-black uppercase">
               Contacto
             </h3>
             <ul>
               <li className="mb-4 flex flex-row gap-2">
                 <div>
-                  <i className="fa-solid fa-headphones-simple text-gray-900"></i>
+                  <i className="fa-solid fa-headphones-simple text-brand-black"></i>
                 </div>
                 <div>
-                  <p className="text-gray-900 font-bold">
+                  <p className="text-brand-black font-bold">
                     Atención telefónica: (+54) 11 9999 9999
                   </p>
-                  <p className="text-gray-900">
+                  <p className="text-brand-black">
                     De Lunes a Sábados en el horario de 09:00hs a 18:00hs y
                     Domingos de 10:00hs a 16:00hs.
                   </p>
@@ -118,7 +118,7 @@ function Footer() {
               </li>
               <li className="mb-4 flex flex-row gap-2">
                 <div>
-                  <i className="fa-regular fa-clock text-gray-900"></i>
+                  <i className="fa-regular fa-clock text-brand-black"></i>
                 </div>
                 <div>
                   <p className="text-gray-500">
@@ -134,7 +134,7 @@ function Footer() {
         {/* Segunda Fila: Métodos de Pago */}
 
         <div className="py-4 sm:pb-6 sm:py-0 border-b-1 border-gray-200">
-          <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase">
+          <h3 className="mb-6 text-sm font-semibold text-brand-black uppercase">
             Métodos de Pago
           </h3>
           <ul className="flex flex-row gap-5 items-center">

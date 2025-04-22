@@ -72,7 +72,7 @@ export function ProductDetail() {
   return (
     <>
       <Navbar />
-      <div className="max-w-4xl mx-auto p-6">
+      <div className="max-w-4xl mx-auto p-6 md:p-4">
         <Link
           to="/products"
           className="inline-block mb-4 text-lime-500 hover:underline"
@@ -139,14 +139,14 @@ export function ProductDetail() {
         {productosRelacionados.length > 0 && (
           <section className="mt-6">
             <Carousel
-              title="Productos de la misma sub-categoría"
+              title="Productos similares"
               items={productosRelacionados}
             />
           </section>
         )}
       </div>
 
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }

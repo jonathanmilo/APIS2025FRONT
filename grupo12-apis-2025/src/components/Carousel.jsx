@@ -41,7 +41,7 @@ export default function Carousel({ title, items }) {
   };
 
   return (
-    <section className="relative py-4 lg:mx-20">
+    <section className="relative py-4">
       {title && (
         <h2 className="md:text-xl px-4 mb-2 text-brand-black uppercase font-bold">
           {title}
@@ -56,14 +56,14 @@ export default function Carousel({ title, items }) {
             <div
               key={prod.id_producto}
               onClick={() => navigate(`/products/${prod.id_producto}`)}
-              className="min-w-[200px] flex flex-col bg-white overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer"
+              className="min-w-[200px] lg:w-50 flex flex-col bg-white overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer"
             >
               <img
                 src={prod.images[0]}
                 alt={prod.nombre}
                 className="w-full h-40 object-cover"
               />
-              <div className="flex flex-col p-2 justify-between h-[20vh]">
+              <div className="flex flex-col p-2 justify-between h-[20vh] md:h-[12vh] lg:h-[25vh] xl:h-[20vh]">
                 <div className="flex flex-grow flex-col">
                   <h3 className="font-bold text-brand-black text-sm uppercase h-11">{prod.nombre}</h3>
                   <p className="text-sm text-gray-500 truncate">
