@@ -62,6 +62,12 @@ function Header({ onActualizarValor, buscar }) {
               >
                 Productos
               </Link>
+              <Link
+                to="/mi-perfil"
+                className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-3 py-2 rounded hover:bg-blue-700 mr-2"
+              >
+                Mi Perfil
+              </Link>
             </div>
             <div className="flex">
               <Link
