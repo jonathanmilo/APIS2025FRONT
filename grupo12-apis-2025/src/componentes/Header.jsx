@@ -109,6 +109,14 @@ function Header({ onActualizarValor, buscar }) {
             </Link>
           )}
 
+            <Link
+              to="/mi-perfil"
+              className="px-4 py-2 hidden lg:block bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium rounded-lg transition-colors"
+            >
+              Mi Perfil
+            </Link>
+
+
           {/* Botón para abrir el carrito */}
           <button
             onClick={toggleCarrito}

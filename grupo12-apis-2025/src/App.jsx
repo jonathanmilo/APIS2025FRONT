@@ -4,6 +4,7 @@ import { Home } from './secciones/Home';
 import { Products } from './secciones/Products';
 import { ProductDetail } from './secciones/ProductDetail';
 import InicioSesion from './secciones/InicioSesion';
+import MiPerfil from './secciones/MiPerfil';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/products" element={<Products />} />
       <Route path="/products/:id" element={<ProductDetail />} />
       <Route path="/login" element={<InicioSesion />} />
+      <Route path="mi-perfil" element={<MiPerfil />} />
     </Routes>
   );
 }
