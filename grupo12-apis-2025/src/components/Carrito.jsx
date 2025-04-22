@@ -5,9 +5,9 @@ export default function Carrito() {
   const { carrito, eliminarDelCarrito } = usarCarrito();
 
   return (
-    <div className="h-[70vh] flex flex-col">
+    <div className="h-[75vh] flex flex-col">
       {/* Contenido scrollable */}
-      <div className="overflow-y-auto pr-2 flex-1">
+      <div className="overflow-y-auto pr-2 flex-1 no-scrollbar">
         <h2 className="uppercase pb-2 text-brand-black">Carrito de Compras</h2>
         {carrito.length === 0 ? (
           <p className="text-brand-gray text-center py-2">
@@ -42,7 +42,7 @@ export default function Carrito() {
                 </div>
                 <button
                   onClick={() => eliminarDelCarrito(producto.id_producto)}
-                  className="text-red-500 hover:text-red-700 h-3 w-3 self-end"
+                  className="text-red-500 hover:text-red-700 h-3 w-3 self-end cursor-pointer"
                 >
                   <i className="fa-solid fa-trash"></i>
                 </button>
@@ -58,13 +58,13 @@ export default function Carrito() {
           className={`px-4 py-2 font-medium rounded-lg transition-colors ${
             carrito.length === 0
               ? "bg-gray-300 text-white cursor-not-allowed"
-              : "bg-lime-500 hover:bg-lime-600 text-white"
+              : "bg-lime-500 hover:bg-lime-600 text-white cursor-pointer"
           }`}
           disabled={carrito.length === 0}
         >
           Checkout
         </button>
-        <button className="text-brand-gray underline hover:text-brand-black">
+        <button className="text-brand-gray underline hover:text-brand-black cursor-pointer">
           Vaciar carrito
         </button>
       </div>

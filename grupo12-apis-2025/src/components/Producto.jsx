@@ -7,7 +7,7 @@ function Producto({ producto }) {
 
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col justify-between max-w-sm w-full bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
+      <div className="flex flex-col justify-between max-w-sm w-full bg-white shadow-lg overflow-hidden hover:shadow-xl transition-all">
         {/* Imagen y básico */}
         <div className="relative flex flex-col gap-2">
           <img

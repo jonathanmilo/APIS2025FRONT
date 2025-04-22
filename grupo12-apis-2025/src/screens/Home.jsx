@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import Producto from "../components/Producto.jsx";
-import Carousel from "../components/Carousel.jsx"; // Asegúrate de tener un componente de carrousel
+import Carousel from "../components/Carousel.jsx";
+import HomeCarousel from "../components/HomeCarousel.jsx";
 import { usarContextoUsuario } from "../contexts/Context.jsx";
 
 export function Home() {
-
   const [productos, setProductos] = useState([]);
   const [productosFiltrados, setProductosFiltrados] = useState([]);
   const [productosDestacados, setProductosDestacados] = useState([]);
@@ -48,42 +48,34 @@ export function Home() {
       <Navbar buscar={handleBuscar} />
 
       {/* Sección principal con título y bienvenida */}
-      <section className="home-banner bg-lime-500 text-white p-12 text-center">
-        <h1 className="text-4xl font-bold mb-4">Tienda Tienda Tienda Tienda</h1>
-        <p className="text-xl mb-8">
-          ¡Encuentra los mejores productos a precios increíbles!
-        </p>
-        <button className="bg-white text-lime-500 py-3 px-6 rounded-lg hover:bg-lime-600 transition-colors">
-          Ver Productos
-        </button>
-      </section>
+      <HomeCarousel></HomeCarousel>
 
       {/* Carrousel de productos destacados */}
       {productosDestacados.length > 0 && (
-        <section className="productos-destacados mt-8">
+        <section className="productos-destacados -mt-32 z-10 relative">
           <Carousel title="Productos Destacados" items={productosDestacados} />
         </section>
       )}
 
-      <section className="categorias py-12 bg-gray-100">
-        <h2 className="text-3xl font-bold text-center mb-8 text-black">
+      <section className="categorias py-15">
+        <h2 className="text-xl font-bold mb-2 uppercase text-center text-gray-800">
           Categorías Populares
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
-          <div className="categoria-card bg-white p-6 text-center rounded-lg shadow-lg">
-            <h3 className="font-bold text-xl text-black">Electrónica</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 bg-gray-100 py-2">
+          <div className="categoria-card bg-white p-3 text-center rounded-lg shadow-lg">
+            <h3 className="font-bold uppercase text-brand-black">Electrónica</h3>
             <p className="text-gray-500">Laptops, Teléfonos, Accesorios</p>
           </div>
-          <div className="categoria-card bg-white p-6 text-center rounded-lg shadow-lg">
-            <h3 className="font-bold text-xl text-black">Ropa</h3>
+          <div className="categoria-card bg-white p-3 text-center rounded-lg shadow-lg">
+            <h3 className="font-bold uppercase text-brand-black">Ropa</h3>
             <p className="text-gray-500">Camisas, Pantalones, Accesorios</p>
           </div>
-          <div className="categoria-card bg-white p-6 text-center rounded-lg shadow-lg">
-            <h3 className="font-bold text-xl text-black">Hogar</h3>
+          <div className="categoria-card bg-white p-3 text-center rounded-lg shadow-lg">
+            <h3 className="font-bold uppercase text-brand-black">Hogar</h3>
             <p className="text-gray-500">Muebles, Decoración, Utensilios</p>
           </div>
-          <div className="categoria-card bg-white p-6 text-center rounded-lg shadow-lg">
-            <h3 className="font-bold text-xl text-black">Deportes</h3>
+          <div className="categoria-card bg-white p-3 text-center rounded-lg shadow-lg">
+            <h3 className="font-bold uppercase text-brand-black">Deportes</h3>
             <p className="text-gray-500">Fútbol, Tenis, Equipos</p>
           </div>
         </div>

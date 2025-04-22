@@ -8,6 +8,17 @@
   --color-brand-gray: oklch(0.446 0.043 257.281);
 }
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 :root {
   font-family: "Montserrat", Inter, system-ui, Avenir, Helvetica, Arial,
     sans-serif;

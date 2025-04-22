@@ -33,7 +33,7 @@ function Navbar({ onActualizarValor, buscar }) {
           className="flex items-center flex-shrink-0 text-brand-black gap-1"
         >
           <img className="w-8" src="/icon.svg" alt="" />
-          <span className="font-semibold text-xl tracking-tight text-brand-green">
+          <span className="font-semibold text-xl tracking-tight text-brand-green cursor-pointer">
             {STORE_NAME}
           </span>
         </button>
@@ -130,13 +130,13 @@ function Navbar({ onActualizarValor, buscar }) {
           <div className="text-md font-bold lg:flex-grow hidden lg:flex gap-4">
             <button
               onClick={() => navigate("/")}
-              className="text-brand-black ml-5 px-4 py-2 rounded hover:text-brand-green"
+              className="text-brand-black ml-5 px-4 py-2 rounded hover:text-brand-green cursor-pointer"
             >
               Inicio
             </button>
             <button
               onClick={() => navigate("/products")}
-              className="text-brand-black px-4 py-2 rounded hover:text-brand-green"
+              className="text-brand-black px-4 py-2 rounded hover:text-brand-green cursor-pointer"
             >
               Productos
             </button>
@@ -155,13 +155,13 @@ function Navbar({ onActualizarValor, buscar }) {
               <>
                 <button
                   onClick={() => navigate("/login")}
-                  className="px-4 py-2 hidden lg:block bg-brand-green hover:bg-brand-green-hover text-white font-medium rounded-lg transition-colors"
+                  className="px-4 py-2 hidden lg:block bg-brand-green hover:bg-brand-green-hover text-white font-medium rounded-lg transition-colors cursor-pointer"
                 >
                   Iniciar sesión
                 </button>
                 <button
                   onClick={() => navigate("/register")}
-                  className="px-4 py-2 hidden lg:block bg-white hover:bg-brand-green hover:text-white text-brand-green border-1 border-brand-green font-medium rounded-lg transition-colors"
+                  className="px-4 py-2 hidden lg:block bg-white hover:bg-brand-green hover:text-white text-brand-green border-1 border-brand-green font-medium rounded-lg transition-colors cursor-pointer"
                 >
                   Creá tu cuenta
                 </button>
@@ -169,7 +169,7 @@ function Navbar({ onActualizarValor, buscar }) {
             )}
 
             {/* Botón para abrir el carrito */}
-            <button onClick={toggleCarrito} className="w-8 h-8 rounded-full">
+            <button onClick={toggleCarrito} className="w-8 h-8 rounded-full cursor-pointer">
               <i className="fa-solid fa-cart-shopping text-brand-black"></i>
             </button>
           </div>
