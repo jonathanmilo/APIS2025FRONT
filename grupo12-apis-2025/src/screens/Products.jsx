@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import InicioSesion from "./InicioSesion";
-import Header from "../componentes/Header";
-import Carousel from "../componentes/Carousel";
-import { usarContextoUsuario } from "../Context.jsx";
-import Producto from "../componentes/Producto.jsx";
-import Footer from "../componentes/Footer.jsx";
+import InicioSesion from "./InicioSesion.jsx";
+import Header from "../components/Navbar.jsx";
+import Carousel from "../components/Carousel.jsx";
+import { usarContextoUsuario } from "../contexts/Context.jsx";
+import Producto from "../components/Producto.jsx";
+import Footer from "../components/Footer.jsx";
 
 export function Products() {
   const usuario = usarContextoUsuario();
@@ -19,16 +19,19 @@ export function Products() {
       .catch(console.error);
   }, []);
 
-  const handleBuscar = termino => {
+  const normalizarTexto = (texto) =>
+    texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  
+  const handleBuscar = (termino) => {
     if (!termino) {
       setProductosFiltrados([]);
       return;
     }
-    setProductosFiltrados(
-      productos.filter(p =>
-        p.nombre.toLowerCase().includes(termino.toLowerCase())
-      )
+  
+    const filtrados = productos.filter((producto) =>
+      normalizarTexto(producto.nombre).includes(normalizarTexto(termino))
     );
+    setProductosFiltrados(filtrados);
   };
 
   // selecciona sólo los productos en promocion
