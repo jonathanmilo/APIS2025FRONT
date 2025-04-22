@@ -12,6 +12,7 @@ function Navbar({ onActualizarValor, buscar }) {
   const navigate = useNavigate();
   const location = useLocation();
   const esLogin = location.pathname === "/login";
+  const esProfile = location.pathname === "/profile";
 
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -24,7 +25,7 @@ function Navbar({ onActualizarValor, buscar }) {
   };
 
   return (
-    <nav className="flex flex-row gap-5 h-[10vh] md:h-[8vh] lg:h-[13vh] items-center justify-center px-3 bg-white lg:px-12 shadow border-t-2 border-brand-green sticky top-0 z-50">
+    <nav className="flex flex-row gap-5 h-[10vh] md:h-[8vh] lg:h-[13vh] items-center justify-center px-3 lg:text-sm xl:text-md bg-white xl:px-12 shadow border-t-2 border-brand-green sticky top-0 z-50">
       <div className="flex flex-row justify-between lg:w-auto w-full lg:border-b-0 lg:pb-0">
         {/* Logo y Nombre */}
 
@@ -40,7 +41,7 @@ function Navbar({ onActualizarValor, buscar }) {
 
         {/* Menú Mobile */}
 
-        {!esLogin && (
+        {!esLogin && !esProfile && (
           <div className="flex flex-row lg:hidden">
             <button onClick={toggleCarrito} className="w-10 h-10 rounded-full">
               <i className="fa-solid fa-cart-shopping text-brand-black"></i>
@@ -125,18 +126,18 @@ function Navbar({ onActualizarValor, buscar }) {
 
       {/* Menú Grande */}
 
-      {!esLogin && (
+      {!esLogin && !esProfile && (
         <div className="hidden menu w-full flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8 gap-4">
           <div className="text-md font-bold lg:flex-grow hidden lg:flex gap-4">
             <button
               onClick={() => navigate("/")}
-              className="text-brand-black ml-5 px-4 py-2 rounded hover:text-brand-green cursor-pointer"
+              className="text-brand-black xl:ml-5 px-2 xl:px-4 py-2 rounded hover:text-brand-green cursor-pointer"
             >
               Inicio
             </button>
             <button
               onClick={() => navigate("/products")}
-              className="text-brand-black px-4 py-2 rounded hover:text-brand-green cursor-pointer"
+              className="text-brand-black px-2 xl:px-4 py-2 rounded hover:text-brand-green cursor-pointer"
             >
               Productos
             </button>
@@ -165,11 +166,15 @@ function Navbar({ onActualizarValor, buscar }) {
                 >
                   Creá tu cuenta
                 </button>
+                <UserMenu />
               </>
             )}
 
             {/* Botón para abrir el carrito */}
-            <button onClick={toggleCarrito} className="w-8 h-8 rounded-full cursor-pointer">
+            <button
+              onClick={toggleCarrito}
+              className="w-8 h-8 rounded-full cursor-pointer"
+            >
               <i className="fa-solid fa-cart-shopping text-brand-black"></i>
             </button>
           </div>

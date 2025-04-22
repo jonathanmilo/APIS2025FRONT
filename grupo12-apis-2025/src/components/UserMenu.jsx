@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function UserMenu() {
   const [open, setOpen] = useState(false);
@@ -27,7 +28,7 @@ export default function UserMenu() {
       <button
         ref={buttonRef}
         onClick={toggleMenu}
-        className="w-12 h-12 flex items-center justify-center text-white bg-brand-green rounded-full hover:bg-brand-green-hover transition"
+        className="w-10 h-10 flex items-center justify-center text-white bg-brand-green rounded-full hover:bg-brand-green-hover transition cursor-pointer"
       >
         <i className="fa-solid fa-user text-lg" />
       </button>
@@ -42,28 +43,21 @@ export default function UserMenu() {
         }`}
       >
         <div className="py-2 px-2" role="menu">
-          <a
-            href="#"
-            className="block px-4 py-2 text-sm text-brand-black rounded-md hover:bg-brand-gray"
+          <Link
+            to="/profile"
+            className="block px-4 py-2 text-sm text-brand-black rounded-md hover:bg-gray-100"
             role="menuitem"
           >
             Mi Perfil
-          </a>
+          </Link>
           <a
             href="#"
-            className="block px-4 py-2 text-sm text-brand-black rounded-md hover:bg-brand-gray"
-            role="menuitem"
-          >
-            Compras
-          </a>
-          <a
-            href="#"
-            className="block px-4 py-2 text-sm text-brand-black rounded-md hover:bg-brand-gray"
+            className="block px-4 py-2 text-sm text-brand-black rounded-md hover:bg-gray-100"
             role="menuitem"
           >
             Publicaciones
           </a>
-          <button className="w-full mt-2 flex items-center justify-center gap-2 px-4 py-2 bg-brand-green text-white rounded-md text-sm hover:bg-brand-green-hover">
+          <button className="w-full mt-2 flex items-center justify-center gap-2 px-4 py-2 bg-brand-green text-white rounded-md text-sm hover:bg-brand-green-hover cursor-pointer">
             <span className="leading-none flex items-center">
               Cerrar sesión
             </span>
