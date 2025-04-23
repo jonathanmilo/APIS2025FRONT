@@ -65,7 +65,9 @@ export default function Carousel({ title, items }) {
               />
               <div className="flex flex-col p-2 justify-between h-[20vh] md:h-[12vh] lg:h-[25vh] xl:h-[20vh]">
                 <div className="flex flex-grow flex-col">
-                  <h3 className="font-bold text-brand-black text-sm uppercase h-11">{prod.nombre}</h3>
+                  <h3 className="font-bold text-brand-black text-sm uppercase h-11">
+                    {prod.nombre}
+                  </h3>
                   <p className="text-sm text-gray-500 truncate">
                     {prod.descripcion}
                   </p>

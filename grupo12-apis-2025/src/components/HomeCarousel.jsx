@@ -4,7 +4,7 @@ const images = [
   "https://m.media-amazon.com/images/I/71n3URQek3L._SX3000_.jpg",
   "https://m.media-amazon.com/images/I/81hxkKd9IgL._SX3000_.jpg",
   "https://m.media-amazon.com/images/I/61nqLqnFKnL._SX3000_.jpg",
-  "https://m.media-amazon.com/images/I/71pXrwZWWXL._SX3000_.jpg"
+  "https://m.media-amazon.com/images/I/71pXrwZWWXL._SX3000_.jpg",
 ];
 
 export default function HomeCarousel() {

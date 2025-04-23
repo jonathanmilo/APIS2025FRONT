@@ -1,68 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Carousel from "../components/Carousel";
-import { usarCarrito } from "../contexts/Context"; // Importa el hook del carrito
+import { useCarrito } from "../contexts/CartContext";
+import { useProductos } from "../contexts/ProductContext";
+import { filtrarRelacionados } from "../utils/filtrarProductos";
 
 export function ProductDetail() {
-  const { id } = useParams(); // Obtener el ID de la URL
-  const { agregarAlCarrito } = usarCarrito(); // Obtén la función para agregar al carrito
+  const { id } = useParams();
+  const productos = useProductos();
+  const { agregarAlCarrito } = useCarrito();
+
   const [producto, setProducto] = useState(null);
-  const [error, setError] = useState(null);
-  const [cantidad, setCantidad] = useState(1); // Para el selector de cantidad
-  const [productosRelacionados, setProductosRelacionados] = useState([]); // Productos de la misma sub-categoría
+  const [cantidad, setCantidad] = useState(1);
+  const [productosRelacionados, setProductosRelacionados] = useState([]);
 
   useEffect(() => {
-    // Cargar producto actual
-    fetch("http://localhost:3001/productos")
-      .then((res) => res.json())
-      .then((data) => {
-        const prod = data.find((p) => String(p.id_producto) === id);
-        if (prod) {
-          setProducto(prod);
+    if (productos.length > 0) {
+      const prod = productos.find((p) => String(p.id_producto) === id);
+      if (prod) {
+        setProducto(prod);
+        setProductosRelacionados(filtrarRelacionados(productos, prod));
+      } else {
+        setProducto(undefined); 
+      }
+    }
+  }, [productos, id]);
 
-          // Filtrar productos de la misma sub-categoría
-          const productosDeCategoria = data.filter(
-            (p) =>
-              p["sub-categoria"] === prod["sub-categoria"] &&
-              p.id_producto !== prod.id_producto
-          );
-          setProductosRelacionados(productosDeCategoria);
-        } else {
-          setError("Producto no encontrado");
-        }
-      })
-      .catch((err) => setError(err.message));
-  }, [id]);
-
-  // Manejadores de error y carga
-  if (error) {
+  if (producto === undefined) {
     return (
-      <>
-        <div className="p-8 text-center text-red-500">{error}</div>
-      </>
+      <div className="p-8 text-center text-red-500">Producto no encontrado</div>
     );
   }
 
   if (!producto) {
-    return (
-      <>
-        <div className="p-8 text-center">Cargando producto…</div>
-      </>
-    );
+    return <div className="p-8 text-center">Cargando producto…</div>;
   }
 
-  // Función para manejar el cambio de cantidad
   const manejarCantidad = (operacion) => {
     if (operacion === "incrementar") {
-      setCantidad(cantidad + 1);
+      setCantidad((c) => c + 1);
     } else if (operacion === "decrementar" && cantidad > 1) {
-      setCantidad(cantidad - 1);
+      setCantidad((c) => c - 1);
     }
   };
 
-  // Función para agregar al carrito con la cantidad seleccionada
   const handleAgregarAlCarrito = () => {
-    agregarAlCarrito(producto, cantidad); // Pasa el producto y la cantidad seleccionada
+    agregarAlCarrito(producto, cantidad);
   };
 
   return (
@@ -88,7 +71,6 @@ export function ProductDetail() {
           <p className="text-grey-600 mb-4 text-black">
             {producto.descripcion}
           </p>
-
           <div className="text-2xl font-semibold mb-4 text-black">
             ${producto.precio}
           </div>
@@ -121,7 +103,7 @@ export function ProductDetail() {
           </div>
 
           <button
-            onClick={handleAgregarAlCarrito} // Llama a la función para agregar al carrito
+            onClick={handleAgregarAlCarrito}
             className="bg-lime-500 hover:bg-lime-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
           >
             Agregar al carrito
@@ -129,7 +111,6 @@ export function ProductDetail() {
         </div>
       </div>
 
-      {/* Carrusel de productos relacionados */}
       {productosRelacionados.length > 0 && (
         <section className="mt-6">
           <Carousel title="Productos similares" items={productosRelacionados} />

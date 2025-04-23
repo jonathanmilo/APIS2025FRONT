@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { usarCarrito } from "../contexts/Context"; // Importa el hook del carrito
+import { useCarrito } from "../contexts/CartContext";
 
 function Producto({ producto }) {
-  const { agregarAlCarrito } = usarCarrito(); // Obtén la función para agregar al carrito
+  const { agregarAlCarrito } = useCarrito();
 
   return (
     <div className="flex justify-center">
@@ -46,7 +46,7 @@ function Producto({ producto }) {
             Agregar al carrito
           </button>
 
-          {/* Nuevo botón */}
+          {/* Redireccion a userDetail */}
           <Link
             to={`/products/${producto.id_producto}`}
             className="block text-center underline text-lime-600 hover:text-lime-800"

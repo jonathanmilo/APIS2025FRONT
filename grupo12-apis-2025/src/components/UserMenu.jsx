@@ -8,7 +8,6 @@ export default function UserMenu() {
 
   const toggleMenu = () => setOpen((prev) => !prev);
 
-  // Cerrar al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (

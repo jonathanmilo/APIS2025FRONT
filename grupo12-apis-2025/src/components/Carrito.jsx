@@ -1,8 +1,8 @@
 import React from "react";
-import { usarCarrito } from "../contexts/Context.jsx";
+import { useCarrito } from "../contexts/CartContext.jsx";
 
 export default function Carrito() {
-  const { carrito, eliminarDelCarrito } = usarCarrito();
+  const { carrito, eliminarDelCarrito } = useCarrito();
 
   return (
     <div className="h-[75vh] flex flex-col">

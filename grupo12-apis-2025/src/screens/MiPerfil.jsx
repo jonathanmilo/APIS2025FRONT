@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUsuario } from "../contexts/UserContext";
 
 import {
   TextField,
@@ -6,27 +8,15 @@ import {
   Avatar,
   Typography,
   Box,
-  Divider,
   List,
   ListItem,
   ListItemText,
   Paper,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-
-// Usuario harcodeado (usar db.json)
-const usuarioSimulado = {
-  name: "Juan Pérez",
-  email: "juan@example.com",
-  direccion: "Calle Falsa 123",
-  compras: ["Auricular", "Mueble", "Remera"],
-  avatarUrl: "/path/to/avatar.jpg",
-};
 
 const MiPerfil = () => {
   const navigate = useNavigate();
-
-  const [userInfo, setUserInfo] = useState(null);
+  const { usuario } = useUsuario();
 
   const [editEmail, setEditEmail] = useState("");
   const [editDireccion, setEditDireccion] = useState("");
@@ -36,16 +26,16 @@ const MiPerfil = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
-    if (!usuarioSimulado) {
+    if (!usuario) {
       navigate("/login");
     } else {
-      setUserInfo(usuarioSimulado);
+      setEditEmail(usuario.email || "");
+      setEditDireccion(usuario.direccion || "");
     }
-  }, [navigate]);
+  }, [usuario, navigate]);
 
   const handleProfileUpdate = () => {
     alert("Información actualizada (simulada)");
-    // Lógica para actualizar info real
   };
 
   const handlePasswordChange = () => {
@@ -56,7 +46,7 @@ const MiPerfil = () => {
     }
   };
 
-  if (!userInfo) return null;
+  if (!usuario) return null;
 
   return (
     <Box sx={{ padding: 4, backgroundColor: "#f0f2f5", minHeight: "100vh" }}>
@@ -74,18 +64,18 @@ const MiPerfil = () => {
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}>
           <Avatar
-            src={userInfo.avatarUrl}
+            src={usuario.avatarUrl}
             sx={{ width: 64, height: 64, marginRight: 2 }}
           />
           <Box>
             <Typography variant="body1">
-              <strong>Nombre:</strong> {userInfo.name}
+              <strong>Nombre:</strong> {usuario.nombre} {usuario.apellido}
             </Typography>
             <Typography variant="body1">
-              <strong>Email:</strong> {userInfo.email}
+              <strong>Email:</strong> {usuario.email}
             </Typography>
             <Typography variant="body1">
-              <strong>Dirección:</strong> {userInfo.direccion}
+              <strong>Dirección:</strong> {usuario.direccion}
             </Typography>
           </Box>
         </Box>
@@ -94,8 +84,8 @@ const MiPerfil = () => {
           Últimas Compras:
         </Typography>
         <List dense>
-          {userInfo.compras.length > 0 ? (
-            userInfo.compras.map((item, index) => (
+          {usuario.compras && usuario.compras.length > 0 ? (
+            usuario.compras.map((item, index) => (
               <ListItem key={index}>
                 <ListItemText primary={item} />
               </ListItem>

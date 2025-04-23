@@ -1,13 +1,14 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import SearchBar from "./SearchBar.jsx";
 import UserMenu from "./UserMenu.jsx";
-import { usarContextoUsuario } from "../contexts/Context.jsx";
+import { useUsuario } from "../contexts/UserContext.jsx";
 import { useNavigate, useLocation } from "react-router-dom";
 import { STORE_NAME } from "../global/store.js";
 import Carrito from "./Carrito.jsx";
 
+// Falta modular y hacerlo completamente responsive
 function Navbar({ onActualizarValor, buscar }) {
-  const usuario = usarContextoUsuario();
+  const { usuario } = useUsuario();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -154,7 +155,6 @@ function Navbar({ onActualizarValor, buscar }) {
                 >
                   Iniciar sesión
                 </button>
-                <UserMenu />
               </>
             )}
 

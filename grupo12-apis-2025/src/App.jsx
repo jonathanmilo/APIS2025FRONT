@@ -5,7 +5,7 @@ import { Products } from "./screens/Products";
 import { ProductDetail } from "./screens/ProductDetail";
 import Ingresar from "./screens/Ingresar";
 import MiPerfil from "./screens/MiPerfil";
-import Layout from "./components/Layout";
+import Layout from "./layouts/Layout";
 
 function App() {
   return (

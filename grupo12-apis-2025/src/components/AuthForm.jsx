@@ -5,11 +5,10 @@ export default function AuthForm({ mode = "login", onSubmit }) {
     email: "",
     password: "",
     name: "",
-    lastname: "", // ← Nuevo campo
+    lastname: "",
   });
 
   const [errors, setErrors] = useState({});
-
   const isRegister = mode === "register";
 
   const validate = () => {
