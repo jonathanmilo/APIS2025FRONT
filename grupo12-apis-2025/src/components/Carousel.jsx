@@ -88,7 +88,7 @@ export default function Carousel({ title, items }) {
           className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 z-20 flex items-center justify-center bg-white bg-opacity-50 rounded-full hover:bg-opacity-70 transition-opacity cursor-pointer shadow-lg"
           aria-label="Anterior"
         >
-          <span className="block w-2 h-2 border-l-2 border-b-2 border-gray-800 transform rotate-45"></span>
+          <span className="block w-2 h-2 border-l-2 border-b-2 border-brand-black transform rotate-45"></span>
         </button>
       )}
 
@@ -99,7 +99,7 @@ export default function Carousel({ title, items }) {
           className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 z-20 flex items-center justify-center bg-white bg-opacity-50 rounded-full hover:bg-opacity-70 transition-opacity cursor-pointer shadow-lg"
           aria-label="Siguiente"
         >
-          <span className="block w-2 h-2 border-r-2 border-b-2 border-gray-800 transform -rotate-45"></span>
+          <span className="block w-2 h-2 border-r-2 border-b-2 border-brand-black transform -rotate-45"></span>
         </button>
       )}
     </section>

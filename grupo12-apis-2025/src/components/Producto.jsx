@@ -16,7 +16,7 @@ function Producto({ producto }) {
             className="w-full h-52 object-cover"
           />
           <div className="px-3">
-            <h3 className="text-xl font-bold text-gray-900">
+            <h3 className="text-xl font-bold text-brand-black">
               {producto.nombre}
             </h3>
             <p className="text-gray-500 mt-1 truncate">
@@ -28,7 +28,7 @@ function Producto({ producto }) {
         {/* Precio, rating y botones */}
         <div className="flex flex-col p-3 space-y-4">
           <div className="flex justify-between items-center">
-            <p className="text-2xl font-bold text-gray-900">
+            <p className="text-2xl font-bold text-brand-black">
               ${producto.precio}
             </p>
             <div className="flex items-center gap-1">
@@ -40,7 +40,7 @@ function Producto({ producto }) {
 
           {/* Botón para agregar al carrito */}
           <button
-            className="w-full bg-lime-500 hover:bg-lime-600 text-white font-medium py-3 rounded-lg transition-colors"
+            className="w-full bg-brand-main hover:bg-brand-main-hover text-white font-medium py-3 rounded-lg transition-colors cursor-pointer"
             onClick={() => agregarAlCarrito(producto)} // Llama a la función del carrito
           >
             Agregar al carrito
@@ -49,7 +49,7 @@ function Producto({ producto }) {
           {/* Redireccion a userDetail */}
           <Link
             to={`/products/${producto.id_producto}`}
-            className="block text-center underline text-lime-600 hover:text-lime-800"
+            className="block text-center underline text-brand-main-hover hover:text-lime-700"
           >
             Más información
           </Link>

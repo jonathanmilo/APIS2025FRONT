@@ -29,7 +29,7 @@ export function Home() {
       )}
 
       <section className="categorias py-15">
-        <h2 className="text-xl font-bold mb-2 uppercase text-center text-gray-800">
+        <h2 className="text-xl font-bold mb-2 uppercase text-center text-brand-black">
           Categorías Populares
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 bg-gray-100 py-2">

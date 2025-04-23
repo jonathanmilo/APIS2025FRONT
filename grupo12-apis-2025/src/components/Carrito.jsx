@@ -58,7 +58,7 @@ export default function Carrito() {
           className={`px-4 py-2 font-medium rounded-lg transition-colors ${
             carrito.length === 0
               ? "bg-gray-300 text-white cursor-not-allowed"
-              : "bg-lime-500 hover:bg-lime-600 text-white cursor-pointer"
+              : "bg-brand-main hover:bg-brand-main-hover text-white cursor-pointer"
           }`}
           disabled={carrito.length === 0}
         >

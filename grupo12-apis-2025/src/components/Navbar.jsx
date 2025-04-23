@@ -7,7 +7,7 @@ import { STORE_NAME } from "../global/store.js";
 import Carrito from "./Carrito.jsx";
 
 // Falta modular y hacerlo completamente responsive
-function Navbar({ onActualizarValor, buscar }) {
+function Navbar({ buscar }) {
   const { usuario } = useUsuario();
 
   const navigate = useNavigate();
@@ -21,12 +21,8 @@ function Navbar({ onActualizarValor, buscar }) {
   const [carritoVisible, setCarritoVisible] = useState(false);
   const toggleCarrito = () => setCarritoVisible(!carritoVisible);
 
-  const handleClick = () => {
-    onActualizarValor("Nuevo valor desde Header");
-  };
-
   return (
-    <nav className="flex flex-row gap-5 h-[10vh] md:h-[8vh] lg:h-[13vh] items-center justify-center px-3 lg:text-sm xl:text-md bg-white xl:px-12 shadow border-t-2 border-brand-green sticky top-0 z-50">
+    <nav className="flex flex-row gap-5 h-[10vh] md:h-[8vh] lg:h-[13vh] items-center justify-center px-3 lg:text-sm xl:text-md bg-white xl:px-12 shadow border-t-2 border-brand-main sticky top-0 z-50">
       <div className="flex flex-row justify-between lg:w-auto w-full lg:border-b-0 lg:pb-0">
         {/* Logo y Nombre */}
 
@@ -35,7 +31,7 @@ function Navbar({ onActualizarValor, buscar }) {
           className="flex items-center flex-shrink-0 text-brand-black gap-1"
         >
           <img className="w-8" src="/icon.svg" alt="" />
-          <span className="font-semibold text-xl tracking-tight text-brand-green cursor-pointer">
+          <span className="font-semibold text-xl tracking-tight text-brand-bg-brand-main cursor-pointer text-brand-main">
             {STORE_NAME}
           </span>
         </button>
@@ -93,13 +89,13 @@ function Navbar({ onActualizarValor, buscar }) {
                 <div className="flex flex-col items-start">
                   <button
                     onClick={() => navigate("/")}
-                    className="text-brand-black rounded hover:text-brand-green pb-3 border-b-1 border-brand-light-gray w-full text-start"
+                    className="text-brand-black rounded hover:text-brand-main pb-3 border-b-1 border-brand-light-gray w-full text-start"
                   >
                     Inicio
                   </button>
                   <button
                     onClick={() => navigate("/products")}
-                    className="text-brand-black rounded hover:text-brand-green py-3 border-b-1 border-brand-light-gray w-full text-start"
+                    className="text-brand-black rounded hover:text-brand-main py-3 border-b-1 border-brand-light-gray w-full text-start"
                   >
                     Productos
                   </button>
@@ -108,7 +104,7 @@ function Navbar({ onActualizarValor, buscar }) {
                 <div className="flex flex-col gap-2 pt-6 border-t">
                   <button
                     onClick={() => navigate("/ingresar")}
-                    className="w-full px-4 py-2 bg-brand-green hover:bg-brand-green-hover text-white font-medium rounded-lg transition-colors"
+                    className="w-full px-4 py-2 bg-brand-main hover:bg-brand-main-hover text-white font-medium rounded-lg transition-colors"
                   >
                     Iniciar sesión
                   </button>
@@ -126,13 +122,13 @@ function Navbar({ onActualizarValor, buscar }) {
           <div className="text-md font-bold lg:flex-grow hidden lg:flex gap-4">
             <button
               onClick={() => navigate("/")}
-              className="text-brand-black xl:ml-5 px-2 xl:px-4 py-2 rounded hover:text-brand-green cursor-pointer"
+              className="text-brand-black xl:ml-5 px-2 xl:px-4 py-2 rounded hover:text-brand-main cursor-pointer"
             >
               Inicio
             </button>
             <button
               onClick={() => navigate("/products")}
-              className="text-brand-black px-2 xl:px-4 py-2 rounded hover:text-brand-green cursor-pointer"
+              className="text-brand-black px-2 xl:px-4 py-2 rounded hover:text-brand-main cursor-pointer"
             >
               Productos
             </button>
@@ -151,7 +147,7 @@ function Navbar({ onActualizarValor, buscar }) {
               <>
                 <button
                   onClick={() => navigate("/ingresar")}
-                  className="px-4 py-2 hidden lg:block bg-brand-green hover:bg-brand-green-hover text-white font-medium rounded-lg transition-colors cursor-pointer"
+                  className="px-4 py-2 hidden lg:block bg-brand-main hover:bg-brand-main-hover text-white font-medium rounded-lg transition-colors cursor-pointer"
                 >
                   Iniciar sesión
                 </button>

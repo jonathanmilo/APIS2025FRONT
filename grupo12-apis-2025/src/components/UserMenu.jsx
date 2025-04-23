@@ -27,7 +27,7 @@ export default function UserMenu() {
       <button
         ref={buttonRef}
         onClick={toggleMenu}
-        className="w-10 h-10 flex items-center justify-center text-white bg-brand-green rounded-full hover:bg-brand-green-hover transition cursor-pointer"
+        className="w-10 h-10 flex items-center justify-center text-white bg-brand-main rounded-full hover:bg-brand-main-hover transition cursor-pointer"
       >
         <i className="fa-solid fa-user text-lg" />
       </button>
@@ -56,7 +56,7 @@ export default function UserMenu() {
           >
             Publicaciones
           </a>
-          <button className="w-full mt-2 flex items-center justify-center gap-2 px-4 py-2 bg-brand-green text-white rounded-md text-sm hover:bg-brand-green-hover cursor-pointer">
+          <button className="w-full mt-2 flex items-center justify-center gap-2 px-4 py-2 bg-brand-main text-white rounded-md text-sm hover:bg-brand-main-hover cursor-pointer">
             <span className="leading-none flex items-center">
               Cerrar sesión
             </span>

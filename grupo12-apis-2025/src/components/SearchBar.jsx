@@ -19,7 +19,7 @@ function SearchBar({ buscar }) {
         <form onSubmit={handleSubmit} className="relative mx-auto w-max">
           <input
             type="search"
-            className="peer cursor-pointer relative z-10 h-12 w-12 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text border-brand-gray focus:border-brand-green focus:pl-16 focus:pr-4"
+            className="peer cursor-pointer relative z-10 h-12 w-12 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text border-brand-gray focus:border-brand-main focus:pl-16 focus:pr-4"
             placeholder="Buscar productos..."
             aria-label="Buscar productos"
             value={terminoBusqueda}
@@ -27,7 +27,7 @@ function SearchBar({ buscar }) {
           />
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-brand-gray px-3.5 peer-focus:border-brand-green peer-focus:stroke-brand-green-hover"
+            className="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-brand-gray px-3.5 peer-focus:border-brand-main peer-focus:stroke-brand-main-hover"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

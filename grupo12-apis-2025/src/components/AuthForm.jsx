@@ -47,8 +47,8 @@ export default function AuthForm({ mode = "login", onSubmit }) {
 
   return (
     <div className="flex-grow flex flex-col items-center justify-center max-w">
-      <div className="relative flex flex-col bg-transparent text-gray-700">
-        <h4 className="text-xl font-semibold text-blue-gray-900">
+      <div className="relative flex flex-col bg-transparent text-brand-black">
+        <h4 className="text-xl font-semibold text-brand-black">
           {isRegister ? "Crear Cuenta" : "Iniciar Sesión"}
         </h4>
 
@@ -96,7 +96,7 @@ export default function AuthForm({ mode = "login", onSubmit }) {
           </div>
 
           <button
-            className="mt-6 w-full bg-lime-500 py-3 px-6 text-white font-bold uppercase shadow-md transition-all hover:shadow-lg"
+            className="mt-6 w-full bg-brand-main py-3 px-6 text-white font-bold uppercase shadow-md transition-all hover:shadow-lg"
             type="submit"
             disabled={Object.keys(errors).length > 0}
           >

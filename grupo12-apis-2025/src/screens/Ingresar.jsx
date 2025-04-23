@@ -39,7 +39,7 @@ export default function Ingresar() {
         </div>
 
         <button
-          className="block w-full shadow-lg bg-gray-50 py-3 px-6 text-center font-sans text-xs font-bold uppercase text-gray-600 border border-gray-300 hover:bg-gray-100"
+          className="block w-full shadow-lg bg-gray-50 py-3 px-6 text-center font-sans text-xs font-bold uppercase text-brand-gray border border-gray-300 hover:bg-gray-100"
           onClick={toggleFormMode}
         >
           {formMode === "login" ? "Registrate" : "Iniciar sesión"}

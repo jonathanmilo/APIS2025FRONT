@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-green: oklch(0.77 0.2044 130.85);
-  --color-brand-green-hover: oklch(0.65 0.1754 131.68);
+  --color-brand-main: oklch(0.77 0.2044 130.85);
+  --color-brand-main-hover: oklch(0.65 0.1754 131.68);
   --color-brand-light-gray: oklch(0.929 0.013 255.508);
   --color-brand-black: oklch(0.279 0.041 260.031);
   --color-brand-gray: oklch(0.446 0.043 257.281);
@@ -17,10 +17,6 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-}
-
-body {
-  overflow-x: hidden;
 }
 
 :root {
