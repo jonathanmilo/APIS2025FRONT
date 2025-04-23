@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
 import Carousel from "../components/Carousel";
 import { usarCarrito } from "../contexts/Context"; // Importa el hook del carrito
-import Footer from "../components/Footer";
 
 export function ProductDetail() {
   const { id } = useParams(); // Obtener el ID de la URL
@@ -40,7 +38,6 @@ export function ProductDetail() {
   if (error) {
     return (
       <>
-        <Navbar />
         <div className="p-8 text-center text-red-500">{error}</div>
       </>
     );
@@ -49,7 +46,6 @@ export function ProductDetail() {
   if (!producto) {
     return (
       <>
-        <Navbar />
         <div className="p-8 text-center">Cargando producto…</div>
       </>
     );
@@ -70,83 +66,75 @@ export function ProductDetail() {
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="max-w-4xl mx-auto p-6 md:p-4">
-        <Link
-          to="/products"
-          className="inline-block mb-4 text-lime-500 hover:underline"
-        >
-          ← Volver a productos
-        </Link>
+    <div className="max-w-4xl mx-auto p-6 md:p-4">
+      <Link
+        to="/products"
+        className="inline-block mb-4 text-lime-500 hover:underline"
+      >
+        ← Volver a productos
+      </Link>
 
-        <div className="flex flex-col lg:flex-row gap-6">
-          <img
-            src={producto.images[0]}
-            alt={producto.nombre}
-            className="w-full lg:w-1/2 h-80 object-cover rounded-lg shadow-lg"
-          />
+      <div className="flex flex-col lg:flex-row gap-6">
+        <img
+          src={producto.images[0]}
+          alt={producto.nombre}
+          className="w-full lg:w-1/2 h-80 object-cover rounded-lg shadow-lg"
+        />
 
-          <div className="flex-1">
-            <h1 className="text-3xl font-bold mb-2 text-black">
-              {producto.nombre}
-            </h1>
-            <p className="text-grey-600 mb-4 text-black">
-              {producto.descripcion}
+        <div className="flex-1">
+          <h1 className="text-3xl font-bold mb-2 text-black">
+            {producto.nombre}
+          </h1>
+          <p className="text-grey-600 mb-4 text-black">
+            {producto.descripcion}
+          </p>
+
+          <div className="text-2xl font-semibold mb-4 text-black">
+            ${producto.precio}
+          </div>
+
+          {producto.descuento > 0 && (
+            <p className="mb-4 text-brand-green">
+              Descuento: {producto.descuento}%
             </p>
+          )}
 
-            <div className="text-2xl font-semibold mb-4 text-black">
-              ${producto.precio}
-            </div>
+          <p className="mb-6 text-black">
+            Sub-categoría:{" "}
+            <span className="font-medium">{producto["sub-categoria"]}</span>
+          </p>
 
-            {producto.descuento > 0 && (
-              <p className="mb-4 text-brand-green">
-                Descuento: {producto.descuento}%
-              </p>
-            )}
-
-            <p className="mb-6 text-black">
-              Sub-categoría:{" "}
-              <span className="font-medium">{producto["sub-categoria"]}</span>
-            </p>
-
-            <div className="flex items-center mb-4">
-              <button
-                onClick={() => manejarCantidad("decrementar")}
-                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg"
-              >
-                -
-              </button>
-              <span className="mx-4 text-xl text-black">{cantidad}</span>
-              <button
-                onClick={() => manejarCantidad("incrementar")}
-                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg"
-              >
-                +
-              </button>
-            </div>
-
+          <div className="flex items-center mb-4">
             <button
-              onClick={handleAgregarAlCarrito} // Llama a la función para agregar al carrito
-              className="bg-lime-500 hover:bg-lime-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+              onClick={() => manejarCantidad("decrementar")}
+              className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg"
             >
-              Agregar al carrito
+              -
+            </button>
+            <span className="mx-4 text-xl text-black">{cantidad}</span>
+            <button
+              onClick={() => manejarCantidad("incrementar")}
+              className="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg"
+            >
+              +
             </button>
           </div>
-        </div>
 
-        {/* Carrusel de productos relacionados */}
-        {productosRelacionados.length > 0 && (
-          <section className="mt-6">
-            <Carousel
-              title="Productos similares"
-              items={productosRelacionados}
-            />
-          </section>
-        )}
+          <button
+            onClick={handleAgregarAlCarrito} // Llama a la función para agregar al carrito
+            className="bg-lime-500 hover:bg-lime-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+          >
+            Agregar al carrito
+          </button>
+        </div>
       </div>
 
-      <Footer />
-    </>
+      {/* Carrusel de productos relacionados */}
+      {productosRelacionados.length > 0 && (
+        <section className="mt-6">
+          <Carousel title="Productos similares" items={productosRelacionados} />
+        </section>
+      )}
+    </div>
   );
 }

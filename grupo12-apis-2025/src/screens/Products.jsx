@@ -43,7 +43,7 @@ export function Products() {
 
   return (
     <>
-      <Navbar buscar={handleBuscar} />
+      <Navbar buscar={handleBuscar} /> // Temporal, hay que adaptarlo al layout
       {/* Grid principal */}
       {!logeado || usuario ? (
         <>
@@ -68,7 +68,7 @@ export function Products() {
         </section>
       )}
 
-      <Footer></Footer>
+      <Footer/> // Temporal, hay que adaptarlo al layout
     </>
   );
 }

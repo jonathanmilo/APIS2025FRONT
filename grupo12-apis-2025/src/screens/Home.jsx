@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navbar.jsx";
-import Footer from "../components/Footer.jsx";
-import Producto from "../components/Producto.jsx";
 import Carousel from "../components/Carousel.jsx";
 import HomeCarousel from "../components/HomeCarousel.jsx";
-import { usarContextoUsuario } from "../contexts/Context.jsx";
 
 export function Home() {
   const [productos, setProductos] = useState([]);
@@ -45,8 +41,6 @@ export function Home() {
 
   return (
     <>
-      <Navbar buscar={handleBuscar} />
-
       {/* Sección principal con título y bienvenida */}
       <HomeCarousel></HomeCarousel>
 
@@ -63,7 +57,9 @@ export function Home() {
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 bg-gray-100 py-2">
           <div className="categoria-card bg-white p-3 text-center rounded-lg shadow-lg">
-            <h3 className="font-bold uppercase text-brand-black">Electrónica</h3>
+            <h3 className="font-bold uppercase text-brand-black">
+              Electrónica
+            </h3>
             <p className="text-gray-500">Laptops, Teléfonos, Accesorios</p>
           </div>
           <div className="categoria-card bg-white p-3 text-center rounded-lg shadow-lg">
@@ -90,8 +86,6 @@ export function Home() {
           />
         </section>
       )}
-
-      <Footer />
     </>
   );
 }

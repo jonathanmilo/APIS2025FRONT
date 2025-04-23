@@ -5,16 +5,16 @@ import { Products } from "./screens/Products";
 import { ProductDetail } from "./screens/ProductDetail";
 import Ingresar from "./screens/Ingresar";
 import MiPerfil from "./screens/MiPerfil";
+import Layout from "./components/Layout";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/products" element={<Products />} />
-      <Route path="/products/:id" element={<ProductDetail />} />
-      <Route path="/ingresar" element={<Ingresar />} />
-      <Route path="/profile" element={<MiPerfil />} />
+      <Route path="/" element={<Layout><Home /></Layout>} />
+      <Route path="/products" element={<Products/>} /> 
+      <Route path="/products/:id" element={<Layout><ProductDetail /></Layout>} />
+      <Route path="/ingresar" element={<Layout><Ingresar /></Layout>} />
+      <Route path="/profile" element={<Layout><MiPerfil /></Layout>} />
     </Routes>
   );
 }
