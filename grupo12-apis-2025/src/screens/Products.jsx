@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import InicioSesion from "./InicioSesion.jsx";
-import Header from "../components/Navbar.jsx";
+import Ingresar from "./Ingresar.jsx";
+import Navbar from "../components/Navbar.jsx";
 import Carousel from "../components/Carousel.jsx";
 import { usarContextoUsuario } from "../contexts/Context.jsx";
 import Producto from "../components/Producto.jsx";
@@ -43,7 +43,7 @@ export function Products() {
 
   return (
     <>
-      <Header buscar={handleBuscar} />
+      <Navbar buscar={handleBuscar} />
       {/* Grid principal */}
       {!logeado || usuario ? (
         <>
@@ -59,7 +59,7 @@ export function Products() {
           </div>
         </>
       ) : (
-        <InicioSesion />
+        <Ingresar />
       )}
 
       {destacados.length > 0 && (

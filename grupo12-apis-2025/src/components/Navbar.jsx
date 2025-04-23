@@ -11,7 +11,7 @@ function Navbar({ onActualizarValor, buscar }) {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const esLogin = location.pathname === "/login";
+  const esIngresar = location.pathname === "/ingresar";
   const esProfile = location.pathname === "/profile";
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,7 +41,7 @@ function Navbar({ onActualizarValor, buscar }) {
 
         {/* Menú Mobile */}
 
-        {!esLogin && !esProfile && (
+        {!esIngresar && !esProfile && (
           <div className="flex flex-row lg:hidden">
             <button onClick={toggleCarrito} className="w-10 h-10 rounded-full">
               <i className="fa-solid fa-cart-shopping text-brand-black"></i>
@@ -106,16 +106,10 @@ function Navbar({ onActualizarValor, buscar }) {
 
                 <div className="flex flex-col gap-2 pt-6 border-t">
                   <button
-                    onClick={() => navigate("/login")}
+                    onClick={() => navigate("/ingresar")}
                     className="w-full px-4 py-2 bg-brand-green hover:bg-brand-green-hover text-white font-medium rounded-lg transition-colors"
                   >
                     Iniciar sesión
-                  </button>
-                  <button
-                    onClick={() => navigate("/register")}
-                    className="w-full px-4 py-2 bg-white hover:bg-brand-green hover:text-white text-brand-green border-1 border-brand-green font-medium rounded-lg transition-colors"
-                  >
-                    Creá tu cuenta
                   </button>
                 </div>
               </div>
@@ -126,7 +120,7 @@ function Navbar({ onActualizarValor, buscar }) {
 
       {/* Menú Grande */}
 
-      {!esLogin && !esProfile && (
+      {!esIngresar && !esProfile && (
         <div className="hidden menu w-full flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8 gap-4">
           <div className="text-md font-bold lg:flex-grow hidden lg:flex gap-4">
             <button
@@ -155,16 +149,10 @@ function Navbar({ onActualizarValor, buscar }) {
             ) : (
               <>
                 <button
-                  onClick={() => navigate("/login")}
+                  onClick={() => navigate("/ingresar")}
                   className="px-4 py-2 hidden lg:block bg-brand-green hover:bg-brand-green-hover text-white font-medium rounded-lg transition-colors cursor-pointer"
                 >
                   Iniciar sesión
-                </button>
-                <button
-                  onClick={() => navigate("/register")}
-                  className="px-4 py-2 hidden lg:block bg-white hover:bg-brand-green hover:text-white text-brand-green border-1 border-brand-green font-medium rounded-lg transition-colors cursor-pointer"
-                >
-                  Creá tu cuenta
                 </button>
                 <UserMenu />
               </>

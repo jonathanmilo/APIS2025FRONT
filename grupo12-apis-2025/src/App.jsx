@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom"; // Asegúrate de que Routes y 
 import { Home } from "./screens/Home";
 import { Products } from "./screens/Products";
 import { ProductDetail } from "./screens/ProductDetail";
-import InicioSesion from "./screens/InicioSesion";
+import Ingresar from "./screens/Ingresar";
 import MiPerfil from "./screens/MiPerfil";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <Route path="/home" element={<Home />} />
       <Route path="/products" element={<Products />} />
       <Route path="/products/:id" element={<ProductDetail />} />
-      <Route path="/login" element={<InicioSesion />} />
+      <Route path="/ingresar" element={<Ingresar />} />
       <Route path="/profile" element={<MiPerfil />} />
     </Routes>
   );
