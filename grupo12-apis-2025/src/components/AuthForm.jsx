@@ -5,7 +5,9 @@ export default function AuthForm({ mode = "login", onSubmit }) {
     email: "",
     password: "",
     name: "",
+    lastname: "", // ← Nuevo campo
   });
+
   const [errors, setErrors] = useState({});
 
   const isRegister = mode === "register";
@@ -14,6 +16,9 @@ export default function AuthForm({ mode = "login", onSubmit }) {
     const newErrors = {};
     if (isRegister && !formData.name.trim()) {
       newErrors.name = "El nombre es obligatorio.";
+    }
+    if (isRegister && !formData.lastname.trim()) {
+      newErrors.lastname = "El apellido es obligatorio.";
     }
     if (!formData.email.trim()) {
       newErrors.email = "El email es obligatorio.";
@@ -37,7 +42,7 @@ export default function AuthForm({ mode = "login", onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      onSubmit(formData); // manejar la lógica de login/register desde fuera
+      onSubmit(formData);
     }
   };
 
@@ -54,14 +59,24 @@ export default function AuthForm({ mode = "login", onSubmit }) {
         >
           <div className="mb-4 flex flex-col gap-6">
             {isRegister && (
-              <InputField
-                id="name"
-                label="Nombre*"
-                type="text"
-                value={formData.name}
-                onChange={handleChange}
-                error={errors.name}
-              />
+              <>
+                <InputField
+                  id="name"
+                  label="Nombre*"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChange}
+                  error={errors.name}
+                />
+                <InputField
+                  id="lastname"
+                  label="Apellido*"
+                  type="text"
+                  value={formData.lastname}
+                  onChange={handleChange}
+                  error={errors.lastname}
+                />
+              </>
             )}
             <InputField
               id="email"

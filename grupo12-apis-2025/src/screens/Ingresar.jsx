@@ -60,7 +60,7 @@ const Ingresar = () => {
   return (
     <div className="w-screen flex flex-col overflow-x-hidden">
       <Navbar />
-      <div className="flex-grow flex flex-col items-center justify-center mt-10 mb-10 lg:mb-0">
+      <div className="flex-grow flex flex-col items-center justify-center my-10">
         <div className="relative flex flex-col bg-transparent text-brand-black">
           <AuthForm mode={formMode} onSubmit={handleSubmit} />
 
