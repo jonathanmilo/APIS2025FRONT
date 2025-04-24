@@ -7,7 +7,7 @@ export function useUsuario() {
 }
 
 export function UsuarioProvider({ children }) {
-  const [usuario, setUsuario] = useState(null); 
+  const [usuario, setUsuario] = useState(null);
 
   return (
     <UserContext.Provider value={{ usuario, setUsuario }}>

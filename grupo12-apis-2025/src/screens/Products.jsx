@@ -10,7 +10,7 @@ import {
 } from "../utils/filtrarProductos.js";
 
 export function Products() {
-  const productos = useProductos();
+  const { productos } = useProductos();
   const [productosFiltrados, setProductosFiltrados] = useState([]);
 
   const handleBuscar = (termino) => {
@@ -30,7 +30,7 @@ export function Products() {
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {lista.map((prod) => (
-            <Producto key={prod.id_producto} producto={prod} />
+            <Producto key={prod._id} producto={prod} />
           ))}
         </div>
       </div>

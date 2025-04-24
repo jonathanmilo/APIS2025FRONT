@@ -2,21 +2,42 @@ import normalizarTexto from "./normalizarTexto";
 
 export function filtrarPorNombre(productos, termino) {
   const texto = normalizarTexto(termino);
-  return productos.filter((p) => normalizarTexto(p.nombre).includes(texto));
+  return productos.filter((p) => normalizarTexto(p.title).includes(texto));
 }
 
 export function filtrarDestacados(productos) {
-  return productos.filter((p) => p.destacado);
+  return productos.filter((p) => p.isFeatured);
 }
 
 export function filtrarConDescuento(productos) {
-  return productos.filter((p) => p.descuento > 0);
+  return productos.filter((p) => p.discountPercentage > 0);
 }
 
 export function filtrarRelacionados(productos, productoActual) {
   return productos.filter(
     (p) =>
-      p["sub-categoria"] === productoActual["sub-categoria"] &&
-      p.id_producto !== productoActual.id_producto
+      p.subcategoryIds.some((subId) =>
+        productoActual.subcategoryIds.includes(subId)
+      ) && p._id !== productoActual._id
   );
+}
+
+export function obtenerNombresSubcategorias(producto, categorias) {
+  const subIds = producto.subcategoryIds;
+
+  const todasSubcategorias = categorias.flatMap((c) => c.subcategories);
+
+  const nombres = subIds
+    .map((id) => {
+      const sub = todasSubcategorias.find((s) => s._id === id);
+      return sub ? sub.name : null;
+    })
+    .filter(Boolean);
+
+  return nombres;
+}
+
+export function obtenerNombreCategoria(producto, categorias) {
+  const categoria = categorias.find((cat) => cat._id === producto.categoryId);
+  return categoria ? categoria.name : null;
 }

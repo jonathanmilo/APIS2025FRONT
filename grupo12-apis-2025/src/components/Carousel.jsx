@@ -54,26 +54,26 @@ export default function Carousel({ title, items }) {
         <div className="flex flex-row gap-4">
           {items.map((prod) => (
             <div
-              key={prod.id_producto}
-              onClick={() => navigate(`/products/${prod.id_producto}`)}
+              key={prod._id}
+              onClick={() => navigate(`/products/${prod._id}`)}
               className="min-w-[200px] lg:w-50 flex flex-col bg-white overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer"
             >
               <img
-                src={prod.images[0]}
-                alt={prod.nombre}
+                src={prod.images[0].url}
+                alt={prod.title}
                 className="w-full h-40 object-cover"
               />
               <div className="flex flex-col p-2 justify-between h-[20vh] md:h-[12vh] lg:h-[25vh] xl:h-[20vh]">
                 <div className="flex flex-grow flex-col">
                   <h3 className="font-bold text-brand-black text-sm uppercase h-11">
-                    {prod.nombre}
+                    {prod.title}
                   </h3>
                   <p className="text-sm text-gray-500 truncate">
-                    {prod.descripcion}
+                    {prod.description}
                   </p>
                 </div>
                 <p className="text-xl font-semibold text-brand-black">
-                  ${prod.precio}
+                  ${prod.price}
                 </p>
               </div>
             </div>

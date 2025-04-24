@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { fetchProducts } from "../api/api";
 
 const ProductContext = createContext();
 
@@ -8,16 +9,28 @@ export function useProductos() {
 
 export function ProductosProvider({ children }) {
   const [productos, setProductos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const getProductos = async () => {
+
+    setLoading(true);
+    try {
+      const data = await fetchProducts();
+      setProductos(data);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    fetch("http://localhost:3001/productos")
-      .then((res) => res.json())
-      .then(setProductos)
-      .catch(console.error);
+    getProductos();
   }, []);
 
   return (
-    <ProductContext.Provider value={productos}>
+    <ProductContext.Provider value={{ productos }}>
       {children}
     </ProductContext.Provider>
   );

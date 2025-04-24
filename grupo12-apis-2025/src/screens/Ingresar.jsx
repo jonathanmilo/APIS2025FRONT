@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useValidacion } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
+import { useValidacion } from "../contexts/AuthContext";
 
 export default function Ingresar() {
   const { validar } = useValidacion();

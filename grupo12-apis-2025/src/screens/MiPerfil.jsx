@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUsuario } from "../contexts/UserContext";
+import { useOrders } from "../contexts/OrderContext";
+import { useProductos } from "../contexts/ProductContext";
 
 import {
   TextField,
@@ -17,6 +19,12 @@ import {
 const MiPerfil = () => {
   const navigate = useNavigate();
   const { usuario } = useUsuario();
+  const { orders } = useOrders();
+  const { productos } = useProductos();
+
+  const comprasUsuario = orders?.filter(
+    (order) => order.userId === usuario?._id
+  );
 
   const [editEmail, setEditEmail] = useState("");
   const [editDireccion, setEditDireccion] = useState("");
@@ -27,7 +35,7 @@ const MiPerfil = () => {
 
   useEffect(() => {
     if (!usuario) {
-      navigate("/login");
+      navigate("/ingresar");
     } else {
       setEditEmail(usuario.email || "");
       setEditDireccion(usuario.direccion || "");
@@ -64,18 +72,18 @@ const MiPerfil = () => {
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}>
           <Avatar
-            src={usuario.avatarUrl}
+            src={usuario.avatar}
             sx={{ width: 64, height: 64, marginRight: 2 }}
           />
           <Box>
             <Typography variant="body1">
-              <strong>Nombre:</strong> {usuario.nombre} {usuario.apellido}
+              <strong>Nombre:</strong> {usuario.firstName} {usuario.lastName}
             </Typography>
             <Typography variant="body1">
               <strong>Email:</strong> {usuario.email}
             </Typography>
             <Typography variant="body1">
-              <strong>Dirección:</strong> {usuario.direccion}
+              <strong>Dirección:</strong> {usuario.address.street}
             </Typography>
           </Box>
         </Box>
@@ -84,10 +92,59 @@ const MiPerfil = () => {
           Últimas Compras:
         </Typography>
         <List dense>
-          {usuario.compras && usuario.compras.length > 0 ? (
-            usuario.compras.map((item, index) => (
-              <ListItem key={index}>
-                <ListItemText primary={item} />
+          {comprasUsuario && comprasUsuario.length > 0 ? (
+            comprasUsuario.map((compra) => (
+              <ListItem key={compra.id_order} alignItems="flex-start">
+                <ListItemText
+                  primary={`Compra #${compra.id_order} - ${new Date(
+                    compra.createdAt
+                  ).toLocaleDateString()}`}
+                  secondary={
+                    <Typography component="div">
+                      <ul style={{ paddingLeft: "1rem", marginTop: "0.5rem" }}>
+                        {compra.products.map((p, i) => {
+                          const producto = productos.find(
+                            (prod) => String(prod._id) === String(p.productId)
+                          );
+                          return (
+                            <li
+                              key={i}
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                marginBottom: "0.5rem",
+                              }}
+                            >
+                              <img
+                                src={
+                                  producto?.images?.[0]?.url ||
+                                  "imagen-no-disponible.jpg"
+                                }
+                                alt={producto?.title || "Producto"}
+                                style={{
+                                  width: 40,
+                                  height: 40,
+                                  objectFit: "cover",
+                                  marginRight: "0.5rem",
+                                  borderRadius: 4,
+                                }}
+                              />
+                              <span>
+                                {producto
+                                  ? producto.title
+                                  : "Producto desconocido"}{" "}
+                                — x{p.quantity} (${p.unit_price} c/u)
+                              </span>
+                            </li>
+                          );
+                        })}
+                        <li style={{ marginTop: "0.5rem" }}>
+                          <strong>Total: ${compra.subtotal}</strong>
+                        </li>
+                      </ul>
+                    </Typography>
+                  }
+                />
               </ListItem>
             ))
           ) : (

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Carousel from "../components/Carousel.jsx";
 import HomeCarousel from "../components/HomeCarousel.jsx";
 import { useProductos } from "../contexts/ProductContext";
+import { useCategorias } from "../contexts/CategoryContext";
+import ProductosPorCategoria from "../components/ProductosPorCategoria.jsx";
 
 import {
   filtrarDestacados,
@@ -9,7 +11,9 @@ import {
 } from "../utils/filtrarProductos.js";
 
 export function Home() {
-  const productos = useProductos();
+  const { productos } = useProductos();
+  const { categorias } = useCategorias();
+
   const [productosDestacados, setProductosDestacados] = useState([]);
   const [productosConDescuento, setProductosConDescuento] = useState([]);
 
@@ -28,23 +32,8 @@ export function Home() {
         </section>
       )}
 
-      <section className="categorias py-15">
-        <h2 className="text-xl font-bold mb-2 uppercase text-center text-brand-black">
-          Categorías Populares
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 bg-gray-100 py-2">
-          {["Electrónica", "Ropa", "Hogar", "Deportes"].map((categoria) => (
-            <div
-              key={categoria}
-              className="categoria-card bg-white p-3 text-center rounded-lg shadow-lg"
-            >
-              <h3 className="font-bold uppercase text-brand-black">
-                {categoria}
-              </h3>
-              <p className="text-gray-500">Categoría de {categoria}</p>
-            </div>
-          ))}
-        </div>
+      <section className="categorias py-5">
+        <ProductosPorCategoria categorias={categorias} productos={productos} />
       </section>
 
       {productosConDescuento.length > 0 && (
