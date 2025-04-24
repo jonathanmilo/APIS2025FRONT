@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { fetchCarts } from "../api/api";
+import { useUsuario } from "./UserContext";
 
 const CartContext = createContext();
 
@@ -12,12 +13,17 @@ export function CarritoProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const { usuario } = useUsuario();
+
   const obtenerCarrito = async () => {
     setLoading(true);
     try {
       const data = await fetchCarts();
-      // Encontrar el carrito del usuario logueado
-      const carritoUsuario = data.find((c) => c.userId === "10"); // Cambia el "10" por el userId dinámico
+
+      const carritoUsuario = data.find((c) => c.userId === usuario._id);
+
+      console.log(carritoUsuario);
+
       if (carritoUsuario) {
         const productosNormalizados = carritoUsuario.products.map((item) => ({
           _id: item.productId,
@@ -35,8 +41,12 @@ export function CarritoProvider({ children }) {
   };
 
   useEffect(() => {
-    obtenerCarrito();
-  }, []);
+    if (usuario) {
+      obtenerCarrito();
+    } else {
+      setCarrito([]); 
+    }
+  }, [usuario]);
 
   const agregarAlCarrito = (producto, quantity = 1) => {
     setCarrito((prev) => {

@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "_id": 1,
+      "_id": "1",
       "username": "jgarcia",
       "email": "jgarcia@example.com",
       "password": "pass1",
@@ -17,7 +17,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "_id": 2,
+      "_id": "2",
       "username": "mmartinez",
       "email": "mmartinez@example.com",
       "password": "pass2",
@@ -33,7 +33,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "_id": 3,
+      "_id": "3",
       "username": "lmendez",
       "email": "lmendez@example.com",
       "password": "pass3",
@@ -49,7 +49,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "_id": 4,
+      "_id": "4",
       "username": "asanchez",
       "email": "asanchez@example.com",
       "password": "pass4",
@@ -65,7 +65,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "_id": 5,
+      "_id": "5",
       "username": "dlopez",
       "email": "dlopez@example.com",
       "password": "pass5",
@@ -81,7 +81,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "_id": 6,
+      "_id": "6",
       "username": "cfernandez",
       "email": "cfernandez@example.com",
       "password": "pass6",
@@ -97,7 +97,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "_id": 7,
+      "_id": "7",
       "username": "jruiz",
       "email": "jruiz@example.com",
       "password": "pass7",
@@ -113,7 +113,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "_id": 8,
+      "_id": "8",
       "username": "psilva",
       "email": "psilva@example.com",
       "password": "pass8",
@@ -129,7 +129,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "_id": 9,
+      "_id": "9",
       "username": "emendoza",
       "email": "emendoza@example.com",
       "password": "pass9",
@@ -145,7 +145,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "_id": 10,
+      "_id": "10",
       "username": "nrodriguez",
       "email": "nrodriguez@example.com",
       "password": "pass10",
@@ -164,27 +164,27 @@
 
   "orders": [
     {
-      "id_order": 1,
-      "userId": 1,
+      "id_order": "1",
+      "userId": "1",
       "products": [
         { "productId": 3, "quantity": 2, "unit_price": 1200 },
         { "productId": 5, "quantity": 1, "unit_price": 850 }
       ],
       "subtotal": 3250,
-      "createdAt": "2025-04-23T21:20:16.720495",
-      "updatedAt": "2025-04-23T21:20:16.720495"
+      "createdAt": "2025-02-20T21:20:16.720495",
+      "updatedAt": "2025-02-20T21:20:16.720495"
     },
     {
-      "id_order": 2,
-      "userId": 2,
+      "id_order": "2",
+      "userId": "2",
       "products": [{ "productId": 1, "quantity": 1, "unit_price": 950 }],
       "subtotal": 950,
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "id_order": 3,
-      "userId": 4,
+      "id_order": "3",
+      "userId": "4",
       "products": [
         { "productId": 2, "quantity": 3, "unit_price": 600 },
         { "productId": 6, "quantity": 2, "unit_price": 400 }
@@ -194,16 +194,16 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "id_order": 4,
-      "userId": 6,
+      "id_order": "4",
+      "userId": "6",
       "products": [{ "productId": 7, "quantity": 1, "unit_price": 1050 }],
       "subtotal": 1050,
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "id_order": 5,
-      "userId": 8,
+      "id_order": "5",
+      "userId": "8",
       "products": [
         { "productId": 4, "quantity": 4, "unit_price": 500 },
         { "productId": 9, "quantity": 1, "unit_price": 1250 }
@@ -213,8 +213,8 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "id_order": 6,
-      "userId": 10,
+      "id_order": "6",
+      "userId": "1",
       "products": [{ "productId": 8, "quantity": 2, "unit_price": 780 }],
       "subtotal": 1560,
       "createdAt": "2025-04-23T21:20:16.720495",

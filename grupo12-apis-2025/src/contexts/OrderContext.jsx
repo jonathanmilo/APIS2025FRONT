@@ -38,7 +38,9 @@ export function OrdersProvider({ children }) {
     return orders.map((order) => ({
       ...order,
       products: order.products.map((item) => {
-        const producto = productos.find((p) => String(p._id) === String(item.productId));
+        const producto = productos.find(
+          (p) => String(p._id) === String(item.productId)
+        );
         return {
           ...item,
           nombre: producto?.title || "Producto no encontrado",
