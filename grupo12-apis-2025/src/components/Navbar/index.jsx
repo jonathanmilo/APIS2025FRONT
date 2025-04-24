@@ -80,7 +80,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <MobileMenu open={open} setOpen={setOpen} />
+      <MobileMenu open={open} setOpen={setOpen} usuario={usuario} />
 
       {carritoVisible && (
         <div className=" top-20 fixed right-4 bg-white shadow-lg rounded-lg p-4 w-80 z-50 border-1 border-brand-light-gray">
