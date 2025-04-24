@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 
 export default function Carousel({ title, items }) {
   const navigate = useNavigate();
@@ -56,23 +57,23 @@ export default function Carousel({ title, items }) {
             <div
               key={prod._id}
               onClick={() => navigate(`/catalogo/${prod._id}`)}
-              className="min-w-[200px] lg:w-50 flex flex-col bg-white overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer"
+              className="min-w-[180px] sm:min-w-[220px] md:min-w-[240px] lg:min-w-[260px] xl:min-w-[280px] flex flex-col bg-white overflow-hidden shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300 cursor-pointer"
             >
               <img
                 src={prod.images[0].url}
                 alt={prod.title}
-                className="w-full h-40 object-cover"
+                className="w-full h-36 sm:h-40 md:h-44 object-cover"
               />
-              <div className="flex flex-col p-2 justify-between h-[20vh] md:h-[12vh] lg:h-[25vh] xl:h-[20vh]">
-                <div className="flex flex-grow flex-col">
-                  <h3 className="font-bold text-brand-black text-sm uppercase h-11">
+              <div className="flex flex-col justify-between p-3 flex-grow h-40 sm:h-44 md:h-48">
+                <div className="flex flex-col gap-1">
+                  <h3 className="font-bold text-brand-black text-sm md:text-base uppercase line-clamp-2">
                     {prod.title}
                   </h3>
-                  <p className="text-sm text-gray-500 truncate">
+                  <p className="text-sm text-gray-500 line-clamp-2">
                     {prod.description}
                   </p>
                 </div>
-                <p className="text-xl font-semibold text-brand-black">
+                <p className="text-lg font-semibold text-brand-black mt-2">
                   ${prod.price}
                 </p>
               </div>
@@ -85,10 +86,10 @@ export default function Carousel({ title, items }) {
       {showLeftBtn && (
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 z-20 flex items-center justify-center bg-white bg-opacity-50 rounded-full hover:bg-opacity-70 transition-opacity cursor-pointer shadow-lg"
+          className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 z-20 flex items-center justify-center bg-white bg-opacity-50 rounded-full hover:bg-opacity-70 transition-opacity cursor-pointer shadow-lg"
           aria-label="Anterior"
         >
-          <span className="block w-2 h-2 border-l-2 border-b-2 border-brand-black transform rotate-45"></span>
+          <SlArrowLeft className="text-brand-black text-lg" />
         </button>
       )}
 
@@ -96,10 +97,10 @@ export default function Carousel({ title, items }) {
       {showRightBtn && (
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 z-20 flex items-center justify-center bg-white bg-opacity-50 rounded-full hover:bg-opacity-70 transition-opacity cursor-pointer shadow-lg"
+          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 z-20 flex items-center justify-center bg-white bg-opacity-50 rounded-full hover:bg-opacity-70 transition-opacity cursor-pointer shadow-lg"
           aria-label="Siguiente"
         >
-          <span className="block w-2 h-2 border-r-2 border-b-2 border-brand-black transform -rotate-45"></span>
+          <SlArrowRight className="text-brand-black text-lg" />
         </button>
       )}
     </section>
