@@ -12,6 +12,7 @@ export default function Carousel({ title, items }) {
       <div className="overflow-x-auto scrollbar-hide px-4">
         <div className="flex space-x-4">
           {items.map(prod => (
+            <a href={`/products/${prod.id_producto}`}>
             <div
               key={prod.id_producto}
               className="min-w-[200px] bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all"
@@ -31,6 +32,7 @@ export default function Carousel({ title, items }) {
                 </p>
               </div>
             </div>
+            </a>
           ))}
         </div>
       </div>
