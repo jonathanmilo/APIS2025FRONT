@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useUsuario } from "../contexts/UserContext";
+import Avatar from "@mui/material/Avatar";
 
 export default function UserMenu() {
+  const { usuario } = useUsuario();
   const [open, setOpen] = useState(false);
+
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -24,12 +28,17 @@ export default function UserMenu() {
 
   return (
     <div className="relative inline-block text-left">
-      <button
-        ref={buttonRef}
-        onClick={toggleMenu}
-        className="w-10 h-10 flex items-center justify-center text-white bg-brand-main rounded-full hover:bg-brand-main-hover transition cursor-pointer"
-      >
-        <i className="fa-solid fa-user text-lg" />
+      <button ref={buttonRef} onClick={toggleMenu}>
+        <Avatar
+          src={usuario?.avatar || ""}
+          alt={usuario?.firstName || "User"}
+          sx={{
+            width: 40,
+            height: 40,
+            bgcolor: "#76ff03",
+            cursor: "pointer",
+          }}
+        />
       </button>
 
       {/* Menú desplegable */}

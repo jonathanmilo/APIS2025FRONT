@@ -73,7 +73,14 @@ const MiPerfil = () => {
         <Box sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}>
           <Avatar
             src={usuario.avatar}
-            sx={{ width: 64, height: 64, marginRight: 2 }}
+            alt={usuario?.firstName || "User"}
+            sx={{
+              width: 64,
+              height: 64,
+              marginRight: 2,
+              bgcolor: "#76ff03",
+              cursor: "pointer",
+            }}
           />
           <Box>
             <Typography variant="body1">
