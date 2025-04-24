@@ -60,7 +60,7 @@ export function ProductDetail() {
   return (
     <div className="max-w-5xl mx-auto p-6 md:p-4">
       <Link
-        to="/products"
+        to="/catalogo"
         className="inline-block mb-4 text-brand-main hover:underline"
       >
         ← Volver a productos

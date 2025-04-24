@@ -22,8 +22,6 @@ export function CarritoProvider({ children }) {
 
       const carritoUsuario = data.find((c) => c.userId === usuario._id);
 
-      console.log(carritoUsuario);
-
       if (carritoUsuario) {
         const productosNormalizados = carritoUsuario.products.map((item) => ({
           _id: item.productId,
@@ -44,7 +42,7 @@ export function CarritoProvider({ children }) {
     if (usuario) {
       obtenerCarrito();
     } else {
-      setCarrito([]); 
+      setCarrito([]);
     }
   }, [usuario]);
 

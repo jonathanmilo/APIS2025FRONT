@@ -48,7 +48,7 @@ function Producto({ producto }) {
 
           {/* Redireccion a userDetail */}
           <Link
-            to={`/products/${producto._id}`}
+            to={`/catalogo/${producto._id}`}
             className="block text-center underline text-brand-main-hover hover:text-lime-700"
           >
             Más información

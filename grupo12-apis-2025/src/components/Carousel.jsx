@@ -55,7 +55,7 @@ export default function Carousel({ title, items }) {
           {items.map((prod) => (
             <div
               key={prod._id}
-              onClick={() => navigate(`/products/${prod._id}`)}
+              onClick={() => navigate(`/catalogo/${prod._id}`)}
               className="min-w-[200px] lg:w-50 flex flex-col bg-white overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer"
             >
               <img

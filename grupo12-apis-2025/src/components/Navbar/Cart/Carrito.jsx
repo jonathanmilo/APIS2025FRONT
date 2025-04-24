@@ -1,6 +1,6 @@
 import React from "react";
-import { useCarrito } from "../contexts/CartContext.jsx";
-import { useProductos } from "../contexts/ProductContext.jsx";
+import { useCarrito } from "../../../contexts/CartContext.jsx";
+import { useProductos } from "../../../contexts/ProductContext.jsx";
 
 export default function Carrito() {
   const { carrito, eliminarDelCarrito } = useCarrito();

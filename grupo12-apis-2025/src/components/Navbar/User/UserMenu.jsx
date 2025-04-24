@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useUsuario } from "../contexts/UserContext";
+import { useUsuario } from "../../../contexts/UserContext";
 import Avatar from "@mui/material/Avatar";
 
 export default function UserMenu() {
@@ -27,7 +27,7 @@ export default function UserMenu() {
   }, []);
 
   return (
-    <div className="relative inline-block text-left">
+    <div className="flex relative">
       <button ref={buttonRef} onClick={toggleMenu}>
         <Avatar
           src={usuario?.avatar || ""}
@@ -44,7 +44,7 @@ export default function UserMenu() {
       {/* Menú desplegable */}
       <div
         ref={menuRef}
-        className={`origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white transition-all duration-200 ease-out ${
+        className={`origin-top-right absolute top-10 border-1 border-brand-light-gray right-0 mt-2 w-56 rounded-md shadow-lg bg-white transition-all duration-200 ease-out ${
           open
             ? "opacity-100 scale-100 visible"
             : "opacity-0 scale-95 invisible"
@@ -52,7 +52,7 @@ export default function UserMenu() {
       >
         <div className="py-2 px-2" role="menu">
           <Link
-            to="/profile"
+            to="/mi-perfil"
             className="block px-4 py-2 text-sm text-brand-black rounded-md hover:bg-gray-100"
             role="menuitem"
           >

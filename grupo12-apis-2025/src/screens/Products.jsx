@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Carousel from "../components/Carousel.jsx";
 import Producto from "../components/Producto.jsx";
-import Layout from "../layouts/Layout.jsx";
 import { useProductos } from "../contexts/ProductContext";
+import SearchBar from "../components/SearchBar.jsx";
 
 import {
   filtrarPorNombre,
@@ -22,12 +22,16 @@ export function Products() {
   const lista = productosFiltrados.length ? productosFiltrados : productos;
 
   return (
-    <Layout buscar={handleBuscar}>
+    <>
       {/* Grid principal */}
       <div className="mx-5 lg:mx-20">
-        <h3 className="text-xl pt-6 pb-2 text-brand-black uppercase font-bold">
-          Catálogo de productos
-        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-4 my-5">
+          <h3 className="text-xl text-center md:text-left text-brand-black uppercase font-bold">
+            Catálogo de productos
+          </h3>
+          <SearchBar buscar={handleBuscar} />
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {lista.map((prod) => (
             <Producto key={prod._id} producto={prod} />
@@ -40,7 +44,7 @@ export function Products() {
           <Carousel title="Productos Destacados" items={destacados} />
         </section>
       )}
-    </Layout>
+    </>
   );
 }
 
