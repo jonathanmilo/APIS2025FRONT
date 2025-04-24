@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Producto from "./Producto";
 
 function ProductosPorCategoria({ categorias, productos }) {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
+
+  useEffect(() => {
+    if (categorias && categorias.length > 0) {
+      setCategoriaSeleccionada(categorias[0]);
+    }
+  }, [categorias]);
 
   const productosFiltrados = categoriaSeleccionada
     ? productos.filter(
