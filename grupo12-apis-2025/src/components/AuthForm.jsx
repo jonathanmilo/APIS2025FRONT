@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { TextField } from "@mui/material";
 
 export default function AuthForm({ mode = "login", onSubmit }) {
   const [formData, setFormData] = useState({
@@ -48,15 +49,15 @@ export default function AuthForm({ mode = "login", onSubmit }) {
   return (
     <div className="flex-grow flex flex-col items-center justify-center max-w">
       <div className="relative flex flex-col bg-transparent text-brand-black">
-        <h4 className="text-xl font-semibold text-brand-black">
-          {isRegister ? "Crear Cuenta" : "Iniciar Sesión"}
+        <h4 className="text-2xl text-center font-semibold text-brand-black">
+          {isRegister ? "Registrate" : "Ingresar"}
         </h4>
 
         <form
           className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
           onSubmit={handleSubmit}
         >
-          <div className="mb-4 flex flex-col gap-6">
+          <div className="mb-4 flex flex-col gap-1">
             {isRegister && (
               <>
                 <InputField
@@ -110,26 +111,18 @@ export default function AuthForm({ mode = "login", onSubmit }) {
 
 function InputField({ id, label, type, value, onChange, error }) {
   return (
-    <div className="relative h-11 w-full min-w-[200px]">
-      <input
-        type={type}
-        id={id}
-        name={id}
-        value={value}
-        onChange={onChange}
-        placeholder=" "
-        required
-        className={`peer h-full w-full rounded-md border px-3 py-3 text-sm text-blue-gray-700 bg-transparent focus:border-2 focus:border-pink-500 outline-none ${
-          error ? "border-red-500" : "border-blue-gray-200"
-        }`}
-      />
-      <label
-        htmlFor={id}
-        className="absolute left-0 -top-1.5 text-[11px] text-blue-gray-400 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-2 peer-placeholder-shown:left-3 peer-focus:text-pink-500"
-      >
-        {label}
-      </label>
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
-    </div>
+    <TextField
+      fullWidth
+      variant="outlined"
+      margin="dense"
+      id={id}
+      name={id}
+      label={label}
+      type={type}
+      value={value}
+      onChange={onChange}
+      error={Boolean(error)}
+      helperText={error}
+    />
   );
 }
