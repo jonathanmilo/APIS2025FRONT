@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import Carousel from "../components/Carousel";
-import { useCarrito } from "../contexts/CartContext";
-import { useCategorias } from "../contexts/CategoryContext";
-import { useProductos } from "../contexts/ProductContext";
-import GaleriaImagenes from "../components/GaleriaImagenes";
+import Carousel from "../../components/Carousel";
+import { useCarrito } from "../../contexts/CartContext";
+import { useCategorias } from "../../contexts/CategoryContext";
+import { useProductos } from "../../contexts/ProductContext";
+import GaleriaImagenes from "./components/GaleriaImagenes";
 
 import {
   filtrarRelacionados,
   obtenerNombresSubcategorias,
   obtenerNombreCategoria,
-} from "../utils/filtrarProductos";
+} from "../../utils/filtrarProductos";
 
 export function ProductDetail() {
   const { id } = useParams();

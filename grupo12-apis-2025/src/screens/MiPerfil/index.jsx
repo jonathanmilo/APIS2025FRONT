@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUsuario } from "../contexts/UserContext";
-import { useOrders } from "../contexts/OrderContext";
-import { useProductos } from "../contexts/ProductContext";
+import { useUsuario } from "../../contexts/UserContext";
+import { useOrders } from "../../contexts/OrderContext";
+import { useProductos } from "../../contexts/ProductContext";
 
 import {
   TextField,

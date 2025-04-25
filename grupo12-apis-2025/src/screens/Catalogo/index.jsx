@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import Carousel from "../components/Carousel.jsx";
-import Producto from "../components/Producto.jsx";
-import { useProductos } from "../contexts/ProductContext";
-import SearchBar from "../components/SearchBar.jsx";
+import Carousel from "../../components/Carousel.jsx";
+import Producto from "../../components/Producto.jsx";
+import { useProductos } from "../../contexts/ProductContext.jsx";
+import SearchBar from "./components/SearchBar.jsx";
 
 import {
   filtrarPorNombre,
   filtrarDestacados,
-} from "../utils/filtrarProductos.js";
+} from "../../utils/filtrarProductos.js";
 
-export function Products() {
+export function Catalogo() {
   const { productos } = useProductos();
   const [productosFiltrados, setProductosFiltrados] = useState([]);
 
@@ -48,4 +48,4 @@ export function Products() {
   );
 }
 
-export default Products;
+export default Catalogo;

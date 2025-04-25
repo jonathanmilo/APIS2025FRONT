@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useUsuario } from "../../../contexts/UserContext";
+import { useUsuario } from "../../../../contexts/UserContext";
 import { MdLogout } from "react-icons/md";
 import { SlSettings } from "react-icons/sl";
 import Avatar from "@mui/material/Avatar";
@@ -42,7 +42,7 @@ export default function UserMenu() {
           <Avatar
             src={usuario?.avatar || ""}
             alt={usuario?.firstName || "Usuario"}
-            sx={{ width: 40, height: 40, bgcolor: "#76ff03" }}
+            sx={{ width: 40, height: 40 }}
           />
         </IconButton>
       </Tooltip>
@@ -61,7 +61,7 @@ export default function UserMenu() {
             sx: {
               overflow: "visible",
               filter: "drop-shadow(0px 1px 4px rgba(0,0,0,0.16))",
-              mt: 1.5,
+              mt: 1,
               "& .MuiAvatar-root": {
                 width: 32,
                 height: 32,
@@ -73,7 +73,7 @@ export default function UserMenu() {
                 display: "block",
                 position: "absolute",
                 top: 0,
-                right: 14,
+                right: 20,
                 width: 10,
                 height: 10,
                 bgcolor: "background.paper",

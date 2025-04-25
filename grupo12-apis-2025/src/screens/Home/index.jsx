@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Carousel from "../components/Carousel.jsx";
-import HomeCarousel from "../components/HomeCarousel.jsx";
-import { useProductos } from "../contexts/ProductContext";
-import { useCategorias } from "../contexts/CategoryContext";
-import ProductosPorCategoria from "../components/ProductosPorCategoria.jsx";
+import Carousel from "../../components/Carousel.jsx";
+import HomeCarousel from "./components/HomeCarousel.jsx";
+import { useProductos } from "../../contexts/ProductContext.jsx";
+import { useCategorias } from "../../contexts/CategoryContext.jsx";
+import ProductosPorCategoria from "./components/ProductosPorCategoria.jsx";
 
 import {
   filtrarDestacados,
   filtrarConDescuento,
-} from "../utils/filtrarProductos.js";
+} from "../../utils/filtrarProductos.js";
 
 export function Home() {
   const { productos } = useProductos();

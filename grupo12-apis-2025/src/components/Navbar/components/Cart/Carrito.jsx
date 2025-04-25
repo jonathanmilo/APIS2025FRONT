@@ -1,6 +1,9 @@
 import React from "react";
-import { useCarrito } from "../../../contexts/CartContext.jsx";
-import { useProductos } from "../../../contexts/ProductContext.jsx";
+import { useCarrito } from "../../../../contexts/CartContext.jsx";
+import { useProductos } from "../../../../contexts/ProductContext.jsx";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 export default function Carrito() {
   const { carrito, eliminarDelCarrito } = useCarrito();
@@ -25,7 +28,7 @@ export default function Carrito() {
               return (
                 <li
                   key={item._id}
-                  className="flex flex-col justify-center h-[15vh] border-t-1 border-brand-light-gray"
+                  className="flex flex-col justify-center h-[16vh] border-t-1 border-brand-light-gray"
                 >
                   <div className="flex flex-row gap-3">
                     <img
@@ -47,13 +50,16 @@ export default function Carrito() {
                       </div>
                     </div>
                   </div>
-
-                  <button
-                    onClick={() => eliminarDelCarrito(item._id)}
-                    className="text-red-500 hover:text-red-700 h-3 w-3 self-end cursor-pointer"
-                  >
-                    <i className="fa-solid fa-trash"></i>
-                  </button>
+                  <div className="flex justify-end ">
+                    <Tooltip
+                      title="Eliminar"
+                      onClick={() => eliminarDelCarrito(item._id)}
+                    >
+                      <IconButton>
+                        <RiDeleteBin6Line />
+                      </IconButton>
+                    </Tooltip>
+                  </div>
                 </li>
               );
             })}

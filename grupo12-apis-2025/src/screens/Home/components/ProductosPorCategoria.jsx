@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Producto from "./Producto";
+import Producto from "../../../components/Producto";
 
 function ProductosPorCategoria({ categorias, productos }) {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);

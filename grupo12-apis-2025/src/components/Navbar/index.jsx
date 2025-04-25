@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { NAVBAR_MENU, STORE_NAME } from "../../global/store";
-import MobileMenu from "./MobileMenu";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import UserMenu from "./User/UserMenu.jsx";
 import { useUsuario } from "../../contexts/UserContext";
 import { BsCart4 } from "react-icons/bs";
-import Carrito from "./Cart/Carrito.jsx";
-import { Link } from "react-router-dom";
+import Badge from "@mui/material/Badge";
+import { NAVBAR_MENU, STORE_NAME } from "../../global/store";
+import MobileMenu from "./components/MobileMenu.jsx";
+import UserMenu from "./components/User/UserMenu.jsx";
+import Carrito from "./components/Cart/Carrito.jsx";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -42,12 +45,26 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <button
-              onClick={toggleCarrito}
-              className="text-2xl cursor-pointer text-brand-black hover:bg-brand-main hover:text-white rounded-full p-2 duration-200"
-            >
-              <BsCart4 />
-            </button>
+            <Tooltip title="Carrito de compras">
+              <IconButton
+                onClick={toggleCarrito}
+                sx={{ ml: 4, width: "50px", height: "50px" }}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+              >
+                <Badge
+                  badgeContent={1}
+                  sx={{
+                    "& .MuiBadge-badge": {
+                      backgroundColor: "#84cc16",
+                      color: "white",
+                    },
+                  }}
+                >
+                  <BsCart4 className="text-brand-black" />
+                </Badge>
+              </IconButton>
+            </Tooltip>
 
             {usuario ? (
               <UserMenu />
