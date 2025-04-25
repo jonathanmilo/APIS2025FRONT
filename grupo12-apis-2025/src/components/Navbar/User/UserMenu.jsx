@@ -1,78 +1,105 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useUsuario } from "../../../contexts/UserContext";
+import { MdLogout } from "react-icons/md";
+import { SlSettings } from "react-icons/sl";
 import Avatar from "@mui/material/Avatar";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
+import Divider from "@mui/material/Divider";
 
 export default function UserMenu() {
   const { usuario } = useUsuario();
-  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
-  const menuRef = useRef(null);
-  const buttonRef = useRef(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-  const toggleMenu = () => setOpen((prev) => !prev);
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target) &&
-        !buttonRef.current.contains(event.target)
-      ) {
-        setOpen(false);
-      }
-    };
-    window.addEventListener("click", handleClickOutside);
-    return () => window.removeEventListener("click", handleClickOutside);
-  }, []);
+  const handleLogout = () => {
+    console.log("Cerrar sesión");
+    handleClose();
+  };
 
   return (
-    <div className="flex relative">
-      <button ref={buttonRef} onClick={toggleMenu}>
-        <Avatar
-          src={usuario?.avatar || ""}
-          alt={usuario?.firstName || "User"}
-          sx={{
-            width: 40,
-            height: 40,
-            bgcolor: "#76ff03",
-            cursor: "pointer",
-          }}
-        />
-      </button>
+    <React.Fragment>
+      <Tooltip title="Opciones de usuario">
+        <IconButton
+          onClick={handleClick}
+          size="small"
+          sx={{ ml: 2 }}
+          aria-controls={open ? "user-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+        >
+          <Avatar
+            src={usuario?.avatar || ""}
+            alt={usuario?.firstName || "Usuario"}
+            sx={{ width: 40, height: 40, bgcolor: "#76ff03" }}
+          />
+        </IconButton>
+      </Tooltip>
 
-      {/* Menú desplegable */}
-      <div
-        ref={menuRef}
-        className={`origin-top-right absolute top-10 border-1 border-brand-light-gray right-0 mt-2 w-56 rounded-md shadow-lg bg-white transition-all duration-200 ease-out ${
-          open
-            ? "opacity-100 scale-100 visible"
-            : "opacity-0 scale-95 invisible"
-        }`}
+      <Menu
+        anchorEl={anchorEl}
+        id="user-menu"
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        slotProps={{
+          paper: {
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 1px 4px rgba(0,0,0,0.16))",
+              mt: 1.5,
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+              },
+              "&::before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
+              },
+            },
+          },
+        }}
       >
-        <div className="py-2 px-2" role="menu">
-          <Link
-            to="/mi-perfil"
-            className="block px-4 py-2 text-sm text-brand-black rounded-md hover:bg-gray-100"
-            role="menuitem"
-          >
-            Mi Perfil
-          </Link>
-          <a
-            href="#"
-            className="block px-4 py-2 text-sm text-brand-black rounded-md hover:bg-gray-100"
-            role="menuitem"
-          >
-            Publicaciones
-          </a>
-          <button className="w-full mt-2 flex items-center justify-center gap-2 px-4 py-2 bg-brand-main text-white rounded-md text-sm hover:bg-brand-main-hover cursor-pointer">
-            <span className="leading-none flex items-center">
-              Cerrar sesión
-            </span>
-            <i className="fa-solid fa-right-from-bracket text-white text-base leading-none flex items-center"></i>
-          </button>
-        </div>
-      </div>
-    </div>
+        <MenuItem component={Link} to="/mi-perfil">
+          Mi Perfil
+        </MenuItem>
+        <MenuItem component="a" href="#">
+          Compras
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleClose}>
+          <SlSettings className="mr-1" />
+          Configuración
+        </MenuItem>
+        <MenuItem onClick={handleLogout}>
+          <MdLogout className="mr-1" />
+          Cerrar sesión
+        </MenuItem>
+      </Menu>
+    </React.Fragment>
   );
 }
