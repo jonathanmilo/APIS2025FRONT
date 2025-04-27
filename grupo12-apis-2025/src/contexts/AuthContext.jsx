@@ -1,39 +1,59 @@
-import { createContext, useContext, useState } from "react";
-import { useUsuario } from "./UserContext";
-import { fetchUsers } from "../api/api";
+import { createContext,  useState, useEffect } from "react";
+import {jwtDecode } from "jwt-decode";
+import axios from 'axios';
 
-const AuthContext = createContext();
 
-export function useValidacion() {
-  return useContext(AuthContext);
-}
+export const AuthContext = createContext();
 
-export function ValidacionProvider({ children }) {
-  const { setUsuario } = useUsuario();
-  const [usuario, setUsuarioLocal] = useState(null);
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
-  const validar = async (usuario) => {
+  useEffect(() => {
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      const decoded = jwtDecode(token);
+      setUser(decoded);
+    }
+  }, [token]);
+
+  const login = async (credentials) => {
     try {
-      const data = await fetchUsers();
-
-      const encontrado = data.find(
-        (u) => u.email === usuario.email && u.password === usuario.password
-      );
-
-      if (encontrado) {
-        setUsuario(encontrado);
-        setUsuarioLocal(encontrado);
-      } else {
-        alert("Credenciales incorrectas");
-      }
+      const response = await axios.post('/api/auth/login', credentials);
+      const { token } = response.data;
+      localStorage.setItem('token', token);
+      setToken(token);
     } catch (error) {
-      console.error("Error al validar usuario:", error);
+      console.error('Login error:', error);
+      throw error;
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    delete axios.defaults.headers.common['Authorization'];
+    setUser(null);
+    setToken(null);
+  };
+
+  const isAuthenticated = () => {
+    return !!token && !isTokenExpired(token);
+  };
+
+  const isTokenExpired = (token) => {
+    try {
+      const decoded = jwtDecode(token);
+      return decoded.exp < Date.now() / 1000;
+    } catch {
+      return true;
     }
   };
 
   return (
-    <AuthContext.Provider value={{ validar, usuario }}>
+    <AuthContext.Provider value={{ user, token, login, logout, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
+
+export default AuthContext;

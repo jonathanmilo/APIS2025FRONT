@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
-import { useValidacion } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function Ingresar() {
-  const { validar } = useValidacion();
+  const { login } = useContext (AuthContext);
   const navigate = useNavigate();
   const [formMode, setFormMode] = useState("login");
 
   const handleSubmit = (data) => {
     if (formMode === "login") {
-      validar(data);
+      login({data});
       alert(`Bienvenido ${data.name || "usuario"}!`);
       navigate("/");
     } else {

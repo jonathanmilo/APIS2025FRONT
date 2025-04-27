@@ -33,20 +33,6 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-<<<<<<< HEAD
-      "id_producto": 3,
-      "nombre": "Audífonos Sony WH-1000XM4",
-      "descripcion": "Audífonos inalámbricos con cancelación de ruido y 30 horas de batería",
-      "categoria": "Electrónicos",
-      "precio": 349.99,
-      "id_vendedor": "VEN003",
-      "images": [
-        "https://i.blogs.es/7af9e0/sony-wh-1000xm4-analisis/1366_2000.jpg"
-      ],
-      "descuento": 20,
-      "destacado": false,
-      "sub-categoria": "Audio"
-=======
       "_id": "3",
       "username": "lmendez",
       "email": "lmendez@example.com",
@@ -61,7 +47,6 @@
       "avatar": "https://example.com/avatars/lmendez.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
->>>>>>> estructura-directorios
     },
     {
       "_id": "4",
