@@ -5,6 +5,7 @@ import { useCarrito } from "../../contexts/CartContext";
 import { useCategorias } from "../../contexts/CategoryContext";
 import { useProductos } from "../../contexts/ProductContext";
 import GaleriaImagenes from "./components/GaleriaImagenes";
+import { calcularPrecio } from "../../utils/calcularPrecio";
 
 import {
   filtrarRelacionados,
@@ -76,8 +77,15 @@ export function ProductDetail() {
           <p className="text-grey-600 mb-4 text-brand-black">
             {producto.description}
           </p>
+
+          {producto.discountPercentage > 0 && (
+            <div className="text-xl text-gray-500 line-through">
+              ${producto.price}
+            </div>
+          )}
+
           <div className="text-2xl font-semibold mb-4 text-brand-black">
-            ${producto.price}
+            ${calcularPrecio(producto.price, producto.discountPercentage)}
           </div>
 
           {producto.discountPercentage > 0 && (

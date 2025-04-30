@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Producto from "../../../components/Producto";
+import ProductCard from "../../../components/ProductCard";
 
 function ProductosPorCategoria({ categorias, productos }) {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
@@ -65,7 +65,7 @@ function ProductosPorCategoria({ categorias, productos }) {
           {productosFiltrados.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {productosFiltrados.map((producto) => (
-                <Producto key={producto._id} producto={producto} />
+                <ProductCard key={producto._id} producto={producto} />
               ))}
             </div>
           ) : (

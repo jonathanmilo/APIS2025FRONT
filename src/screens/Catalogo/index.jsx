@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Carousel from "../../components/Carousel.jsx";
-import Producto from "../../components/Producto.jsx";
 import { useProductos } from "../../contexts/ProductContext.jsx";
 import SearchBar from "./components/SearchBar.jsx";
+import ProductCard from "../../components/ProductCard.jsx";
 
 import {
   filtrarPorNombre,
@@ -24,17 +24,22 @@ export function Catalogo() {
   return (
     <>
       {/* Grid principal */}
-      <div className="mx-5 lg:mx-20">
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-4 my-5">
-          <h3 className="text-xl text-center md:text-left text-brand-black uppercase font-bold">
-            Catálogo de productos
-          </h3>
+      <div className="">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-4 p-12">
+          <div>
+            <h3 className="text-xl text-center md:text-left text-brand-black uppercase font-bold">
+              Catálogo de productos
+            </h3>
+            <p className="text-gray-500 text-center md:text-left">
+              ¡Explorá nuestro catálogo de productos!
+            </p>
+          </div>
           <SearchBar buscar={handleBuscar} />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 bg-gray-100 p-6 w-full">
           {lista.map((prod) => (
-            <Producto key={prod._id} producto={prod} />
+            <ProductCard key={prod._id} producto={prod} />
           ))}
         </div>
       </div>

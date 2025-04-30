@@ -1,5 +1,7 @@
 export const STORE_NAME = "Tienda.";
 
+export const API_URL = "http://localhost:3001"; 
+
 export const NAVBAR_MENU = [
   {
     id: 1,
