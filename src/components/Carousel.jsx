@@ -1,9 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
+import ProductCard from "./ProductCard";
 
 export default function Carousel({ title, items }) {
-  const navigate = useNavigate();
   const carouselRef = useRef(null);
   const [showLeftBtn, setShowLeftBtn] = useState(false);
   const [showRightBtn, setShowRightBtn] = useState(false);
@@ -56,33 +55,14 @@ export default function Carousel({ title, items }) {
           {items.map((prod) => (
             <div
               key={prod._id}
-              onClick={() => navigate(`/catalogo/${prod._id}`)}
-              className="min-w-[180px] sm:min-w-[220px] md:min-w-[240px] lg:min-w-[260px] xl:min-w-[280px] flex flex-col bg-white overflow-hidden shadow-md hover:shadow-xl hover:scale-[1.03] transition-all duration-300 cursor-pointer"
+              className="min-w-[220px] md:min-w-[240px] lg:min-w-[250px] transition-transform duration-300 hover:scale-102"
             >
-              <img
-                src={prod.images[0].url}
-                alt={prod.title}
-                className="w-full h-36 sm:h-40 md:h-44 object-cover"
-              />
-              <div className="flex flex-col justify-between p-3 flex-grow h-40 sm:h-44 md:h-48">
-                <div className="flex flex-col gap-1">
-                  <h3 className="font-bold text-brand-black text-sm md:text-base uppercase line-clamp-2">
-                    {prod.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 line-clamp-2">
-                    {prod.description}
-                  </p>
-                </div>
-                <p className="text-lg font-semibold text-brand-black mt-2">
-                  ${prod.price}
-                </p>
-              </div>
+              <ProductCard producto={prod} />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Flecha izquierda */}
       {showLeftBtn && (
         <button
           onClick={prevSlide}
@@ -93,7 +73,6 @@ export default function Carousel({ title, items }) {
         </button>
       )}
 
-      {/* Flecha derecha */}
       {showRightBtn && (
         <button
           onClick={nextSlide}

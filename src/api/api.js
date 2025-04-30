@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001";
+import { API_URL } from "../global/store";
 
 export const fetchProducts = async () => {
   const res = await fetch(`${API_URL}/products`);
@@ -23,4 +23,9 @@ export const fetchCategories = async () => {
 export const fetchOrders = async () => {
   const res = await fetch(`${API_URL}/orders`);
   return res.json();
+};
+
+export const getUserById = async (id) => {
+  const users = await fetchUsers();
+  return users.find((user) => user._id === id);
 };
