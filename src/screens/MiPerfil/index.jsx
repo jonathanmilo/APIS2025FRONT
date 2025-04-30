@@ -78,7 +78,6 @@ const MiPerfil = () => {
               width: 64,
               height: 64,
               marginRight: 2,
-              bgcolor: "#76ff03",
               cursor: "pointer",
             }}
           />
@@ -101,9 +100,9 @@ const MiPerfil = () => {
         <List dense>
           {comprasUsuario && comprasUsuario.length > 0 ? (
             comprasUsuario.map((compra) => (
-              <ListItem key={compra.id_order} alignItems="flex-start">
+              <ListItem key={compra._id} alignItems="flex-start">
                 <ListItemText
-                  primary={`Compra #${compra.id_order} - ${new Date(
+                  primary={`Compra #${compra._id} - ${new Date(
                     compra.createdAt
                   ).toLocaleDateString()}`}
                   secondary={

@@ -28,7 +28,7 @@
         "state": "Buenos Aires",
         "country": "Argentina"
       },
-      "avatar": "https://example.com/avatars/mmartinez.jpg", 
+      "avatar": "https://example.com/avatars/mmartinez.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
@@ -164,7 +164,7 @@
 
   "orders": [
     {
-      "id_order": "1",
+      "_id": "1",
       "userId": "1",
       "products": [
         { "productId": 3, "quantity": 2, "unit_price": 1200 },
@@ -175,7 +175,7 @@
       "updatedAt": "2025-02-20T21:20:16.720495"
     },
     {
-      "id_order": "2",
+      "_id": "2",
       "userId": "2",
       "products": [{ "productId": 1, "quantity": 1, "unit_price": 950 }],
       "subtotal": 950,
@@ -183,7 +183,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "id_order": "3",
+      "_id": "3",
       "userId": "4",
       "products": [
         { "productId": 2, "quantity": 3, "unit_price": 600 },
@@ -194,7 +194,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "id_order": "4",
+      "_id": "4",
       "userId": "6",
       "products": [{ "productId": 7, "quantity": 1, "unit_price": 1050 }],
       "subtotal": 1050,
@@ -202,7 +202,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "id_order": "5",
+      "_id": "5",
       "userId": "8",
       "products": [
         { "productId": 4, "quantity": 4, "unit_price": 500 },
@@ -213,7 +213,7 @@
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
     {
-      "id_order": "6",
+      "_id": "6",
       "userId": "1",
       "products": [{ "productId": 8, "quantity": 2, "unit_price": 780 }],
       "subtotal": 1560,
@@ -317,14 +317,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_802098-MLA53734551392_022023-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_802098-MLA53734551392_022023-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_802098-MLA53734551392_022023-O.webp",
-          "isCover": false
         }
       ],
       "description": "Teléfono inteligente con pantalla AMOLED de 6.2 pulgadas y 128GB de almacenamiento",
@@ -345,14 +337,6 @@
         {
           "url": "https://pedidosfarma.vtexassets.com/arquivos/ids/204979-800-800?v=638741974162130000&width=800&height=800&aspect=true",
           "isCover": true
-        },
-        {
-          "url": "https://pedidosfarma.vtexassets.com/arquivos/ids/204979-800-800?v=638741974162130000&width=800&height=800&aspect=true",
-          "isCover": false
-        },
-        {
-          "url": "https://pedidosfarma.vtexassets.com/arquivos/ids/204979-800-800?v=638741974162130000&width=800&height=800&aspect=false",
-          "isCover": false
         }
       ],
       "description": "Crema hidratante con efectos anti-envejecimiento",
@@ -367,20 +351,12 @@
       "_id": "4",
       "userId": "4",
       "categoryId": "1",
-      "subcategoryIds": ["1-1", "1-3"],
+      "subcategoryIds": ["1-1"],
       "title": "Camisa de Algodón",
       "images": [
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_737360-MLA54975059738_042023-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_737360-MLA54975059738_042023-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_737360-MLA54975059738_042023-O.webp",
-          "isCover": false
         }
       ],
       "description": "Camisa casual de manga larga, 100% algodón",
@@ -401,14 +377,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_714966-MLU77288566678_072024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_714966-MLU77288566678_072024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_714966-MLU77288566678_072024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Pelota de fútbol profesional de alta calidad",
@@ -423,20 +391,12 @@
       "_id": "6",
       "userId": "5",
       "categoryId": "1",
-      "subcategoryIds": ["1-2", "1-1"],
+      "subcategoryIds": ["1-2"],
       "title": "Zapatos Deportivos Nike Air Max",
       "images": [
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_858787-MLA75757534429_042024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_858787-MLA75757534429_042024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_858787-MLA75757534429_042024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Zapatillas para correr con amortiguación Air Max",
@@ -457,14 +417,6 @@
         {
           "url": "https://libreriareginacoeli.com/wp-content/uploads/2022/12/El-principito-tapa-dura-scaled.jpg",
           "isCover": true
-        },
-        {
-          "url": "https://libreriareginacoeli.com/wp-content/uploads/2022/12/El-principito-tapa-dura-scaled.jpg",
-          "isCover": false
-        },
-        {
-          "url": "https://libreriareginacoeli.com/wp-content/uploads/2022/12/El-principito-tapa-dura-scaled.jpg",
-          "isCover": false
         }
       ],
       "description": "Edición especial en tapa dura del clásico de Antoine de Saint-Exupéry",
@@ -485,14 +437,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_959048-MLA81072226275_112024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_959048-MLA81072226275_112024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_959048-MLA81072226275_112024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Lámpara de mesa con diseño moderno, ideal para oficina",
@@ -513,14 +457,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_630099-MLA83381499164_042025-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_630099-MLA83381499164_042025-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_630099-MLA83381499164_042025-O.webp",
-          "isCover": false
         }
       ],
       "description": "Sofá cómodo de 3 plazas, diseño minimalista",
@@ -541,14 +477,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_972200-MLU74088420395_012024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_972200-MLU74088420395_012024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_972200-MLU74088420395_012024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Auriculares inalámbricos con cancelación de ruido",
@@ -569,14 +497,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_894442-MLA49664822006_042022-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_894442-MLA49664822006_042022-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_894442-MLA49664822006_042022-O.webp",
-          "isCover": false
         }
       ],
       "description": "Botines elegantes de cuero negro con tacón bajo",
@@ -597,14 +517,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_650850-MLU73214044669_122023-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_650850-MLU73214044669_122023-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_650850-MLU73214044669_122023-O.webp",
-          "isCover": false
         }
       ],
       "description": "Monitor de 34 pulgadas UltraWide para productividad y juegos",
@@ -625,14 +537,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_654229-MLA83451477006_042025-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_654229-MLA83451477006_042025-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_654229-MLA83451477006_042025-O.webp",
-          "isCover": false
         }
       ],
       "description": "Set de 7 piezas con recubrimiento antiadherente",
@@ -653,14 +557,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_678898-MLA82455655982_022025-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_678898-MLA82455655982_022025-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_678898-MLA82455655982_022025-O.webp",
-          "isCover": false
         }
       ],
       "description": "Pack de cuadernos con diseño artístico para notas o bullet journal",
@@ -681,14 +577,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_718650-MLU72627480958_112023-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_718650-MLU72627480958_112023-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_718650-MLU72627480958_112023-O.webp",
-          "isCover": false
         }
       ],
       "description": "12 brochas profesionales para rostro y ojos",
@@ -702,21 +590,13 @@
     {
       "_id": "16",
       "userId": "2",
-      "categoryId": "6",
-      "subcategoryIds": ["6-1"],
+      "categoryId": "1",
+      "subcategoryIds": ["1-1"],
       "title": "Conjunto deportivo mujer",
       "images": [
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_768862-MLA76922160923_062024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_768862-MLA76922160923_062024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_768862-MLA76922160923_062024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Leggings y top deportivo en tela transpirable",
@@ -737,14 +617,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_905770-MLA79754515267_102024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_905770-MLA79754515267_102024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_905770-MLA79754515267_102024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Reloj inteligente con monitor de frecuencia cardíaca y GPS",
@@ -765,14 +637,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_874150-CBT81071015630_122024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_874150-CBT81071015630_122024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_874150-CBT81071015630_122024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Alfombra decorativa para sala de estar, 200x150 cm",
@@ -793,14 +657,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_888980-MLA83040637318_032025-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_888980-MLA83040637318_032025-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_888980-MLA83040637318_032025-O.webp",
-          "isCover": false
         }
       ],
       "description": "Más de 100 recetas para una alimentación equilibrada",
@@ -821,14 +677,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_729763-MLA81168249839_122024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_729763-MLA81168249839_122024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_729763-MLA81168249839_122024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Par de mancuernas ajustables de hasta 25 kg",
@@ -849,14 +697,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_996100-MLA53590135422_022023-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_996100-MLA53590135422_022023-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_996100-MLA53590135422_022023-O.webp",
-          "isCover": false
         }
       ],
       "description": "Protección UV y diseño moderno",
@@ -877,14 +717,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_932674-MLA71755311428_092023-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_932674-MLA71755311428_092023-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_932674-MLA71755311428_092023-O.webp",
-          "isCover": false
         }
       ],
       "description": "Aceite, bálsamo y cepillo para el cuidado diario de la barba",
@@ -905,14 +737,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_906395-MLA53067592418_122022-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_906395-MLA53067592418_122022-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_906395-MLA53067592418_122022-O.webp",
-          "isCover": false
         }
       ],
       "description": "Soporte para espalda baja durante entrenamientos intensos",
@@ -961,14 +785,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_722218-MLA79677328386_102024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_722218-MLA79677328386_102024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_722218-MLA79677328386_102024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Mesa moderna extensible para 4 a 6 personas",
@@ -979,7 +795,6 @@
       "createdAt": "2025-04-23T22:00:00.000Z",
       "updatedAt": "2025-04-23T22:00:00.000Z"
     },
-
     {
       "_id": "26",
       "userId": "1",
@@ -990,14 +805,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_733183-MLU77164812627_062024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_733183-MLU77164812627_062024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_733183-MLU77164812627_062024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Laptop Lenovo 15.6'' con Ryzen 5, 8GB RAM y SSD de 256GB",
@@ -1018,14 +825,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_923533-MLA73527009809_122023-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_923533-MLA73527009809_122023-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_923533-MLA73527009809_122023-O.webp",
-          "isCover": false
         }
       ],
       "description": "Apple MacBook Air con chip M2, 256GB SSD, 8GB RAM",
@@ -1046,14 +845,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_643509-MLA75371068291_032024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_643509-MLA75371068291_032024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_643509-MLA75371068291_032024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Computadora gamer con Ryzen 7, 16GB RAM y RTX 3060",
@@ -1074,14 +865,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_901619-MLA47501613108_092021-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_901619-MLA47501613108_092021-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_901619-MLA47501613108_092021-O.webp",
-          "isCover": false
         }
       ],
       "description": "Mini PC con procesador Intel i5, ideal para oficinas",
@@ -1102,14 +885,6 @@
         {
           "url": "https://http2.mlstatic.com/D_NQ_NP_660714-MLA80393616972_112024-O.webp",
           "isCover": true
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_660714-MLA80393616972_112024-O.webp",
-          "isCover": false
-        },
-        {
-          "url": "https://http2.mlstatic.com/D_NQ_NP_660714-MLA80393616972_112024-O.webp",
-          "isCover": false
         }
       ],
       "description": "Chromebook económico con pantalla HD, ideal para estudiantes",
