@@ -10,7 +10,7 @@ const MobileMenu = ({ open, setOpen, usuario }) => {
         open ? "translate-x-0" : "translate-x-full"
       } md:hidden shadow-lg`}
     >
-      <ul className="flex flex-col items-center justify-center h-full gap-8 text-xl font-semibold text-brand-black">
+      <ul className="flex flex-col items-center justify-start mt-15 h-full gap-8 text-xl font-semibold text-brand-black">
         {NAVBAR_MENU.map((item) => (
           <li key={item.id}>
             <Link

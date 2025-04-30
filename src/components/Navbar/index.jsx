@@ -21,7 +21,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="sticky top-0 bg-white z-50 border-b-1 border-brand-light-gray">
-        <div className="w-full px-5 lg:px-30 flex justify-between items-center py-8">
+        <div className="w-full px-5 lg:px-30 flex justify-between items-center py-6">
           <div className="text-2xl flex items-center gap-1 font-bold">
             <img src="/icon.svg" alt="" className="h-8" />
             <p className="text-brand-main">{STORE_NAME}</p>
@@ -48,7 +48,7 @@ const Navbar = () => {
             <Tooltip title="Carrito de compras">
               <IconButton
                 onClick={toggleCarrito}
-                sx={{ ml: 4, width: "50px", height: "50px" }}
+                sx={{ width: "50px", height: "50px" }}
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
               >
