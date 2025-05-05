@@ -107,13 +107,41 @@ export default function Carrito() {
         )}
       </div>
 
-      {/* Botones fijos abajo */}
-      <div className="py-1 border-t mt-2 flex flex-col items-center gap-2 bg-white">
+      {/* Resumen y botones fijos*/}
+      <div className="py-3 border-t mt-2 flex flex-col gap-3 bg-white px-4">
         {carrito.length > 0 && (
-          <div className="w-full text-center font-bold">
-            Total: ${calcularTotal().toFixed(2)}
+          <div className="w-full flex flex-col gap-2">
+            <div className="flex justify-between text-sm text-brand-black">
+              <span>Subtotal:</span>
+              <span>
+                ${carrito.reduce((sum, item) => {
+                  const precio = item.productData?.price || 0;
+                  return sum + (precio * item.quantity);
+                }, 0).toFixed(2)}
+              </span>
+            </div>
+            
+            {carrito.some(item => item.productData?.discountPercentage > 0) && (
+              <div className="flex justify-between text-sm text-brand-black">
+                <span>Descuentos:</span>
+                <span>
+                  -${carrito.reduce((sum, item) => {
+                    const precio = item.productData?.price || 0;
+                    const descuento = item.productData?.discountPercentage || 0;
+                    return sum + (precio * (descuento/100) * item.quantity);
+                  }, 0).toFixed(2)}
+                </span>
+              </div>
+            )}
+            
+            <div className="flex justify-between font-bold border-t pt-2 mt-1 text-sm text-brand-black">
+              <span>Total:</span>
+              <span>${calcularTotal().toFixed(2)}</span>
+            </div>
           </div>
         )}
+        
+        {/* Los botones permanecen igual */}
         <button
           className={`px-4 py-2 font-medium rounded-lg transition-colors ${
             carrito.length === 0
@@ -125,8 +153,9 @@ export default function Carrito() {
         >
           Finalizar Compra
         </button>
+        
         <button 
-          className="text-brand-gray underline hover:text-brand-black cursor-pointer"
+          className="text-brand-gray underline hover:text-brand-black cursor-pointer text-sm"
           onClick={vaciarCarrito}
         >
           Vaciar carrito
