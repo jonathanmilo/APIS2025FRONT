@@ -12,7 +12,7 @@
         "state": "Buenos Aires",
         "country": "Argentina"
       },
-      "avatar": "https://images.squarespace-cdn.com/content/v1/5589f66be4b07ccbbda32b5e/1678228066596-7J7T6H75BVWZKYXGYL0K/2022_LM_IBA95436_2.jpg?format=1500w",
+      "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
@@ -28,7 +28,7 @@
         "state": "Buenos Aires",
         "country": "Argentina"
       },
-      "avatar": "https://example.com/avatars/mmartinez.jpg",
+      "avatar": " https://randomuser.me/api/portraits/women/2.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
@@ -44,7 +44,7 @@
         "state": "Córdoba",
         "country": "Argentina"
       },
-      "avatar": "https://example.com/avatars/lmendez.jpg",
+      "avatar": " https://randomuser.me/api/portraits/men/3.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
@@ -60,7 +60,7 @@
         "state": "Santa Fe",
         "country": "Argentina"
       },
-      "avatar": "https://example.com/avatars/asanchez.jpg",
+      "avatar": "https://randomuser.me/api/portraits/women/4.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
@@ -76,7 +76,7 @@
         "state": "Mendoza",
         "country": "Argentina"
       },
-      "avatar": "https://example.com/avatars/dlopez.jpg",
+      "avatar": "https://randomuser.me/api/portraits/men/5.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
@@ -92,7 +92,7 @@
         "state": "Buenos Aires",
         "country": "Argentina"
       },
-      "avatar": "https://example.com/avatars/cfernandez.jpg",
+      "avatar": "https://randomuser.me/api/portraits/women/6.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
@@ -108,7 +108,7 @@
         "state": "San Juan",
         "country": "Argentina"
       },
-      "avatar": "https://example.com/avatars/jruiz.jpg",
+      "avatar": "https://randomuser.me/api/portraits/men/7.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
@@ -124,7 +124,7 @@
         "state": "Tucumán",
         "country": "Argentina"
       },
-      "avatar": "https://example.com/avatars/psilva.jpg",
+      "avatar": "https://randomuser.me/api/portraits/women/8.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
@@ -140,7 +140,7 @@
         "state": "Salta",
         "country": "Argentina"
       },
-      "avatar": "https://example.com/avatars/emendoza.jpg",
+      "avatar": "https://randomuser.me/api/portraits/men/9.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     },
@@ -156,7 +156,7 @@
         "state": "Neuquén",
         "country": "Argentina"
       },
-      "avatar": "https://example.com/avatars/nrodriguez.jpg",
+      "avatar": "https://randomuser.me/api/portraits/women/10.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
     }

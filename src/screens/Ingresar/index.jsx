@@ -4,12 +4,15 @@ import AuthForm from "./components/AuthForm";
 import { useValidacion } from "../../contexts/AuthContext";
 
 export default function Ingresar() {
-  const { validar } = useValidacion();
+  
+  const { validar,login, usuario, logout  } = useValidacion();
   const navigate = useNavigate();
   const [formMode, setFormMode] = useState("login");
 
+
   const handleSubmit = (data) => {
     if (formMode === "login") {
+      //data es lo que sube en el form
       validar(data);
       alert(`Bienvenido ${data.name || "usuario"}!`);
       navigate("/");

@@ -1,1 +1,120 @@
-test git usuario 
+¡Claro! Aquí tienes un ejemplo básico de cómo implementar JWT (JSON Web Tokens) en una aplicación React. Este ejemplo incluye la autenticación de usuario y el almacenamiento del token.
+
+1. Instalación de dependencias
+
+Primero, necesitas instalar algunas dependencias:
+
+npm install axios jwt-decode
+
+2. Configuración del contexto de autenticación
+
+Crea un contexto para manejar el estado de autenticación:
+
+// AuthContext.js
+import React, { createContext, useState, useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
+
+const AuthContext = createContext();
+
+const AuthProvider = ({ children }) => {
+  const [authToken, setAuthToken] = useState(null);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setAuthToken(token);
+      setUser(jwtDecode(token));
+    }
+  }, []);
+
+  const login = (token) => {
+    localStorage.setItem('authToken', token);
+    setAuthToken(token);
+    setUser(jwtDecode(token));
+  };
+
+  const logout = () => {
+    localStorage.removeItem('authToken');
+    setAuthToken(null);
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ authToken, user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export { AuthContext, AuthProvider };
+
+3. Componente de inicio de sesión
+
+Crea un componente para manejar el inicio de sesión:
+
+// Login.js
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
+import { AuthContext } from './AuthContext';
+
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { login } = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('https://tu-api.com/login', { email, password });
+      login(response.data.token);
+    } catch (error) {
+      console.error('Error al iniciar sesión', error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <input
+        type="password"
+        placeholder="Contraseña"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+  );
+};
+
+export default Login;
+
+4. Uso del contexto en la aplicación
+
+Finalmente, usa el contexto en tu aplicación principal:
+
+// App.js
+import React from 'react';
+import { AuthProvider } from './AuthContext';
+import Login from './Login';
+
+const App = () => {
+  return (
+    <AuthProvider>
+      <div className="App">
+        <h1>Aplicación con JWT</h1>
+        <Login />
+      </div>
+    </AuthProvider>
+  );
+};
+
+export default App;
+
+
+Este es un ejemplo básico para empezar. Puedes expandirlo añadiendo rutas protegidas, manejo de errores más sofisticado y otras funcionalidades según tus necesidades. ¡Espero que te sea útil!

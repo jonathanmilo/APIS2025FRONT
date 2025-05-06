@@ -14,7 +14,7 @@ export function CarritoProvider({ children }) {
   const [error, setError] = useState(null);
 
   const { usuario } = useUsuario();
-
+  
   const obtenerCarrito = async () => {
     setLoading(true);
     try {

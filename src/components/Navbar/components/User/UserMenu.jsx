@@ -11,10 +11,13 @@ import Tooltip from "@mui/material/Tooltip";
 import Divider from "@mui/material/Divider";
 
 export default function UserMenu() {
-  const { usuario } = useUsuario();
+
+  
+  const { usuario,login,logout } = useUsuario();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -25,9 +28,9 @@ export default function UserMenu() {
 
   const handleLogout = () => {
     console.log("Cerrar sesión");
+    logout();
     handleClose();
   };
-
   return (
     <React.Fragment>
       <Tooltip title="Opciones de usuario">
@@ -40,6 +43,7 @@ export default function UserMenu() {
         >
           <Avatar
             src={usuario?.avatar || ""}
+            
             alt={usuario?.firstName || "Usuario"}
             sx={{ width: 40, height: 40 }}
           />

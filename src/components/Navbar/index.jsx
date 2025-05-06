@@ -15,6 +15,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const { usuario } = useUsuario();
+  console.log(usuario);
   const [carritoVisible, setCarritoVisible] = useState(false);
   const toggleCarrito = () => setCarritoVisible(!carritoVisible);
 
