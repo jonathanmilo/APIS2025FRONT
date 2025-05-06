@@ -6,7 +6,7 @@ import { useCategorias } from "../../contexts/CategoryContext";
 import { useProductos } from "../../contexts/ProductContext";
 import GaleriaImagenes from "./components/GaleriaImagenes";
 import { calcularPrecio } from "../../utils/calcularPrecio";
-import { Button } from "@mui/material";
+
 import {
   filtrarRelacionados,
   obtenerNombresSubcategorias,
@@ -17,12 +17,12 @@ export function ProductDetail() {
   const { id } = useParams();
   const { productos } = useProductos();
   const { categorias } = useCategorias();
-  const { agregarAlCarrito, carrito } = useCarrito();
+
+  const { agregarAlCarrito } = useCarrito();
 
   const [producto, setProducto] = useState(null);
   const [quantity, setCantidad] = useState(1);
   const [productosRelacionados, setProductosRelacionados] = useState([]);
-  const [alreadyInCart, setAlreadyInCart] = useState(false);
 
   useEffect(() => {
     if (productos.length > 0) {
@@ -30,15 +30,11 @@ export function ProductDetail() {
       if (prod) {
         setProducto(prod);
         setProductosRelacionados(filtrarRelacionados(productos, prod));
-
-        // Verificar si el producto ya está en el carrito
-        const inCart = carrito.some((item) => item.productId === prod._id);
-        setAlreadyInCart(inCart);
       } else {
         setProducto(undefined);
       }
     }
-  }, [productos, id, carrito]);
+  }, [productos, id]);
 
   if (producto === undefined) {
     return (
@@ -52,24 +48,14 @@ export function ProductDetail() {
 
   const manejarCantidad = (operacion) => {
     if (operacion === "incrementar") {
-      // Validar que no supere el stock disponible
-      if (quantity < producto.stock) {
-        setCantidad((c) => c + 1);
-      }
+      setCantidad((c) => c + 1);
     } else if (operacion === "decrementar" && quantity > 1) {
       setCantidad((c) => c - 1);
     }
   };
 
   const handleAgregarAlCarrito = () => {
-    if (producto.stock < quantity) {
-      alert(`No hay suficiente stock. Disponible: ${producto.stock}`);
-      return;
-    }
-
     agregarAlCarrito(producto, quantity);
-    setAlreadyInCart(true);
-    alert(`${quantity} ${producto.title} agregado(s) al carrito`);
   };
 
   return (
@@ -122,51 +108,28 @@ export function ProductDetail() {
             </span>
           </p>
 
-          <div className="flex items-center mb-4 gap-4">
-            <div className="flex items-center">
-              <Button
-                variant="outlined"
-                onClick={() => manejarCantidad("decrementar")}
-                disabled={quantity <= 1}
-                className="min-w-0"
-              >
-                -
-              </Button>
-              <span className="mx-4 text-xl text-brand-black">{quantity}</span>
-              <Button
-                variant="outlined"
-                onClick={() => manejarCantidad("incrementar")}
-                disabled={quantity >= producto.stock}
-                className="min-w-0"
-              >
-                +
-              </Button>
-            </div>
-            <span className="text-sm text-gray-500">
-              Stock disponible: {producto.stock}
-            </span>
+          <div className="flex items-center mb-4">
+            <button
+              onClick={() => manejarCantidad("decrementar")}
+              className="px-4 py-2 bg-gray-300 text-brand-black rounded-lg cursor-pointer"
+            >
+              -
+            </button>
+            <span className="mx-4 text-xl text-brand-black">{quantity}</span>
+            <button
+              onClick={() => manejarCantidad("incrementar")}
+              className="px-4 py-2 bg-gray-300 text-brand-black rounded-lg cursor-pointer"
+            >
+              +
+            </button>
           </div>
 
-          <Button
-            variant="contained"
-            color={alreadyInCart ? "success" : "primary"}
-            size="large"
+          <button
             onClick={handleAgregarAlCarrito}
-            disabled={producto.stock <= 0 || alreadyInCart}
-            className="w-full md:w-auto"
+            className="bg-brand-main hover:bg-brand-main-hover text-white font-medium py-3 px-6 rounded-lg transition-colors"
           >
-            {alreadyInCart
-              ? "✓ En el carrito"
-              : producto.stock > 0
-              ? "Agregar al carrito"
-              : "Sin stock"}
-          </Button>
-
-          {alreadyInCart && (
-            <div className="mt-2 text-green-600 text-sm">
-              Este producto ya está en tu carrito
-            </div>
-          )}
+            Agregar al carrito
+          </button>
         </div>
       </div>
 
