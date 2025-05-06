@@ -4,23 +4,14 @@ import { Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import { calcularPrecio } from "../utils/calcularPrecio";
 import { useUserData } from "../hooks/useUserData";
-import { useCarrito } from "../contexts/CartContext";
-import { Button } from "@mui/material";
 
 function ProductCard({ producto }) {
   const { usuario, loading } = useUserData(producto.userId);
-  const { agregarAlCarrito } = useCarrito();
 
   const precioFinal = calcularPrecio(
     producto.price,
     producto.discountPercentage
   );
-
-  const handleAddToCart = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    agregarAlCarrito(producto);
-  };
 
   return (
     <Link
@@ -82,25 +73,6 @@ function ProductCard({ producto }) {
             <p className="text-xl font-bold text-gray-800">${producto.price}</p>
           </div>
         )}
-        
-        <Button
-          variant="contained"
-          size="small"
-          onClick={handleAddToCart}
-          disabled={producto.stock <= 0}
-          sx={{
-          backgroundColor: 'oklch(70% 0.233 130.85)',
-          color: '#fff',
-          '&:hover': {
-          backgroundColor: 'oklch(60% 0.233 130.85)',
-          },
-          marginTop: 2,
-          alignSelf: 'flex-start'
-          }}
-        >
-          {producto.stock > 0 ? 'Agregar al carrito' : 'Sin stock'}
-        </Button>
-
       </div>
     </Link>
   );
