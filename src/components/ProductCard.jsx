@@ -49,6 +49,9 @@ function ProductCard({ producto }) {
               )}
             </div>
           </div>
+          {producto.stock <= 0 && (
+            <span className="text-xs text-red-500">Sin stock</span>
+          )}
         </div>
 
         {producto.discountPercentage > 0 ? (
