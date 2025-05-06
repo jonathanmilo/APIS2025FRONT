@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUsuario } from "../../contexts/UserContext";
-import { useOrders } from "../../contexts/OrderContext";
+import { useOrdersData } from "../../hooks/useOrdersData";
 import { useProductos } from "../../contexts/ProductContext";
 
 import {
@@ -19,7 +19,7 @@ import {
 const MiPerfil = () => {
   const navigate = useNavigate();
   const { usuario } = useUsuario();
-  const { orders } = useOrders();
+  const { orders } = useOrdersData();
   const { productos } = useProductos();
 
   const comprasUsuario = orders?.filter(
