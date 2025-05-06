@@ -4,9 +4,11 @@ import { Divider } from "@mui/material";
 import { Link } from "react-router-dom";
 import { calcularPrecio } from "../utils/calcularPrecio";
 import { useUserData } from "../hooks/useUserData";
+import { useUsuario } from "../contexts/UserContext";
 
 function ProductCard({ producto }) {
-  const { usuario, loading } = useUserData(producto.userId);
+  const { usuarios } = useUsuario();
+  const { usuario, loading, error } = useUserData(producto.userId, usuarios);
 
   const precioFinal = calcularPrecio(
     producto.price,
