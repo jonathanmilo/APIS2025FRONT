@@ -30,9 +30,9 @@ export function ProductDetail() {
       if (prod) {
         setProducto(prod);
         setProductosRelacionados(filtrarRelacionados(productos, prod));
-        
+
         // Verificar si el producto ya está en el carrito
-        const inCart = carrito.some(item => item.productId === prod._id);
+        const inCart = carrito.some((item) => item.productId === prod._id);
         setAlreadyInCart(inCart);
       } else {
         setProducto(undefined);
@@ -66,7 +66,7 @@ export function ProductDetail() {
       alert(`No hay suficiente stock. Disponible: ${producto.stock}`);
       return;
     }
-    
+
     agregarAlCarrito(producto, quantity);
     setAlreadyInCart(true);
     alert(`${quantity} ${producto.title} agregado(s) al carrito`);
@@ -155,8 +155,11 @@ export function ProductDetail() {
             disabled={producto.stock <= 0 || alreadyInCart}
             className="w-full md:w-auto"
           >
-            {alreadyInCart ? "✓ En el carrito" : 
-             producto.stock > 0 ? 'Agregar al carrito' : 'Sin stock'}
+            {alreadyInCart
+              ? "✓ En el carrito"
+              : producto.stock > 0
+              ? "Agregar al carrito"
+              : "Sin stock"}
           </Button>
 
           {alreadyInCart && (

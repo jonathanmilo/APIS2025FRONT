@@ -7,7 +7,6 @@ import Badge from "@mui/material/Badge";
 import { NAVBAR_MENU, STORE_NAME } from "../../global/store";
 import MobileMenu from "./components/MobileMenu.jsx";
 import UserMenu from "./components/User/UserMenu.jsx";
-import Carrito from "./components/Cart/Carrito.jsx";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 
@@ -15,8 +14,6 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const { usuario } = useUsuario();
-  const [carritoVisible, setCarritoVisible] = useState(false);
-  const toggleCarrito = () => setCarritoVisible(!carritoVisible);
 
   return (
     <>
@@ -47,7 +44,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <Tooltip title="Carrito de compras">
               <IconButton
-                onClick={toggleCarrito}
+                onClick={() => navigate("/carrito")}
                 sx={{ width: "50px", height: "50px" }}
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
@@ -98,12 +95,6 @@ const Navbar = () => {
       </nav>
 
       <MobileMenu open={open} setOpen={setOpen} usuario={usuario} />
-
-      {carritoVisible && (
-        <div className=" top-20 fixed right-4 bg-white shadow-lg rounded-lg p-4 w-80 z-50 border-1 border-brand-light-gray">
-          <Carrito />
-        </div>
-      )}
     </>
   );
 };

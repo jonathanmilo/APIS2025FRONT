@@ -5,7 +5,7 @@ import Catalogo from "./screens/Catalogo";
 import { ProductDetail } from "./screens/ProductDetail";
 import Ingresar from "./screens/Ingresar";
 import MiPerfil from "./screens/MiPerfil";
-import Carrito from "./components/Navbar/components/Cart/Carrito";
+import Carrito from "./screens/Carrito";
 import Layout from "./layouts/Layout";
 
 function App() {
