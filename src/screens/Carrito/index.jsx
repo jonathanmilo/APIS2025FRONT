@@ -1,21 +1,22 @@
-import { useCarrito } from "../../contexts/CartContext";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { calcularPrecio } from "../../utils/calcularPrecio";
 import { getSafeProductData } from "../../utils/sanitize/getSafeProductData";
+import { useContext } from "react";
+import { CartContext } from "../../contexts/CartContext";
 
 export default function Carrito() {
   const {
-    carrito,
-    eliminarDelCarrito,
-    vaciarCarrito,
-    actualizarCantidad,
+    cart,
+    removeFromCart,
+    clearCart,
+    updateQuantity,
     calcularTotal,
-    finalizarCompra,
+    finalizePurchase,
     loading,
     error,
-  } = useCarrito();
+  } = useContext(CartContext);
 
   if (loading)
     return <div className="text-center py-10">Cargando carrito...</div>;
@@ -23,7 +24,7 @@ export default function Carrito() {
     return <div className="text-red-500 text-center py-10">Error: {error}</div>;
 
   const handleCheckout = async () => {
-    const success = await finalizarCompra();
+    const success = await finalizePurchase();
     if (success) {
       alert("Compra realizada con éxito!");
     }
@@ -36,20 +37,20 @@ export default function Carrito() {
       </h1>
       <div className="mx-auto max-w-5xl justify-center md:flex md:space-x-6 xl:px-0">
         <div className="rounded-lg md:w-2/3">
-          {carrito.length === 0 ? (
+          {cart.length === 0 ? (
             <p className="text-brand-gray text-center py-6 bg-white rounded shadow-md">
               El carrito está vacío.
             </p>
           ) : (
-            carrito.map((item) => {
-              const producto = getSafeProductData(item);
+            cart.map((item) => {
+              const producto = item.productData;
               return (
                 <div
                   key={item.productId}
                   className="mb-6 flex flex-col justify-between bg-white p-6 shadow-md sm:flex-row sm:justify-start"
                 >
                   <img
-                    src={producto.images[0].url}
+                    src={producto.images[0]?.url}
                     alt={producto.title}
                     onError={(e) => {
                       e.target.src = "/placeholder.jpg";
@@ -69,10 +70,7 @@ export default function Carrito() {
                       <div className="flex items-center border-gray-100">
                         <button
                           onClick={() =>
-                            actualizarCantidad(
-                              item.productId,
-                              item.quantity - 1
-                            )
+                            updateQuantity(item.productId, item.quantity - 1)
                           }
                           disabled={item.quantity <= 1}
                           className="cursor-pointer rounded-l bg-gray-100 text-brand-black py-1 px-3.5 duration-100 hover:bg-brand-main hover:text-white disabled:opacity-50"
@@ -88,10 +86,7 @@ export default function Carrito() {
                         />
                         <button
                           onClick={() =>
-                            actualizarCantidad(
-                              item.productId,
-                              item.quantity + 1
-                            )
+                            updateQuantity(item.productId, item.quantity + 1)
                           }
                           className="cursor-pointer rounded-r bg-gray-100 text-brand-black  py-1 px-3 duration-100 hover:bg-brand-main hover:text-white"
                         >
@@ -108,7 +103,7 @@ export default function Carrito() {
                         </p>
                         <Tooltip title="Eliminar">
                           <IconButton
-                            onClick={() => eliminarDelCarrito(item.productId)}
+                            onClick={() => removeFromCart(item.productId)}
                           >
                             <RiDeleteBin6Line />
                           </IconButton>
@@ -123,13 +118,13 @@ export default function Carrito() {
         </div>
 
         {/* Resumen de compra */}
-        {carrito.length > 0 && (
+        {cart.length > 0 && (
           <div className="mt-6 h-full  border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
             <div className="mb-2 flex justify-between">
               <p className="text-gray-700">Subtotal</p>
               <p className="text-gray-700">
                 $
-                {carrito
+                {cart
                   .reduce((sum, item) => {
                     const precio = item.productData?.price || 0;
                     return sum + precio * item.quantity;
@@ -137,14 +132,12 @@ export default function Carrito() {
                   .toFixed(2)}
               </p>
             </div>
-            {carrito.some(
-              (item) => item.productData?.discountPercentage > 0
-            ) && (
+            {cart.some((item) => item.productData?.discountPercentage > 0) && (
               <div className="mb-2 flex justify-between">
                 <p className="text-gray-700">Descuentos</p>
                 <p className="text-gray-700">
                   -$
-                  {carrito
+                  {cart
                     .reduce((sum, item) => {
                       const precio = item.productData?.price || 0;
                       const descuento =
@@ -172,7 +165,7 @@ export default function Carrito() {
               Finalizar Compra
             </button>
             <button
-              onClick={vaciarCarrito}
+              onClick={clearCart}
               className="mt-2 w-full rounded-md bg-gray-200 py-2 text-sm text-gray-700 hover:bg-gray-300"
             >
               Vaciar carrito

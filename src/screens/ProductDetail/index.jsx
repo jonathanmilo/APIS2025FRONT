@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import Carousel from "../../components/Carousel";
-import { useCarrito } from "../../contexts/CartContext";
 import { useCategorias } from "../../contexts/CategoryContext";
 import { useProductos } from "../../contexts/ProductContext";
 import GaleriaImagenes from "./components/GaleriaImagenes";
@@ -13,11 +12,14 @@ import {
   obtenerNombreCategoria,
 } from "../../utils/filtrarProductos";
 
+import { CartContext } from "../../contexts/CartContext";
+
 export function ProductDetail() {
   const { id } = useParams();
   const { productos } = useProductos();
   const { categorias } = useCategorias();
-  const { agregarAlCarrito, carrito } = useCarrito();
+
+  const { cart, addToCart } = useContext(CartContext);
 
   const [producto, setProducto] = useState(null);
   const [quantity, setCantidad] = useState(1);
@@ -31,14 +33,13 @@ export function ProductDetail() {
         setProducto(prod);
         setProductosRelacionados(filtrarRelacionados(productos, prod));
 
-        // Verificar si el producto ya está en el carrito
-        const inCart = carrito.some((item) => item.productId === prod._id);
+        const inCart = cart.some((item) => item.productId === prod._id);
         setAlreadyInCart(inCart);
       } else {
         setProducto(undefined);
       }
     }
-  }, [productos, id, carrito]);
+  }, [productos, id, cart]);
 
   if (producto === undefined) {
     return (
@@ -52,7 +53,6 @@ export function ProductDetail() {
 
   const manejarCantidad = (operacion) => {
     if (operacion === "incrementar") {
-      // Validar que no supere el stock disponible
       if (quantity < producto.stock) {
         setCantidad((c) => c + 1);
       }
@@ -67,7 +67,7 @@ export function ProductDetail() {
       return;
     }
 
-    agregarAlCarrito(producto, quantity);
+    addToCart(producto, quantity);
     setAlreadyInCart(true);
     alert(`${quantity} ${producto.title} agregado(s) al carrito`);
   };

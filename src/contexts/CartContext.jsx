@@ -1,148 +1,72 @@
-import { createContext, useContext, useState, useEffect, useCallback } from "react";
-import { fetchCarts, updateCart, createOrder } from "../api/api";
-import { useUsuario } from "./UserContext";
-import { calcularPrecio } from "../utils/calcularPrecio";
+import { useReducer, createContext } from "react";
+import { cartReducer, cartInitialState } from "../reducers/cartReducer";
+import { calcularTotal } from "../utils/calcularTotal";
 
-const CartContext = createContext();
+export const CartContext = createContext();
 
-export function useCarrito() {
-  return useContext(CartContext);
+function useCartReducer() {
+  const [state, dispatch] = useReducer(cartReducer, cartInitialState);
+
+  const addToCart = (product, quantity = 1) =>
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        productId: product._id,
+        quantity,
+        productData: {
+          title: product.title,
+          price: product.price,
+          discountPercentage: product.discountPercentage || 0,
+          images: product.images || [],
+          stock: product.stock,
+        },
+      },
+    });
+
+  const removeFromCart = (productId) =>
+    dispatch({ type: "REMOVE_FROM_CART", payload: productId });
+
+  const clearCart = () => dispatch({ type: "CLEAR_CART" });
+
+  const updateQuantity = (productId, quantity) =>
+    dispatch({ type: "UPDATE_QUANTITY", payload: { productId, quantity } });
+
+  return {
+    state,
+    addToCart,
+    removeFromCart,
+    clearCart,
+    updateQuantity,
+  };
 }
 
-export function CarritoProvider({ children }) {
-  const [carrito, setCarrito] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const { usuario } = useUsuario();
+export function CartProvider({ children }) {
+  const { state, addToCart, removeFromCart, clearCart, updateQuantity } =
+    useCartReducer();
 
-  const obtenerCarrito = useCallback(async () => {
-    setLoading(true);
-    try {
-      if (usuario) {
-        const data = await fetchCarts();
-        const carritoUsuario = data.find((c) => c.userId === usuario._id);
-        setCarrito(carritoUsuario?.products || []);
-      } else {
-        const localCart = localStorage.getItem('cart');
-        setCarrito(localCart ? JSON.parse(localCart) : []);
-      }
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }, [usuario]);
-
-const sincronizarCarritoBackend = useCallback(async () => {
-  try {
-    if (usuario) {
-      try {
-        await updateCart(usuario._id, carrito);
-      } catch (error) {
-        // Fallback a localStorage si el backend falla
-        localStorage.setItem(`cart_${usuario._id}`, JSON.stringify(carrito));
-      }
-    } else {
-      localStorage.setItem('cart', JSON.stringify(carrito));
-    }
-  } catch (error) {
-    console.error("Error sincronizando carrito:", error);
-  }
-}, [carrito, usuario]);
-
-const agregarAlCarrito = (producto, quantity = 1) => {
-  setCarrito((prev) => {
-    const existente = prev.find((p) => p.productId === producto._id);
-    const nuevoItem = {
-      productId: producto._id,
-      quantity: existente ? existente.quantity + quantity : quantity,
-      productData: {
-        title: producto.title,
-        price: producto.price,
-        discountPercentage: producto.discountPercentage || 0,
-        images: producto.images || []
-      }
-    };
-
-    const nuevoCarrito = existente
-      ? prev.map((p) => (p.productId === producto._id ? nuevoItem : p))
-      : [...prev, nuevoItem];
-
-    setTimeout(() => sincronizarCarritoBackend(), 0);
-    return nuevoCarrito;
-  });
-};
-
-  const eliminarDelCarrito = (productId) => {
-    setCarrito((prev) => {
-      const nuevoCarrito = prev.filter((p) => p.productId !== productId);
-      setTimeout(sincronizarCarritoBackend, 0);
-      return nuevoCarrito;
+  const finalizePurchase = () => {
+    //agregar logica para actualizar stock del producto
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        clearCart();
+        resolve(true);
+      }, 500);
     });
   };
 
-  const vaciarCarrito = () => {
-    setCarrito([]);
-    setTimeout(sincronizarCarritoBackend, 0);
-  };
-
-  const actualizarCantidad = (productId, nuevaCantidad) => {
-    if (nuevaCantidad < 1) {
-      eliminarDelCarrito(productId);
-      return;
-    }
-
-    setCarrito((prev) =>
-      prev.map((item) =>
-        item.productId === productId ? { ...item, quantity: nuevaCantidad } : item
-      )
-    );
-  };
-
-  const calcularTotal = () => {
-    return carrito.reduce((total, item) => {
-      const precio = item.productData?.price || 0;
-      const descuento = item.productData?.discountPercentage || 0;
-      return total + (calcularPrecio(precio, descuento) * item.quantity);
-    }, 0);
-  };
-
-  const finalizarCompra = async () => {
-    try {
-      if (usuario) {
-        await createOrder({
-          userId: usuario._id,
-          products: carrito,
-          total: calcularTotal(),
-          date: new Date().toISOString()
-        });
-        vaciarCarrito();
-        return true;
-      }
-      return false;
-    } catch (error) {
-      setError("Error al finalizar compra: " + error.message);
-      return false;
-    }
-  };
-
-  useEffect(() => {
-    obtenerCarrito();
-  }, [usuario, obtenerCarrito]);
-
+  //agregar logica obtener carrito de la base de datos
   return (
     <CartContext.Provider
       value={{
-        carrito,
-        agregarAlCarrito,
-        eliminarDelCarrito,
-        vaciarCarrito,
-        actualizarCantidad,
-        calcularTotal,
-        finalizarCompra,
-        obtenerCarrito,
-        loading,
-        error,
+        cart: state,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        updateQuantity,
+        calcularTotal: () => calcularTotal(state),
+        finalizePurchase,
+        loading: false,
+        error: null,
       }}
     >
       {children}

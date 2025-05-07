@@ -1,6 +1,6 @@
 import { UsuarioProvider } from "./UserContext";
 import { ValidacionProvider } from "./AuthContext";
-import { CarritoProvider } from "./CartContext";
+import { CartProvider } from "./CartContext";
 import { ProductosProvider } from "./ProductContext";
 import { CategoryProvider } from "./CategoryContext";
 
@@ -8,11 +8,11 @@ export function AppContextProvider({ children }) {
   return (
     <UsuarioProvider>
       <ValidacionProvider>
-        <CarritoProvider>
+        <CartProvider>
           <ProductosProvider>
-              <CategoryProvider>{children}</CategoryProvider>
+            <CategoryProvider>{children}</CategoryProvider>
           </ProductosProvider>
-        </CarritoProvider>
+        </CartProvider>
       </ValidacionProvider>
     </UsuarioProvider>
   );
