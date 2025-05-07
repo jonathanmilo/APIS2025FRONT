@@ -8,7 +8,7 @@ export function useUserData(userId, usuarios) {
   useEffect(() => {
     const fetchUser = () => {
       try {
-        const usuarioEncontrado = usuarios.find((u) => u._id === userId);
+        const usuarioEncontrado = usuarios.find((u) => u.id === userId);
         if (usuarioEncontrado) {
           setUsuario(usuarioEncontrado);
         } else {

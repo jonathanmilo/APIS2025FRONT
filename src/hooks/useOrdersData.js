@@ -16,7 +16,7 @@ export function useOrdersData() {
     try {
       const data = await fetchOrders();
       const userOrders = usuario
-        ? data.filter((order) => order.userId === usuario._id)
+        ? data.filter((order) => order.userId === usuario.id)
         : data;
       setOrders(userOrders);
     } catch (err) {
@@ -30,7 +30,7 @@ export function useOrdersData() {
     ...order,
     products: order.products.map((item) => {
       const producto = productos.find(
-        (p) => String(p._id) === String(item.productId)
+        (p) => String(p.id) === String(item.productId)
       );
       return {
         ...item,

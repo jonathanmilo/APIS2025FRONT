@@ -23,7 +23,7 @@ const MiPerfil = () => {
   const { productos } = useProductos();
 
   const comprasUsuario = orders?.filter(
-    (order) => order.userId === usuario?._id
+    (order) => order.userId === usuario?.id
   );
 
   const [editEmail, setEditEmail] = useState("");
@@ -100,9 +100,9 @@ const MiPerfil = () => {
         <List dense>
           {comprasUsuario && comprasUsuario.length > 0 ? (
             comprasUsuario.map((compra) => (
-              <ListItem key={compra._id} alignItems="flex-start">
+              <ListItem key={compra.id} alignItems="flex-start">
                 <ListItemText
-                  primary={`Compra #${compra._id} - ${new Date(
+                  primary={`Compra #${compra.id} - ${new Date(
                     compra.createdAt
                   ).toLocaleDateString()}`}
                   secondary={
@@ -110,7 +110,7 @@ const MiPerfil = () => {
                       <ul style={{ paddingLeft: "1rem", marginTop: "0.5rem" }}>
                         {compra.products.map((p, i) => {
                           const producto = productos.find(
-                            (prod) => String(prod._id) === String(p.productId)
+                            (prod) => String(prod.id) === String(p.productId)
                           );
                           return (
                             <li

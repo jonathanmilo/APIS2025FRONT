@@ -28,12 +28,12 @@ export function ProductDetail() {
 
   useEffect(() => {
     if (productos.length > 0) {
-      const prod = productos.find((p) => String(p._id) === id);
+      const prod = productos.find((p) => String(p.id) === id);
       if (prod) {
         setProducto(prod);
         setProductosRelacionados(filtrarRelacionados(productos, prod));
 
-        const inCart = cart.some((item) => item.productId === prod._id);
+        const inCart = cart.some((item) => item.productId === prod.id);
         setAlreadyInCart(inCart);
       } else {
         setProducto(undefined);

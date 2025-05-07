@@ -18,7 +18,7 @@ export function filtrarRelacionados(productos, productoActual) {
     (p) =>
       p.subcategoryIds.some((subId) =>
         productoActual.subcategoryIds.includes(subId)
-      ) && p._id !== productoActual._id
+      ) && p.id !== productoActual.id
   );
 }
 
@@ -29,7 +29,7 @@ export function obtenerNombresSubcategorias(producto, categorias) {
 
   const nombres = subIds
     .map((id) => {
-      const sub = todasSubcategorias.find((s) => s._id === id);
+      const sub = todasSubcategorias.find((s) => s.id === id);
       return sub ? sub.name : null;
     })
     .filter(Boolean);

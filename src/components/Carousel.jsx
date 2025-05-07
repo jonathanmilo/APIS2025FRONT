@@ -54,7 +54,7 @@ export default function Carousel({ title, items }) {
         <div className="flex flex-row gap-4">
           {items.map((prod) => (
             <div
-              key={prod._id}
+              key={prod.id}
               className="min-w-[220px] md:min-w-[240px] lg:min-w-[250px] transition-transform duration-300 hover:scale-102"
             >
               <ProductCard producto={prod} />

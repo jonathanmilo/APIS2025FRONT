@@ -15,7 +15,7 @@ export const cartReducer = (state, action) => {
 
       if (existingProduct) {
         newState = state.map((p) =>
-          p._id === product._id
+          p.id === product.id
             ? { ...p, quantity: p.quantity + product.quantity }
             : p
         );

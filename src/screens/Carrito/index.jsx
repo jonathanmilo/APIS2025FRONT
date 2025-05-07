@@ -62,8 +62,8 @@ export default function Carrito() {
                       <h2 className="text-lg font-bold text-gray-900">
                         {producto.title}
                       </h2>
-                      <p className="mt-1 text-xs text-gray-700">
-                        {producto.category || "Categoría no especificada"}
+                      <p className="mt-1 text-sm text-gray-700">
+                        Stock disponible: {producto.stock || "Stock no especificada"}
                       </p>
                     </div>
                     <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">

@@ -17,7 +17,7 @@ function ProductCard({ producto }) {
 
   return (
     <Link
-      to={`/catalogo/${producto._id}`}
+      to={`/catalogo/${producto.id}`}
       className="flex flex-col bg-white shadow-md overflow-hidden max-w-sm w-full h-full hover:shadow-xl cursor-pointer"
     >
       <div className="relative">

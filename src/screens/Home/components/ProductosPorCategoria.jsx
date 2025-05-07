@@ -12,7 +12,7 @@ function ProductosPorCategoria({ categorias, productos }) {
 
   const productosFiltrados = categoriaSeleccionada
     ? productos.filter(
-        (producto) => producto.categoryId === categoriaSeleccionada._id
+        (producto) => producto.categoryId === categoriaSeleccionada.id
       )
     : [];
 
@@ -24,7 +24,7 @@ function ProductosPorCategoria({ categorias, productos }) {
           const activa = categoriaSeleccionada?.name === categoria.name;
 
           return (
-            <li key={categoria._id} className="flex-shrink-0 shadow-lg">
+            <li key={categoria.id} className="flex-shrink-0 shadow-lg">
               <button
                 onClick={() => setCategoriaSeleccionada(categoria)}
                 className={`min-w-[250px] max-w-max p-2 text-center transition duration-300 cursor-pointer
@@ -65,7 +65,7 @@ function ProductosPorCategoria({ categorias, productos }) {
           {productosFiltrados.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {productosFiltrados.map((producto) => (
-                <ProductCard key={producto._id} producto={producto} />
+                <ProductCard key={producto.id} producto={producto} />
               ))}
             </div>
           ) : (

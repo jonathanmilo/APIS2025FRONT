@@ -39,7 +39,7 @@ export function Catalogo() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 bg-gray-100 p-6 w-full">
           {lista.map((prod) => (
-            <ProductCard key={prod._id} producto={prod} />
+            <ProductCard key={prod.id} producto={prod} />
           ))}
         </div>
       </div>

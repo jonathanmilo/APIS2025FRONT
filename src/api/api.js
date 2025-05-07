@@ -32,5 +32,5 @@ export const fetchOrders = async () => {
 
 export const getUserById = async (id) => {
   const users = await fetchUsers();
-  return users.find((user) => user._id === id);
+  return users.find((user) => user.id === id);
 };

@@ -11,7 +11,7 @@ function useCartReducer() {
     dispatch({
       type: "ADD_TO_CART",
       payload: {
-        productId: product._id,
+        productId: product.id,
         quantity,
         productData: {
           title: product.title,
