@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUsuario } from "../../contexts/UserContext";
+import { useValidacion } from "../../contexts/AuthContext";
 import { useOrdersData } from "../../hooks/useOrdersData";
 import { useProductos } from "../../contexts/ProductContext";
 
@@ -18,12 +18,12 @@ import {
 
 const MiPerfil = () => {
   const navigate = useNavigate();
-  const { usuario } = useUsuario();
+  const { user } = useValidacion();
   const { orders } = useOrdersData();
   const { productos } = useProductos();
 
   const comprasUsuario = orders?.filter(
-    (order) => order.userId === usuario?.id
+    (order) => order.userId === user?.id
   );
 
   const [editEmail, setEditEmail] = useState("");
@@ -34,13 +34,13 @@ const MiPerfil = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
-    if (!usuario) {
+    if (!user) {
       navigate("/ingresar");
     } else {
-      setEditEmail(usuario.email || "");
-      setEditDireccion(usuario.direccion || "");
+      setEditEmail(user.email || "");
+      setEditDireccion(user.direccion || "");
     }
-  }, [usuario, navigate]);
+  }, [user, navigate]);
 
   const handleProfileUpdate = () => {
     alert("Información actualizada (simulada)");
@@ -54,7 +54,7 @@ const MiPerfil = () => {
     }
   };
 
-  if (!usuario) return null;
+  if (!user) return null;
 
   return (
     <Box sx={{ padding: 4, backgroundColor: "#f0f2f5", minHeight: "100vh" }}>
@@ -72,8 +72,8 @@ const MiPerfil = () => {
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center", marginBottom: 2 }}>
           <Avatar
-            src={usuario.avatar}
-            alt={usuario?.firstName || "User"}
+            src={user.avatar}
+            alt={user?.firstName || "User"}
             sx={{
               width: 64,
               height: 64,
@@ -83,13 +83,13 @@ const MiPerfil = () => {
           />
           <Box>
             <Typography variant="body1">
-              <strong>Nombre:</strong> {usuario.firstName} {usuario.lastName}
+              <strong>Nombre:</strong> {user.firstName} {user.lastName}
             </Typography>
             <Typography variant="body1">
-              <strong>Email:</strong> {usuario.email}
+              <strong>Email:</strong> {user.email}
             </Typography>
             <Typography variant="body1">
-              <strong>Dirección:</strong> {usuario.address.street}
+              <strong>Dirección:</strong> {user.address.street}
             </Typography>
           </Box>
         </Box>

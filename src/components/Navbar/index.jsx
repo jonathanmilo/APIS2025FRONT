@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useUsuario } from "../../contexts/UserContext";
 import { BsCart4 } from "react-icons/bs";
 import Badge from "@mui/material/Badge";
 import { NAVBAR_MENU, STORE_NAME } from "../../global/store";
@@ -10,12 +9,17 @@ import UserMenu from "./components/User/UserMenu.jsx";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import { CartContext } from "../../contexts/CartContext.jsx";
+import { useValidacion } from "../../contexts/AuthContext.jsx";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-  const { usuario } = useUsuario();
+  const auth = useValidacion();
   const { countProducts } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  if (!auth) return null;
+
+  const { isAuthenticated, user } = auth;
 
   return (
     <>
@@ -65,8 +69,8 @@ const Navbar = () => {
               </IconButton>
             </Tooltip>
 
-            {usuario ? (
-              <UserMenu />
+            {isAuthenticated ? (
+              <UserMenu usuario={user} />
             ) : (
               <button
                 onClick={() => navigate("/ingresar")}
@@ -96,7 +100,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <MobileMenu open={open} setOpen={setOpen} usuario={usuario} />
+      <MobileMenu open={open} setOpen={setOpen} usuario={user} />
     </>
   );
 };

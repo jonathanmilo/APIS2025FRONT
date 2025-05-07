@@ -1,6 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useReducer } from "react";
+import { authReducer, initialState } from "../reducers/authReducer";
 import { useUsuario } from "./UserContext";
-import { fetchAllUsers } from "../api/users";
 
 const AuthContext = createContext();
 
@@ -9,30 +9,40 @@ export function useValidacion() {
 }
 
 export function ValidacionProvider({ children }) {
-  const { setUsuario } = useUsuario();
-  const [usuario, setUsuarioLocal] = useState(null);
+  const [state, dispatch] = useReducer(authReducer, initialState);
+  const { usuarios } = useUsuario();
 
-  const validar = async (usuario) => {
+  const login = (usuario) => {
+    dispatch({ type: "LOGIN", payload: usuario });
+  };
+
+  const logout = () => {
+    dispatch({ type: "LOGOUT" });
+  };
+
+  const validar = async (credentials) => {
     try {
-      const res = await fetchAllUsers();
-
-      const encontrado = res.data.find(
-        (u) => u.email === usuario.email && u.password === usuario.password
+      const encontrado = usuarios.find(
+        (user) =>
+          user.email === credentials.email &&
+          user.password === credentials.password
       );
 
       if (encontrado) {
-        setUsuario(encontrado);
-        setUsuarioLocal(encontrado);
+        login(encontrado);
+        return true;
       } else {
         alert("Credenciales incorrectas");
+        return false;
       }
     } catch (error) {
       console.error("Error al validar usuario:", error);
+      return false;
     }
   };
 
   return (
-    <AuthContext.Provider value={{ validar, usuario }}>
+    <AuthContext.Provider value={{ ...state, login, logout, validar }}>
       {children}
     </AuthContext.Provider>
   );

@@ -8,8 +8,8 @@ export function useUsuario() {
 }
 
 export function UsuarioProvider({ children }) {
-  const [usuario, setUsuario] = useState(null); // usuario actual
-  const [usuarios, setUsuarios] = useState([]); // todos los usuarios
+  const [isLoading, setIsLoading] = useState(true);
+  const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
     const cargarUsuarios = async () => {
@@ -18,6 +18,8 @@ export function UsuarioProvider({ children }) {
         setUsuarios(res.data);
       } catch (error) {
         console.error("Error al cargar usuarios:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -25,7 +27,7 @@ export function UsuarioProvider({ children }) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ usuario, setUsuario, usuarios }}>
+    <UserContext.Provider value={{ usuarios, isLoading }}>
       {children}
     </UserContext.Provider>
   );

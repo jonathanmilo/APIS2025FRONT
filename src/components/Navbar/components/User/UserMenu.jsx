@@ -9,9 +9,10 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Divider from "@mui/material/Divider";
+import { useValidacion } from "../../../../contexts/AuthContext";
 
-export default function UserMenu() {
-  const { usuario } = useUsuario();
+export default function UserMenu({ usuario }) {
+  const { logout } = useValidacion();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -24,7 +25,7 @@ export default function UserMenu() {
   };
 
   const handleLogout = () => {
-    console.log("Cerrar sesión");
+    logout();
     handleClose();
   };
 
