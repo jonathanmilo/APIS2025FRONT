@@ -44,6 +44,8 @@ export function CartProvider({ children }) {
   const { state, addToCart, removeFromCart, clearCart, updateQuantity } =
     useCartReducer();
 
+  const countProducts = () => state.length;
+
   const finalizePurchase = () => {
     //agregar logica para actualizar stock del producto
     return new Promise((resolve) => {
@@ -67,6 +69,7 @@ export function CartProvider({ children }) {
         finalizePurchase,
         loading: false,
         error: null,
+        countProducts,
       }}
     >
       {children}

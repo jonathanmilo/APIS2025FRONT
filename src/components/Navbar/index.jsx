@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useUsuario } from "../../contexts/UserContext";
@@ -9,11 +9,13 @@ import MobileMenu from "./components/MobileMenu.jsx";
 import UserMenu from "./components/User/UserMenu.jsx";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
+import { CartContext } from "../../contexts/CartContext.jsx";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const { usuario } = useUsuario();
+  const { countProducts } = useContext(CartContext);
 
   return (
     <>
@@ -50,7 +52,7 @@ const Navbar = () => {
                 aria-expanded={open ? "true" : undefined}
               >
                 <Badge
-                  badgeContent={1}
+                  badgeContent={countProducts()}
                   sx={{
                     "& .MuiBadge-badge": {
                       backgroundColor: "#84cc16",
