@@ -1,7 +1,5 @@
 export const cartInitialState = JSON.parse(localStorage.getItem("cart")) || [];
 
-// 1. eliminar carrito de db.json
-// 2. almacenar carrito en session storage y al finalizar sesion o hacer logout agregar nuevo carrito a bd y limpiar cart de storage
 export const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
