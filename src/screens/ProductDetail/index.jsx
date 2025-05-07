@@ -14,7 +14,7 @@ import {
 
 import { CartContext } from "../../contexts/CartContext";
 
-export function ProductDetail() {
+export default function ProductDetail() {
   const { id } = useParams();
   const { productos } = useProductos();
   const { categorias } = useCategorias();

@@ -1,25 +1,35 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
 import Home from "./screens/Home";
 import Catalogo from "./screens/Catalogo";
-import { ProductDetail } from "./screens/ProductDetail";
+import ProductDetail from "./screens/ProductDetail";
 import Ingresar from "./screens/Ingresar";
 import MiPerfil from "./screens/MiPerfil";
 import Carrito from "./screens/Carrito";
 import Layout from "./layouts/Layout";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
-    <Layout>
+    <Router>
+      <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/catalogo" element={<Catalogo />} />
-        <Route path="/catalogo/:id" element={<ProductDetail />} />
-        <Route path="/ingresar" element={<Ingresar />} />
-        <Route path="/mi-perfil" element={<MiPerfil />} />
-        <Route path="/carrito" element={<Carrito />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalogo" element={<Catalogo />} />
+          <Route path="/catalogo/:id" element={<ProductDetail />} />
+          <Route path="/ingresar" element={<Ingresar />} />
+          <Route path="/mi-perfil" element={<MiPerfil />} />
+          <Route path="/carrito" element={<Carrito />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
       </Routes>
-    </Layout>
+    </Router>
   );
 }
 

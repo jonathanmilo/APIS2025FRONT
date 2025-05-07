@@ -21,6 +21,7 @@ export default function Ingresar() {
 
   const toggleFormMode = () => {
     setFormMode((prev) => (prev === "login" ? "register" : "login"));
+    window.scrollTo(0, 0);
   };
 
   return (
