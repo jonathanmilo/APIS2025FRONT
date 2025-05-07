@@ -11,8 +11,8 @@ import {
 
 function Footer() {
   return (
-    <footer className="p-4 sm:p-6 sm:mt-10 flex flex-col sm:gap-6">
-      <Divider />
+    <footer className="p-4 sm:p-6 flex flex-col sm:gap-6">
+
       <div className="grid grid-cols-1 gap-8 sm:gap-6 sm:grid-cols-2 xl:grid-cols-4 py-7 sm:py-0">
         {/* Primera Fila: Información útil */}
         <div>
