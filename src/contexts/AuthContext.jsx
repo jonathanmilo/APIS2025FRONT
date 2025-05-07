@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useUsuario } from "./UserContext";
-import { fetchUsers } from "../api/api";
+import { fetchAllUsers } from "../api/users";
 
 const AuthContext = createContext();
 
@@ -14,9 +14,9 @@ export function ValidacionProvider({ children }) {
 
   const validar = async (usuario) => {
     try {
-      const data = await fetchUsers();
+      const res = await fetchAllUsers();
 
-      const encontrado = data.find(
+      const encontrado = res.data.find(
         (u) => u.email === usuario.email && u.password === usuario.password
       );
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchOrders } from "../api/api";
 import { useProductos } from "../contexts/ProductContext";
 import { useUsuario } from "../contexts/UserContext";
+import { fetchAllOrders } from "../api/orders";
 
 export function useOrdersData() {
   const [orders, setOrders] = useState([]);
@@ -14,10 +14,10 @@ export function useOrdersData() {
   const cargarOrdenes = async () => {
     setLoading(true);
     try {
-      const data = await fetchOrders();
+      const res = await fetchAllOrders();
       const userOrders = usuario
-        ? data.filter((order) => order.userId === usuario.id)
-        : data;
+        ? res.data.filter((order) => order.userId === usuario.id)
+        : res.data;
       setOrders(userOrders);
     } catch (err) {
       setError(err.message);

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { fetchUsers } from "../api/api";
+import { fetchAllUsers } from "../api/users";
 
 const UserContext = createContext();
 
@@ -14,8 +14,8 @@ export function UsuarioProvider({ children }) {
   useEffect(() => {
     const cargarUsuarios = async () => {
       try {
-        const data = await fetchUsers();
-        setUsuarios(data);
+        const res = await fetchAllUsers();
+        setUsuarios(res.data);
       } catch (error) {
         console.error("Error al cargar usuarios:", error);
       }

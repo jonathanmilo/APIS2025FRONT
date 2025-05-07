@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { fetchCategories } from "../api/api";
+import { fetchAllCategories } from "../api/categories";
 
 const CategoryContext = createContext();
 
@@ -14,8 +14,8 @@ export function CategoryProvider({ children }) {
 
   const cargarCategorias = async () => {
     try {
-      const data = await fetchCategories();
-      setCategorias(data); 
+      const res = await fetchAllCategories();
+      setCategorias(res.data); 
     } catch (err) {
       console.error("Error al obtener categorías:", err);
       setError(err.message);

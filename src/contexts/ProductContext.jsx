@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { fetchProducts } from "../api/api";
+import { fetchAllProducts } from "../api/products";
 
 const ProductContext = createContext();
 
@@ -16,8 +16,8 @@ export function ProductosProvider({ children }) {
 
     setLoading(true);
     try {
-      const data = await fetchProducts();
-      setProductos(data);
+      const res = await fetchAllProducts();
+      setProductos(res.data);
     } catch (error) {
       setError(error.message);
     } finally {
