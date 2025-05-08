@@ -21,6 +21,6 @@ export const NAVBAR_MENU = [
   {
     id: 4,
     title: "Vender",
-    link: "/",
+    link: "/vender",
   },
 ];
