@@ -2,18 +2,34 @@ import { useNavigate } from "react-router-dom";
 import { useValidacion } from "../../contexts/AuthContext";
 import { useProductos } from "../../contexts/ProductContext";
 import ListaProductos from "../../components/ListaProductos";
-import { filtrarPorUsuario } from "../../utils/filtrarProductos";
 import { Avatar, Tooltip } from "@mui/material";
 import { FaPlus } from "react-icons/fa6";
+import { useState } from "react";
+
+import {
+  filtrarPorNombre,
+  filtrarPorUsuario,
+} from "../../utils/filtrarProductos";
+import SearchBar from "../../components/SearchBar";
 
 const MiPerfil = () => {
   const navigate = useNavigate();
+
+  const [productosFiltrados, setProductosFiltrados] = useState([]);
+
   const { user } = useValidacion();
   const { productos } = useProductos();
 
-  if (!user || !productos) return null;
+  const productosFiltradosPorUsuario = filtrarPorUsuario(productos, user.id);
 
-  const productosFiltrados = filtrarPorUsuario(productos, user.id);
+  const handleBuscar = (termino) => {
+    if (!termino) return setProductosFiltrados([]);
+    setProductosFiltrados(
+      filtrarPorNombre(productosFiltradosPorUsuario, termino)
+    );
+  };
+
+  if (!user || !productos) return null;
 
   return (
     <>
@@ -35,23 +51,31 @@ const MiPerfil = () => {
       </div>
 
       <section className="bg-white m-5 lg:m-5 shadow-md p-5">
-        <div className="flex flex-row items-center lg:justify-start justify-center gap-3 mb-5">
-          <p className="text-brand-black uppercase lg:text-xl">
-            Mis publicaciones
-          </p>
-          <Tooltip title="Nueva publicación" arrow>
-            <button
-              onClick={() => navigate("/vender")}
-              className="border-2 border-brand-main lg:p-1 text-xl text-brand-main hover:bg-gray-100 cursor-pointer"
-            >
-              <FaPlus />
-            </button>
-          </Tooltip>
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-center gap-4  mb-5">
+          <div className="flex gap-2 items-center justify-center lg:justify-start">
+            <p className="text-brand-black uppercase lg:text-xl">
+              Mis publicaciones
+            </p>
+            <Tooltip title="Nueva publicación" arrow>
+              <button
+                onClick={() => navigate("/vender")}
+                className="border-2 border-brand-main lg:p-1 text-xl text-brand-main hover:bg-gray-100 cursor-pointer"
+              >
+                <FaPlus />
+              </button>
+            </Tooltip>
+          </div>
+
+          <SearchBar buscar={handleBuscar} />
         </div>
 
         <ListaProductos
           titulo={"Mis publicaciones"}
-          productos={productosFiltrados}
+          productos={
+            productosFiltrados.length
+              ? productosFiltrados
+              : productosFiltradosPorUsuario
+          }
         />
       </section>
     </>

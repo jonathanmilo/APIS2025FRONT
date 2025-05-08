@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Carousel from "../../components/Carousel.jsx";
 import { useProductos } from "../../contexts/ProductContext.jsx";
-import SearchBar from "./components/SearchBar.jsx";
+import SearchBar from "../../components/SearchBar.jsx";
 import ProductCard from "../../components/ProductCard.jsx";
 
 import {
