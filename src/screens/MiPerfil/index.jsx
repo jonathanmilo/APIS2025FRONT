@@ -42,12 +42,15 @@ const MiPerfil = () => {
       </div>
 
       <section className="bg-white m-5 lg:m-5 shadow-md p-5">
-        <div className="flex flex-row items-center lg:justify-end justify-center gap-3 mb-5">
+        <div className="flex flex-row items-center lg:justify-start justify-center gap-3 mb-5">
           <p className="text-brand-black uppercase lg:text-xl">
             Mis publicaciones
           </p>
           <Tooltip title="Nueva publicación" arrow>
-            <button className="border-2 border-brand-main lg:p-1 text-xl text-brand-main hover:bg-gray-100 cursor-pointer">
+            <button
+              onClick={() => navigate("/vender")}
+              className="border-2 border-brand-main lg:p-1 text-xl text-brand-main hover:bg-gray-100 cursor-pointer"
+            >
               <FaPlus />
             </button>
           </Tooltip>

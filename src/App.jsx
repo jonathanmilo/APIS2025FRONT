@@ -25,12 +25,10 @@ function App() {
           <Route path="/catalogo" element={<Catalogo />} />
           <Route path="/catalogo/:id" element={<ProductDetail />} />
           <Route path="/ingresar" element={<Ingresar />} />
-          <Route path="/mi-perfil" element={<MiPerfil />} />
           <Route path="/carrito" element={<Carrito />} />
+          <Route path="/mi-perfil" element={<MiPerfil />} />
           <Route path="/vender" element={<Vender />} />
-
           <Route path="*" element={<Navigate to="/" />} />
-          
         </Route>
       </Routes>
     </Router>
