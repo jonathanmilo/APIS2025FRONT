@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Carousel from "../../components/Carousel";
 import { useCategorias } from "../../contexts/CategoryContext";
 import { useProductos } from "../../contexts/ProductContext";
@@ -25,6 +25,8 @@ export default function ProductDetail() {
   const [quantity, setCantidad] = useState(1);
   const [productosRelacionados, setProductosRelacionados] = useState([]);
   const [alreadyInCart, setAlreadyInCart] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (productos.length > 0) {
@@ -74,12 +76,12 @@ export default function ProductDetail() {
 
   return (
     <div className="max-w-5xl mx-auto p-6 md:p-4">
-      <Link
-        to="/catalogo"
+      <button
+        onClick={() => navigate(-1)}
         className="inline-block mb-4 text-brand-main hover:underline"
       >
-        ← Volver a productos
-      </Link>
+        ← Volver atrás
+      </button>
 
       <div className="flex flex-col lg:flex-row gap-6">
         <GaleriaImagenes images={producto.images} />

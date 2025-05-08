@@ -25,7 +25,7 @@ export default function Ingresar() {
   };
 
   return (
-    <div className="flex-grow flex flex-col items-center mt-10 min-h-screen">
+    <div className="flex-grow flex flex-col items-center min-h-screen bg-white p-10">
       <div className="relative flex flex-col bg-transparent text-brand-black">
         <AuthForm mode={formMode} onSubmit={handleSubmit} />
 

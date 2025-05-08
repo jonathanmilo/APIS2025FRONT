@@ -32,7 +32,7 @@ export default function Carrito() {
 
   return (
     <div className="min-h-screen bg-gray-50 pt-10 px-4">
-      <h1 className="mb-10 text-center text-2xl font-bold text-brand-black">
+      <h1 className="mb-5 text-xl text-center text-brand-black uppercase font-bold">
         Carrito de Compras
       </h1>
       <div className="mx-auto max-w-5xl justify-center md:flex md:space-x-6 xl:px-0">
@@ -63,7 +63,8 @@ export default function Carrito() {
                         {producto.title}
                       </h2>
                       <p className="mt-1 text-sm text-gray-700">
-                        Stock disponible: {producto.stock || "Stock no especificada"}
+                        Stock disponible:{" "}
+                        {producto.stock || "Stock no especificada"}
                       </p>
                     </div>
                     <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
