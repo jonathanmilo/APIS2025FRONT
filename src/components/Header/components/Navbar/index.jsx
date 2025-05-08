@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import Badge from "@mui/material/Badge";
-import { NAVBAR_MENU, STORE_NAME } from "../../global/store";
+import { NAVBAR_MENU } from "../../../../global/store.js";
 import MobileMenu from "./components/MobileMenu.jsx";
 import UserMenu from "./components/User/UserMenu.jsx";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
-import { CartContext } from "../../contexts/CartContext.jsx";
-import { useValidacion } from "../../contexts/AuthContext.jsx";
+import { CartContext } from "../../../../contexts/CartContext.jsx";
+import { useValidacion } from "../../../../contexts/AuthContext.jsx";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -23,13 +23,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 bg-white z-50 border-b-1 border-brand-light-gray">
-        <div className="w-full px-5 lg:px-30 flex justify-between items-center py-6">
-          <div className="text-2xl flex items-center gap-1 font-bold">
-            <img src="/icon.svg" alt="" className="h-8" />
-            <p className="text-brand-main">{STORE_NAME}</p>
-          </div>
-
+      <nav className="sticky top-0 bg-white">
+        <div className="w-full lg:px-30 flex justify-between items-center pt-10 md:pt-5">
           <div className="hidden md:block">
             <ul className="flex items-center gap-2 lg:gap-6 text-brand-black">
               {NAVBAR_MENU.map((item) => {
@@ -47,7 +42,17 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            {isAuthenticated ? (
+              <UserMenu usuario={user} />
+            ) : (
+              <button
+                onClick={() => navigate("/ingresar")}
+                className="hover:bg-brand-main cursor-pointer bg-white text-brand-main font-semibold hover:text-white duration-200 rounded-md border-2 border-brand-main hidden md:block px-6 py-2"
+              >
+                Ingresar
+              </button>
+            )}
             <Tooltip title="Carrito de compras" arrow>
               <IconButton
                 onClick={() => navigate("/carrito")}
@@ -68,17 +73,6 @@ const Navbar = () => {
                 </Badge>
               </IconButton>
             </Tooltip>
-
-            {isAuthenticated ? (
-              <UserMenu usuario={user} />
-            ) : (
-              <button
-                onClick={() => navigate("/ingresar")}
-                className="hover:bg-brand-main cursor-pointer bg-white text-brand-main font-semibold hover:text-white duration-200 rounded-md border-2 border-brand-main hidden md:block px-6 py-2"
-              >
-                Ingresar
-              </button>
-            )}
           </div>
 
           <div className="md:hidden" onClick={() => setOpen(!open)}>

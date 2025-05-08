@@ -1,12 +1,12 @@
 import React from "react";
-import { NAVBAR_MENU } from "../../../global/store";
+import { NAVBAR_MENU } from "../../../../../global/store";
 import { Link } from "react-router-dom";
 
 const MobileMenu = ({ open, setOpen, usuario }) => {
 
   return (
     <div
-      className={`fixed top-[80px] right-0 w-full h-[calc(100vh-80px)] bg-white z-40 transform transition-transform duration-300 ease-in-out ${
+      className={`fixed top-[180px] right-0 w-full h-[calc(100vh-80px)] bg-white z-40 transform transition-transform duration-300 ease-in-out ${
         open ? "translate-x-0" : "translate-x-full"
       } md:hidden shadow-lg`}
     >

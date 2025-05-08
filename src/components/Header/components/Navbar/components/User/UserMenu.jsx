@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useUsuario } from "../../../../contexts/UserContext";
 import { MdLogout } from "react-icons/md";
 import { SlSettings } from "react-icons/sl";
 import Avatar from "@mui/material/Avatar";
@@ -9,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Divider from "@mui/material/Divider";
-import { useValidacion } from "../../../../contexts/AuthContext";
+import { useValidacion } from "../../../../../../contexts/AuthContext";
 
 export default function UserMenu({ usuario }) {
   const { logout } = useValidacion();
@@ -58,7 +57,7 @@ export default function UserMenu({ usuario }) {
         slotProps={{
           paper: {
             elevation: 0,
-            sx: {
+            sx: (theme) => ({
               overflow: "visible",
               filter: "drop-shadow(0px 1px 4px rgba(0,0,0,0.16))",
               mt: 1,
@@ -73,14 +72,18 @@ export default function UserMenu({ usuario }) {
                 display: "block",
                 position: "absolute",
                 top: 0,
-                right: 20,
                 width: 10,
                 height: 10,
                 bgcolor: "background.paper",
                 transform: "translateY(-50%) rotate(45deg)",
                 zIndex: 0,
+                left: 40,
+                [theme.breakpoints.up("sm")]: {
+                  left: "auto",
+                  right: 20,
+                },
               },
-            },
+            }),
           },
         }}
       >
