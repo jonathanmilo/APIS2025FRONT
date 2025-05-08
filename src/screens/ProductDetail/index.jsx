@@ -72,6 +72,7 @@ export default function ProductDetail() {
     addToCart(producto, quantity);
     setAlreadyInCart(true);
     alert(`${quantity} ${producto.title} agregado(s) al carrito`);
+    setCantidad(1);
   };
 
   return (
