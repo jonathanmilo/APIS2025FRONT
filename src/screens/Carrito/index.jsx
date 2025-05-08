@@ -38,7 +38,7 @@ export default function Carrito() {
       <div className="mx-auto max-w-5xl justify-center md:flex md:space-x-6 xl:px-0">
         <div className="rounded-lg md:w-2/3">
           {cart.length === 0 ? (
-            <p className="text-brand-gray text-center py-6 bg-white rounded shadow-md">
+            <p className="text-brand-gray text-center py-6 bg-white shadow-md">
               El carrito está vacío.
             </p>
           ) : (
@@ -63,8 +63,7 @@ export default function Carrito() {
                         {producto.title}
                       </h2>
                       <p className="mt-1 text-sm text-gray-700">
-                        Stock disponible:{" "}
-                        {producto.stock || "Stock no especificada"}
+                        Stock disponible: {producto.stock || "Stock no especificada"}
                       </p>
                     </div>
                     <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
