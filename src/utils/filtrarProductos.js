@@ -38,6 +38,6 @@ export function obtenerNombresSubcategorias(producto, categorias) {
 }
 
 export function obtenerNombreCategoria(producto, categorias) {
-  const categoria = categorias.find((cat) => cat._id === producto.categoryId);
+  const categoria = categorias.find((cat) => cat.id === producto.categoryId);
   return categoria ? categoria.name : null;
 }
