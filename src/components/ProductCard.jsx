@@ -26,6 +26,18 @@ function ProductCard({ producto }) {
           alt="Product image"
           className="w-full h-50 object-cover"
         />
+
+        {producto.stock === 0 && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-md">
+              <span className="text-brand-black text-sm font-bold text-center mb-1">
+                SIN
+                <br />
+                STOCK
+              </span>
+            </div>
+          </div>
+        )}
       </div>
 
       <Divider />
@@ -51,9 +63,6 @@ function ProductCard({ producto }) {
               )}
             </div>
           </div>
-          {producto.stock <= 0 && (
-            <span className="text-xs text-red-500">Sin stock</span>
-          )}
         </div>
 
         {producto.discountPercentage > 0 ? (
