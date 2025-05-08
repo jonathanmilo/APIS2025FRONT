@@ -42,7 +42,7 @@ export const cartReducer = (state, action) => {
           const newQuantity = Math.min(quantity, maxStock);
           return { ...p, quantity: newQuantity };
         }
-        console.log(p)
+        
         return p;
       });
 
