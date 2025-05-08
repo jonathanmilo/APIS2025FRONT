@@ -48,7 +48,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <Tooltip title="Carrito de compras">
+            <Tooltip title="Carrito de compras" arrow>
               <IconButton
                 onClick={() => navigate("/carrito")}
                 sx={{ width: "50px", height: "50px" }}

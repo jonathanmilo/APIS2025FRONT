@@ -31,7 +31,7 @@ export default function UserMenu({ usuario }) {
 
   return (
     <React.Fragment>
-      <Tooltip title="Opciones de usuario">
+      <Tooltip title="Opciones de usuario" arrow>
         <IconButton
           onClick={handleClick}
           size="small"
