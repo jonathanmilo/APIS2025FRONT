@@ -7,6 +7,7 @@ import {
 
 import Layout from "./layouts/Layout";
 import ScrollToTop from "./components/ScrollToTop";
+import ProtectedRoutes from "./screens/utils/ProtectedRoutes";
 
 import Home from "./screens/Home";
 import Catalogo from "./screens/Catalogo";
@@ -29,10 +30,14 @@ function App() {
           <Route path="/catalogo/:id" element={<ProductDetail />} />
           <Route path="/ingresar" element={<Ingresar />} />
           <Route path="/carrito" element={<Carrito />} />
-          <Route path="/mi-perfil" element={<MiPerfil />} />
-          <Route path="/mis-compras" element={<Compras />} />
-          <Route path="/configuracion" element={<Configuracion />} />
-          <Route path="/vender" element={<Vender />} />
+
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/mi-perfil" element={<MiPerfil />} />
+            <Route path="/mis-compras" element={<Compras />} />
+            <Route path="/configuracion" element={<Configuracion />} />
+            <Route path="/vender" element={<Vender />} />
+          </Route>
+
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>

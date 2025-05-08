@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useValidacion } from "../../contexts/AuthContext";
 import { useProductos } from "../../contexts/ProductContext";
@@ -11,12 +10,6 @@ const MiPerfil = () => {
   const navigate = useNavigate();
   const { user } = useValidacion();
   const { productos } = useProductos();
-
-  useEffect(() => {
-    if (!user) {
-      navigate("/ingresar");
-    }
-  }, [user, navigate]);
 
   if (!user || !productos) return null;
 

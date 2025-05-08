@@ -12,6 +12,8 @@ export default function Configuracion() {
   const [formData, setFormData] = useState({});
   const [fields, setFields] = useState([]);
 
+  if (!user) return null;
+
   const handleEdit = (fieldName, label, value) => {
     setEditingField(fieldName);
     setFormData({ [fieldName]: value });
