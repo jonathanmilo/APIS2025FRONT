@@ -5,15 +5,18 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import Layout from "./layouts/Layout";
+import ScrollToTop from "./components/ScrollToTop";
+
 import Home from "./screens/Home";
 import Catalogo from "./screens/Catalogo";
 import ProductDetail from "./screens/ProductDetail";
 import Ingresar from "./screens/Ingresar";
 import MiPerfil from "./screens/MiPerfil";
 import Carrito from "./screens/Carrito";
-import Layout from "./layouts/Layout";
-import ScrollToTop from "./components/ScrollToTop";
 import Vender from "./screens/Vender";
+import Configuracion from "./screens/Configuracion";
+import Compras from "./screens/Compras";
 
 function App() {
   return (
@@ -27,6 +30,8 @@ function App() {
           <Route path="/ingresar" element={<Ingresar />} />
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/mi-perfil" element={<MiPerfil />} />
+          <Route path="/mis-compras" element={<Compras />} />
+          <Route path="/configuracion" element={<Configuracion />} />
           <Route path="/vender" element={<Vender />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>

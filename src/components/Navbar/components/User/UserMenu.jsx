@@ -87,11 +87,11 @@ export default function UserMenu({ usuario }) {
         <MenuItem component={Link} to="/mi-perfil">
           Mi Perfil
         </MenuItem>
-        <MenuItem component="a" href="#">
+        <MenuItem component={Link} to="/mis-compras">
           Compras
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
+        <MenuItem component={Link} to="/configuracion" onClick={handleClose}>
           <SlSettings className="mr-1" />
           Configuración
         </MenuItem>
