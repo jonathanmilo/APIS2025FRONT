@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { fetchAllUsers } from "../api/users";
+import { fetchAllUsers } from "@src/api/users";
 
 const UserContext = createContext();
 

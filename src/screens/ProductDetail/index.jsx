@@ -1,18 +1,18 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Carousel from "../../components/Carousel";
-import { useCategorias } from "../../contexts/CategoryContext";
-import { useProductos } from "../../contexts/ProductContext";
+import Carousel from "@src/components/Carousel";
+import { useCategorias } from "@src/contexts/CategoryContext";
+import { useProductos } from "@src/contexts/ProductContext";
 import GaleriaImagenes from "./components/GaleriaImagenes";
-import { calcularPrecio } from "../../utils/calcularPrecio";
+import { calcularPrecio } from "@src/utils/calcularPrecio";
 import { Button } from "@mui/material";
 import {
   filtrarRelacionados,
   obtenerNombresSubcategorias,
   obtenerNombreCategoria,
-} from "../../utils/filtrarProductos";
+} from "@src/utils/filtrarProductos";
 
-import { CartContext } from "../../contexts/CartContext";
+import { CartContext } from "@src/contexts/CartContext";
 
 export default function ProductDetail() {
   const { id } = useParams();

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { useProductos } from "../../../contexts/ProductContext";
-import { filtrarPorNombre } from "../../../utils/filtrarProductos";
-import { calcularPrecio } from "../../../utils/calcularPrecio";
+import { useProductos } from "@src/contexts/ProductContext";
+import { filtrarPorNombre } from "@src/utils/filtrarProductos";
+import { calcularPrecio } from "@src/utils/calcularPrecio";
 import { useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 

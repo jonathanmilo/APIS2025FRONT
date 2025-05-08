@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import Carousel from "../../components/Carousel.jsx";
-import { useProductos } from "../../contexts/ProductContext.jsx";
-import SearchBar from "../../components/SearchBar.jsx";
-import ProductCard from "../../components/ProductCard.jsx";
+import { useState } from "react";
+import Carousel from "@src/components/Carousel.jsx";
+import { useProductos } from "@src/contexts/ProductContext.jsx";
+import SearchBar from "@src/components/SearchBar.jsx";
+import ProductCard from "@src/components/ProductCard.jsx";
 
 import {
   filtrarPorNombre,
   filtrarDestacados,
-} from "../../utils/filtrarProductos.js";
+} from "@src/utils/filtrarProductos.js";
 
 export function Catalogo() {
   const { productos } = useProductos();

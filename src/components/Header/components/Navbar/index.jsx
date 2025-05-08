@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import Badge from "@mui/material/Badge";
-import { NAVBAR_MENU } from "../../../../global/store.js";
+import { NAVBAR_MENU } from "@src/global/store.js";
 import MobileMenu from "./components/MobileMenu.jsx";
 import UserMenu from "./components/User/UserMenu.jsx";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
-import { CartContext } from "../../../../contexts/CartContext.jsx";
-import { useValidacion } from "../../../../contexts/AuthContext.jsx";
+import { CartContext } from "@src/contexts/CartContext.jsx";
+import { useValidacion } from "@src/contexts/AuthContext.jsx";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);

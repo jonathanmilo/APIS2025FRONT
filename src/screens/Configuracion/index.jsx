@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Avatar } from "@mui/material";
 import { MdEdit } from "react-icons/md";
-import { useValidacion } from "../../contexts/AuthContext";
+import { useValidacion } from "@src/contexts/AuthContext";
 import FloatingFormDialog from "./components/FloatingForm";
 import { Divider, IconButton, Tooltip } from "@mui/material";
 

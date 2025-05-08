@@ -8,7 +8,7 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Divider from "@mui/material/Divider";
-import { useValidacion } from "../../../../../../contexts/AuthContext";
+import { useValidacion } from "@src/contexts/AuthContext";
 
 export default function UserMenu({ usuario }) {
   const { logout } = useValidacion();

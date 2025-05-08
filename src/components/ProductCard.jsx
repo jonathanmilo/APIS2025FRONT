@@ -1,10 +1,9 @@
-import React from "react";
 import { VscVerifiedFilled } from "react-icons/vsc";
 import { Divider } from "@mui/material";
 import { Link } from "react-router-dom";
-import { calcularPrecio } from "../utils/calcularPrecio";
-import { useUserData } from "../hooks/useUserData";
-import { useUsuario } from "../contexts/UserContext";
+import { calcularPrecio } from "@src/utils/calcularPrecio";
+import { useUserData } from "@src/hooks/useUserData";
+import { useUsuario } from "@src/contexts/UserContext";
 
 function ProductCard({ producto }) {
   const { usuarios } = useUsuario();

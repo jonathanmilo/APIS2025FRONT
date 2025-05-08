@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCategorias } from "../../contexts/CategoryContext.jsx";
+import { useCategorias } from "@src/contexts/CategoryContext.jsx";
 import { CategoriasValidas } from "./components/CategoriasValidas.jsx";
-import { createProduct } from "../../api/products.js";
+import { createProduct } from "@src/api/products.js";
 import {
   TextField,
   Button,

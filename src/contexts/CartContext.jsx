@@ -1,7 +1,7 @@
 import { useReducer, createContext } from "react";
-import { cartReducer, cartInitialState } from "../reducers/cartReducer";
-import { calcularTotal } from "../utils/calcularTotal";
-import { updateProductStock } from "../api/products";
+import { cartReducer, cartInitialState } from "@src/reducers/cartReducer";
+import { calcularTotal } from "@src/utils/calcularTotal";
+import { updateProductStock } from "@src/api/products";
 
 
 export const CartContext = createContext();

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { fetchAllProducts } from "../api/products";
+import { fetchAllProducts } from "@src/api/products";
 
 const ProductContext = createContext();
 

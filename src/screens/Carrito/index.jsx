@@ -1,10 +1,9 @@
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { calcularPrecio } from "../../utils/calcularPrecio";
-import { getSafeProductData } from "../../utils/sanitize/getSafeProductData";
+import { calcularPrecio } from "@src/utils/calcularPrecio";
 import { useContext } from "react";
-import { CartContext } from "../../contexts/CartContext";
+import { CartContext } from "@src/contexts/CartContext";
 
 export default function Carrito() {
   const {

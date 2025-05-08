@@ -1,6 +1,6 @@
 import SearchBarDropdown from "./components/SearchBarDropdown";
 import Navbar from "./components/Navbar";
-import { STORE_NAME } from "../../global/store";
+import { STORE_NAME } from "@src/global/store";
 
 const Header = () => {
   return (

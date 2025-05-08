@@ -1,5 +1,4 @@
-import React from "react";
-import { NAVBAR_MENU } from "../../../../../global/store";
+import { NAVBAR_MENU } from "@src/global/store";
 import { Link } from "react-router-dom";
 
 const MobileMenu = ({ open, setOpen, usuario }) => {

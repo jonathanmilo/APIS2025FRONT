@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useProductos } from "../contexts/ProductContext";
-import { useUsuario } from "../contexts/UserContext";
-import { fetchAllOrders } from "../api/orders";
+import { useProductos } from "@src/contexts/ProductContext";
+import { useUsuario } from "@src/contexts/UserContext";
+import { fetchAllOrders } from "@src/api/orders";
 
 export function useOrdersData() {
   const [orders, setOrders] = useState([]);

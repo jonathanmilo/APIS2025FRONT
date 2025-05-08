@@ -1,5 +1,5 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { useValidacion } from "../../contexts/AuthContext";
+import { useValidacion } from "@src/contexts/AuthContext";
 
 const ProtectedRoutes = () => {
   const { user } = useValidacion();

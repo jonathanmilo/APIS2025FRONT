@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import ProductCard from "../../../components/ProductCard";
+import { useState, useEffect } from "react";
+import ProductCard from "@src/components/ProductCard";
 
 function ProductosPorCategoria({ categorias, productos }) {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);

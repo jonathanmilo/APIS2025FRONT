@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
 import ProductCard from "./ProductCard";
 

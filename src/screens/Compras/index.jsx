@@ -1,6 +1,6 @@
-import { useValidacion } from "../../contexts/AuthContext";
-import { useOrdersData } from "../../hooks/useOrdersData";
-import { useProductos } from "../../contexts/ProductContext";
+import { useValidacion } from "@src/contexts/AuthContext";
+import { useOrdersData } from "@src/hooks/useOrdersData";
+import { useProductos } from "@src/contexts/ProductContext";
 
 export default function Compras() {
   const { user } = useValidacion();

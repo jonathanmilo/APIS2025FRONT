@@ -1,5 +1,5 @@
 import { Tooltip, Divider } from "@mui/material";
-import { STORE_NAME } from "../global/store.js";
+import { STORE_NAME } from "@src/global/store.js";
 import { FiFacebook } from "react-icons/fi";
 import { FaCheck } from "react-icons/fa6";
 import {

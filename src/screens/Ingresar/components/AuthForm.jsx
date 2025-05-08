@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { TextField } from "@mui/material";
 
 export default function AuthForm({ mode = "login", onSubmit }) {

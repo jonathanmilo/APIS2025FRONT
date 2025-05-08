@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useValidacion } from "../../contexts/AuthContext";
-import { useProductos } from "../../contexts/ProductContext";
-import ListaProductos from "../../components/ListaProductos";
+import { useValidacion } from "@src/contexts/AuthContext";
+import { useProductos } from "@src/contexts/ProductContext";
+import ListaProductos from "@src/components/ListaProductos";
 import { Avatar, Tooltip } from "@mui/material";
 import { FaPlus } from "react-icons/fa6";
 import { useState } from "react";
@@ -9,8 +9,8 @@ import { useState } from "react";
 import {
   filtrarPorNombre,
   filtrarPorUsuario,
-} from "../../utils/filtrarProductos";
-import SearchBar from "../../components/SearchBar";
+} from "@src/utils/filtrarProductos";
+import SearchBar from "@src/components/SearchBar";
 
 const MiPerfil = () => {
   const navigate = useNavigate();
