@@ -9,6 +9,10 @@ export function filtrarDestacados(productos) {
   return productos.filter((p) => p.isFeatured);
 }
 
+export function filtrarPorUsuario(productos, userId) {
+  return productos.filter((p) => p.userId === userId);
+}
+
 export function filtrarConDescuento(productos) {
   return productos.filter((p) => p.discountPercentage > 0);
 }
