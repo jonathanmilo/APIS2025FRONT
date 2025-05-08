@@ -1,6 +1,8 @@
 import { useReducer, createContext } from "react";
 import { cartReducer, cartInitialState } from "../reducers/cartReducer";
 import { calcularTotal } from "../utils/calcularTotal";
+import { updateProductStock } from "../api/products";
+
 
 export const CartContext = createContext();
 
@@ -47,10 +49,22 @@ export function CartProvider({ children }) {
   const countProducts = () => state.length;
 
   const finalizePurchase = () => {
-    //agregar logica para actualizar stock del producto
+    for (let i = 0; i < state.length; i++) {
+      const product = state[i];
+      const { productId, quantity } = product;
+        try {
+
+          const response = updateProductStock(productId, product.productData.stock - product.quantity);
+
+          console.log("Stock actualizado", response.data);
+          clearCart();
+          } catch (error) {
+          console.error("Error al actualizar el stock", error);
+        }
+    }
     return new Promise((resolve) => {
       setTimeout(() => {
-        clearCart();
+
         resolve(true);
       }, 500);
     });
