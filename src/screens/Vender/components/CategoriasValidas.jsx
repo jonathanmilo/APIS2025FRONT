@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   Box,
   Checkbox,
@@ -8,20 +8,20 @@ import {
   AccordionSummary,
   AccordionDetails,
   Typography,
-  Divider,
-  Stack
-} from '@mui/material';
-import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+  Stack,
+} from "@mui/material";
+import { ExpandMore as ExpandMoreIcon } from "@mui/icons-material";
 
-export function CategoriasValidas({ 
+export function CategoriasValidas({
   categorias,
   seleccionada,
   subSeleccionadas,
   initialCategory = "",
-  initialSubcategories = []
+  initialSubcategories = [],
 }) {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
-  const [selectedSubcategories, setSelectedSubcategories] = useState(initialSubcategories);
+  const [selectedSubcategories, setSelectedSubcategories] =
+    useState(initialSubcategories);
   const [expandedCategory, setExpandedCategory] = useState(null);
 
   // Notificar cambios en las selecciones
@@ -47,18 +47,18 @@ export function CategoriasValidas({
       // Seleccionar nueva categoría
       setSelectedCategory(categoryId);
       // Mantener solo las subcategorías que pertenecen a la nueva categoría
-      const newCategory = categorias.find(c => c.id === categoryId);
-      const validSubcategories = selectedSubcategories.filter(subId => 
-        newCategory.subcategories.some(sub => sub.id === subId)
+      const newCategory = categorias.find((c) => c.id === categoryId);
+      const validSubcategories = selectedSubcategories.filter((subId) =>
+        newCategory.subcategories.some((sub) => sub.id === subId)
       );
       setSelectedSubcategories(validSubcategories);
     }
   };
 
   const handleSubcategoryChange = (subcategoryId) => {
-    setSelectedSubcategories(prev => 
+    setSelectedSubcategories((prev) =>
       prev.includes(subcategoryId)
-        ? prev.filter(id => id !== subcategoryId)
+        ? prev.filter((id) => id !== subcategoryId)
         : [...prev, subcategoryId]
     );
   };
@@ -67,19 +67,33 @@ export function CategoriasValidas({
     setExpandedCategory(expandedCategory === categoryId ? null : categoryId);
   };
 
-  const hasSubcategories = (category) => 
+  const hasSubcategories = (category) =>
     category.subcategories && category.subcategories.length > 0;
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Typography variant="body1" color="text.secondary" sx={{ mb: 2, textAlign: { xs: 'center', md: 'left' } }}>
+    <Box sx={{ width: "100%" }}>
+      <Typography
+        variant="body1"
+        color="text.secondary"
+        sx={{ mb: 2, textAlign: { md: "left" } }}
+      >
         Selecciona las categorías y subcategorías de tu producto
       </Typography>
 
       {/* Barra horizontal de categorías */}
-      <Stack direction="row" spacing={2} sx={{ mb: 2, flexWrap: 'wrap' }}>
+      <Stack
+        direction={{ xs: "column", lg: "row" }}
+        spacing={{ xs: 1, lg: 2 }}
+        sx={{
+          mb: 2,
+          flexWrap: { lg: "wrap" },
+        }}
+      >
         {categorias.map((categoria) => (
-          <Box key={categoria.id} sx={{ display: 'flex', alignItems: 'center' }}>
+          <Box
+            key={categoria.id}
+            sx={{ display: "flex", alignItems: "center" }}
+          >
             <FormControlLabel
               control={
                 <Checkbox
@@ -89,79 +103,101 @@ export function CategoriasValidas({
                 />
               }
               label={categoria.name}
+              sx={{
+                "& .MuiFormControlLabel-label": {
+                  color: "black",
+                },
+              }}
             />
-            {selectedCategory === categoria.id && hasSubcategories(categoria) && (
-              <Chip 
-                label="Ver subcategorías" 
-                size="small" 
-                onClick={() => handleExpandCategory(categoria.id)}
-                sx={{ ml: 1 }}
-                variant="outlined"
-              />
-            )}
+            {selectedCategory === categoria.id &&
+              hasSubcategories(categoria) && (
+                <Chip
+                  label="Ver subcategorías"
+                  size="small"
+                  onClick={() => handleExpandCategory(categoria.id)}
+                  sx={{ ml: 1 }}
+                  variant="outlined"
+                />
+              )}
           </Box>
         ))}
       </Stack>
 
       {/* Subcategorías en acordeones */}
-      {categorias.map((categoria) => (
-        selectedCategory === categoria.id && hasSubcategories(categoria) && (
-          <Accordion 
-            key={`accordion-${categoria.id}`}
-            expanded={expandedCategory === categoria.id}
-            onChange={() => handleExpandCategory(categoria.id)}
-            sx={{ mb: 1 }}
-          >
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography sx={{ fontWeight: 'bold' }}>{categoria.name}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-                {categoria.subcategories.map((subcategoria) => (
-                  <FormControlLabel
-                    key={subcategoria.id}
-                    control={
-                      <Checkbox
-                        checked={selectedSubcategories.includes(subcategoria.id)}
-                        onChange={() => handleSubcategoryChange(subcategoria.id)}
-                        color="secondary"
-                      />
-                    }
-                    label={subcategoria.name}
-                  />
-                ))}
-              </Box>
-            </AccordionDetails>
-          </Accordion>
-        )
-      ))}
+      {categorias.map(
+        (categoria) =>
+          selectedCategory === categoria.id &&
+          hasSubcategories(categoria) && (
+            <Accordion
+              key={`accordion-${categoria.id}`}
+              expanded={expandedCategory === categoria.id}
+              onChange={() => handleExpandCategory(categoria.id)}
+              sx={{ mb: 1 }}
+            >
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography sx={{ fontWeight: "bold" }}>
+                  {categoria.name}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+                  {categoria.subcategories.map((subcategoria) => (
+                    <FormControlLabel
+                      key={subcategoria.id}
+                      control={
+                        <Checkbox
+                          checked={selectedSubcategories.includes(
+                            subcategoria.id
+                          )}
+                          onChange={() =>
+                            handleSubcategoryChange(subcategoria.id)
+                          }
+                          color="secondary"
+                        />
+                      }
+                      label={subcategoria.name}
+                    />
+                  ))}
+                </Box>
+              </AccordionDetails>
+            </Accordion>
+          )
+      )}
 
       {/* Muestra selecciones actuales */}
       {(selectedCategory || selectedSubcategories.length > 0) && (
         <>
-          <Divider sx={{ my: 3 }} />
-          <Typography variant="subtitle1" gutterBottom>
+          <Typography variant="subtitle1" gutterBottom color="black">
             Selecciones actuales:
           </Typography>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, alignItems: 'center' }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 1,
+              alignItems: "center",
+            }}
+          >
             {selectedCategory && (
-              <Chip 
-                key={`selected-cat-${selectedCategory}`} 
-                label={categorias.find(c => c.id === selectedCategory)?.name || ''} 
-                color="primary" 
+              <Chip
+                key={`selected-cat-${selectedCategory}`}
+                label={
+                  categorias.find((c) => c.id === selectedCategory)?.name || ""
+                }
+                color="primary"
                 variant="outlined"
                 sx={{ mb: 1 }}
               />
             )}
-            {selectedSubcategories.map(subId => {
+            {selectedSubcategories.map((subId) => {
               const subcat = categorias
-                .flatMap(c => c.subcategories || [])
-                .find(s => s.id === subId);
+                .flatMap((c) => c.subcategories || [])
+                .find((s) => s.id === subId);
               return (
-                <Chip 
-                  key={`selected-sub-${subId}`} 
-                  label={subcat?.name || ''} 
-                  color="secondary" 
+                <Chip
+                  key={`selected-sub-${subId}`}
+                  label={subcat?.name || ""}
+                  color="secondary"
                   variant="outlined"
                   sx={{ mb: 1 }}
                 />
@@ -174,4 +210,4 @@ export function CategoriasValidas({
   );
 }
 
-export default CategoriasValidas
+export default CategoriasValidas;
