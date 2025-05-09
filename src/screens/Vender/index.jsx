@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useCategorias } from "@src/contexts/CategoryContext.jsx";
 import { CategoriasValidas } from "./components/CategoriasValidas.jsx";
 import { createProduct } from "@src/api/products.js";
+import { useValidacion } from "@src/contexts/AuthContext.jsx";
+
 import {
   TextField,
   Button,
@@ -21,9 +23,13 @@ export function Vender() {
   // Estados para categorías y subcategorías
   const [subcategorias, setSubcategorias] = useState([]);
   const [categoria, setCategoria] = useState("");
+  const { user } = useValidacion();
+
 
   // Estado del formulario
   const [formData, setFormData] = useState({
+    id: Math.floor(Math.random() * 900) + 101,
+    userId: user.id,
     title: "",
     images: [{ url: "", isCover: true }],
     description: "",
@@ -112,6 +118,7 @@ export function Vender() {
 
     //createProduct(formData)
     console.log("Datos del producto a publicar:", formData);
+    createProduct(formData)
     alert("Producto publicado exitosamente!");
     navigate("/"); // Redirigir al home después de publicar
   };

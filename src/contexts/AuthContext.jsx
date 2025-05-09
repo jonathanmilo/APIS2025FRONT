@@ -11,7 +11,6 @@ export function useValidacion() {
 export function ValidacionProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
   const { usuarios } = useUsuario();
-
   const login = (usuario) => {
     dispatch({ type: "LOGIN", payload: usuario });
   };

@@ -56,7 +56,7 @@ export function CartProvider({ children }) {
 
           const response = updateProductStock(productId, product.productData.stock - product.quantity);
 
-          console.log("Stock actualizado", response.data);
+        //  console.log("Stock actualizado", response.data);
           clearCart();
           } catch (error) {
           console.error("Error al actualizar el stock", error);

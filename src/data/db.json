@@ -395,7 +395,7 @@
       ],
       "description": "Laptop de 15 pulgadas con procesador Intel Core i5 y 8GB de RAM",
       "price": 899.99,
-      "stock": 0,
+      "stock": 50,
       "discountPercentage": 10,
       "isFeatured": true,
       "createdAt": "2025-04-23T21:20:16.720495",
@@ -487,7 +487,7 @@
       ],
       "description": "Pelota de fútbol profesional de alta calidad",
       "price": 19.99,
-      "stock": 0,
+      "stock": 20,
       "discountPercentage": 20,
       "isFeatured": true,
       "createdAt": "2025-04-23T21:20:16.720495",
@@ -1054,6 +1054,31 @@
       "isFeatured": false,
       "createdAt": "2025-04-23T22:30:00.000Z",
       "updatedAt": "2025-04-23T22:30:00.000Z"
+    },
+    {
+      "id": 466,
+      "userId": "3",
+      "title": "TEST",
+      "images": [
+        {
+          "url": "https://picsum.photos/600/400",
+          "isCover": true
+        },
+        {
+          "url": "https://picsum.photos/600/400",
+          "isCover": false
+        }
+      ],
+      "description": "la cosa loca",
+      "price": "55050000",
+      "stock": "300",
+      "categoryId": "3",
+      "subcategoryIds": [
+        "3-2",
+        "3-3"
+      ],
+      "discountPercentage": "60",
+      "isFeatured": false
     }
   ],
   "carts": [
