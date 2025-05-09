@@ -2,10 +2,12 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { calcularPrecio } from "@src/utils/calcularPrecio";
-import { useContext } from "react";
+import { useContext,useRef } from "react";
 import { CartContext } from "@src/contexts/CartContext";
+import capu from "/sounds/capusotto.mp3"
 
 export default function Carrito() {
+  
   const {
     cart,
     removeFromCart,
@@ -17,10 +19,19 @@ export default function Carrito() {
     error,
   } = useContext(CartContext);
 
+    const audioRef = useRef(null);
+  function sonidito (){
+          if (audioRef.current) {
+          audioRef.current.currentTime = 0;
+          audioRef.current.play();
+        }
+  }
+
   if (loading)
     return <div className="text-center py-10">Cargando carrito...</div>;
   if (error)
     return <div className="text-red-500 text-center py-10">Error: {error}</div>;
+ 
 
   const handleCheckout = async () => {
     const success = await finalizePurchase();
@@ -76,6 +87,7 @@ export default function Carrito() {
                         >
                           -
                         </button>
+                        
                         <input
                           className="h-8 w-8 bg-white text-brand-black text-center  outline-none"
                           type="number"
@@ -102,7 +114,7 @@ export default function Carrito() {
                         </p>
                         <Tooltip title="Eliminar">
                           <IconButton
-                            onClick={() => removeFromCart(item.productId)}
+                            onClick={() => {sonidito(),removeFromCart(item.productId)}}
                           >
                             <RiDeleteBin6Line />
                           </IconButton>
@@ -157,9 +169,12 @@ export default function Carrito() {
                 <p className="text-xs text-gray-700">Incluye impuestos</p>
               </div>
             </div>
+          
+            <audio ref={audioRef} src={capu} />
+          
             <button
-              onClick={handleCheckout}
-              className="mt-6 w-full rounded-md bg-brand-main py-2 font-medium text-white hover:bg-brand-main-hover"
+              onClick={handleCheckout}  
+                            className="mt-6 w-full rounded-md bg-brand-main py-2 font-medium text-white hover:bg-brand-main-hover"
             >
               Finalizar Compra
             </button>

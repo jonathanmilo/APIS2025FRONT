@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AuthForm from "./components/AuthForm";
 import { useValidacion } from "@src/contexts/AuthContext";
 
+
 export default function Ingresar() {
   const { validar } = useValidacion();
   const navigate = useNavigate();
@@ -19,15 +20,18 @@ export default function Ingresar() {
     }
   };
 
+
   const toggleFormMode = () => {
     setFormMode((prev) => (prev === "login" ? "register" : "login"));
     window.scrollTo(0, 0);
   };
 
+
   return (
     <div className="flex-grow flex flex-col items-center min-h-screen bg-white p-10">
       <div className="relative flex flex-col bg-transparent text-brand-black">
         <AuthForm mode={formMode} onSubmit={handleSubmit} />
+          
 
         <div className="flex items-center justify-center w-full gap-4 my-6 px-4">
           <div className="h-px flex-1 bg-gray-300" />

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext,useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Carousel from "@src/components/Carousel";
 import { useCategorias } from "@src/contexts/CategoryContext";
@@ -6,6 +6,7 @@ import { useProductos } from "@src/contexts/ProductContext";
 import GaleriaImagenes from "./components/GaleriaImagenes";
 import { calcularPrecio } from "@src/utils/calcularPrecio";
 import { Button } from "@mui/material";
+import a_quien from '/sounds/a_quien.mp3';
 import {
   filtrarRelacionados,
   obtenerNombresSubcategorias,
@@ -27,7 +28,15 @@ export default function ProductDetail() {
   const [alreadyInCart, setAlreadyInCart] = useState(false);
 
   const navigate = useNavigate();
-
+  //audio
+  const audioRef = useRef(null);
+ const sonidito = () => {
+    // Reinicia el audio si ya estaba reproduciéndose
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+  };
   useEffect(() => {
     if (productos.length > 0) {
       const prod = productos.find((p) => String(p.id) === id);
@@ -55,6 +64,7 @@ export default function ProductDetail() {
 
   const manejarCantidad = (operacion) => {
     if (operacion === "incrementar") {
+      sonidito();
       if (quantity < producto.stock) {
         setCantidad((c) => c + 1);
       }
@@ -134,7 +144,9 @@ export default function ProductDetail() {
                 className="min-w-0"
               >
                 -
+              <audio ref={audioRef} src={a_quien} />
               </Button>
+              
               <span className="mx-4 text-xl text-brand-black">{quantity}</span>
               <Button
                 variant="outlined"

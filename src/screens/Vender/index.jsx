@@ -1,9 +1,12 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect,useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCategorias } from "@src/contexts/CategoryContext.jsx";
 import { CategoriasValidas } from "./components/CategoriasValidas.jsx";
 import { createProduct } from "@src/api/products.js";
 import { useValidacion } from "@src/contexts/AuthContext.jsx";
+import talleres from '/sounds/talleres.mp3';
+
+
 
 import {
   TextField,
@@ -25,7 +28,15 @@ export function Vender() {
   const [categoria, setCategoria] = useState("");
   const { user } = useValidacion();
 
-
+  //audio
+  const audioRef = useRef(null);
+function sonidito (){
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
+      }
+    
+}
   // Estado del formulario
   const [formData, setFormData] = useState({
     id: Math.floor(Math.random() * 900) + 101,
@@ -113,10 +124,8 @@ export function Vender() {
       alert(error);
       return;
     }
+    sonidito()
 
-    // Aquí iría la lógica para enviar los datos al servidor
-
-    //createProduct(formData)
     console.log("Datos del producto a publicar:", formData);
     createProduct(formData)
     alert("Producto publicado exitosamente!");
@@ -272,6 +281,7 @@ export function Vender() {
       <Grid>
         <Divider sx={{ my: 3 }} />
         <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
+          <audio ref={audioRef} src={talleres} />
           <Button
             variant="outlined"
             onClick={() => navigate(-1)}
@@ -284,6 +294,7 @@ export function Vender() {
             variant="contained"
             color="primary"
             sx={{ px: 4 }}
+            onClick={sonidito}
           >
             Publicar
           </Button>

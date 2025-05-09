@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { TextField } from "@mui/material";
+import { useRef } from "react";
+import loony from '/sounds/loony.mp3';
+
 
 export default function AuthForm({ mode = "login", onSubmit }) {
   const [formData, setFormData] = useState({
@@ -30,6 +33,15 @@ export default function AuthForm({ mode = "login", onSubmit }) {
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+//audio
+ const audioRef = useRef(null);
+  function sonidito (){
+
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
   };
 
   const handleChange = (e) => {
@@ -95,8 +107,9 @@ export default function AuthForm({ mode = "login", onSubmit }) {
               error={errors.password}
             />
           </div>
-
+          <audio ref={audioRef} src={loony} />
           <button
+            onClick={sonidito()}
             className="mt-6 w-full bg-brand-main py-3 px-6 text-white font-bold uppercase shadow-md transition-all hover:shadow-lg"
             type="submit"
             disabled={Object.keys(errors).length > 0}

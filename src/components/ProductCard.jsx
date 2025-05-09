@@ -5,6 +5,7 @@ import { calcularPrecio } from "@src/utils/calcularPrecio";
 import { useUserData } from "@src/hooks/useUserData";
 import { useUsuario } from "@src/contexts/UserContext";
 
+
 function ProductCard({ producto }) {
   const { usuarios } = useUsuario();
   const { usuario, loading, error } = useUserData(producto.userId, usuarios);
@@ -18,7 +19,10 @@ function ProductCard({ producto }) {
     <Link
       to={`/catalogo/${producto.id}`}
       className="flex flex-col bg-white shadow-md overflow-hidden max-w-sm w-full h-full hover:shadow-xl cursor-pointer"
+     
     >
+     
+      
       <div className="relative">
         <img
           src={producto.images[0].url}

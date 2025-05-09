@@ -24,6 +24,7 @@ export default function UserMenu({ usuario }) {
   };
 
   const handleLogout = () => {
+
     logout();
     handleClose();
   };
@@ -98,7 +99,10 @@ export default function UserMenu({ usuario }) {
           <SlSettings className="mr-1" />
           Configuración
         </MenuItem>
+
+        
         <MenuItem onClick={handleLogout}>
+
           <MdLogout className="mr-1" />
           Cerrar sesión
         </MenuItem>
