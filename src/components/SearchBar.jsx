@@ -15,9 +15,8 @@ function SearchBar({ buscar }) {
   };
 
   return (
-    <div className="relative rounded-2xl bg-white sm:mx-auto sm:max-w-lg">
-      <div className="mx-auto max-w-md">
-        <form onSubmit={handleSubmit} className="relative mx-auto w-max">
+    <div className="relative">
+        <form onSubmit={handleSubmit} className="relative">
           <input
             type="search"
             className="peer cursor-pointer text-gray-500 relative z-10 h-13 w-13 rounded-full border-2 bg-transparent pl-12 outline-none transition-all duration-300 ease-in-out focus:w-64 focus:cursor-text focus:pl-16 focus:pr-4 border-brand-main"
@@ -28,7 +27,6 @@ function SearchBar({ buscar }) {
           />
           <CiSearch className="absolute text-brand-main inset-y-0 my-auto h-8 w-13 border-r border-transparent stroke-brand-gray px-3.5 peer-focus:border-brand-main peer-focus:stroke-brand-main-hover" />
         </form>
-      </div>
     </div>
   );
 }
