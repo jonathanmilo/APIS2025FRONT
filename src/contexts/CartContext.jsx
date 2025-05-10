@@ -1,8 +1,9 @@
-import { useReducer, createContext } from "react";
+import { useReducer, createContext, useEffect } from "react";
 import { cartReducer, cartInitialState } from "@src/reducers/cartReducer";
 import { calcularTotal } from "@src/utils/calcularTotal";
-import { updateProductStock } from "@src/api/products";
-
+import { updateProductStock, fetchProductById } from "@src/api/products";
+import { useValidacion } from "./AuthContext";
+import { fetchUserCart } from "@src/api/cart";
 
 export const CartContext = createContext();
 
@@ -43,34 +44,55 @@ function useCartReducer() {
 }
 
 export function CartProvider({ children }) {
+  const { user } = useValidacion();
   const { state, addToCart, removeFromCart, clearCart, updateQuantity } =
     useCartReducer();
 
   const countProducts = () => state.length;
 
+  const obtenerCarrito = async () => {
+    if (user) {
+      try {
+        const response = await fetchUserCart(user.id);
+        const products = response.data.products;
+
+        for (const p of products) {
+          const response = await fetchProductById(p.productId);
+          addToCart(response.data, p.quantity);
+        }
+      } catch (error) {
+        console.error("Error al obtener el carrito:", error);
+      }
+    }
+  };
+
   const finalizePurchase = () => {
     for (let i = 0; i < state.length; i++) {
       const product = state[i];
       const { productId, quantity } = product;
-        try {
-
-          const response = updateProductStock(productId, product.productData.stock - product.quantity);
+      try {
+        const response = updateProductStock(
+          productId,
+          product.productData.stock - product.quantity
+        );
 
         //  console.log("Stock actualizado", response.data);
-          clearCart();
-          } catch (error) {
-          console.error("Error al actualizar el stock", error);
-        }
+        clearCart();
+      } catch (error) {
+        console.error("Error al actualizar el stock", error);
+      }
     }
     return new Promise((resolve) => {
       setTimeout(() => {
-
         resolve(true);
       }, 500);
     });
   };
 
-  //agregar logica obtener carrito de la base de datos
+  useEffect(() => {
+    obtenerCarrito();
+  }, [user]);
+
   return (
     <CartContext.Provider
       value={{
