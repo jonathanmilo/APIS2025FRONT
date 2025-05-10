@@ -57,8 +57,17 @@ export function CartProvider({ children }) {
         const products = response.data.products;
 
         for (const p of products) {
-          const response = await fetchProductById(p.productId);
-          addToCart(response.data, p.quantity);
+          const existingItem = state.find(
+            (item) => item.productId === p.productId
+          );
+
+          if (!existingItem) {
+            const response = await fetchProductById(p.productId);
+            addToCart(response.data, p.quantity);
+          } else {
+            const nuevaCantidad = existingItem.quantity + p.quantity;
+            updateQuantity(p.productId, nuevaCantidad);
+          }
         }
       } catch (error) {
         console.error("Error al obtener el carrito:", error);
