@@ -1054,37 +1054,11 @@
       "isFeatured": false,
       "createdAt": "2025-04-23T22:30:00.000Z",
       "updatedAt": "2025-04-23T22:30:00.000Z"
-    },
-    {
-      "id": 466,
-      "userId": "3",
-      "title": "TEST",
-      "images": [
-        {
-          "url": "https://picsum.photos/600/400",
-          "isCover": true
-        },
-        {
-          "url": "https://picsum.photos/600/400",
-          "isCover": false
-        }
-      ],
-      "description": "la cosa loca",
-      "price": "55050000",
-      "stock": "300",
-      "categoryId": "3",
-      "subcategoryIds": [
-        "3-2",
-        "3-3"
-      ],
-      "discountPercentage": "60",
-      "isFeatured": false
     }
   ],
   "carts": [
     {
-      "id": "1",
-      "userId": "10",
+      "id": "10",
       "products": [
         {
           "productId": "2",
@@ -1097,8 +1071,7 @@
       ]
     },
     {
-      "id": "2",
-      "userId": "1",
+      "id": "1",
       "products": [
         {
           "productId": "3",
@@ -1111,8 +1084,7 @@
       ]
     },
     {
-      "id": "3",
-      "userId": "5",
+      "id": "5",
       "products": [
         {
           "productId": "5",
@@ -1121,8 +1093,7 @@
       ]
     },
     {
-      "id": "4",
-      "userId": "2",
+      "id": "2",
       "products": [
         {
           "productId": "4",
@@ -1131,8 +1102,7 @@
       ]
     },
     {
-      "id": "5",
-      "userId": "6",
+      "id": "6",
       "products": [
         {
           "productId": "5",
