@@ -3,7 +3,7 @@ import { useValidacion } from "@src/contexts/AuthContext";
 
 const ProtectedRoutes = () => {
   const { user } = useValidacion();
-  return user ? <Outlet /> : <Navigate to="/Ingresar" />;
+  return user? <Outlet /> : <Navigate to="/Ingresar" />; // acá debería ir el token
 };
 
 export default ProtectedRoutes;

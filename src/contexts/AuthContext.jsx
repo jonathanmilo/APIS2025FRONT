@@ -1,21 +1,30 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react"; 
 import { authReducer, initialState } from "@src/reducers/authReducer";
 import { useUsuario } from "./UserContext";
 
 const AuthContext = createContext();
 
-export function useValidacion() {
+export function useValidacion() { 
   return useContext(AuthContext);
 }
 
 export function ValidacionProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
   const { usuarios } = useUsuario();
+
   const login = (usuario) => {
-    dispatch({ type: "LOGIN", payload: usuario });
+    const { password, ...usuarioSeguro } = usuario; // excluir contraseña para que no figure en LocalStorage (temporal)
+    const token = "fake-jwt-token"; // token hardcodeado
+    const payload = { ...usuarioSeguro, token };
+
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(usuarioSeguro)); 
+    dispatch({ type: "LOGIN", payload });
   };
 
   const logout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     dispatch({ type: "LOGOUT" });
   };
 
