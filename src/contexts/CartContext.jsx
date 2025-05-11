@@ -3,7 +3,7 @@ import { cartReducer, cartInitialState } from "@src/reducers/cartReducer";
 import { calcularTotal } from "@src/utils/calcularTotal";
 import { updateProductStock, fetchProductById } from "@src/api/products";
 import { useValidacion } from "./AuthContext";
-import { fetchUserCart } from "@src/api/cart";
+import { fetchUserCart } from "@src/api/cart/api";
 
 export const CartContext = createContext();
 
