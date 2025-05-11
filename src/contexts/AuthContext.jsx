@@ -1,10 +1,10 @@
-import { createContext, useContext, useReducer } from "react"; 
+import { createContext, useContext, useReducer } from "react";
 import { authReducer, initialState } from "@src/reducers/authReducer";
 import { useUsuario } from "./UserContext";
 
 const AuthContext = createContext();
 
-export function useValidacion() { 
+export function useValidacion() {
   return useContext(AuthContext);
 }
 
@@ -17,14 +17,10 @@ export function ValidacionProvider({ children }) {
     const token = "fake-jwt-token"; // token hardcodeado
     const payload = { ...usuarioSeguro, token };
 
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(usuarioSeguro)); 
     dispatch({ type: "LOGIN", payload });
   };
 
   const logout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
     dispatch({ type: "LOGOUT" });
   };
 
