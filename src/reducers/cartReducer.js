@@ -13,7 +13,7 @@ export const cartReducer = (state, action) => {
 
       if (existingProduct) {
         newState = state.map((p) =>
-          p.id === product.id
+          p.productId === product.productId
             ? { ...p, quantity: p.quantity + product.quantity }
             : p
         );
@@ -35,14 +35,12 @@ export const cartReducer = (state, action) => {
       const { productId, quantity } = action.payload;
 
       const newState = state.map((p) => {
-        
-
         if (p.productId === productId) {
           const maxStock = p.productData.stock || Infinity;
           const newQuantity = Math.min(quantity, maxStock);
           return { ...p, quantity: newQuantity };
         }
-        
+
         return p;
       });
 
