@@ -10,12 +10,15 @@ import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import { CartContext } from "@src/contexts/CartContext.jsx";
 import { useValidacion } from "@src/contexts/AuthContext.jsx";
+import { useTheme } from "@src/contexts/ThemeContext";
+import { BsSun, BsMoon } from "react-icons/bs";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const auth = useValidacion();
   const { countProducts } = useContext(CartContext);
   const navigate = useNavigate();
+  const { isDarkMode, toggleTheme } = useTheme();
 
   if (!auth) return null;
 
@@ -23,7 +26,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 bg-white">
+      <nav className="sticky top-0 bg-white dark:bg-gray-800">
         <div className="w-full lg:px-30 flex justify-between items-center pt-10 md:pt-5">
           <div className="hidden md:block">
             <ul className="flex items-center gap-2 lg:gap-6 text-brand-black">
@@ -73,6 +76,16 @@ const Navbar = () => {
                 </Badge>
               </IconButton>
             </Tooltip>
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+            >
+              {isDarkMode ? (
+                <BsSun className="text-yellow-400" />
+              ) : (
+                <BsMoon className="text-gray-800" />
+              )}
+            </button>
           </div>
 
           <div className="md:hidden" onClick={() => setOpen(!open)}>

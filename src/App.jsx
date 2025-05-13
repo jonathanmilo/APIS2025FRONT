@@ -18,30 +18,33 @@ import Carrito from "./screens/Carrito";
 import Vender from "./screens/Vender";
 import Configuracion from "./screens/Configuracion";
 import Compras from "./screens/Compras";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/catalogo" element={<Catalogo />} />
-          <Route path="/catalogo/:id" element={<ProductDetail />} />
-          <Route path="/ingresar" element={<Ingresar />} />
-          <Route path="/carrito" element={<Carrito />} />
+    <ThemeProvider>
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/catalogo" element={<Catalogo />} />
+            <Route path="/catalogo/:id" element={<ProductDetail />} />
+            <Route path="/ingresar" element={<Ingresar />} />
+            <Route path="/carrito" element={<Carrito />} />
 
-          <Route element={<ProtectedRoutes />}>
-            <Route path="/mi-perfil" element={<MiPerfil />} />
-            <Route path="/mis-compras" element={<Compras />} />
-            <Route path="/configuracion" element={<Configuracion />} />
-            <Route path="/vender" element={<Vender />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/mi-perfil" element={<MiPerfil />} />
+              <Route path="/mis-compras" element={<Compras />} />
+              <Route path="/configuracion" element={<Configuracion />} />
+              <Route path="/vender" element={<Vender />} />
+            </Route>
+
+            <Route path="*" element={<Navigate to="/" />} />
           </Route>
-
-          <Route path="*" element={<Navigate to="/" />} />
-        </Route>
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 

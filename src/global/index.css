@@ -33,3 +33,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+body.dark {
+  background-color: #1a202c; /* Fondo oscuro */
+  color: #f7fafc; /* Texto claro */
+}
