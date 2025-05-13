@@ -26,10 +26,10 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky top-0 bg-white dark:bg-gray-800">
+      <nav className="bg-white transition-colors duration-300 dark:bg-gray-800 shadow-lg">
         <div className="w-full lg:px-30 flex justify-between items-center pt-10 md:pt-5">
           <div className="hidden md:block">
-            <ul className="flex items-center gap-2 lg:gap-6 text-brand-black">
+            <ul className="flex items-center gap-2 lg:gap-6 text-brand-black dark:text-white">
               {NAVBAR_MENU.map((item) => {
                 return (
                   <li key={item.id}>
@@ -78,13 +78,9 @@ const Navbar = () => {
             </Tooltip>
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
             >
-              {isDarkMode ? (
-                <BsSun className="text-yellow-400" />
-              ) : (
-                <BsMoon className="text-gray-800" />
-              )}
+              {isDarkMode ? <BsMoon className="text-white" /> : <BsSun />}
             </button>
           </div>
 

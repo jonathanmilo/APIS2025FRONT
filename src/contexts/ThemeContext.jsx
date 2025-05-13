@@ -7,17 +7,24 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    // Checkea si había una preferencia guardada
+    return localStorage.getItem('darkMode') === 'true'
+  });
 
   const toggleTheme = () => {
-    setIsDarkMode((prev) => !prev);
+    setIsDarkMode(prev => {
+      const newValue = !prev;
+      localStorage.setItem('darkMode', newValue);
+      return newValue;
+    });
   };
 
   useEffect(() => {
     if (isDarkMode) {
-      document.body.classList.add("dark");
+      document.documentElement.classList.add('dark');
     } else {
-      document.body.classList.remove("dark");
+      document.documentElement.classList.remove('dark');
     }
   }, [isDarkMode]);
 

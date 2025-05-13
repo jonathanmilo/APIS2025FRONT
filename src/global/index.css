@@ -19,22 +19,48 @@
   }
 }
 
+/* Estilos base (modo claro) */
 :root {
-  font-family: "Montserrat", Inter, system-ui, Avenir, Helvetica, Arial,
-    sans-serif;
+  font-family: "Montserrat", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color: rgba(255, 255, 255, 0.87);
-  background-color: white;
-
+  color: #1a202c; /* Color de texto oscuro para modo claro */
+  background-color: #ffffff; /* Fondo claro */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body.dark {
-  background-color: #1a202c; /* Fondo oscuro */
-  color: #f7fafc; /* Texto claro */
+body {
+  background-color: #ffffff;
+  color: #1a202c;
+}
+
+/* Estilos para modo oscuro */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: #1a202c;
+  color: #f7fafc;
+}
+
+.dark nav {
+  background-color: #2d3748 !important;
+}
+
+.dark .bg-white {
+  background-color: #2d3748 !important;
+}
+
+.dark .text-brand-black {
+  color: #f7fafc !important;
+}
+
+/* Otros elementos que necesiten estilos en modo oscuro */
+.dark .card {
+  background-color: #2d3748;
+  border-color: #4a5568;
 }
