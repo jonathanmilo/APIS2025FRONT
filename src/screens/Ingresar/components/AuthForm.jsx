@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { TextField } from "@mui/material";
 import { useRef } from "react";
 import loony from '/sounds/loony.mp3';
-import { useValidacion } from "../../../contexts/AuthContext";
+import { useValidacion } from "@src/contexts/AuthContext";
+import { crearCarrito } from "@src/api/cart/guardarCarritoenBD";
+import { CartContext } from "@src/contexts/CartContext";
+
 
 export default function AuthForm({ mode = "login", onSubmit }) {
   const { register } = useValidacion();
+  const { cart } = useContext(CartContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -75,6 +79,7 @@ export default function AuthForm({ mode = "login", onSubmit }) {
 
         const success = await register(newUser);
         if (success) {
+          await crearCarrito(newUser.id, cart);
           onSubmit(formData);
         }
       } else {
