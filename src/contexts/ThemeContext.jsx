@@ -7,20 +7,19 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Checkea si había una preferencia guardada
-    return localStorage.getItem('darkMode') === 'true'
-  });
+  const [isDarkMode, setIsDarkMode] = useState(false); // Inicializamos en false por defecto
 
   const toggleTheme = () => {
-    setIsDarkMode(prev => {
-      const newValue = !prev;
-      localStorage.setItem('darkMode', newValue);
-      return newValue;
+    setIsDarkMode(prevMode => {
+      const newMode = !prevMode;
+      // Guardamos la preferencia en localStorage
+      localStorage.setItem('darkMode', newMode.toString());
+      return newMode;
     });
   };
 
   useEffect(() => {
+    // Aplicamos la clase 'dark' solo cuando isDarkMode es true
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
     } else {

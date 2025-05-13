@@ -18,11 +18,8 @@ function ProductCard({ producto }) {
   return (
     <Link
       to={`/catalogo/${producto.id}`}
-      className="flex flex-col bg-white shadow-md overflow-hidden max-w-sm w-full h-full hover:shadow-xl cursor-pointer"
-     
+      className="flex flex-col bg-white shadow-md overflow-hidden max-w-sm w-full h-full hover:shadow-xl cursor-pointer transition-theme"
     >
-     
-      
       <div className="relative">
         <img
           src={producto.images[0].url}
@@ -45,7 +42,7 @@ function ProductCard({ producto }) {
 
       <Divider />
 
-      <div className="flex flex-col justify-between flex-1 p-2">
+      <div className="flex flex-col justify-between flex-1 p-2 dark:text-white">
         <div className="flex justify-between items-start mb-2">
           <div>
             <h2 className="uppercase font-semibold text-gray-800 mb-1">

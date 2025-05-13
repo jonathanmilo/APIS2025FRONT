@@ -78,9 +78,10 @@ const Navbar = () => {
             </Tooltip>
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+              className="p-2 rounded-lg transition-colors duration-300"
+              aria-label={isDarkMode ? "Activar modo claro" : "Activar modo oscuro"}
             >
-              {isDarkMode ? <BsMoon className="text-white" /> : <BsSun />}
+              {isDarkMode ? <BsMoon className="text-white" /> : <BsSun className="text-gray-700" />}
             </button>
           </div>
 
