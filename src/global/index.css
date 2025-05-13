@@ -47,7 +47,6 @@ body {
 /* Navbar y cards en modo claro */
 nav {
   background-color: #f8fafc; /* Un blanco ligeramente grisáceo */
-  border-bottom: 1px solid #e2e8f0;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -66,7 +65,6 @@ nav {
 
 .dark nav {
   background-color: #1e293b; /* Un tono más claro que el fondo oscuro */
-  border-bottom: 1px solid #334155;
 }
 
 .dark .bg-white {

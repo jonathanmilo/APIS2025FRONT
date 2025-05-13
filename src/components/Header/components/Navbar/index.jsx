@@ -26,7 +26,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-white transition-colors duration-300 dark:bg-gray-800 shadow-lg">
+      <nav className="bg-white transition-colors duration-300 dark:bg-gray-800">
         <div className="w-full lg:px-30 flex justify-between items-center pt-10 md:pt-5">
           <div className="hidden md:block">
             <ul className="flex items-center gap-2 lg:gap-6 text-brand-black dark:text-white">
