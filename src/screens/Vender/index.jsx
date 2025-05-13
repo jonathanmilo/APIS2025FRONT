@@ -40,7 +40,7 @@ function sonidito (){
   // Estado del formulario
   const [formData, setFormData] = useState({
     id: (Math.floor(Math.random() * 900) + 101).toString(),
-    userId: user.id,
+    userId: user.id. toString(),
     title: "",
     images: [{ url: "", isCover: true }],
     description: "",
