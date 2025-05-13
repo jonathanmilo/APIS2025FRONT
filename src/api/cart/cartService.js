@@ -1,6 +1,6 @@
 import { saveUserCart, createCart } from "@src/api/cart/api";
 
-export const guardarCarritoEnBD = async (userId, cartState) => {
+export const guardarCarrito = async (userId, cartState) => {
   if (!userId) return;
 
   const products = cartState.map((item) => ({

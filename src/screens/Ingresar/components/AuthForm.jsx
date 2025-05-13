@@ -3,7 +3,7 @@ import { TextField } from "@mui/material";
 import { useRef } from "react";
 import loony from '/sounds/loony.mp3';
 import { useValidacion } from "@src/contexts/AuthContext";
-import { crearCarrito } from "@src/api/cart/guardarCarritoenBD";
+import { crearCarrito } from "@src/api/cart/cartService";
 import { CartContext } from "@src/contexts/CartContext";
 
 

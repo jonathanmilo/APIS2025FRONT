@@ -11,7 +11,7 @@ import Divider from "@mui/material/Divider";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { useContext } from "react";
 import { CartContext } from "@src/contexts/CartContext";
-import { guardarCarritoEnBD } from "@src/api/cart/guardarCarritoenBD";
+import { guardarCarrito } from "@src/api/cart/cartService";
 
 export default function UserMenu({ usuario }) {
   const { logout } = useValidacion();
@@ -28,7 +28,7 @@ export default function UserMenu({ usuario }) {
   };
 
   const handleLogout = () => {
-    guardarCarritoEnBD(usuario.id, cart)
+    guardarCarrito(usuario.id, cart)
     clearCart();
     logout();
     handleClose();
