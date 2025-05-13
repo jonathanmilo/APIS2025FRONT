@@ -168,11 +168,11 @@
       "firstName": "Carlo",
       "lastName": "Rojas",
       "address": {
-        "street": "Calle Ficticia 123",
-        "state": "Buenos Aires",
-        "country": "Argentina"
+        "street": "",
+        "state": "",
+        "country": ""
       },
-      "avatar": "https://randomuser.me/api/portraits/med/men/1.jpg",
+      "avatar": "",
       "createdAt": "2025-05-12T22:57:26.555Z",
       "updatedAt": "2025-05-12T22:57:26.555Z"
     }

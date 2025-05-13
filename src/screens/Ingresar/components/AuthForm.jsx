@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import { useRef } from "react";
-import axios from 'axios';
 import loony from '/sounds/loony.mp3';
-
+import { useValidacion } from "../../../contexts/AuthContext";
 
 export default function AuthForm({ mode = "login", onSubmit }) {
+  const { register } = useValidacion();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -36,14 +37,13 @@ export default function AuthForm({ mode = "login", onSubmit }) {
     return Object.keys(newErrors).length === 0;
   };
 
-//audio
- const audioRef = useRef(null);
-  function sonidito (){
-
+  //audio
+  const audioRef = useRef(null);
+  function sonidito() {
     if (audioRef.current) {
       audioRef.current.play();
     }
-  };
+  }
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -55,33 +55,27 @@ export default function AuthForm({ mode = "login", onSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      if (isRegister) {
-        const newUser = {
-          id: Date.now().toString(),
-          username: `${formData.name.toLowerCase()}${formData.lastname.toLowerCase()}`,
-          email: formData.email,
-          password: formData.password,
-          firstName: formData.name,
-          lastName: formData.lastname,
-          address: {
-            street: "Calle Ficticia 123",
-            state: "Buenos Aires",
-            country: "Argentina",
-          },
-          avatar: "https://randomuser.me/api/portraits/med/men/1.jpg",
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-        };
+      const newUser = {
+        id: Date.now().toString(),
+        username: `${formData.name.toLowerCase()}${formData.lastname.toLowerCase()}`,
+        email: formData.email,
+        password: formData.password,
+        firstName: formData.name,
+        lastName: formData.lastname,
+        address: {
+          street: "",
+          state: "",
+          country: "",
+        },
+        avatar: "",
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
 
-        try {
-          await axios.post('http://localhost:3001/users', newUser);
-          alert('Usuario registrado exitosamente');
-        } catch (error) {
-          console.error('Error al registrar el usuario:', error);
-          alert('Hubo un error al registrar el usuario.');
-        }
+      const success = await register(newUser);
+      if (success) {
+        onSubmit(formData);
       }
-      onSubmit(formData);
     }
   };
 
