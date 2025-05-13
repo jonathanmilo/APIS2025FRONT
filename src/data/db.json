@@ -373,11 +373,7 @@
       "id": "1",
       "userId": "1",
       "categoryId": "2",
-      "subcategoryIds": [
-        "2-3",
-        "2-1",
-        "2-2"
-      ],
+      "subcategoryIds": ["2-3", "2-1", "2-2"],
       "title": "Laptop HP Pavilion",
       "images": [
         {
@@ -405,10 +401,7 @@
       "id": "2",
       "userId": "2",
       "categoryId": "2",
-      "subcategoryIds": [
-        "2-1",
-        "2-2"
-      ],
+      "subcategoryIds": ["2-1", "2-2"],
       "title": "Smartphone Samsung Galaxy S21",
       "images": [
         {
@@ -428,10 +421,7 @@
       "id": "3",
       "userId": "3",
       "categoryId": "5",
-      "subcategoryIds": [
-        "5-2",
-        "5-1"
-      ],
+      "subcategoryIds": ["5-2", "5-1"],
       "title": "Crema facial anti-envejecimiento",
       "images": [
         {
@@ -451,9 +441,7 @@
       "id": "4",
       "userId": "4",
       "categoryId": "1",
-      "subcategoryIds": [
-        "1-1"
-      ],
+      "subcategoryIds": ["1-1"],
       "title": "Camisa de Algodón",
       "images": [
         {
@@ -473,11 +461,7 @@
       "id": "5",
       "userId": "5",
       "categoryId": "6",
-      "subcategoryIds": [
-        "6-3",
-        "6-2",
-        "6-1"
-      ],
+      "subcategoryIds": ["6-3", "6-2", "6-1"],
       "title": "Pelota de fútbol profesional",
       "images": [
         {
@@ -497,9 +481,7 @@
       "id": "6",
       "userId": "5",
       "categoryId": "1",
-      "subcategoryIds": [
-        "1-2"
-      ],
+      "subcategoryIds": ["1-2"],
       "title": "Zapatos Deportivos Nike Air Max",
       "images": [
         {
@@ -519,10 +501,7 @@
       "id": "7",
       "userId": "2",
       "categoryId": "4",
-      "subcategoryIds": [
-        "4-1",
-        "4-3"
-      ],
+      "subcategoryIds": ["4-1", "4-3"],
       "title": "Libro 'El Principito'",
       "images": [
         {
@@ -542,10 +521,7 @@
       "id": "8",
       "userId": "3",
       "categoryId": "3",
-      "subcategoryIds": [
-        "3-2",
-        "3-1"
-      ],
+      "subcategoryIds": ["3-2", "3-1"],
       "title": "Lámpara de mesa moderna",
       "images": [
         {
@@ -565,10 +541,7 @@
       "id": "9",
       "userId": "4",
       "categoryId": "3",
-      "subcategoryIds": [
-        "3-3",
-        "3-2"
-      ],
+      "subcategoryIds": ["3-3", "3-2"],
       "title": "Sofá de 3 plazas",
       "images": [
         {
@@ -588,10 +561,7 @@
       "id": "10",
       "userId": "1",
       "categoryId": "2",
-      "subcategoryIds": [
-        "2-2",
-        "2-1"
-      ],
+      "subcategoryIds": ["2-2", "2-1"],
       "title": "Auriculares Bluetooth Sony",
       "images": [
         {
@@ -611,9 +581,7 @@
       "id": "11",
       "userId": "2",
       "categoryId": "1",
-      "subcategoryIds": [
-        "1-2"
-      ],
+      "subcategoryIds": ["1-2"],
       "title": "Botines de cuero",
       "images": [
         {
@@ -633,9 +601,7 @@
       "id": "12",
       "userId": "3",
       "categoryId": "2",
-      "subcategoryIds": [
-        "2-3"
-      ],
+      "subcategoryIds": ["2-3"],
       "title": "Monitor LG UltraWide",
       "images": [
         {
@@ -655,9 +621,7 @@
       "id": "13",
       "userId": "4",
       "categoryId": "3",
-      "subcategoryIds": [
-        "3-1"
-      ],
+      "subcategoryIds": ["3-1"],
       "title": "Batería de cocina antiadherente",
       "images": [
         {
@@ -677,9 +641,7 @@
       "id": "14",
       "userId": "5",
       "categoryId": "4",
-      "subcategoryIds": [
-        "4-2"
-      ],
+      "subcategoryIds": ["4-2"],
       "title": "Set de cuadernos creativos",
       "images": [
         {
@@ -699,9 +661,7 @@
       "id": "15",
       "userId": "1",
       "categoryId": "5",
-      "subcategoryIds": [
-        "5-1"
-      ],
+      "subcategoryIds": ["5-1"],
       "title": "Set de brochas de maquillaje",
       "images": [
         {
@@ -721,9 +681,7 @@
       "id": "16",
       "userId": "2",
       "categoryId": "1",
-      "subcategoryIds": [
-        "1-1"
-      ],
+      "subcategoryIds": ["1-1"],
       "title": "Conjunto deportivo mujer",
       "images": [
         {
@@ -743,9 +701,7 @@
       "id": "17",
       "userId": "3",
       "categoryId": "2",
-      "subcategoryIds": [
-        "2-2"
-      ],
+      "subcategoryIds": ["2-2"],
       "title": "Smartwatch resistente al agua",
       "images": [
         {
@@ -765,9 +721,7 @@
       "id": "18",
       "userId": "4",
       "categoryId": "3",
-      "subcategoryIds": [
-        "3-2"
-      ],
+      "subcategoryIds": ["3-2"],
       "title": "Alfombra estilo bohemio",
       "images": [
         {
@@ -787,9 +741,7 @@
       "id": "19",
       "userId": "5",
       "categoryId": "4",
-      "subcategoryIds": [
-        "4-1"
-      ],
+      "subcategoryIds": ["4-1"],
       "title": "Libro de recetas saludables",
       "images": [
         {
@@ -809,9 +761,7 @@
       "id": "20",
       "userId": "1",
       "categoryId": "6",
-      "subcategoryIds": [
-        "6-3"
-      ],
+      "subcategoryIds": ["6-3"],
       "title": "Mancuernas ajustables",
       "images": [
         {
@@ -831,9 +781,7 @@
       "id": "21",
       "userId": "2",
       "categoryId": "1",
-      "subcategoryIds": [
-        "1-3"
-      ],
+      "subcategoryIds": ["1-3"],
       "title": "Gafas de sol polarizadas",
       "images": [
         {
@@ -853,9 +801,7 @@
       "id": "22",
       "userId": "3",
       "categoryId": "5",
-      "subcategoryIds": [
-        "5-2"
-      ],
+      "subcategoryIds": ["5-2"],
       "title": "Set de cuidado para barba",
       "images": [
         {
@@ -875,9 +821,7 @@
       "id": "23",
       "userId": "4",
       "categoryId": "6",
-      "subcategoryIds": [
-        "6-2"
-      ],
+      "subcategoryIds": ["6-2"],
       "title": "Cinturón lumbar deportivo",
       "images": [
         {
@@ -897,9 +841,7 @@
       "id": "24",
       "userId": "5",
       "categoryId": "1",
-      "subcategoryIds": [
-        "1-1"
-      ],
+      "subcategoryIds": ["1-1"],
       "title": "Vestido casual estampado",
       "images": [
         {
@@ -927,9 +869,7 @@
       "id": "25",
       "userId": "1",
       "categoryId": "3",
-      "subcategoryIds": [
-        "3-3"
-      ],
+      "subcategoryIds": ["3-3"],
       "title": "Mesa de comedor extensible",
       "images": [
         {
@@ -949,9 +889,7 @@
       "id": "26",
       "userId": "1",
       "categoryId": "2",
-      "subcategoryIds": [
-        "2-3"
-      ],
+      "subcategoryIds": ["2-3"],
       "title": "Laptop Lenovo IdeaPad 3",
       "images": [
         {
@@ -971,9 +909,7 @@
       "id": "27",
       "userId": "2",
       "categoryId": "2",
-      "subcategoryIds": [
-        "2-3"
-      ],
+      "subcategoryIds": ["2-3"],
       "title": "MacBook Air M2 13''",
       "images": [
         {
@@ -993,9 +929,7 @@
       "id": "28",
       "userId": "3",
       "categoryId": "2",
-      "subcategoryIds": [
-        "2-3"
-      ],
+      "subcategoryIds": ["2-3"],
       "title": "PC Gamer Ryzen 7 + RTX 3060",
       "images": [
         {
@@ -1015,9 +949,7 @@
       "id": "29",
       "userId": "4",
       "categoryId": "2",
-      "subcategoryIds": [
-        "2-3"
-      ],
+      "subcategoryIds": ["2-3"],
       "title": "Mini PC Intel NUC",
       "images": [
         {
@@ -1037,9 +969,7 @@
       "id": "30",
       "userId": "5",
       "categoryId": "2",
-      "subcategoryIds": [
-        "2-3"
-      ],
+      "subcategoryIds": ["2-3"],
       "title": "Chromebook HP 14'",
       "images": [
         {
@@ -1054,51 +984,11 @@
       "isFeatured": false,
       "createdAt": "2025-04-23T22:30:00.000Z",
       "updatedAt": "2025-04-23T22:30:00.000Z"
-    },
-    {
-      "id": 466,
-      "userId": "3",
-      "title": "TEST",
-      "images": [
-        {
-          "url": "https://picsum.photos/600/400",
-          "isCover": true
-        },
-        {
-          "url": "https://picsum.photos/600/400",
-          "isCover": false
-        }
-      ],
-      "description": "la cosa loca",
-      "price": "55050000",
-      "stock": "300",
-      "categoryId": "3",
-      "subcategoryIds": [
-        "3-2",
-        "3-3"
-      ],
-      "discountPercentage": "60",
-      "isFeatured": false
     }
   ],
   "carts": [
     {
       "id": "1",
-      "userId": "10",
-      "products": [
-        {
-          "productId": "2",
-          "quantity": 1
-        },
-        {
-          "productId": "3",
-          "quantity": 3
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "userId": "1",
       "products": [
         {
           "productId": "3",
@@ -1111,18 +1001,11 @@
       ]
     },
     {
-      "id": "3",
-      "userId": "5",
-      "products": [
-        {
-          "productId": "5",
-          "quantity": 1
-        }
-      ]
+      "id": "2",
+      "products": []
     },
     {
-      "id": "4",
-      "userId": "2",
+      "id": "3",
       "products": [
         {
           "productId": "4",
@@ -1131,12 +1014,49 @@
       ]
     },
     {
+      "id": "4",
+      "products": []
+    },
+    {
       "id": "5",
-      "userId": "6",
+      "products": [
+        {
+          "productId": "5",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "6",
       "products": [
         {
           "productId": "5",
           "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "products": []
+    },
+    {
+      "id": "8",
+      "products": []
+    },
+    {
+      "id": "9",
+      "products": []
+    },
+    {
+      "id": "10",
+      "products": [
+        {
+          "productId": "2",
+          "quantity": 1
+        },
+        {
+          "productId": "3",
+          "quantity": 3
         }
       ]
     }

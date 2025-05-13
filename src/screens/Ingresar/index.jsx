@@ -1,37 +1,43 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthForm from "./components/AuthForm";
 import { useValidacion } from "@src/contexts/AuthContext";
-
+import { CartContext } from "@src/contexts/CartContext";
 
 export default function Ingresar() {
-  const { validar } = useValidacion();
+  const { validar, user } = useValidacion();
+  const { obtenerCarrito } = useContext(CartContext);
   const navigate = useNavigate();
   const [formMode, setFormMode] = useState("login");
+  const [loginExitoso, setLoginExitoso] = useState(false);
 
-  const handleSubmit = (data) => {
+  const handleSubmit = async (data) => {
     if (formMode === "login") {
-      validar(data);
-      alert(`Bienvenido ${data.name || "usuario"}!`);
-      navigate("/");
+      await validar(data);
+      setLoginExitoso(true);
     } else {
       alert(`Cuenta creada para ${data.name}`);
       navigate("/ingresar");
     }
   };
 
+  useEffect(() => {
+    if (loginExitoso && user) {
+      obtenerCarrito();
+      alert(`Bienvenido ${user.name || "usuario"}!`);
+      navigate("/");
+    }
+  }, [loginExitoso, user]);
 
   const toggleFormMode = () => {
     setFormMode((prev) => (prev === "login" ? "register" : "login"));
     window.scrollTo(0, 0);
   };
 
-
   return (
     <div className="flex-grow flex flex-col items-center min-h-screen bg-white p-10">
       <div className="relative flex flex-col bg-transparent text-brand-black">
         <AuthForm mode={formMode} onSubmit={handleSubmit} />
-          
 
         <div className="flex items-center justify-center w-full gap-4 my-6 px-4">
           <div className="h-px flex-1 bg-gray-300" />

@@ -9,9 +9,13 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import Divider from "@mui/material/Divider";
 import { useValidacion } from "@src/contexts/AuthContext";
+import { useContext } from "react";
+import { CartContext } from "@src/contexts/CartContext";
+import { guardarCarritoEnBD } from "@src/api/cart/guardarCarritoenBD";
 
 export default function UserMenu({ usuario }) {
   const { logout } = useValidacion();
+  const { cart, clearCart } = useContext(CartContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -24,7 +28,8 @@ export default function UserMenu({ usuario }) {
   };
 
   const handleLogout = () => {
-
+    guardarCarritoEnBD(usuario.id, cart)
+    clearCart();
     logout();
     handleClose();
   };
@@ -100,9 +105,7 @@ export default function UserMenu({ usuario }) {
           Configuración
         </MenuItem>
 
-        
         <MenuItem onClick={handleLogout}>
-
           <MdLogout className="mr-1" />
           Cerrar sesión
         </MenuItem>
