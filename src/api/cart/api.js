@@ -1,6 +1,6 @@
 import api from "../index";
 
-export const createCart = (userId) => api.post(`/carts/${userId}`, { products }); // TODO: ejecutar despues del register -> products vacio o con datos de local storage (si hay)
+export const createCart = (cartData) => api.post(`/carts`, cartData);
 
 export const fetchUserCart = (userId) => api.get(`/carts/${userId}`);
 

@@ -159,6 +159,22 @@
       "avatar": "https://randomuser.me/api/portraits/med/women/4.jpg",
       "createdAt": "2025-04-23T21:20:16.720495",
       "updatedAt": "2025-04-23T21:20:16.720495"
+    },
+    {
+      "id": "1747090646555",
+      "username": "carlorojas",
+      "email": "crojas@example.com",
+      "password": "pass1",
+      "firstName": "Carlo",
+      "lastName": "Rojas",
+      "address": {
+        "street": "",
+        "state": "",
+        "country": ""
+      },
+      "avatar": "",
+      "createdAt": "2025-05-12T22:57:26.555Z",
+      "updatedAt": "2025-05-12T22:57:26.555Z"
     }
   ],
   "orders": [
@@ -984,6 +1000,31 @@
       "isFeatured": false,
       "createdAt": "2025-04-23T22:30:00.000Z",
       "updatedAt": "2025-04-23T22:30:00.000Z"
+    },
+    {
+      "id": "466",
+      "userId": "3",
+      "title": "TEST",
+      "images": [
+        {
+          "url": "https://picsum.photos/600/400",
+          "isCover": true
+        },
+        {
+          "url": "https://picsum.photos/600/400",
+          "isCover": false
+        }
+      ],
+      "description": "la cosa loca",
+      "price": "55050000",
+      "stock": "300",
+      "categoryId": "3",
+      "subcategoryIds": [
+        "3-2",
+        "3-3"
+      ],
+      "discountPercentage": "60",
+      "isFeatured": false
     }
   ],
   "carts": [

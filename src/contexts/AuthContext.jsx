@@ -1,6 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import { authReducer, initialState } from "@src/reducers/authReducer";
 import { useUsuario } from "./UserContext";
+import { createUser } from "../api/users";
 
 const AuthContext = createContext();
 
@@ -40,8 +41,26 @@ export function ValidacionProvider({ children }) {
     }
   };
 
+  const register = async (userData) => {
+    const existingUser = usuarios.find((user) => user.email === userData.email);
+    if (existingUser) {
+      alert("El correo ya está registrado.");
+      return false;
+    }
+
+    try {
+      await createUser(userData);
+      alert("Usuario registrado exitosamente.");
+      return true;
+    } catch (error) {
+      console.error("Error al registrar el usuario:", error);
+      alert("Hubo un error al registrar el usuario.");
+      return false;
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ ...state, login, logout, validar }}>
+    <AuthContext.Provider value={{ ...state, login, logout, validar, register }}>
       {children}
     </AuthContext.Provider>
   );
