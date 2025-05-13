@@ -55,26 +55,30 @@ export default function AuthForm({ mode = "login", onSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      const newUser = {
-        id: Date.now().toString(),
-        username: `${formData.name.toLowerCase()}${formData.lastname.toLowerCase()}`,
-        email: formData.email,
-        password: formData.password,
-        firstName: formData.name,
-        lastName: formData.lastname,
-        address: {
-          street: "",
-          state: "",
-          country: "",
-        },
-        avatar: "",
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      };
+      if (isRegister) {
+        const newUser = {
+          id: Date.now().toString(),
+          username: `${formData.name.toLowerCase()}${formData.lastname.toLowerCase()}`,
+          email: formData.email,
+          password: formData.password,
+          firstName: formData.name,
+          lastName: formData.lastname,
+          address: {
+            street: "",
+            state: "",
+            country: "",
+          },
+          avatar: "",
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        };
 
-      const success = await register(newUser);
-      if (success) {
-        onSubmit(formData);
+        const success = await register(newUser);
+        if (success) {
+          onSubmit(formData);
+        }
+      } else {
+        onSubmit(formData); // Para login, simplemente pasa los datos al padre
       }
     }
   };
