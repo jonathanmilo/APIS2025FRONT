@@ -12,8 +12,13 @@ export function useValidacion() {
 export function ValidacionProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
   const { usuarios } = useUsuario();
+
   const login = (usuario) => {
-    dispatch({ type: "LOGIN", payload: usuario });
+    const { password, ...usuarioSeguro } = usuario; // excluir contraseña para que no figure en LocalStorage (temporal)
+    const token = "fake-jwt-token"; // token hardcodeado
+    const payload = { ...usuarioSeguro, token };
+
+    dispatch({ type: "LOGIN", payload });
   };
 
   const logout = () => {
