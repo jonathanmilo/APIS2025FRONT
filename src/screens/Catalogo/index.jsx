@@ -51,10 +51,10 @@ export function Catalogo() {
 
       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto]  gap-4">
         <div className="text-center md:text-left">
-          <h1 className="text-xl text-brand-black uppercase font-bold">
+          <h1 className="text-xl text-black dark:text-white uppercase font-bold">
             Catálogo de productos
           </h1>
-          <h2 className="text-gray-500">
+          <h2 className="text-gray-500 dark:text-white">
             ¡Explorá nuestro catálogo de productos!
           </h2>
         </div>
