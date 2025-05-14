@@ -1,28 +1,34 @@
 const initialState = {
-    isAuthenticated: localStorage.getItem("user") ? true : false,
-    user: JSON.parse(localStorage.getItem("user")) || null,
-    token: null,
+  isAuthenticated: localStorage.getItem("user") ? true : false,
+  user: JSON.parse(localStorage.getItem("user")) || null, // TODO: eliminar del localStorage cuando se integre Spring Boot
+  token: localStorage.getItem("token") || null, // TODO: almacenar en cookie HttpOnly cuando se integre Spring Boot
 };
 
 const authReducer = (state, action) => {
-    switch (action.type) {
-        case "LOGIN":
-            localStorage.setItem("user", JSON.stringify(action.payload));
-            return {
-                ...state,
-                isAuthenticated: true,
-                user: action.payload,
-            };
-        case "LOGOUT":
-            localStorage.removeItem("user");
-            return {
-                ...state,
-                isAuthenticated: false,
-                user: null,
-            };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case "LOGIN":
+      localStorage.setItem("user", JSON.stringify(action.payload));
+      localStorage.setItem("token", JSON.stringify(action.payload.token));
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload,
+        token: action.payload.token,
+      };
+
+    case "LOGOUT":
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: null,
+        token: null,
+      };
+
+    default:
+      return state;
+  }
 };
 
 export { initialState, authReducer };

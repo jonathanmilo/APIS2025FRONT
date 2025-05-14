@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { TextField } from "@mui/material";
 import { useRef } from "react";
 import loony from '/sounds/loony.mp3';
+import { useValidacion } from "@src/contexts/AuthContext";
+import { crearCarrito } from "@src/api/cart/cartService";
+import { CartContext } from "@src/contexts/CartContext";
 
 
 export default function AuthForm({ mode = "login", onSubmit }) {
+  const { register } = useValidacion();
+  const { cart } = useContext(CartContext);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -35,14 +41,13 @@ export default function AuthForm({ mode = "login", onSubmit }) {
     return Object.keys(newErrors).length === 0;
   };
 
-//audio
- const audioRef = useRef(null);
-  function sonidito (){
-
+  //audio
+  const audioRef = useRef(null);
+  function sonidito() {
     if (audioRef.current) {
       audioRef.current.play();
     }
-  };
+  }
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -51,10 +56,35 @@ export default function AuthForm({ mode = "login", onSubmit }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      onSubmit(formData);
+      if (isRegister) {
+        const newUser = {
+          id: Date.now().toString(),
+          username: `${formData.name.toLowerCase()}${formData.lastname.toLowerCase()}`,
+          email: formData.email,
+          password: formData.password,
+          firstName: formData.name,
+          lastName: formData.lastname,
+          address: {
+            street: "",
+            state: "",
+            country: "",
+          },
+          avatar: "",
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString(),
+        };
+
+        const success = await register(newUser);
+        if (success) {
+          await crearCarrito(newUser.id, cart);
+          onSubmit(formData);
+        }
+      } else {
+        onSubmit(formData); // Para login, simplemente pasa los datos al padre
+      }
     }
   };
 

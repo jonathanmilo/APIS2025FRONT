@@ -1,4 +1,4 @@
-import { React, useState, useEffect,useRef } from "react";
+import { useState, useEffect,useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCategorias } from "@src/contexts/CategoryContext.jsx";
 import { CategoriasValidas } from "./components/CategoriasValidas.jsx";
@@ -39,8 +39,8 @@ function sonidito (){
 }
   // Estado del formulario
   const [formData, setFormData] = useState({
-    id: Math.floor(Math.random() * 900) + 101,
-    userId: user.id,
+    id: (Math.floor(Math.random() * 900) + 101).toString(),
+    userId: user.id. toString(),
     title: "",
     images: [{ url: "", isCover: true }],
     description: "",
