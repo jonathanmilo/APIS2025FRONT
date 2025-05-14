@@ -11,12 +11,11 @@ import {
 
 function Footer() {
   return (
-    <footer className="p-4 sm:p-6 flex flex-col sm:gap-6">
-
+    <footer className="p-4 sm:p-6 bg-white dark:bg-black flex flex-col sm:gap-6">
       <div className="grid grid-cols-1 gap-8 sm:gap-6 sm:grid-cols-2 xl:grid-cols-4 py-7 sm:py-0">
         {/* Primera Fila: Información útil */}
         <div>
-          <h3 className="mb-6 text-sm font-semibold text-brand-black uppercase">
+          <h3 className="mb-6 text-sm font-semibold text-black dark:text-white uppercase">
             Información útil
           </h3>
           <ul>
@@ -24,7 +23,7 @@ function Footer() {
               <a
                 href="#"
                 target="_blank"
-                className="text-gray-600 hover:underline"
+                className="text-black dark:text-white hover:underline"
               >
                 Centro de ayuda en línea
               </a>
@@ -33,7 +32,7 @@ function Footer() {
               <a
                 href="#"
                 target="_blank"
-                className="text-gray-600 hover:underline"
+                className="text-black dark:text-white hover:underline"
               >
                 Políticas de devolución de productos
               </a>
@@ -42,7 +41,7 @@ function Footer() {
               <a
                 href="#"
                 target="_blank"
-                className="text-gray-600 hover:underline"
+                className="text-black dark:text-white hover:underline"
               >
                 Términos y Condiciones
               </a>
@@ -51,7 +50,7 @@ function Footer() {
               <a
                 href="#"
                 target="_blank"
-                className="text-gray-600 hover:underline"
+                className="text-black dark:text-white hover:underline"
               >
                 Información de Aduanas
               </a>
@@ -60,25 +59,25 @@ function Footer() {
         </div>
         {/* Segunda Fila: Todo en un solo lugar */}
         <div>
-          <h3 className="mb-6 text-sm font-semibold text-brand-black uppercase">
+          <h3 className="mb-6 text-sm font-semibold text-black dark:text-white uppercase">
             Todo en un solo lugar
           </h3>
           <ul>
             <li className="mb-4 flex flex-row gap-2">
-              <FaCheck className="text-brand-black mt-1" />
-              <p className="text-gray-600">
+              <FaCheck className="text-black dark:text-white mt-1" />
+              <p className="text-black dark:text-white">
                 Millones de productos originales de todo el mundo.
               </p>
             </li>
             <li className="mb-4 flex flex-row gap-2">
-              <FaCheck className="text-brand-black mt-1" />
-              <p className="text-gray-600">
+              <FaCheck className="text-black dark:text-white mt-1" />
+              <p className="text-black dark:text-white">
                 Optimizamos tus compras consolidando tu envío.
               </p>
             </li>
             <li className="flex flex-row gap-2">
-              <FaCheck className="text-brand-black mt-1" />
-              <p className="text-gray-600">
+              <FaCheck className="text-black dark:text-white mt-1" />
+              <p className="text-black dark:text-white">
                 Elegí en qué moneda pagar (pesos o dólares).
               </p>
             </li>
@@ -87,12 +86,12 @@ function Footer() {
 
         {/* Tercera Fila: Comprá con tranquilidad */}
         <div>
-          <h3 className="mb-6 text-sm font-semibold text-brand-black uppercase">
+          <h3 className="mb-6 text-sm font-semibold text-black dark:text-white uppercase">
             Comprá con tranquilidad
           </h3>
           <ul>
             <li>
-              <p className="text-gray-600">
+              <p className="text-black dark:text-white">
                 {STORE_NAME} cuenta con los certificados verificados para
                 garantizar la seguridad de la compra.
               </p>
@@ -102,19 +101,19 @@ function Footer() {
 
         {/* Cuarta Fila: Contacto */}
         <div>
-          <h3 className="mb-6 text-sm font-semibold text-brand-black uppercase">
+          <h3 className="mb-6 text-sm font-semibold text-black dark:text-white uppercase">
             Contacto
           </h3>
           <ul>
             <li className="mb-4 flex flex-row gap-2">
               <div>
-                <FaHeadphonesAlt className="text-brand-black mt-1" />
+                <FaHeadphonesAlt className="text-black dark:text-white mt-1" />
               </div>
               <div>
-                <p className="text-brand-black font-bold">
+                <p className="text-black dark:text-white font-bold">
                   Atención telefónica: (+54) 11 9999 9999
                 </p>
-                <p className="text-brand-black">
+                <p className="text-black dark:text-white">
                   De Lunes a Sábados en el horario de 09:00hs a 18:00hs y
                   Domingos de 10:00hs a 16:00hs.
                 </p>
@@ -122,10 +121,10 @@ function Footer() {
             </li>
             <li className="flex flex-row gap-2">
               <div>
-                <FaRegClock className="text-brand-black mt-1" />
+                <FaRegClock className="text-black dark:text-white mt-1" />
               </div>
               <div>
-                <p className="text-gray-500">
+                <p className="text-gray-500 dark:text-white">
                   Recordá ingresar a tu cuenta para tener una experiencia
                   personalizada y acceder a más información
                 </p>
@@ -139,7 +138,7 @@ function Footer() {
 
       {/* Quinta Fila: Métodos de Pago */}
       <div className="py-7 sm:py-0">
-        <h3 className="mb-6 text-sm font-semibold text-brand-black uppercase">
+        <h3 className="mb-6 text-sm font-semibold text-black dark:text-white uppercase">
           Métodos de Pago
         </h3>
         <ul className="flex flex-row gap-5 items-center">
@@ -178,7 +177,7 @@ function Footer() {
 
       {/* Sexta Fila: Derechos y Redes Sociales */}
       <div className="py-7 sm:py-0 flex flex-col gap-4 sm:justify-between sm:flex-row sm:gap-0 sm:items-center">
-        <span className="text-sm text-gray-500 text-center">
+        <span className="text-sm text-gray-500 dark:text-white text-center">
           © 2025 {STORE_NAME}™. All Rights Reserved.
         </span>
         <div className="flex mt-4 space-x-5 justify-center sm:mt-0">
@@ -186,7 +185,7 @@ function Footer() {
             <a
               href="#"
               target="_blank"
-              className="bg-white text-green-600 rounded-full w-12 h-12 flex items-center justify-center shadow-md hover:bg-green-600 hover:text-white transition-colors duration-500 cursor-pointer"
+              className="bg-white dark:bg-[color:var(--color-gray)]  text-green-600 rounded-full w-12 h-12 flex items-center justify-center shadow-md hover:bg-green-600 hover:text-white transition-colors duration-500 cursor-pointer"
             >
               <FaWhatsapp size="1.5em" />
             </a>
@@ -195,7 +194,7 @@ function Footer() {
             <a
               href="#"
               target="_blank"
-              className="relative bg-white text-purple-600 rounded-full w-12 h-12 flex items-center justify-center shadow-md overflow-hidden transition-colors duration-500 cursor-pointer hover:text-white hover:bg-gradient-to-tr hover:from-[#405de6] hover:via-[#b33ab4] hover:to-[#fd1f1f]"
+              className="relative bg-white dark:bg-[color:var(--color-gray)] text-purple-600 rounded-full w-12 h-12 flex items-center justify-center shadow-md overflow-hidden transition-colors duration-500 cursor-pointer hover:text-white hover:bg-gradient-to-tr hover:from-[#405de6] hover:via-[#b33ab4] hover:to-[#fd1f1f]"
             >
               <FaInstagram size="1.5em" />
             </a>
@@ -204,7 +203,7 @@ function Footer() {
             <a
               href="#"
               target="_blank"
-              className="bg-white text-blue-600 rounded-full w-12 h-12 flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white transition-colors duration-500 cursor-pointer"
+              className="bg-white dark:bg-[color:var(--color-gray)] text-blue-600 rounded-full w-12 h-12 flex items-center justify-center shadow-md hover:bg-blue-600 hover:text-white transition-colors duration-500 cursor-pointer"
             >
               <FiFacebook size="1.5em" />
             </a>
