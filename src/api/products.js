@@ -6,3 +6,4 @@ export const updateProduct = (id, data) => api.put(`/products/${id}`, data);
 export const updateProductStock = (id, newStock) =>    api.patch(`/products/${id}`, { stock: newStock });
 export const createProduct = (productData) => api.post('/products', productData);
 export const deleteProduct = (id) => api.delete(`/products/${id}`);
+export const fetchUserProducts = (userId) => api.get(`/products?userId=${userId}`);
