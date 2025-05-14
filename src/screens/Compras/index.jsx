@@ -13,14 +13,14 @@ export default function Compras() {
 
   return (
     <div className="min-h-screen p-6 lg:m-5">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6 uppercase">
+      <h1 className="text-2xl font-bold text-black dark:text-white mb-6 uppercase">
         Últimas Compras
       </h1>
 
       {comprasUsuario && comprasUsuario.length > 0 ? (
         comprasUsuario.map((compra) => (
-          <div key={compra.id} className="bg-white border shadow-md p-4 mb-6">
-            <div className="text-gray-700 font-semibold mb-2">
+          <div key={compra.id} className="bg-white dark:bg-black shadow-md p-4 mb-6">
+            <div className="text-black dark:text-white font-semibold mb-2">
               Compra #{compra.id} —{" "}
               {new Date(compra.createdAt).toLocaleDateString()}
             </div>
@@ -34,7 +34,7 @@ export default function Compras() {
                 return (
                   <div
                     key={i}
-                    className="flex items-center gap-4 bg-gray-50 p-3 border-1 border-gray-200"
+                    className="flex items-center gap-4 bg-gray-50 dark:bg-[color:var(--color-gray)] p-3 border-1 border-gray-200 dark:border-[color:var(--color-light-gray)]"
                   >
                     <img
                       src={
@@ -44,11 +44,11 @@ export default function Compras() {
                       alt={producto?.title || "Producto"}
                       className="w-16 h-16 object-cover rounded"
                     />
-                    <div className="text-gray-800">
+                    <div className="text-black dark:text-white">
                       <p className="font-medium">
                         {producto ? producto.title : "Producto desconocido"}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 dark:text-white">
                         x{p.quantity} — ${p.unit_price} c/u
                       </p>
                     </div>
@@ -56,14 +56,14 @@ export default function Compras() {
                 );
               })}
 
-              <div className="text-right font-bold text-brand-black mt-2">
+              <div className="text-right font-bold text-black dark:text-white mt-2">
                 Total: ${compra.subtotal}
               </div>
             </div>
           </div>
         ))
       ) : (
-        <p className="text-gray-600">No hay compras registradas.</p>
+        <p className="text-gray-600 dark:text-white">No hay compras registradas.</p>
       )}
     </div>
   );
