@@ -90,8 +90,8 @@ export default function AuthForm({ mode = "login", onSubmit }) {
 
   return (
     <div className="flex-grow flex flex-col items-center justify-center max-w">
-      <div className="relative flex flex-col bg-transparent text-brand-black">
-        <h4 className="text-2xl text-center font-semibold text-brand-black">
+      <div className="relative flex flex-col bg-transparent text-black dark:text-white">
+        <h4 className="text-2xl text-center font-semibold text-black dark:text-white">
           {isRegister ? "Registrate" : "Ingresar"}
         </h4>
 
@@ -140,7 +140,7 @@ export default function AuthForm({ mode = "login", onSubmit }) {
           <audio ref={audioRef} src={loony} />
           <button
             onClick={sonidito()}
-            className="mt-6 w-full bg-brand-main py-3 px-6 text-white font-bold uppercase shadow-md transition-all hover:shadow-lg"
+            className="mt-6 w-full bg-primary py-3 px-6 text-white font-bold uppercase shadow-md transition-all hover:shadow-lg"
             type="submit"
             disabled={Object.keys(errors).length > 0}
           >

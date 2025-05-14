@@ -35,22 +35,22 @@ export default function Ingresar() {
   };
 
   return (
-    <div className="flex-grow flex flex-col items-center min-h-screen bg-white p-10">
-      <div className="relative flex flex-col bg-transparent text-brand-black">
+    <div className="flex-grow flex flex-col items-center min-h-screen p-10">
+      <div className="relative flex flex-col bg-transparent text-black">
         <AuthForm mode={formMode} onSubmit={handleSubmit} />
 
         <div className="flex items-center justify-center w-full gap-4 my-6 px-4">
-          <div className="h-px flex-1 bg-gray-300" />
-          <span className="text-gray-400 text-sm">
+          <div className="h-px flex-1 bg-gray-300 dark:text-white" />
+          <span className="text-gray-400 text-sm dark:text-white">
             {formMode === "login"
               ? "¿No tenés una cuenta?"
               : "¿Ya tenés una cuenta?"}
           </span>
-          <div className="h-px flex-1 bg-gray-300" />
+          <div className="h-px flex-1 bg-gray-300 dark:text-white" />
         </div>
 
         <button
-          className="block w-full shadow-lg bg-gray-50 py-3 px-6 text-center font-sans text-xs font-bold uppercase text-brand-gray border border-gray-300 hover:bg-gray-100"
+          className="block w-full shadow-lg bg-gray-50 py-3 px-6 text-center font-sans text-xs font-bold uppercase text-gray border border-gray-300 hover:bg-gray-100"
           onClick={toggleFormMode}
         >
           {formMode === "login" ? "Registrate" : "Iniciar sesión"}
