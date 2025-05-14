@@ -89,7 +89,7 @@ export default function ProductDetail() {
     <div className="max-w-5xl mx-auto p-6 md:p-4">
       <button
         onClick={() => navigate(-1)}
-        className="inline-block mb-4 text-brand-main hover:underline"
+        className="inline-block mb-4 text-primary hover:underline cursor-pointer"
       >
         ← Volver atrás
       </button>
@@ -98,37 +98,37 @@ export default function ProductDetail() {
         <GaleriaImagenes images={producto.images} />
 
         <div className="flex-1">
-          <h1 className="text-3xl font-bold mb-2 text-brand-black">
+          <h1 className="text-3xl font-bold mb-2 text-black dark:text-white">
             {producto.title}
           </h1>
-          <p className="text-grey-600 mb-4 text-brand-black">
+          <p className="text-grey-600 mb-4 text-black dark:text-white">
             {producto.description}
           </p>
 
           {producto.discountPercentage > 0 && (
-            <div className="text-xl text-gray-500 line-through">
+            <div className="text-xl text-gray-500 dark:text-white line-through">
               ${producto.price}
             </div>
           )}
 
-          <div className="text-2xl font-semibold mb-4 text-brand-black">
+          <div className="text-2xl font-semibold mb-4 text-black dark:text-white">
             ${calcularPrecio(producto.price, producto.discountPercentage)}
           </div>
 
           {producto.discountPercentage > 0 && (
-            <p className="mb-4 text-brand-main">
+            <p className="mb-4 text-primary">
               Descuento: {producto.discountPercentage}%
             </p>
           )}
 
-          <p className="mb-6 text-brand-black font-bold">
+          <p className="mb-6 text-black dark:text-white font-bold">
             Categoría:{" "}
             <span className="font-medium">
               {obtenerNombreCategoria(producto, categorias)}
             </span>
           </p>
 
-          <p className="mb-6 text-brand-black font-bold">
+          <p className="mb-6 text-black dark:text-white font-bold">
             Sub-categorías:{" "}
             <span className="font-medium">
               {obtenerNombresSubcategorias(producto, categorias).join(", ")}
@@ -147,7 +147,7 @@ export default function ProductDetail() {
               <audio ref={audioRef} src={a_quien} />
               </Button>
               
-              <span className="mx-4 text-xl text-brand-black">{quantity}</span>
+              <span className="mx-4 text-xl text-black dark:text-white">{quantity}</span>
               <Button
                 variant="outlined"
                 onClick={() => manejarCantidad("incrementar")}
@@ -157,7 +157,7 @@ export default function ProductDetail() {
                 +
               </Button>
             </div>
-            <span className="text-sm text-gray-500">
+            <span className="text-sm text-gray-500 dark:text-white">
               Stock disponible: {producto.stock}
             </span>
           </div>
@@ -178,7 +178,7 @@ export default function ProductDetail() {
           </Button>
 
           {alreadyInCart && (
-            <div className="mt-2 text-green-600 text-sm">
+            <div className="mt-2 text-green-700 text-sm">
               Este producto ya está en tu carrito
             </div>
           )}

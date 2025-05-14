@@ -19,21 +19,21 @@ const GaleriaImagenes = ({ images }) => {
             onClick={() => setImagenPrincipal(img)}
             className={`border-2 ${
               imagenPrincipal.url === img.url
-                ? "border-brand-main"
+                ? "border-primary"
                 : "border-transparent"
             }`}
           >
             <img
               src={img.url}
               alt={`Miniatura ${index}`}
-              className="w-20 h-16 object-cover"
+              className="w-20 h-16 bg-[#fff] dark:bg-[#fff] object-contain cursor-pointer"
             />
           </button>
         ))}
       </div>
 
       {/* Imagen Principal */}
-      <div className="w-[400px] h-[250px] md:h-[400px] lg:h-[400px] xl:h-[450px] bg-white flex items-start justify-center">
+      <div className="w-[400px] h-[250px] md:h-[400px] lg:h-[400px] xl:h-[450px] bg-[#fff] dark:bg-[#fff] flex items-center justify-center">
         <img
           src={imagenPrincipal.url}
           alt="Imagen Principal"
