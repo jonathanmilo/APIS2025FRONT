@@ -12,7 +12,7 @@ function ListaProductos({ titulo, productos }) {
           ))}
         </div>
       ) : (
-        <p className="text-gray-600 text-sm lg:text-xl text-center min-h-screen">
+        <p className="text-gray-600 dark:text-white text-sm lg:text-xl text-center min-h-screen">
           No hay productos en "{titulo}"
         </p>
       )}

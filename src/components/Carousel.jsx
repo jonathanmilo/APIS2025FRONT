@@ -43,7 +43,7 @@ export default function Carousel({ title, items }) {
   return (
     <section className="relative py-4">
       {title && (
-        <h2 className="md:text-xl px-4 mb-2 text-brand-black uppercase font-bold">
+        <h2 className="md:text-xl px-4 mb-2 text-brand-black uppercase font-bold text-black dark:text-white">
           {title}
         </h2>
       )}
