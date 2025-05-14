@@ -30,13 +30,13 @@ function ProductosPorCategoria({ categorias, productos }) {
                 className={`min-w-[250px] max-w-max p-2 text-center transition duration-300 cursor-pointer
               ${
                 activa
-                  ? "bg-brand-main text-white"
-                  : "bg-gray-50 hover:bg-gray-100 text-brand-black"
+                  ? "bg-primary text-white dark:text-white"
+                  : "bg-gray-50 hover:bg-gray-100 dark:bg-[color:var(--color-light-gray)] hover:dark:bg-[color:var(--color-gray)]"
               }`}
               >
                 <h3
                   className={`font-bold uppercase text-lg ${
-                    activa ? "text-white" : "text-brand-black"
+                    activa ? "text-white dark:text-black" : "text-black dark:text-white"
                   }`}
                 >
                   {categoria.name}
@@ -44,7 +44,7 @@ function ProductosPorCategoria({ categorias, productos }) {
 
                 <div
                   className={`text-sm mt-1 whitespace-nowrap overflow-hidden text-ellipsis ${
-                    activa ? "text-white" : "text-gray-600"
+                    activa ? "text-white dark:text-black" : "text-gray-600 dark:text-white"
                   }`}
                 >
                   {categoria.subcategories?.map((sub) => sub.name).join(" • ")}
@@ -58,7 +58,7 @@ function ProductosPorCategoria({ categorias, productos }) {
       {/* Productos filtrados */}
       {categoriaSeleccionada && (
         <div className="mx-5 mt-5 lg:mx-20 lg:mt-10">
-          <h2 className="md:text-xl font-bold text-brand-black mb-4 uppercase">
+          <h2 className="md:text-xl font-bold text-black dark:text-white mb-4 uppercase">
             Productos en: {categoriaSeleccionada.name}
           </h2>
 
@@ -69,7 +69,7 @@ function ProductosPorCategoria({ categorias, productos }) {
               ))}
             </div>
           ) : (
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-white">
               No hay productos en la categoría "{categoriaSeleccionada.name}".
             </p>
           )}
