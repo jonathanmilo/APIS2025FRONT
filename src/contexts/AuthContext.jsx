@@ -65,7 +65,7 @@ export function ValidacionProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ ...state, login, logout, validar, register }}>
+    <AuthContext.Provider value={{ ...state, login, logout, validar, register, dispatch }}>
       {children}
     </AuthContext.Provider>
   );

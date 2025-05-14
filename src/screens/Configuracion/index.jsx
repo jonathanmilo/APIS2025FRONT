@@ -4,9 +4,18 @@ import { MdEdit } from "react-icons/md";
 import { useValidacion } from "@src/contexts/AuthContext";
 import FloatingFormDialog from "./components/FloatingForm";
 import { Divider, IconButton, Tooltip } from "@mui/material";
+import {
+  updateFirstName,
+  updateLastName,
+  updateUsername,
+  updateEmail, // TODO: validar si el nuevo email tiene los caracteres correspondientes
+  updatePassword,
+  updateAddress, // TODO: adaptar floatingForm para que reciba los 3 campos de address y agregarlo al switch
+  updateAvatar, // TODO: agregar boton para editar el avatar y llamar a la funcion
+} from "@src/api/users";
 
 export default function Configuracion() {
-  const { user } = useValidacion();
+  const { user, dispatch } = useValidacion();
   const [open, setOpen] = useState(false);
   const [editingField, setEditingField] = useState(null);
   const [formData, setFormData] = useState({});
@@ -21,10 +30,55 @@ export default function Configuracion() {
     setOpen(true);
   };
 
-  const handleSave = () => {
-    console.log(`Guardar ${editingField}:`, formData[editingField]);
-    // logica db
-    setOpen(false);
+  const handleSave = async () => {
+    const value = formData[editingField];
+    const userId = user.id;
+
+    try {
+      let updatePayload = {};
+
+      switch (editingField) {
+        case "firstName":
+          await updateFirstName(userId, value);
+          updatePayload = { firstName: value };
+          break;
+        case "lastName":
+          await updateLastName(userId, value);
+          updatePayload = { lastName: value };
+          break;
+        case "username":
+          await updateUsername(userId, value);
+          updatePayload = { username: value };
+          break;
+        case "email":
+          await updateEmail(userId, value);
+          updatePayload = { email: value };
+          break;
+        case "password":
+          await updatePassword(userId, value);
+          return alert("Contraseña actualizada correctamente.");
+
+        case "address.street":
+        case "address.state":
+        case "address.country": {
+          alert("Falta implementar.");
+          throw new Error("Actualización de dirección no implementada");
+        }
+
+        default:
+          console.warn("Campo no reconocido:", editingField);
+          return;
+      }
+
+      dispatch({ type: "UPDATE_USER", payload: updatePayload });
+
+      alert(`Campo ${editingField} actualizado correctamente.`);
+      setOpen(false);
+    } catch (error) {
+      console.error("Error al guardar los cambios:", error);
+      alert("Hubo un error al actualizar el campo.");
+      setOpen(false);
+    }
   };
 
   return (
@@ -78,7 +132,9 @@ export default function Configuracion() {
           >
             <div>
               <p className="text-sm text-gray-500 dark:text-white">{label}</p>
-              <p className="text-lg font-medium text-black dark:text-white">{value}</p>
+              <p className="text-lg font-medium text-black dark:text-white">
+                {value}
+              </p>
             </div>
 
             <Tooltip title="Editar" arrow>
