@@ -1078,6 +1078,26 @@
       ],
       "discountPercentage": "",
       "isFeatured": false
+    },
+    {
+      "id": "963",
+      "userId": "10",
+      "title": "Plato",
+      "images": [
+        {
+          "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyav7N2StuxDu_5fwHUaLr_rSekoTWbkucdA&s",
+          "isCover": true
+        }
+      ],
+      "description": "Plato hermoso",
+      "price": "54",
+      "stock": "5",
+      "categoryId": "3",
+      "subcategoryIds": [
+        "3-1"
+      ],
+      "discountPercentage": "1",
+      "isFeatured": false
     }
   ],
   "carts": [
