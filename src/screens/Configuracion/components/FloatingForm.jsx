@@ -7,6 +7,7 @@ import {
   Button,
   IconButton,
   Typography,
+  FormHelperText,
 } from "@mui/material";
 import { RxCross1 } from "react-icons/rx";
 
@@ -18,10 +19,11 @@ const FloatingFormDialog = ({
   setFormData,
   fields = [],
   title = "Form",
+  handleChange,
 }) => {
-  const handleChange = (e) => {
+  const onChange = handleChange || ((e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  });
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
@@ -38,18 +40,28 @@ const FloatingFormDialog = ({
 
       <DialogContent dividers>
         {fields.map((field) => (
-          <TextField
-            key={field.name}
-            fullWidth
-            margin="normal"
-            label={field.label}
-            name={field.name}
-            type={field.type || "text"}
-            onChange={handleChange}
-            multiline={field.multiline || false}
-            rows={field.rows || 1}
-            required={field.required || false}
-          />
+          <div key={field.name}>
+            <TextField
+              fullWidth
+              margin="normal"
+              label={field.label}
+              name={field.name}
+              type={field.type || "text"}
+              value={formData[field.name] || ""}
+              onChange={onChange}
+              multiline={field.multiline || false}
+              rows={field.rows || 1}
+              required={field.required || false}
+              error={field.error}
+              inputProps={{ 
+                maxLength: field.maxLength,
+                pattern: field.pattern
+              }}
+            />
+            {field.helperText && (
+              <FormHelperText>{field.helperText}</FormHelperText>
+            )}
+          </div>
         ))}
 
         <Typography variant="body2" sx={{ mt: 2, color: "gray" }}>

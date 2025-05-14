@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Avatar } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import { MdEdit } from "react-icons/md";
 import { useValidacion } from "@src/contexts/AuthContext";
 import FloatingFormDialog from "./components/FloatingForm";
@@ -8,10 +8,10 @@ import {
   updateFirstName,
   updateLastName,
   updateUsername,
-  updateEmail, // TODO: validar si el nuevo email tiene los caracteres correspondientes
+  updateEmail,
   updatePassword,
-  updateAddress, // TODO: adaptar floatingForm para que reciba los 3 campos de address y agregarlo al switch
-  updateAvatar, // TODO: agregar boton para editar el avatar y llamar a la funcion
+  updateAddress,
+  updateAvatar,
 } from "@src/api/users";
 
 export default function Configuracion() {
@@ -20,51 +20,111 @@ export default function Configuracion() {
   const [editingField, setEditingField] = useState(null);
   const [formData, setFormData] = useState({});
   const [fields, setFields] = useState([]);
+  const [avatarHover, setAvatarHover] = useState(false);
 
   if (!user) return null;
 
   const handleEdit = (fieldName, label, value) => {
     setEditingField(fieldName);
-    setFormData({ [fieldName]: value });
-    setFields([{ name: fieldName, label }]);
+    
+    // Caso especial para dirección
+    if (fieldName === "address") {
+      setFormData({ 
+        street: user.address?.street || "",
+        state: user.address?.state || "",
+        country: user.address?.country || ""
+      });
+      setFields([
+        { name: "street", label: "Calle", required: true },
+        { name: "state", label: "Estado/Provincia", required: true },
+        { name: "country", label: "País", required: true }
+      ]);
+    } else if (fieldName === "email") {
+      // Caso especial para email con validación
+      setFormData({ [fieldName]: value });
+      setFields([{ 
+        name: fieldName, 
+        label, 
+        required: true,
+        helperText: "Introduce un email válido (ejemplo: usuario@dominio.com)", 
+        type: "email",
+        pattern: "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"
+      }]);
+    } else {
+      // Caso general para otros campos
+      setFormData({ [fieldName]: value });
+      setFields([{ name: fieldName, label, required: true }]);
+    }
+    
     setOpen(true);
   };
 
+  const handleEditAvatar = () => {
+    setEditingField("avatar");
+    setFormData({ avatar: user.avatar });
+    setFields([{ 
+      name: "avatar", 
+      label: "URL de la imagen", 
+      helperText: "Introduce la URL de tu nueva imagen de perfil",
+      required: true
+    }]);
+    setOpen(true);
+  };
+
+  const validateEmail = (email) => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   const handleSave = async () => {
-    const value = formData[editingField];
     const userId = user.id;
 
     try {
+      // Validación específica para el correo electrónico
+      if (editingField === "email") {
+        const emailValue = formData.email;
+        if (!validateEmail(emailValue)) {
+          alert("Por favor, introduce un email válido");
+          return;
+        }
+      }
+
       let updatePayload = {};
 
       switch (editingField) {
         case "firstName":
-          await updateFirstName(userId, value);
-          updatePayload = { firstName: value };
+          await updateFirstName(userId, formData.firstName);
+          updatePayload = { firstName: formData.firstName };
           break;
         case "lastName":
-          await updateLastName(userId, value);
-          updatePayload = { lastName: value };
+          await updateLastName(userId, formData.lastName);
+          updatePayload = { lastName: formData.lastName };
           break;
         case "username":
-          await updateUsername(userId, value);
-          updatePayload = { username: value };
+          await updateUsername(userId, formData.username);
+          updatePayload = { username: formData.username };
           break;
         case "email":
-          await updateEmail(userId, value);
-          updatePayload = { email: value };
+          await updateEmail(userId, formData.email);
+          updatePayload = { email: formData.email };
           break;
         case "password":
-          await updatePassword(userId, value);
+          await updatePassword(userId, formData.password);
           return alert("Contraseña actualizada correctamente.");
-
-        case "address.street":
-        case "address.state":
-        case "address.country": {
-          alert("Falta implementar.");
-          throw new Error("Actualización de dirección no implementada");
-        }
-
+        case "avatar":
+          await updateAvatar(userId, formData.avatar);
+          updatePayload = { avatar: formData.avatar };
+          break;
+        case "address":
+          // Procesar la actualización de toda la dirección
+          const newAddress = {
+            street: formData.street,
+            state: formData.state,
+            country: formData.country
+          };
+          await updateAddress(userId, newAddress);
+          updatePayload = { address: newAddress };
+          break;
         default:
           console.warn("Campo no reconocido:", editingField);
           return;
@@ -72,11 +132,11 @@ export default function Configuracion() {
 
       dispatch({ type: "UPDATE_USER", payload: updatePayload });
 
-      alert(`Campo ${editingField} actualizado correctamente.`);
+      alert(`Información actualizada correctamente.`);
       setOpen(false);
     } catch (error) {
       console.error("Error al guardar los cambios:", error);
-      alert("Hubo un error al actualizar el campo.");
+      alert("Hubo un error al actualizar la información.");
       setOpen(false);
     }
   };
@@ -84,11 +144,35 @@ export default function Configuracion() {
   return (
     <div className="bg-white dark:bg-black m-5 shadow-md p-6">
       <div className="flex items-center gap-6">
-        <Avatar
-          src={user.avatar}
-          alt={user?.firstName || "Usuario"}
-          sx={{ width: 80, height: 80 }}
-        />
+        <Box 
+          position="relative"
+          onMouseEnter={() => setAvatarHover(true)} 
+          onMouseLeave={() => setAvatarHover(false)}
+        >
+          <Avatar
+            src={user.avatar}
+            alt={user?.firstName || "Usuario"}
+            sx={{ width: 80, height: 80 }}
+          />
+          {avatarHover && (
+            <Box 
+              position="absolute" 
+              top={0} 
+              left={0} 
+              width="100%" 
+              height="100%" 
+              display="flex" 
+              alignItems="center" 
+              justifyContent="center" 
+              bgcolor="rgba(0,0,0,0.5)" 
+              borderRadius="50%"
+              onClick={handleEditAvatar}
+              sx={{ cursor: "pointer" }}
+            >
+              <MdEdit size={30} color="white" />
+            </Box>
+          )}
+        </Box>
         <div>
           <p className="text-xl font-semibold text-black dark:text-white">
             {user.firstName} {user.lastName}
@@ -106,23 +190,13 @@ export default function Configuracion() {
           { label: "Usuario", value: user.username, field: "username" },
           { label: "Email", value: user.email, field: "email" },
           {
-            label: "Calle",
-            value: user.address?.street,
-            field: "address.street",
-          },
-          {
-            label: "Estado",
-            value: user.address?.state,
-            field: "address.state",
-          },
-          {
-            label: "País",
-            value: user.address?.country,
-            field: "address.country",
+            label: "Dirección",
+            value: `${user.address?.street || ''}, ${user.address?.state || ''}, ${user.address?.country || ''}`,
+            field: "address",
           },
           {
             label: "Contraseña",
-            value: "•".repeat(user.password?.length || 8),
+            value: "•".repeat(8),
             field: "password",
           },
         ].map(({ label, value, field }) => (
@@ -139,7 +213,7 @@ export default function Configuracion() {
 
             <Tooltip title="Editar" arrow>
               <IconButton
-                onClick={() => handleEdit(field, label, user[field])}
+                onClick={() => handleEdit(field, label, value)}
                 sx={{ width: "40px", height: "40px" }}
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
@@ -158,21 +232,12 @@ export default function Configuracion() {
         formData={formData}
         setFormData={setFormData}
         fields={fields}
-        title={`Editar ${fields[0]?.label || ""}`}
+        title={`Editar ${editingField === "address" ? "Dirección" : fields[0]?.label || ""}`}
         handleChange={(e) => {
-          const { name, value } = e.target;
-          if (name.includes(".")) {
-            const [parent, child] = name.split(".");
-            setFormData({
-              ...formData,
-              [parent]: {
-                ...(formData[parent] || {}),
-                [child]: value,
-              },
-            });
-          } else {
-            setFormData({ ...formData, [name]: value });
-          }
+          setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+          });
         }}
       />
     </div>
