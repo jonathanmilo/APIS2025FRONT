@@ -128,8 +128,14 @@ function sonidito (){
 
     console.log("Datos del producto a publicar:", formData);
     createProduct(formData)
-    alert("Producto publicado exitosamente!");
-    navigate("/"); // Redirigir al home después de publicar
+      .then(() => {
+        alert("Producto publicado exitosamente!");
+        navigate("/mi-perfil"); // Redirigir al perfil del usuario después de publicar
+      })
+      .catch((err) => {
+        console.error("Error al crear el producto:", err);
+        alert("No se pudo crear el producto. Intenta nuevamente.");
+      });
   };
 
   return (

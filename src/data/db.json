@@ -1056,47 +1056,27 @@
       "updatedAt": "2025-04-23T22:30:00.000Z"
     },
     {
-      "id": "995",
+      "id": "699",
       "userId": "10",
-      "title": "Termo",
+      "title": "Pelota",
       "images": [
         {
-          "url": "https://www.lumilagro.com.ar/wp-content/uploads/2020/12/milongarojo1.jpg",
+          "url": "https://tiotomar.vtexassets.com/arquivos/ids/177847-800-800?v=638014179866500000&width=800&height=800&aspect=true",
           "isCover": true
         },
         {
-          "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXOGT6xwOLX0vkGpxY1J17pv-QvMeVmSPQjg&s",
+          "url": "https://redsport.vtexassets.com/arquivos/ids/1196522/PELOTA-ADIDAS-ARGENTINA-AFA-50-ANOS.jpg?v=638688514194100000",
           "isCover": false
         }
       ],
-      "description": "termo rojo",
-      "price": "1",
-      "stock": "3",
-      "categoryId": "3",
+      "description": "Fulbo o lo que mas te guste! :)",
+      "price": "100",
+      "stock": "40",
+      "categoryId": "6",
       "subcategoryIds": [
-        "3-1"
+        "6-2"
       ],
-      "discountPercentage": "",
-      "isFeatured": false
-    },
-    {
-      "id": "963",
-      "userId": "10",
-      "title": "Plato",
-      "images": [
-        {
-          "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyav7N2StuxDu_5fwHUaLr_rSekoTWbkucdA&s",
-          "isCover": true
-        }
-      ],
-      "description": "Plato hermoso",
-      "price": "54",
-      "stock": "5",
-      "categoryId": "3",
-      "subcategoryIds": [
-        "3-1"
-      ],
-      "discountPercentage": "1",
+      "discountPercentage": "20",
       "isFeatured": false
     }
   ],

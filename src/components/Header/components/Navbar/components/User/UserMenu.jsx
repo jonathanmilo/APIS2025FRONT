@@ -100,9 +100,6 @@ export default function UserMenu({ usuario }) {
         <MenuItem component={Link} to="/mis-compras">
           Compras
         </MenuItem>
-        <MenuItem component={Link} to="/mis-productos">
-          Mis productos
-        </MenuItem>
         <Divider />
         <MenuItem component={Link} to="/configuracion" onClick={handleClose}>
           <SlSettings className="mr-1" />

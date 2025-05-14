@@ -148,7 +148,7 @@ export function EditarProducto() {
     updateProduct(formData.id, formData)
       .then(() => {
         alert("Producto actualizado exitosamente!");
-        navigate("/mis-productos");
+        navigate("/mi-perfil");
       })
       .catch((err) => {
         console.error("Error al actualizar el producto:", err);
@@ -171,10 +171,10 @@ export function EditarProducto() {
         <Alert severity="error">{error}</Alert>
         <Button
           variant="contained"
-          onClick={() => navigate("/mis-productos")}
+          onClick={() => navigate("/mi-perfil")}
           sx={{ mt: 2 }}
         >
-          Volver a Mis Productos
+          Volver a Mi Perfil
         </Button>
       </Box>
     );
@@ -331,7 +331,7 @@ export function EditarProducto() {
         <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
           <Button
             variant="outlined"
-            onClick={() => navigate("/mis-productos")}
+            onClick={() => navigate("/mi-perfil")}
             sx={{ px: 4 }}
           >
             Cancelar

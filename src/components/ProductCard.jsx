@@ -1,6 +1,6 @@
 import { VscVerifiedFilled } from "react-icons/vsc";
 import { Divider, Tooltip, IconButton } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { calcularPrecio } from "@src/utils/calcularPrecio";
 import { useUserData } from "@src/hooks/useUserData";
 import { useUsuario } from "@src/contexts/UserContext";
@@ -8,6 +8,7 @@ import { useValidacion } from "@src/contexts/AuthContext";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useState } from "react";
 import { MdEdit } from "react-icons/md";
+import { FaPencilAlt } from "react-icons/fa";
 import { deleteProduct, updateProductStock } from "@src/api/products";
 import FloatingFormDialog from "@src/screens/Configuracion/components/FloatingForm";
 
@@ -18,6 +19,7 @@ function ProductCard({ producto }) {
   const { usuario, loading, error } = useUserData(producto.userId, usuarios);
   const [formData, setFormData] = useState({ newStock: "" });
   const location = useLocation();
+  const navigate = useNavigate();
 
   const precioFinal = calcularPrecio(
     producto.price,
@@ -47,10 +49,15 @@ function ProductCard({ producto }) {
     }
   };
 
-  const openStockDialog = () => {
-    setFormData({ newStock: producto.stock });
-    setOpen(true);
+  const handleEditProduct = () => {
+    navigate(`/editar-producto/${producto.id}`);
   };
+
+  // Verificar si el usuario actual es el dueño del producto
+  const isOwner = user && user.id.toString() === producto.userId.toString();
+  
+  // Verificar si estamos en una página de gestión de productos (mi-perfil o mis-productos)
+  const isManagementPage = ['/mi-perfil', '/mis-productos'].includes(location.pathname);
 
   return (
     <>
@@ -117,32 +124,49 @@ function ProductCard({ producto }) {
                     <p>{producto.discountPercentage}% OFF</p>
                   </div>
                 </div>
-                {user &&
-                  user.id === producto.userId &&
-                  location.pathname === "/mi-perfil" && (
-                    <div className="flex gap-1">
-                      <Tooltip title="Eliminar publicación" arrow>
-                        <IconButton onClick={() => handleDelete(producto.id)}>
-                          <RiDeleteBin6Line className="text-black dark:text-white" />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip title="Editar stock" arrow>
-                        <IconButton onClick={openStockDialog}>
-                          <MdEdit
-                            size={24}
-                            className="text-black dark:text-white"
-                          />
-                        </IconButton>
-                      </Tooltip>
-                    </div>
-                  )}
+                {isOwner && isManagementPage && (
+                  <div className="flex gap-1">
+                    <Tooltip title="Editar producto" arrow>
+                      <IconButton onClick={handleEditProduct}>
+                        <FaPencilAlt className="text-blue-500" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Eliminar publicación" arrow>
+                      <IconButton onClick={() => handleDelete(producto.id)}>
+                        <RiDeleteBin6Line className="text-red-500" />
+                      </IconButton>
+                    </Tooltip>
+                  </div>
+                )}
               </div>
             </div>
           ) : (
-            <div className="flex">
+            <div className="flex items-center justify-between w-full">
               <p className="text-xl font-bold text-black dark:text-white">
                 ${producto.price}
               </p>
+              {isOwner && isManagementPage && (
+                <div className="flex gap-1">
+                  <Tooltip title="Editar producto" arrow>
+                    <IconButton onClick={handleEditProduct}>
+                      <FaPencilAlt className="text-blue-500" />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Editar stock" arrow>
+                    <IconButton onClick={openStockDialog}>
+                      <MdEdit
+                        size={24}
+                        className="text-black dark:text-white"
+                      />
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Eliminar publicación" arrow>
+                    <IconButton onClick={() => handleDelete(producto.id)}>
+                      <RiDeleteBin6Line className="text-red-500" />
+                    </IconButton>
+                  </Tooltip>
+                </div>
+              )}
             </div>
           )}
         </div>
