@@ -1,11 +1,26 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --color-brand-main: oklch(0.77 0.2044 130.85);
-  --color-brand-main-hover: oklch(0.65 0.1754 131.68);
-  --color-brand-light-gray: oklch(0.929 0.013 255.508);
-  --color-brand-black: oklch(0.279 0.041 260.031);
-  --color-brand-gray: oklch(0.446 0.043 257.281);
+    --color-primary: oklch(0.77 0.2044 130.85);
+    --color-primary-hover: oklch(0.65 0.1754 131.68);
+}
+
+@layer base {
+  :root {
+    --color-white: #ffffff;
+    --color-black: oklch(0.279 0.041 260.031);
+    --color-gray: #a8a7a7;
+    --color-light-gray: #cacaca;
+  }
+
+  .dark {
+    --color-white: #E4E4E4;
+    --color-black: #313131;
+    --color-gray: #414141;
+    --color-light-gray: #525252;
+  }
 }
 
 @layer utilities {
@@ -17,161 +32,4 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-}
-
-/* Estilos base (modo claro) */
-:root {
-  font-family: "Montserrat", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: #1a202c; /* Color de texto oscuro para modo claro */
-  background-color: #ffffff; /* Fondo claro */
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  background-color: #ffffff;
-  color: #1a202c;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Quitar el !important de las reglas del modo oscuro y usar el selector .dark correctamente */
-.dark body {
-  background-color: #0f172a; /* Un tono más oscuro para el fondo */
-  color: #f7fafc;
-}
-
-/* Navbar y cards en modo claro */
-nav {
-  background-color: #f8fafc; /* Un blanco ligeramente grisáceo */
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.bg-white {
-  background-color: #ffffff;
-}
-
-.text-brand-black {
-  color: #1a202c;
-}
-
-/* Estilos para modo oscuro */
-.dark {
-  color-scheme: dark;
-}
-
-.dark nav {
-  background-color: #1e293b; /* Un tono más claro que el fondo oscuro */
-}
-
-.dark .bg-white {
-  background-color: #2d3748;
-}
-
-.dark .text-brand-black {
-  color: #f7fafc;
-}
-
-/* Otros elementos que necesiten estilos en modo oscuro */
-.dark .card {
-  background-color: #2d3748;
-  border-color: #4a5568;
-}
-
-/* Estilos para la sección de categorías */
-.bg-gray-50 {
-  background-color: #ffffff; /* Color claro por defecto */
-}
-
-.dark .bg-gray-50 {
-  background-color: #1a202c; /* Color de fondo oscuro */
-}
-
-main {
-  background-color: #ffffff; /* Color claro por defecto */
-  transition: background-color 0.3s ease;
-}
-
-.dark main {
-  background-color: #1a202c; /* Color de fondo oscuro */
-}
-
-/* Estilos para los elementos de categorías */
-.dark .text-gray-600 {
-  color: #e2e8f0; /* Color de texto más claro para modo oscuro */
-}
-
-.dark .hover\:bg-slate-200:hover {
-  background-color: #2d3748; /* Color hover para modo oscuro */
-}
-
-/* Aseguramos que todos los textos sean visibles en modo oscuro */
-.dark .text-brand-black {
-  color: #f7fafc;
-}
-
-/* ProductCard estilos */
-.product-card {
-  background-color: #ffffff;
-  color: #1a202c;
-}
-
-.dark .product-card {
-  background-color: #2d3748;
-  color: #f7fafc;
-}
-
-/* Asegura que las transiciones sean suaves */
-.transition-theme {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Textos en modo claro y oscuro */
-.text-gray-800 {
-  color: #1a202c;
-}
-
-.text-gray-500 {
-  color: #6b7280;
-}
-
-.dark .text-gray-800 {
-  color: #f7fafc;
-}
-
-.dark .text-gray-500 {
-  color: #cbd5e0;
-}
-
-/* Sombras */
-.shadow-md {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.dark .shadow-md {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-}
-
-/* Ajuste para el header sticky */
-header {
-  background-color: #f8fafc;
-  transition: background-color 0.3s ease;
-}
-
-.dark header {
-  background-color: #1e293b;
-}
-
-/* Navbar y header en modo claro */
-nav, header {
-  background-color: #f8fafc; /* Un blanco ligeramente grisáceo */
-  transition: background-color 0.3s ease;
-}
-
-/* Navbar y header en modo oscuro */
-.dark nav, .dark header {
-  background-color: #1e293b; /* Color oscuro */
 }

@@ -7,13 +7,20 @@ export function useTheme() {
 }
 
 export function ThemeProvider({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState(false); // Inicializamos en false por defecto
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const saved = localStorage.getItem("darkMode");
+    return (
+      saved === "true" ||
+      (saved === null &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    );
+  });
 
   const toggleTheme = () => {
-    setIsDarkMode(prevMode => {
+    setIsDarkMode((prevMode) => {
       const newMode = !prevMode;
       // Guardamos la preferencia en localStorage
-      localStorage.setItem('darkMode', newMode.toString());
+      localStorage.setItem("darkMode", newMode.toString());
       return newMode;
     });
   };
@@ -21,9 +28,9 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     // Aplicamos la clase 'dark' solo cuando isDarkMode es true
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, [isDarkMode]);
 
