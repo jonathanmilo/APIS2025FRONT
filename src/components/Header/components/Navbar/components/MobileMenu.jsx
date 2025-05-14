@@ -5,7 +5,7 @@ const MobileMenu = ({ open, setOpen, usuario }) => {
 
   return (
     <div
-      className={`fixed top-[180px] right-0 w-full h-[calc(100vh-80px)] bg-white z-40 transform transition-transform duration-300 ease-in-out ${
+      className={`fixed top-[180px] right-0 w-full h-[calc(100vh-80px)] bg-white dark:bg-[color:var(--color-gray)]  z-40 transform transition-transform duration-300 ease-in-out ${
         open ? "translate-x-0" : "translate-x-full"
       } md:hidden shadow-lg`}
     >
@@ -15,7 +15,7 @@ const MobileMenu = ({ open, setOpen, usuario }) => {
             <Link
               to={item.link}
               onClick={() => setOpen(false)}
-              className="hover:text-brand-main"
+              className="text-black dark:text-white"
             >
               {item.title}
             </Link>
@@ -27,7 +27,7 @@ const MobileMenu = ({ open, setOpen, usuario }) => {
             <Link
               to="/ingresar"
               onClick={() => setOpen(false)}
-              className="hover:bg-brand-main cursor-pointer bg-white text-brand-main font-semibold hover:text-white duration-200 rounded-md border-2 border-brand-main px-6 py-2"
+              className="hover:bg-primary cursor-pointer bg-white text-primary font-semibold hover:text-white duration-200 rounded-md border-2 border-primary px-6 py-2"
             >
               Ingresar
             </Link>

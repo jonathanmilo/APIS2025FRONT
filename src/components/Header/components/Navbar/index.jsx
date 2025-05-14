@@ -26,16 +26,25 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-white transition-colors duration-300 dark:bg-gray-800">
+      <nav className="bg-transparent transition-colors duration-300">
         <div className="w-full lg:px-30 flex justify-between items-center pt-10 md:pt-5">
           <div className="hidden md:block">
-            <ul className="flex items-center gap-2 lg:gap-6 text-brand-black dark:text-white">
+            <ul className="flex items-center gap-2 lg:gap-6 text-black dark:text-white">
               {NAVBAR_MENU.map((item) => {
                 return (
                   <li key={item.id}>
                     <Link
                       to={item.link}
-                      className="relative inline-block py-1 px-3 font-semibold text-brand-black hover:text-brand-main transition-colors duration-300 before:content-[''] before:absolute before:left-0 before:-bottom-1 before:h-0.5 before:w-0 before:bg-brand-main before:transition-all before:duration-300 hover:before:w-full"
+                      className="relative inline-block py-1 px-3 font-semibold 
+             text-[color:var(--color-black)] 
+             dark:text-[color:var(--color-white)] 
+             hover:text-[color:var(--color-primary)] 
+             transition-colors duration-300 
+             before:content-[''] before:absolute before:left-0 before:-bottom-1 
+             before:h-0.5 before:w-0 
+             before:bg-[color:var(--color-primary)] 
+             before:transition-all before:duration-300 
+             hover:before:w-full"
                     >
                       {item.title}
                     </Link>
@@ -51,7 +60,7 @@ const Navbar = () => {
             ) : (
               <button
                 onClick={() => navigate("/ingresar")}
-                className="hover:bg-brand-main cursor-pointer bg-white text-brand-main font-semibold hover:text-white duration-200 rounded-md border-2 border-brand-main hidden md:block px-6 py-2"
+                className="hover:bg-primary cursor-pointer bg-white dark:bg-black text-primary dark:text-white font-semibold hover:text-white duration-200 rounded-md border-2 border-primary hidden md:block px-6 py-2"
               >
                 Ingresar
               </button>
@@ -72,29 +81,40 @@ const Navbar = () => {
                     },
                   }}
                 >
-                  <BsCart4 className="text-brand-black" />
+                  <BsCart4 className="text-black dark:text-white" />
                 </Badge>
               </IconButton>
             </Tooltip>
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg transition-colors duration-300"
-              aria-label={isDarkMode ? "Activar modo claro" : "Activar modo oscuro"}
+
+            <Tooltip
+              title={isDarkMode ? "Activar modo claro" : "Activar modo oscuro"}
+              arrow
             >
-              {isDarkMode ? <BsMoon className="text-white" /> : <BsSun className="text-gray-700" />}
-            </button>
+              <IconButton
+                onClick={toggleTheme}
+                sx={{ width: "50px", height: "50px" }}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+              >
+                {isDarkMode ? (
+                  <BsMoon className="text-white w-5" />
+                ) : (
+                  <BsSun className="text-black w-5" />
+                )}
+              </IconButton>
+            </Tooltip>
           </div>
 
           <div className="md:hidden" onClick={() => setOpen(!open)}>
-            <div className="flex cursor-pointer items-center justify-center rounded-3xl bg-white hover:bg-slate-200">
+            <div className="flex cursor-pointer items-center justify-center rounded-3xl hover:bg-slate-200">
               <div className="space-y-2.5">
                 <span
-                  className={`block h-0.5 w-9 origin-center rounded-full bg-brand-black transition-transform duration-300 ease-in-out ${
+                  className={`block h-0.5 w-9 origin-center rounded-full bg-black dark:bg-white transition-transform duration-300 ease-in-out ${
                     open ? "translate-y-1 rotate-45" : ""
                   }`}
                 ></span>
                 <span
-                  className={`block h-0.5 w-7 origin-center rounded-full bg-brand-main transition-transform duration-300 ease-in-out ${
+                  className={`block h-0.5 w-7 origin-center rounded-full bg-primary transition-transform duration-300 ease-in-out ${
                     open ? "-translate-y-2 -rotate-45 w-9" : ""
                   }`}
                 ></span>

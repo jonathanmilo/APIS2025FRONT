@@ -30,12 +30,12 @@ const SearchBarDropdown = () => {
   return (
     <div className="relative z-50 w-100" ref={dropdownRef}>
       {/* Input busqueda */}
-      <div className="flex items-center py-3 px-4 bg-gray-50 border-1 border-gray-200 sticky top-0">
-        <CiSearch className="text-gray-400 mr-4 text-2xl" />
+      <div className="flex items-center py-3 px-4 bg-gray-50 dark:bg-[color:var(--color-gray)] border-1 border-gray-200 dark:border-[color:var(--color-light-gray)] sticky top-0">
+        <CiSearch className="text-gray-400 dark:text-gray-50 mr-4 text-2xl" />
         <input
           type="search"
-          placeholder={"Buscar productos"}
-          className="w-full text-brand-black font-thin bg-transparent focus:outline-none"
+          placeholder={"Buscar productos..."}
+          className="w-full text-brand-black dark:text-white font-thin bg-transparent focus:outline-none"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onClick={() => setOpen(true)}
@@ -44,7 +44,7 @@ const SearchBarDropdown = () => {
 
       {/* Dropdown resultados */}
       {open && search.trim() !== "" && (
-        <ul className="absolute top-full left-0 w-full max-h-96 overflow-y-auto bg-white shadow-lg z-50">
+        <ul className="absolute top-full left-0 w-full max-h-96 overflow-y-auto bg-white dark:bg-[color:var(--color-gray)] shadow-lg z-50">
           {filteredItems.length === 0 ? (
             <li className="text-gray-500 italic p-4">Sin resultados</li>
           ) : (
@@ -58,7 +58,7 @@ const SearchBarDropdown = () => {
               return (
                 <li
                   key={item.id}
-                  className="p-4 border-b border-gray-200 flex items-center gap-4 hover:bg-gray-50 cursor-pointer"
+                  className="p-4 border-b border-gray-200 dark:border-[color:var(--color-light-gray)] flex items-center gap-4 hover:bg-gray-50 hover:dark:bg-[color:var(--color-light-gray)] cursor-pointer"
                   onClick={() => {
                     setSearch(item.title);
                     setOpen(false);
@@ -71,14 +71,14 @@ const SearchBarDropdown = () => {
                     className="w-20 h-20 object-cover rounded"
                   />
                   <div className="flex flex-col">
-                    <span className="font-semibold text-gray-800">
+                    <span className="font-semibold text-black dark:text-white">
                       {item.title}
                     </span>
-                    <div className="text-brand-black text-lg">
+                    <div className="text-black dark:text-white text-lg">
                       {item.discountPercentage > 0 ? (
                         <>
                           <span className="font-bold mr-2">${precioFinal}</span>
-                          <span className="line-through text-sm text-gray-500">
+                          <span className="line-through text-sm text-gray-500 dark:text-primary">
                             ${item.price}
                           </span>
                         </>
