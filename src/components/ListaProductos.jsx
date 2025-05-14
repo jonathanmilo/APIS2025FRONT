@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard";
 
-function ListaProductos({ titulo, productos }) {
+function ListaProductos({ titulo, productos, onRemoveProduct, onUpdateStock }) {
   if (!Array.isArray(productos)) return null;
 
   return (
@@ -8,7 +8,12 @@ function ListaProductos({ titulo, productos }) {
       {productos.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {productos.map((producto) => (
-            <ProductCard key={producto.id} producto={producto} />
+            <ProductCard 
+              key={producto.id} 
+              producto={producto} 
+              onRemoveProduct={onRemoveProduct}
+              onUpdateStock={onUpdateStock}
+            />
           ))}
         </div>
       ) : (

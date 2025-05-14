@@ -4,7 +4,7 @@ import { useProductos } from "@src/contexts/ProductContext";
 import ListaProductos from "@src/components/ListaProductos";
 import { Avatar, Tooltip } from "@mui/material";
 import { FaPlus } from "react-icons/fa6";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { fetchUserProducts } from "@src/api/products.js";
 
 import {
@@ -22,22 +22,46 @@ const MiPerfil = () => {
 
   const { user } = useValidacion();
 
-  // Cargar productos del usuario directamente desde la API
-  useEffect(() => {
+  // Función para cargar/recargar productos del usuario
+  const cargarProductosUsuario = useCallback(async () => {
     if (user && user.id) {
       setLoading(true);
-      fetchUserProducts(user.id)
-        .then(response => {
-          setProductosUsuario(response.data);
-          setLoading(false);
-        })
-        .catch(err => {
-          console.error("Error al cargar los productos:", err);
-          setError("No se pudieron cargar tus productos. Intenta nuevamente.");
-          setLoading(false);
-        });
+      try {
+        const response = await fetchUserProducts(user.id);
+        setProductosUsuario(response.data);
+        // Si hay productos filtrados, actualizar también esa lista
+        if (productosFiltrados.length > 0) {
+          setProductosFiltrados(
+            filtrarPorNombre(response.data, document.querySelector('input[type="search"]')?.value || '')
+          );
+        }
+        setLoading(false);
+      } catch (err) {
+        console.error("Error al cargar los productos:", err);
+        setError("No se pudieron cargar tus productos. Intenta nuevamente.");
+        setLoading(false);
+      }
     }
-  }, [user]);
+  }, [user, productosFiltrados.length]);
+
+  // Cargar productos del usuario al montar el componente
+  useEffect(() => {
+    cargarProductosUsuario();
+  }, [cargarProductosUsuario]);
+
+  const handleRemoveProduct = (productId) => {
+    // Actualizar la lista de productos del usuario
+    setProductosUsuario(prevProducts => 
+      prevProducts.filter(product => product.id !== productId)
+    );
+    
+    // Actualizar la lista de productos filtrados si es necesario
+    if (productosFiltrados.length > 0) {
+      setProductosFiltrados(prevFiltered => 
+        prevFiltered.filter(product => product.id !== productId)
+      );
+    }
+  };
 
   const handleBuscar = (termino) => {
     if (!termino) return setProductosFiltrados([]);
@@ -98,6 +122,8 @@ const MiPerfil = () => {
                 ? productosFiltrados
                 : productosUsuario
             }
+            onRemoveProduct={handleRemoveProduct}
+            onUpdateStock={cargarProductosUsuario}
           />
         )}
       </section>

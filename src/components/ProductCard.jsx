@@ -12,7 +12,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { deleteProduct, updateProductStock } from "@src/api/products";
 import FloatingFormDialog from "@src/screens/Configuracion/components/FloatingForm";
 
-function ProductCard({ producto }) {
+function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
   const [open, setOpen] = useState(false);
   const { usuarios } = useUsuario();
   const { user } = useValidacion();
@@ -29,23 +29,43 @@ function ProductCard({ producto }) {
   const handleDelete = async (id) => {
     try {
       await deleteProduct(id);
-      window.location.reload(); // TODO: resolver la vista inmediata despues de que se haya elimminado el producto sin forzar refresh (en componente configuracion o lista productos)
-      alert(`Producto ${producto.title} eliminado correctamente`);
+      if (onRemoveProduct) {
+        onRemoveProduct(id);
+        alert(`Producto ${producto.title} eliminado correctamente`);
+      } else {
+        // Si no hay función, usar recarga (modo fallback)
+        alert(`Producto ${producto.title} eliminado correctamente`);
+        window.location.reload();
+      }
     } catch (error) {
       console.error("Error al eliminar el producto:", error);
+      alert("Error al eliminar el producto. Inténtalo de nuevo.");
     }
+  };
+
+  const openStockDialog = () => {
+    setFormData({ newStock: producto.stock });
+    setOpen(true);
   };
 
   const handleUpdateStock = async () => {
     try {
       await updateProductStock(producto.id, Number(formData.newStock));
-      window.location.reload();
-      alert(
-        `Producto ${producto.title} actualizado con nuevo stock: ${formData.newStock}`
-      );
-      setOpen(false);
+      
+      // Si hay función para actualizar, usarla
+      if (onUpdateStock) {
+        onUpdateStock();
+        alert(`Producto ${producto.title} actualizado con nuevo stock: ${formData.newStock}`);
+        setOpen(false);
+      } else {
+        // Si no hay función, usar recarga (modo fallback)
+        alert(`Producto ${producto.title} actualizado con nuevo stock: ${formData.newStock}`);
+        setOpen(false);
+        window.location.reload();
+      }
     } catch (error) {
       console.error("Error al actualizar el stock:", error);
+      alert("Error al actualizar el stock. Inténtalo de nuevo.");
     }
   };
 
