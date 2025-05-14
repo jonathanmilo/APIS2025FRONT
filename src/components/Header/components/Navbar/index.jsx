@@ -76,7 +76,7 @@ const Navbar = () => {
                   badgeContent={countProducts()}
                   sx={{
                     "& .MuiBadge-badge": {
-                      backgroundColor: "#84cc16",
+                      backgroundColor: "primary.main",
                       color: "white",
                     },
                   }}

@@ -52,7 +52,7 @@ export default function UserMenu({ usuario }) {
         </IconButton>
       </Tooltip>
 
-      <Menu
+      <Menu 
         anchorEl={anchorEl}
         id="user-menu"
         open={open}
@@ -67,6 +67,7 @@ export default function UserMenu({ usuario }) {
               overflow: "visible",
               filter: "drop-shadow(0px 1px 4px rgba(0,0,0,0.16))",
               mt: 1,
+              backgroundColor: "background.paper",
               "& .MuiAvatar-root": {
                 width: 32,
                 height: 32,
