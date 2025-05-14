@@ -28,7 +28,7 @@ export default function Configuracion() {
   };
 
   return (
-    <div className="bg-white m-5 shadow-md p-6">
+    <div className="bg-white dark:bg-black m-5 shadow-md p-6">
       <div className="flex items-center gap-6">
         <Avatar
           src={user.avatar}
@@ -36,10 +36,10 @@ export default function Configuracion() {
           sx={{ width: 80, height: 80 }}
         />
         <div>
-          <p className="text-xl font-semibold text-gray-800">
+          <p className="text-xl font-semibold text-black dark:text-white">
             {user.firstName} {user.lastName}
           </p>
-          <p className="text-sm text-gray-600">{user.email}</p>
+          <p className="text-sm text-gray-600 dark:text-white">{user.email}</p>
         </div>
       </div>
 
@@ -74,11 +74,11 @@ export default function Configuracion() {
         ].map(({ label, value, field }) => (
           <div
             key={field}
-            className="flex justify-between items-center border-b pb-2"
+            className="flex justify-between items-center border-b border-gray-300 dark:border-white pb-2"
           >
             <div>
-              <p className="text-sm text-gray-500">{label}</p>
-              <p className="text-lg font-medium text-gray-800">{value}</p>
+              <p className="text-sm text-gray-500 dark:text-white">{label}</p>
+              <p className="text-lg font-medium text-black dark:text-white">{value}</p>
             </div>
 
             <Tooltip title="Editar" arrow>
@@ -88,7 +88,7 @@ export default function Configuracion() {
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
               >
-                <MdEdit size={24} />
+                <MdEdit size={24} className="text-gray-600 dark:text-white" />
               </IconButton>
             </Tooltip>
           </div>
