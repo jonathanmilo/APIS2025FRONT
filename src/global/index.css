@@ -3,20 +3,22 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --color-primary: oklch(0.77 0.2044 130.85);
-    --color-primary-hover: oklch(0.65 0.1754 131.68);
+  --color-primary: #85cd18;
+  --color-primary-hover: #66a40f;
+  --color-white-mui: #ffffff;
+  --color-black-mui: #414141;
 }
 
 @layer base {
   :root {
     --color-white: #ffffff;
-    --color-black: oklch(0.279 0.041 260.031);
+    --color-black: #1d293d;
     --color-gray: #a8a7a7;
     --color-light-gray: #cacaca;
   }
 
   .dark {
-    --color-white: #E4E4E4;
+    --color-white: #e4e4e4;
     --color-black: #313131;
     --color-gray: #414141;
     --color-light-gray: #525252;

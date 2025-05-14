@@ -18,11 +18,9 @@ import Carrito from "./screens/Carrito";
 import Vender from "./screens/Vender";
 import Configuracion from "./screens/Configuracion";
 import Compras from "./screens/Compras";
-import { ThemeProvider } from "./contexts/ThemeContext";
 
 function App() {
   return (
-    <ThemeProvider>
       <Router>
         <ScrollToTop />
         <Routes>
@@ -44,7 +42,6 @@ function App() {
           </Route>
         </Routes>
       </Router>
-    </ThemeProvider>
   );
 }
 
