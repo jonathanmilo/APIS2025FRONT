@@ -10,7 +10,7 @@ export function filtrarDestacados(productos) {
 }
 
 export function filtrarPorUsuario(productos, userId) {
-  return productos.filter((p) => p.userId === userId);
+  return productos.filter((p) => String(p.userId) == String(userId));
 }
 
 export function filtrarConDescuento(productos) {
