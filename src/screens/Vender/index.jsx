@@ -135,9 +135,9 @@ function sonidito (){
   return (
     <form
       onSubmit={handleSubmit}
-      className="m-5 bg-white p-5 lg:mx-50 shadow-lg"
+      className="m-5 bg-white dark:bg-black p-5 lg:mx-50 shadow-lg"
     >
-      <h1 className="text-black uppercase text-xl text-center mb-5">
+      <h1 className="text-black dark:text-white uppercase text-xl text-center mb-5">
         Crear publicación
       </h1>
 
@@ -146,7 +146,7 @@ function sonidito (){
       <Grid container spacing={3}>
         {/* Sección de información básica */}
 
-        <Typography variant="h6" gutterBottom color="black">
+        <Typography variant="h6" gutterBottom color="text.primary">
           Datos del producto
         </Typography>
 
@@ -204,7 +204,7 @@ function sonidito (){
         {/* Sección de imágenes */}
 
         <Grid>
-          <Typography variant="h6" gutterBottom color="black">
+          <Typography variant="h6" color="text.primary">
             Imágenes del producto
           </Typography>
           <Box sx={{ mb: 2 }}>
@@ -263,7 +263,7 @@ function sonidito (){
 
         {/* Sección de categorías */}
         <Grid>
-          <Typography variant="h6" gutterBottom color="black">
+          <Typography variant="h6" gutterBottom color="text.primary">
             Categorías
           </Typography>
           <CategoriasValidas

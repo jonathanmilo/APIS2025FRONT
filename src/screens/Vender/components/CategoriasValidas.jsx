@@ -74,7 +74,7 @@ export function CategoriasValidas({
     <Box sx={{ width: "100%" }}>
       <Typography
         variant="body1"
-        color="text.secondary"
+        color="text.primary"
         sx={{ mb: 2, textAlign: { md: "left" } }}
       >
         Selecciona las categorías y subcategorías de tu producto
@@ -105,7 +105,7 @@ export function CategoriasValidas({
               label={categoria.name}
               sx={{
                 "& .MuiFormControlLabel-label": {
-                  color: "black",
+                  color:"text.primary",
                 },
               }}
             />
@@ -140,7 +140,7 @@ export function CategoriasValidas({
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
-                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2}}>
                   {categoria.subcategories.map((subcategoria) => (
                     <FormControlLabel
                       key={subcategoria.id}
@@ -167,7 +167,7 @@ export function CategoriasValidas({
       {/* Muestra selecciones actuales */}
       {(selectedCategory || selectedSubcategories.length > 0) && (
         <>
-          <Typography variant="subtitle1" gutterBottom color="black">
+          <Typography variant="subtitle1" gutterBottom color="text.primary">
             Selecciones actuales:
           </Typography>
           <Box
