@@ -4,11 +4,11 @@ import { useProductos } from "@src/contexts/ProductContext";
 import ListaProductos from "@src/components/ListaProductos";
 import { Avatar, Tooltip } from "@mui/material";
 import { FaPlus } from "react-icons/fa6";
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { fetchUserProducts } from "@src/api/products.js";
 
 import {
   filtrarPorNombre,
-  filtrarPorUsuario,
 } from "@src/utils/filtrarProductos";
 import SearchBar from "@src/components/SearchBar";
 
@@ -16,20 +16,61 @@ const MiPerfil = () => {
   const navigate = useNavigate();
 
   const [productosFiltrados, setProductosFiltrados] = useState([]);
+  const [productosUsuario, setProductosUsuario] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const { user } = useValidacion();
-  const { productos } = useProductos();
 
-  const productosFiltradosPorUsuario = filtrarPorUsuario(productos, user.id);
+  // Función para cargar/recargar productos del usuario
+  const cargarProductosUsuario = useCallback(async () => {
+    if (user && user.id) {
+      setLoading(true);
+      try {
+        const response = await fetchUserProducts(user.id);
+        setProductosUsuario(response.data);
+        // Si hay productos filtrados, actualizar también esa lista
+        if (productosFiltrados.length > 0) {
+          setProductosFiltrados(
+            filtrarPorNombre(response.data, document.querySelector('input[type="search"]')?.value || '')
+          );
+        }
+        setLoading(false);
+      } catch (err) {
+        console.error("Error al cargar los productos:", err);
+        setError("No se pudieron cargar tus productos. Intenta nuevamente.");
+        setLoading(false);
+      }
+    }
+  }, [user, productosFiltrados.length]);
+
+  // Cargar productos del usuario al montar el componente
+  useEffect(() => {
+    cargarProductosUsuario();
+  }, [cargarProductosUsuario]);
+
+  const handleRemoveProduct = (productId) => {
+    // Actualizar la lista de productos del usuario
+    setProductosUsuario(prevProducts => 
+      prevProducts.filter(product => product.id !== productId)
+    );
+    
+    // Actualizar la lista de productos filtrados si es necesario
+    if (productosFiltrados.length > 0) {
+      setProductosFiltrados(prevFiltered => 
+        prevFiltered.filter(product => product.id !== productId)
+      );
+    }
+  };
 
   const handleBuscar = (termino) => {
     if (!termino) return setProductosFiltrados([]);
     setProductosFiltrados(
-      filtrarPorNombre(productosFiltradosPorUsuario, termino)
+      filtrarPorNombre(productosUsuario, termino)
     );
   };
 
-  if (!user || !productos) return null;
+  if (!user) return null;
 
   return (
     <>
@@ -69,14 +110,22 @@ const MiPerfil = () => {
           <SearchBar buscar={handleBuscar} />
         </div>
 
-        <ListaProductos
-          titulo={"Mis publicaciones"}
-          productos={
-            productosFiltrados.length
-              ? productosFiltrados
-              : productosFiltradosPorUsuario
-          }
-        />
+        {loading ? (
+          <p className="text-center">Cargando productos...</p>
+        ) : error ? (
+          <p className="text-center text-red-500">{error}</p>
+        ) : (
+          <ListaProductos
+            titulo={"Mis publicaciones"}
+            productos={
+              productosFiltrados.length
+                ? productosFiltrados
+                : productosUsuario
+            }
+            onRemoveProduct={handleRemoveProduct}
+            onUpdateStock={cargarProductosUsuario}
+          />
+        )}
       </section>
     </>
   );

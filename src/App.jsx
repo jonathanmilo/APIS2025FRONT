@@ -18,6 +18,7 @@ import Carrito from "./screens/Carrito";
 import Vender from "./screens/Vender";
 import Configuracion from "./screens/Configuracion";
 import Compras from "./screens/Compras";
+import EditarProducto from "./screens/EditarProducto";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
             <Route element={<ProtectedRoutes />}>
               <Route path="/mi-perfil" element={<MiPerfil />} />
               <Route path="/mis-compras" element={<Compras />} />
+              <Route path="/editar-producto/:id" element={<EditarProducto />} />
               <Route path="/configuracion" element={<Configuracion />} />
               <Route path="/vender" element={<Vender />} />
             </Route>

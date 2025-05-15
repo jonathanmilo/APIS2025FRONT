@@ -1,12 +1,9 @@
-import { useState, useEffect,useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCategorias } from "@src/contexts/CategoryContext.jsx";
-import { CategoriasValidas } from "./components/CategoriasValidas.jsx";
-import { createProduct } from "@src/api/products.js";
+import { CategoriasValidas } from "../Vender/components/CategoriasValidas.jsx";
+import { fetchProductById, updateProduct } from "@src/api/products.js";
 import { useValidacion } from "@src/contexts/AuthContext.jsx";
-import talleres from '/sounds/talleres.mp3';
-
-
 
 import {
   TextField,
@@ -17,30 +14,24 @@ import {
   Checkbox,
   Divider,
   Box,
+  CircularProgress,
+  Alert,
 } from "@mui/material";
 
-export function Vender() {
+export function EditarProducto() {
+  const { id } = useParams();
   const { categorias } = useCategorias();
   const navigate = useNavigate();
-
-  // Estados para categorías y subcategorías
-  const [subcategorias, setSubcategorias] = useState([]);
-  const [categoria, setCategoria] = useState("");
   const { user } = useValidacion();
 
-  //audio
-  const audioRef = useRef(null);
-function sonidito (){
-      if (audioRef.current) {
-        audioRef.current.currentTime = 0;
-        audioRef.current.play();
-      }
-    
-}
-  // Estado del formulario
+  // Estados
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [subcategorias, setSubcategorias] = useState([]);
+  const [categoria, setCategoria] = useState("");
   const [formData, setFormData] = useState({
-    id: (Math.floor(Math.random() * 900) + 101).toString(),
-    userId: user.id. toString(),
+    id: "",
+    userId: "",
     title: "",
     images: [{ url: "", isCover: true }],
     description: "",
@@ -51,6 +42,34 @@ function sonidito (){
     discountPercentage: "",
     isFeatured: false,
   });
+
+  // Cargar datos del producto
+  useEffect(() => {
+    if (id) {
+      setLoading(true);
+      fetchProductById(id)
+        .then((response) => {
+          const product = response.data;
+          
+          // Verificar que el producto pertenece al usuario actual
+          if (product.userId !== user.id.toString()) {
+            setError("No tienes permiso para editar este producto");
+            setLoading(false);
+            return;
+          }
+          
+          setFormData(product);
+          setCategoria(product.categoryId);
+          setSubcategorias(product.subcategoryIds);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Error al cargar el producto:", err);
+          setError("No se pudo cargar el producto. Intenta nuevamente.");
+          setLoading(false);
+        });
+    }
+  }, [id, user?.id]);
 
   // Actualizar formData cuando cambian las categorías
   useEffect(() => {
@@ -124,27 +143,50 @@ function sonidito (){
       alert(error);
       return;
     }
-    sonidito()
 
-    console.log("Datos del producto a publicar:", formData);
-    createProduct(formData)
+    setLoading(true);
+    updateProduct(formData.id, formData)
       .then(() => {
-        alert("Producto publicado exitosamente!");
-        navigate("/mi-perfil"); // Redirigir al perfil del usuario después de publicar
+        alert("Producto actualizado exitosamente!");
+        navigate("/mi-perfil");
       })
       .catch((err) => {
-        console.error("Error al crear el producto:", err);
-        alert("No se pudo crear el producto. Intenta nuevamente.");
+        console.error("Error al actualizar el producto:", err);
+        setError("No se pudo actualizar el producto. Intenta nuevamente.");
+        setLoading(false);
       });
   };
+
+  if (loading && Object.keys(formData).length === 0) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box sx={{ m: 3 }}>
+        <Alert severity="error">{error}</Alert>
+        <Button
+          variant="contained"
+          onClick={() => navigate("/mi-perfil")}
+          sx={{ mt: 2 }}
+        >
+          Volver a Mi Perfil
+        </Button>
+      </Box>
+    );
+  }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="m-5 bg-white dark:bg-black p-5 lg:mx-50 shadow-lg"
+      className="m-5 bg-white p-5 lg:mx-50 shadow-lg"
     >
-      <h1 className="text-black dark:text-white uppercase text-xl text-center mb-5">
-        Crear publicación
+      <h1 className="text-black uppercase text-xl text-center mb-5">
+        Editar producto
       </h1>
 
       <Divider sx={{ my: 3 }} />
@@ -152,7 +194,7 @@ function sonidito (){
       <Grid container spacing={3}>
         {/* Sección de información básica */}
 
-        <Typography variant="h6" gutterBottom color="text.primary">
+        <Typography variant="h6" gutterBottom color="black">
           Datos del producto
         </Typography>
 
@@ -210,7 +252,7 @@ function sonidito (){
         {/* Sección de imágenes */}
 
         <Grid>
-          <Typography variant="h6" color="text.primary">
+          <Typography variant="h6" gutterBottom color="black">
             Imágenes del producto
           </Typography>
           <Box sx={{ mb: 2 }}>
@@ -269,7 +311,7 @@ function sonidito (){
 
         {/* Sección de categorías */}
         <Grid>
-          <Typography variant="h6" gutterBottom color="text.primary">
+          <Typography variant="h6" gutterBottom color="black">
             Categorías
           </Typography>
           <CategoriasValidas
@@ -287,10 +329,9 @@ function sonidito (){
       <Grid>
         <Divider sx={{ my: 3 }} />
         <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
-          <audio ref={audioRef} src={talleres} />
           <Button
             variant="outlined"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/mi-perfil")}
             sx={{ px: 4 }}
           >
             Cancelar
@@ -300,9 +341,9 @@ function sonidito (){
             variant="contained"
             color="primary"
             sx={{ px: 4 }}
-            onClick={sonidito}
+            disabled={loading}
           >
-            Publicar
+            {loading ? <CircularProgress size={24} /> : "Guardar cambios"}
           </Button>
         </Box>
       </Grid>
@@ -310,4 +351,4 @@ function sonidito (){
   );
 }
 
-export default Vender;
+export default EditarProducto; 
