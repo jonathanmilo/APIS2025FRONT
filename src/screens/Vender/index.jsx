@@ -243,7 +243,7 @@ function sonidito (){
                     label="Portada"
                     sx={{
                       "& .MuiFormControlLabel-label": {
-                        color: "black",
+                        color: "text.primary",
                       },
                     }}
                   />
