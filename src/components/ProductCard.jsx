@@ -145,15 +145,15 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
                   </div>
                 </div>
                 {isOwner && isManagementPage && (
-                  <div className="flex gap-1">
+                  <div className="flex gap-2">
                     <Tooltip title="Editar producto" arrow>
                       <IconButton onClick={handleEditProduct}>
-                        <FaPencilAlt className="text-blue-500" />
+                        <FaPencilAlt className="text-black dark:text-white" />
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Eliminar publicación" arrow>
                       <IconButton onClick={() => handleDelete(producto.id)}>
-                        <RiDeleteBin6Line className="text-red-500" />
+                        <RiDeleteBin6Line className="text-black dark:text-white" />
                       </IconButton>
                     </Tooltip>
                   </div>
