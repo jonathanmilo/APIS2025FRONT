@@ -1,16 +1,7 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { TextField } from "@mui/material";
-import { useRef } from "react";
-import loony from '/sounds/loony.mp3';
-import { useValidacion } from "@src/contexts/AuthContext";
-import { crearCarrito } from "@src/api/cart/cartService";
-import { CartContext } from "@src/contexts/CartContext";
-
 
 export default function AuthForm({ mode = "login", onSubmit }) {
-  const { register } = useValidacion();
-  const { cart } = useContext(CartContext);
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -41,14 +32,6 @@ export default function AuthForm({ mode = "login", onSubmit }) {
     return Object.keys(newErrors).length === 0;
   };
 
-  //audio
-  const audioRef = useRef(null);
-  function sonidito() {
-    if (audioRef.current) {
-      audioRef.current.play();
-    }
-  }
-
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -76,12 +59,7 @@ export default function AuthForm({ mode = "login", onSubmit }) {
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         };
-
-        const success = await register(newUser);
-        if (success) {
-          await crearCarrito(newUser.id, cart);
-          onSubmit(formData);
-        }
+        onSubmit(newUser);
       } else {
         onSubmit(formData); // Para login, simplemente pasa los datos al padre
       }
@@ -137,9 +115,7 @@ export default function AuthForm({ mode = "login", onSubmit }) {
               error={errors.password}
             />
           </div>
-          <audio ref={audioRef} src={loony} />
           <button
-            onClick={sonidito()}
             className="mt-6 w-full bg-primary py-3 px-6 text-white font-bold uppercase shadow-md transition-all hover:shadow-lg"
             type="submit"
             disabled={Object.keys(errors).length > 0}

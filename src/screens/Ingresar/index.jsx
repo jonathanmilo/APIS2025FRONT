@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import AuthForm from "./components/AuthForm";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { CartContext } from "@src/contexts/CartContext";
+import { crearCarrito } from "@src/api/cart/cartService";
 
 export default function Ingresar() {
-  const { validar, user } = useValidacion();
+  const { cart } = useContext(CartContext);
+  const { validar, user, register } = useValidacion();
   const { obtenerCarrito } = useContext(CartContext);
   const navigate = useNavigate();
   const [formMode, setFormMode] = useState("login");
@@ -16,8 +18,12 @@ export default function Ingresar() {
       await validar(data);
       setLoginExitoso(true);
     } else {
-      alert(`Cuenta creada para ${data.name}`);
-      navigate("/ingresar");
+      const success = await register(data);
+
+      if (success) {
+        await crearCarrito(data.id, cart);
+        setFormMode("login");
+      }
     }
   };
 
