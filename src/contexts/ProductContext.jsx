@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { fetchAllProducts } from "@src/api/products";
+import { deleteProduct, updateProduct, createProduct } from "@src/api/products";
 
 const ProductContext = createContext();
 
@@ -13,8 +14,6 @@ export function ProductosProvider({ children }) {
   const [error, setError] = useState(null);
 
   const getProductos = async () => {
-
-    setLoading(true);
     try {
       const res = await fetchAllProducts();
       setProductos(res.data);
@@ -25,12 +24,55 @@ export function ProductosProvider({ children }) {
     }
   };
 
+  const refreshProductos = () => {
+    getProductos();
+  };
+
+  const eliminarProducto = async (id) => {
+    try {
+      await deleteProduct(id);
+      refreshProductos();
+      return { success: true };
+    } catch (error) {
+      console.error("Error al eliminar producto:", error);
+      return { success: false, error };
+    }
+  };
+
+  const crearProducto = async (userId, nuevoProducto) => {
+    if (!userId) throw new Error("No hay usuario logueado");
+    try {
+      await createProduct(nuevoProducto);
+      refreshProductos();
+    } catch (err) {
+      throw err;
+    }
+  };
+
+  const actualizarProducto = async (id, data) => {
+    try {
+      await updateProduct(id, data);
+      refreshProductos();
+    } catch (error) {
+      throw new Error("Error al actualizar el producto");
+    }
+  };
+
   useEffect(() => {
     getProductos();
   }, []);
 
   return (
-    <ProductContext.Provider value={{ productos }}>
+    <ProductContext.Provider
+      value={{
+        productos,
+        loading,
+        error,
+        eliminarProducto,
+        actualizarProducto,
+        crearProducto,
+      }}
+    >
       {children}
     </ProductContext.Provider>
   );

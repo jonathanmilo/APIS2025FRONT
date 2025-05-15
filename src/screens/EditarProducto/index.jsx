@@ -2,8 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCategorias } from "@src/contexts/CategoryContext.jsx";
 import { CategoriasValidas } from "../Vender/components/CategoriasValidas.jsx";
-import { fetchProductById, updateProduct } from "@src/api/products.js";
+import { fetchProductById } from "@src/api/products.js";
 import { useValidacion } from "@src/contexts/AuthContext.jsx";
+import { useProductos } from "@src/contexts/ProductContext.jsx";
 
 import {
   TextField,
@@ -23,6 +24,7 @@ export function EditarProducto() {
   const { categorias } = useCategorias();
   const navigate = useNavigate();
   const { user } = useValidacion();
+  const { actualizarProducto } = useProductos();
 
   // Estados
   const [loading, setLoading] = useState(true);
@@ -50,14 +52,14 @@ export function EditarProducto() {
       fetchProductById(id)
         .then((response) => {
           const product = response.data;
-          
+
           // Verificar que el producto pertenece al usuario actual
           if (product.userId !== user.id.toString()) {
             setError("No tienes permiso para editar este producto");
             setLoading(false);
             return;
           }
-          
+
           setFormData(product);
           setCategoria(product.categoryId);
           setSubcategorias(product.subcategoryIds);
@@ -136,7 +138,7 @@ export function EditarProducto() {
   };
 
   // Enviar formulario
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const error = validateForm();
     if (error) {
@@ -145,21 +147,28 @@ export function EditarProducto() {
     }
 
     setLoading(true);
-    updateProduct(formData.id, formData)
-      .then(() => {
-        alert("Producto actualizado exitosamente!");
-        navigate("/mi-perfil");
-      })
-      .catch((err) => {
-        console.error("Error al actualizar el producto:", err);
-        setError("No se pudo actualizar el producto. Intenta nuevamente.");
-        setLoading(false);
-      });
+    try {
+      await actualizarProducto(formData.id, formData);
+      alert("Producto actualizado exitosamente!");
+      navigate("/mi-perfil");
+    } catch (err) {
+      console.error("Error al actualizar el producto:", err);
+      setError("No se pudo actualizar el producto. Intenta nuevamente.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (loading && Object.keys(formData).length === 0) {
     return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "50vh",
+        }}
+      >
         <CircularProgress />
       </Box>
     );
@@ -351,4 +360,4 @@ export function EditarProducto() {
   );
 }
 
-export default EditarProducto; 
+export default EditarProducto;

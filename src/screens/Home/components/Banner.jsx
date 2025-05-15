@@ -4,7 +4,7 @@ export default function Banner() {
 
   return (
     <section
-      className="min-h-[20rem] xl:min-h-[25rem] bg-cover bg-fixed bg-bottom xl:bg-center flex items-center justify-start cursor-default"
+      className="min-h-[20rem] xl:min-h-[25rem] bg-center flex items-center justify-start cursor-default"
       style={{ backgroundImage: `url(${image})` }}
     >
       <div className="flex flex-col items-center gap-5 text-center px-4 md:ms-10 relative z-10 ">

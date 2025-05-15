@@ -1,12 +1,10 @@
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCategorias } from "@src/contexts/CategoryContext.jsx";
 import { CategoriasValidas } from "./components/CategoriasValidas.jsx";
-import { createProduct } from "@src/api/products.js";
+import { useProductos } from "../../contexts/ProductContext.jsx";
 import { useValidacion } from "@src/contexts/AuthContext.jsx";
-import talleres from '/sounds/talleres.mp3';
-
-
+import talleres from "/sounds/talleres.mp3";
 
 import {
   TextField,
@@ -22,6 +20,7 @@ import {
 export function Vender() {
   const { categorias } = useCategorias();
   const navigate = useNavigate();
+  const { crearProducto } = useProductos();
 
   // Estados para categorías y subcategorías
   const [subcategorias, setSubcategorias] = useState([]);
@@ -30,17 +29,16 @@ export function Vender() {
 
   //audio
   const audioRef = useRef(null);
-function sonidito (){
-      if (audioRef.current) {
-        audioRef.current.currentTime = 0;
-        audioRef.current.play();
-      }
-    
-}
+  function sonidito() {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+  }
   // Estado del formulario
   const [formData, setFormData] = useState({
     id: (Math.floor(Math.random() * 900) + 101).toString(),
-    userId: user.id. toString(),
+    userId: user.id.toString(),
     title: "",
     images: [{ url: "", isCover: true }],
     description: "",
@@ -117,25 +115,23 @@ function sonidito (){
   };
 
   // Enviar formulario
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const error = validateForm();
     if (error) {
       alert(error);
       return;
     }
-    sonidito()
+    sonidito();
 
-    console.log("Datos del producto a publicar:", formData);
-    createProduct(formData)
-      .then(() => {
-        alert("Producto publicado exitosamente!");
-        navigate("/mi-perfil"); // Redirigir al perfil del usuario después de publicar
-      })
-      .catch((err) => {
-        console.error("Error al crear el producto:", err);
-        alert("No se pudo crear el producto. Intenta nuevamente.");
-      });
+    try {
+      await crearProducto(user.id.toString(), formData);
+      alert("Producto publicado exitosamente!");
+      navigate("/mi-perfil");
+    } catch (err) {
+      console.error("Error al crear el producto:", err);
+      alert("No se pudo crear el producto. Intenta nuevamente.");
+    }
   };
 
   return (

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import ProductCard from "@src/components/ProductCard";
+import ListaProductos from "@src/components/ListaProductos";
 
 function ProductosPorCategoria({ categorias, productos }) {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
@@ -19,12 +19,12 @@ function ProductosPorCategoria({ categorias, productos }) {
   return (
     <section className="categorias">
       {/* Lista de Categorías */}
-      <ul className="flex flex-row gap-3 overflow-x-auto my-2">
+      <ul className="flex flex-row gap-3 overflow-x-auto">
         {categorias.map((categoria) => {
           const activa = categoriaSeleccionada?.name === categoria.name;
 
           return (
-            <li key={categoria.id} className="flex-shrink-0 shadow-lg">
+            <li key={categoria.id} className="flex-shrink-0 shadow-md my-2">
               <button
                 onClick={() => setCategoriaSeleccionada(categoria)}
                 className={`min-w-[250px] max-w-max p-2 text-center transition duration-300 cursor-pointer
@@ -36,7 +36,9 @@ function ProductosPorCategoria({ categorias, productos }) {
               >
                 <h3
                   className={`font-bold uppercase text-lg ${
-                    activa ? "text-white dark:text-black" : "text-black dark:text-white"
+                    activa
+                      ? "text-white dark:text-black"
+                      : "text-black dark:text-white"
                   }`}
                 >
                   {categoria.name}
@@ -44,7 +46,9 @@ function ProductosPorCategoria({ categorias, productos }) {
 
                 <div
                   className={`text-sm mt-1 whitespace-nowrap overflow-hidden text-ellipsis ${
-                    activa ? "text-white dark:text-black" : "text-gray-600 dark:text-white"
+                    activa
+                      ? "text-white dark:text-black"
+                      : "text-gray-600 dark:text-white"
                   }`}
                 >
                   {categoria.subcategories?.map((sub) => sub.name).join(" • ")}
@@ -62,17 +66,12 @@ function ProductosPorCategoria({ categorias, productos }) {
             Productos en: {categoriaSeleccionada.name}
           </h2>
 
-          {productosFiltrados.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-              {productosFiltrados.map((producto) => (
-                <ProductCard key={producto.id} producto={producto} />
-              ))}
-            </div>
-          ) : (
-            <p className="text-gray-600 dark:text-white">
-              No hay productos en la categoría "{categoriaSeleccionada.name}".
-            </p>
-          )}
+          <ListaProductos
+            titulo={categoriaSeleccionada.name}
+            productos={productosFiltrados}
+            // onRemoveProduct={...} TODO: implementar para que despues de cada crud en products se actualice la nueva lista de componentes sin forzar refresh
+            // onUpdateStock={...}
+          />
         </div>
       )}
     </section>

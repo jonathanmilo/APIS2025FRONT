@@ -6,18 +6,15 @@ import { useUserData } from "@src/hooks/useUserData";
 import { useUsuario } from "@src/contexts/UserContext";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useState } from "react";
 import { MdEdit } from "react-icons/md";
 import { FaPencilAlt } from "react-icons/fa";
-import { deleteProduct, updateProductStock } from "@src/api/products";
-import FloatingFormDialog from "@src/screens/Configuracion/components/FloatingForm";
+import { useProductos } from "@src/contexts/ProductContext";
 
 function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
-  const [open, setOpen] = useState(false);
   const { usuarios } = useUsuario();
+  const { eliminarProducto } = useProductos();
   const { user } = useValidacion();
-  const { usuario, loading, error } = useUserData(producto.userId, usuarios);
-  const [formData, setFormData] = useState({ newStock: "" });
+  const { usuario, loading } = useUserData(producto.userId, usuarios);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -28,44 +25,16 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
 
   const handleDelete = async (id) => {
     try {
-      await deleteProduct(id);
-      if (onRemoveProduct) {
-        onRemoveProduct(id);
+      const result = await eliminarProducto(id);
+      if (result.success) {
         alert(`Producto ${producto.title} eliminado correctamente`);
+        onRemoveProduct(id); // padre actualiza ui
       } else {
-        // Si no hay función, usar recarga (modo fallback)
-        alert(`Producto ${producto.title} eliminado correctamente`);
-        window.location.reload();
+        alert("No se pudo eliminar el producto. Intenta nuevamente.");
       }
     } catch (error) {
-      console.error("Error al eliminar el producto:", error);
+      console.error(error.message);
       alert("Error al eliminar el producto. Inténtalo de nuevo.");
-    }
-  };
-
-  const openStockDialog = () => {
-    setFormData({ newStock: producto.stock });
-    setOpen(true);
-  };
-
-  const handleUpdateStock = async () => {
-    try {
-      await updateProductStock(producto.id, Number(formData.newStock));
-      
-      // Si hay función para actualizar, usarla
-      if (onUpdateStock) {
-        onUpdateStock();
-        alert(`Producto ${producto.title} actualizado con nuevo stock: ${formData.newStock}`);
-        setOpen(false);
-      } else {
-        // Si no hay función, usar recarga (modo fallback)
-        alert(`Producto ${producto.title} actualizado con nuevo stock: ${formData.newStock}`);
-        setOpen(false);
-        window.location.reload();
-      }
-    } catch (error) {
-      console.error("Error al actualizar el stock:", error);
-      alert("Error al actualizar el stock. Inténtalo de nuevo.");
     }
   };
 
@@ -75,9 +44,11 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
 
   // Verificar si el usuario actual es el dueño del producto
   const isOwner = user && user.id.toString() === producto.userId.toString();
-  
+
   // Verificar si estamos en una página de gestión de productos (mi-perfil o mis-productos)
-  const isManagementPage = ['/mi-perfil', '/mis-productos'].includes(location.pathname);
+  const isManagementPage = ["/mi-perfil", "/mis-productos"].includes(
+    location.pathname
+  );
 
   return (
     <>
@@ -191,22 +162,6 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
           )}
         </div>
       </div>
-      <FloatingFormDialog
-        open={open}
-        onClose={() => setOpen(false)}
-        onSave={handleUpdateStock}
-        formData={formData}
-        setFormData={setFormData}
-        title={`Editar stock de "${producto.title}"`}
-        fields={[
-          {
-            name: "newStock",
-            label: "Nuevo stock",
-            type: "number",
-            required: true,
-          },
-        ]}
-      />
     </>
   );
 }

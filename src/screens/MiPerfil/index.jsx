@@ -1,41 +1,47 @@
 import { useNavigate } from "react-router-dom";
 import { useValidacion } from "@src/contexts/AuthContext";
-import { useProductos } from "@src/contexts/ProductContext";
-import ListaProductos from "@src/components/ListaProductos";
-import { Avatar, Tooltip } from "@mui/material";
-import { FaPlus } from "react-icons/fa6";
 import { useState, useEffect, useCallback } from "react";
 import { fetchUserProducts } from "@src/api/products.js";
-
 import { filtrarPorNombre } from "@src/utils/filtrarProductos";
+
+import ListaProductos from "@src/components/ListaProductos";
 import SearchBar from "@src/components/SearchBar";
+
+import { Tooltip } from "@mui/material";
+import { FaPlus } from "react-icons/fa6";
 
 const MiPerfil = () => {
   const navigate = useNavigate();
+  const { user } = useValidacion();
 
   const [productosFiltrados, setProductosFiltrados] = useState([]);
   const [productosUsuario, setProductosUsuario] = useState([]);
+  const [terminoBusqueda, setTerminoBusqueda] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { user } = useValidacion();
+  const handleBuscar = (termino) => {
+    setTerminoBusqueda(termino);
+    if (!termino || productosUsuario.length === 0) {
+      setProductosFiltrados([]);
+    } else {
+      setProductosFiltrados(filtrarPorNombre(productosUsuario, termino));
+    }
+  };
 
-  // Función para cargar/recargar productos del usuario
   const cargarProductosUsuario = useCallback(async () => {
-    if (user && user.id) {
+    if (user?.id) {
       setLoading(true);
       try {
         const response = await fetchUserProducts(user.id);
         setProductosUsuario(response.data);
-        // Si hay productos filtrados, actualizar también esa lista
-        if (productosFiltrados.length > 0) {
+
+        if (terminoBusqueda) {
           setProductosFiltrados(
-            filtrarPorNombre(
-              response.data,
-              document.querySelector('input[type="search"]')?.value || ""
-            )
+            filtrarPorNombre(response.data, terminoBusqueda)
           );
         }
+
         setLoading(false);
       } catch (err) {
         console.error("Error al cargar los productos:", err);
@@ -43,30 +49,17 @@ const MiPerfil = () => {
         setLoading(false);
       }
     }
-  }, [user, productosFiltrados.length]);
+  }, [user]);
 
-  // Cargar productos del usuario al montar el componente
   useEffect(() => {
     cargarProductosUsuario();
   }, [cargarProductosUsuario]);
 
   const handleRemoveProduct = (productId) => {
-    // Actualizar la lista de productos del usuario
-    setProductosUsuario((prevProducts) =>
-      prevProducts.filter((product) => product.id !== productId)
-    );
-
-    // Actualizar la lista de productos filtrados si es necesario
+    setProductosUsuario((prev) => prev.filter((p) => p.id !== productId));
     if (productosFiltrados.length > 0) {
-      setProductosFiltrados((prevFiltered) =>
-        prevFiltered.filter((product) => product.id !== productId)
-      );
+      setProductosFiltrados((prev) => prev.filter((p) => p.id !== productId));
     }
-  };
-
-  const handleBuscar = (termino) => {
-    if (!termino) return setProductosFiltrados([]);
-    setProductosFiltrados(filtrarPorNombre(productosUsuario, termino));
   };
 
   if (!user) return null;
@@ -88,7 +81,9 @@ const MiPerfil = () => {
           </Tooltip>
         </div>
 
-        <div className="flex items-center justify-center"><SearchBar buscar={handleBuscar} /></div>
+        <div className="flex items-center justify-center">
+          <SearchBar buscar={handleBuscar} />
+        </div>
       </div>
 
       {loading ? (
@@ -97,7 +92,7 @@ const MiPerfil = () => {
         <p className="text-center text-red-500">{error}</p>
       ) : (
         <ListaProductos
-          titulo={"Mis publicaciones"}
+          titulo="Mis publicaciones"
           productos={
             productosFiltrados.length ? productosFiltrados : productosUsuario
           }
