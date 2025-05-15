@@ -183,10 +183,10 @@ export function EditarProducto() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="m-5 bg-white p-5 lg:mx-50 shadow-lg"
+      className="m-5 bg-white dark:bg-black p-5 lg:mx-50 shadow-lg"
     >
-      <h1 className="text-black uppercase text-xl text-center mb-5">
-        Editar producto
+      <h1 className="text-black dark:text-white uppercase text-xl text-center mb-5">
+        Editar publicación
       </h1>
 
       <Divider sx={{ my: 3 }} />
@@ -194,7 +194,7 @@ export function EditarProducto() {
       <Grid container spacing={3}>
         {/* Sección de información básica */}
 
-        <Typography variant="h6" gutterBottom color="black">
+        <Typography variant="h6" gutterBottom color="text.primary">
           Datos del producto
         </Typography>
 
@@ -252,7 +252,7 @@ export function EditarProducto() {
         {/* Sección de imágenes */}
 
         <Grid>
-          <Typography variant="h6" gutterBottom color="black">
+          <Typography variant="h6" gutterBottom color="text.primary">
             Imágenes del producto
           </Typography>
           <Box sx={{ mb: 2 }}>
@@ -285,7 +285,7 @@ export function EditarProducto() {
                     label="Portada"
                     sx={{
                       "& .MuiFormControlLabel-label": {
-                        color: "black",
+                        color: "text.primary",
                       },
                     }}
                   />
@@ -311,7 +311,7 @@ export function EditarProducto() {
 
         {/* Sección de categorías */}
         <Grid>
-          <Typography variant="h6" gutterBottom color="black">
+          <Typography variant="h6" gutterBottom color="text.primary">
             Categorías
           </Typography>
           <CategoriasValidas
