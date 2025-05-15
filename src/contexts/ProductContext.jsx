@@ -71,6 +71,7 @@ export function ProductosProvider({ children }) {
         eliminarProducto,
         actualizarProducto,
         crearProducto,
+        refreshProductos,
       }}
     >
       {children}

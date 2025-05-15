@@ -6,11 +6,13 @@ import { calcularPrecio } from "@src/utils/calcularPrecio";
 import { useContext, useRef } from "react";
 import { CartContext } from "@src/contexts/CartContext";
 import { useValidacion } from "@src/contexts/AuthContext";
+import { useProductos } from "@src/contexts/ProductContext";
 import capu from "/sounds/capusotto.mp3";
 
 export default function Carrito() {
   const auth = useValidacion();
   const navigate = useNavigate();
+  const { refreshProductos } = useProductos();
 
   const { isAuthenticated } = auth;
 
@@ -43,6 +45,7 @@ export default function Carrito() {
     if (isAuthenticated) {
       const success = await finalizePurchase();
       if (success) {
+        refreshProductos();
         alert("Compra realizada con éxito!");
       }
     } else {
