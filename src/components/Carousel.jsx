@@ -66,20 +66,20 @@ export default function Carousel({ title, items }) {
       {showLeftBtn && (
         <button
           onClick={prevSlide}
-          className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 z-20 flex items-center justify-center bg-white bg-opacity-50 rounded-full hover:bg-opacity-70 transition-opacity cursor-pointer shadow-lg"
+          className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 z-20 flex items-center justify-center bg-white dark:bg-black bg-opacity-50 rounded-full hover:bg-opacity-70 transition-opacity cursor-pointer shadow-lg"
           aria-label="Anterior"
         >
-          <SlArrowLeft className="text-brand-black text-lg" />
+          <SlArrowLeft className="text-black dark:text-white text-lg" />
         </button>
       )}
 
       {showRightBtn && (
         <button
           onClick={nextSlide}
-          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 z-20 flex items-center justify-center bg-white bg-opacity-50 rounded-full hover:bg-opacity-70 transition-opacity cursor-pointer shadow-lg"
+          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 z-20 flex items-center justify-center bg-white dark:bg-black bg-opacity-50 rounded-full hover:bg-opacity-70 transition-opacity cursor-pointer shadow-lg"
           aria-label="Siguiente"
         >
-          <SlArrowRight className="text-brand-black text-lg" />
+          <SlArrowRight className="text-black dark:text-white text-lg" />
         </button>
       )}
     </section>
