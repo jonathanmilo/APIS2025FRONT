@@ -19,7 +19,7 @@ function ProductosPorCategoria({ categorias, productos }) {
   return (
     <section className="categorias">
       {/* Lista de Categorías */}
-      <ul className="flex flex-row gap-3 overflow-x-auto">
+      <ul className="flex flex-row gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-black-mui dark:scrollbar-thumb-[#e4e4e4] scrollbar-track-white dark:scrollbar-track-[#313131]">
         {categorias.map((categoria) => {
           const activa = categoriaSeleccionada?.name === categoria.name;
 
