@@ -1078,6 +1078,46 @@
       ],
       "discountPercentage": "20",
       "isFeatured": false
+    },
+    {
+      "id": "859",
+      "userId": "3",
+      "title": "TEST",
+      "images": [
+        {
+          "url": "https://picsum.photos/600/400",
+          "isCover": true
+        }
+      ],
+      "description": "test",
+      "price": "55050000",
+      "stock": "300",
+      "categoryId": "4",
+      "subcategoryIds": [
+        "4-3"
+      ],
+      "discountPercentage": "60",
+      "isFeatured": false
+    },
+    {
+      "id": "378",
+      "userId": "3",
+      "title": "TEST",
+      "images": [
+        {
+          "url": "https://picsum.photos/600/400",
+          "isCover": true
+        }
+      ],
+      "description": "test",
+      "price": "55050000",
+      "stock": "300",
+      "categoryId": "6",
+      "subcategoryIds": [
+        "6-3"
+      ],
+      "discountPercentage": "60",
+      "isFeatured": false
     }
   ],
   "carts": [
@@ -1090,13 +1130,17 @@
       "products": []
     },
     {
-      "id": "3",
       "products": [
+        {
+          "productId": "5",
+          "quantity": 3
+        },
         {
           "productId": "4",
           "quantity": 2
         }
-      ]
+      ],
+      "id": "3"
     },
     {
       "id": "4",
