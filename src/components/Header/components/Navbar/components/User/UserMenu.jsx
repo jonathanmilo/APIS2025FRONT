@@ -95,20 +95,20 @@ export default function UserMenu({ usuario }) {
         }}
       >
         <MenuItem component={Link} to="/mi-perfil">
-          Mi Perfil
+          Mis Publicaciones
         </MenuItem>
         <MenuItem component={Link} to="/mis-compras">
-          Compras
+          Mis Compras
         </MenuItem>
         <Divider />
         <MenuItem component={Link} to="/configuracion" onClick={handleClose}>
           <SlSettings className="mr-1" />
-          Configuración
+          Editar Cuenta
         </MenuItem>
 
         <MenuItem onClick={handleLogout}>
           <MdLogout className="mr-1" />
-          Cerrar sesión
+          Cerrar Sesión
         </MenuItem>
       </Menu>
     </React.Fragment>
