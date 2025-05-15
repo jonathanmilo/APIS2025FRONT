@@ -23,11 +23,11 @@ const MobileMenu = ({ open, setOpen, usuario }) => {
         ))}
 
         {!usuario && (
-          <li>
+          <li className="mt-20">
             <Link
               to="/ingresar"
               onClick={() => setOpen(false)}
-              className="hover:bg-primary cursor-pointer bg-white text-primary font-semibold hover:text-white duration-200 rounded-md border-2 border-primary px-6 py-2"
+              className="hover:bg-primary cursor-pointer bg-white dark:bg-primary dark:text-white text-primary font-semibold hover:text-white duration-200 rounded-md border-2 border-primary px-6 py-2"
             >
               Ingresar
             </Link>

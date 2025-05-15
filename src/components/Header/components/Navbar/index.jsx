@@ -60,7 +60,7 @@ const Navbar = () => {
             ) : (
               <button
                 onClick={() => navigate("/ingresar")}
-                className="hover:bg-primary cursor-pointer bg-white dark:bg-black text-primary dark:text-white font-semibold hover:text-white duration-200 rounded-md border-2 border-primary hidden md:block px-6 py-2"
+                className="hover:bg-primary cursor-pointer bg-white dark:bg-primary dark:hover:bg-primary-hover text-primary dark:text-white font-semibold hover:text-white duration-200 rounded-md border-2 border-primary hidden md:block px-6 py-2"
               >
                 Ingresar
               </button>
