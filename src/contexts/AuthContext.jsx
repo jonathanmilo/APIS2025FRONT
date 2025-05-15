@@ -11,7 +11,7 @@ export function useValidacion() {
 
 export function ValidacionProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
-  const { usuarios } = useUsuario();
+  const { usuarios, cargarUsuarios } = useUsuario();
 
   const login = (usuario) => {
     const { password, ...usuarioSeguro } = usuario; // excluir contraseña para que no figure en LocalStorage (temporal)
@@ -56,6 +56,11 @@ export function ValidacionProvider({ children }) {
     try {
       await createUser(userData);
       alert("Usuario registrado exitosamente.");
+
+      if (cargarUsuarios) {
+        await cargarUsuarios();
+      }
+
       return true;
     } catch (error) {
       console.error("Error al registrar el usuario:", error);
@@ -65,7 +70,9 @@ export function ValidacionProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ ...state, login, logout, validar, register, dispatch }}>
+    <AuthContext.Provider
+      value={{ ...state, login, logout, validar, register, dispatch }}
+    >
       {children}
     </AuthContext.Provider>
   );
