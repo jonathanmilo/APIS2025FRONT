@@ -23,7 +23,7 @@ const MobileMenu = ({ open, setOpen, usuario }) => {
         ))}
 
         {!usuario && (
-          <li className="mt-20">
+          <li className="mt-40">
             <Link
               to="/ingresar"
               onClick={() => setOpen(false)}

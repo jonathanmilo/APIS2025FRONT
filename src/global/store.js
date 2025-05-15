@@ -14,11 +14,6 @@ export const NAVBAR_MENU = [
     link: "/catalogo",
   },
   {
-    id: 3,
-    title: "Ofertas",
-    link: "/",
-  },
-  {
     id: 4,
     title: "Vender",
     link: "/vender",
