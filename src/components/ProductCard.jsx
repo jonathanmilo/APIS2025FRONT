@@ -17,6 +17,7 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
   const { usuario, loading } = useUserData(producto.userId, usuarios);
   const location = useLocation();
   const navigate = useNavigate();
+  const { openStockDialog } = useProductos();
 
   const precioFinal = calcularPrecio(
     producto.price,

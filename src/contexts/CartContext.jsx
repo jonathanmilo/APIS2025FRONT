@@ -1,4 +1,4 @@
-import { useReducer, createContext } from "react";
+import { useReducer, createContext, useEffect } from "react";
 import { cartReducer, cartInitialState } from "@src/reducers/cartReducer";
 import { calcularTotal } from "@src/utils/calcularTotal";
 import { updateProductStock, fetchProductById } from "@src/api/products";
@@ -42,7 +42,6 @@ export function CartProvider({ children }) {
     try {
       const response = await fetchUserCart(user.id);
       const products = response.data.products;
-
       for (const p of products) {
         const res = await fetchProductById(p.productId);
         addToCart(res.data, p.quantity);
@@ -64,6 +63,12 @@ export function CartProvider({ children }) {
       return false;
     }
   };
+
+  useEffect(() => {
+      if (user) {
+        obtenerCarrito();
+      }
+    }, [user]);
 
   return (
     <CartContext.Provider
