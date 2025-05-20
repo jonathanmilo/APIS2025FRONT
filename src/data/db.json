@@ -4,7 +4,7 @@
       "id": "1",
       "username": "jgarcia",
       "email": "jgarcia@example.com",
-      "password": "pass1",
+      "password": "123456",
       "firstName": "Juan",
       "lastName": "García",
       "address": {
@@ -20,7 +20,7 @@
       "id": "2",
       "username": "mmartinez",
       "email": "mmartinez@example.com",
-      "password": "pass2",
+      "password": "123456",
       "firstName": "María",
       "lastName": "Martínez",
       "address": {
@@ -36,7 +36,7 @@
       "id": "3",
       "username": "lmendez",
       "email": "lmendez@example.com",
-      "password": "pass3",
+      "password": "123456",
       "firstName": "Luis",
       "lastName": "Méndez",
       "address": {
@@ -52,7 +52,7 @@
       "id": "4",
       "username": "asanchez",
       "email": "asanchez@example.com",
-      "password": "pass4",
+      "password": "123456",
       "firstName": "Ana",
       "lastName": "Sánchez",
       "address": {
@@ -68,7 +68,7 @@
       "id": "5",
       "username": "dlopez",
       "email": "dlopez@example.com",
-      "password": "pass5",
+      "password": "123456",
       "firstName": "Diego",
       "lastName": "López",
       "address": {
@@ -84,7 +84,7 @@
       "id": "6",
       "username": "cfernandez",
       "email": "cfernandez@example.com",
-      "password": "pass6",
+      "password": "123456",
       "firstName": "Carla",
       "lastName": "Fernández",
       "address": {
@@ -100,7 +100,7 @@
       "id": "7",
       "username": "jruiz",
       "email": "jruiz@example.com",
-      "password": "pass7",
+      "password": "123456",
       "firstName": "Javier",
       "lastName": "Ruiz",
       "address": {
@@ -116,7 +116,7 @@
       "id": "8",
       "username": "psilva",
       "email": "psilva@example.com",
-      "password": "pass8",
+      "password": "123456",
       "firstName": "Paula",
       "lastName": "Silva",
       "address": {
@@ -132,7 +132,7 @@
       "id": "9",
       "username": "emendoza",
       "email": "emendoza@example.com",
-      "password": "pass9",
+      "password": "123456",
       "firstName": "Esteban",
       "lastName": "Mendoza",
       "address": {
@@ -148,7 +148,7 @@
       "id": "10",
       "username": "nrodriguez",
       "email": "nrodriguez@example.com",
-      "password": "pass10",
+      "password": "123456",
       "firstName": "Natalia",
       "lastName": "Rodríguez",
       "address": {
@@ -1054,70 +1054,6 @@
       "isFeatured": false,
       "createdAt": "2025-04-23T22:30:00.000Z",
       "updatedAt": "2025-04-23T22:30:00.000Z"
-    },
-    {
-      "id": "699",
-      "userId": "10",
-      "title": "Pelota",
-      "images": [
-        {
-          "url": "https://tiotomar.vtexassets.com/arquivos/ids/177847-800-800?v=638014179866500000&width=800&height=800&aspect=true",
-          "isCover": true
-        },
-        {
-          "url": "https://redsport.vtexassets.com/arquivos/ids/1196522/PELOTA-ADIDAS-ARGENTINA-AFA-50-ANOS.jpg?v=638688514194100000",
-          "isCover": false
-        }
-      ],
-      "description": "Fulbo o lo que mas te guste! :)",
-      "price": "100",
-      "stock": "40",
-      "categoryId": "6",
-      "subcategoryIds": [
-        "6-2"
-      ],
-      "discountPercentage": "20",
-      "isFeatured": false
-    },
-    {
-      "id": "859",
-      "userId": "3",
-      "title": "TEST",
-      "images": [
-        {
-          "url": "https://picsum.photos/600/400",
-          "isCover": true
-        }
-      ],
-      "description": "test",
-      "price": "55050000",
-      "stock": "300",
-      "categoryId": "4",
-      "subcategoryIds": [
-        "4-3"
-      ],
-      "discountPercentage": "60",
-      "isFeatured": false
-    },
-    {
-      "id": "378",
-      "userId": "3",
-      "title": "TEST",
-      "images": [
-        {
-          "url": "https://picsum.photos/600/400",
-          "isCover": true
-        }
-      ],
-      "description": "test",
-      "price": "55050000",
-      "stock": "300",
-      "categoryId": "6",
-      "subcategoryIds": [
-        "6-3"
-      ],
-      "discountPercentage": "60",
-      "isFeatured": false
     }
   ],
   "carts": [
