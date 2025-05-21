@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { CartContext } from "@src/contexts/CartContext";
 import { crearCarrito } from "@src/api/cart/cartService";
-import { capitalize } from "@mui/material";
+import { buildUser } from "@src/builders";
 import {
   nameField,
   lastnameField,
@@ -27,23 +27,6 @@ export default function RegisterForm({ setFormMode }) {
     lastname: lastnameValidation,
     email: emailValidation,
     password: passwordValidation,
-  });
-
-  const buildUser = (data) => ({
-    id: Date.now().toString(),
-    username: `${data.name.toLowerCase().trim()}${data.lastname.toLowerCase().trim()}`,
-    email: data.email.trim(),
-    password: data.password.trim(),
-    firstName: capitalize(data.name.trim()),
-    lastName: capitalize(data.lastname.trim()),
-    address: {
-      street: "",
-      state: "",
-      country: "",
-    },
-    avatar: "",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
   });
 
   const handleFormSubmit = async (data) => {
