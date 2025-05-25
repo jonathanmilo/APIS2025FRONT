@@ -5,9 +5,9 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Layout from "./layouts/Layout";
+import Layout from "./screens/Layout"
 import ScrollToTop from "./components/ScrollToTop";
-import ProtectedRoutes from "./screens/utils/ProtectedRoutes";
+import ProtectedRoutes from "./screens/ProtectedRoutes";
 
 import Home from "./screens/Home";
 import Catalogo from "./screens/Catalogo";
