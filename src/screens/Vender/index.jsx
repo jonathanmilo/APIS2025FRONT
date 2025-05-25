@@ -6,7 +6,7 @@ import { useProductos } from "../../contexts/ProductContext.jsx";
 import { useValidacion } from "@src/contexts/AuthContext.jsx";
 import { uploadImages } from "@src/utils/uploadImages";
 import talleres from "/sounds/talleres.mp3";
-import DropzoneUploader from "@src/components/DropzoneUploader";
+import FileInputWithPreview from "./components/FileInputWithPreview.jsx";
 
 import {
   TextField,
@@ -82,7 +82,7 @@ export function Vender() {
   const addImageField = () => {
     setFormData((prev) => ({
       ...prev,
-      images: [...prev.images, { url: "", isCover: false }],
+      images: [...prev.images, { file: null, isCover: false }],
     }));
   };
 
@@ -222,7 +222,7 @@ export function Vender() {
         {/* Sección de imágenes */}
 
         <Grid>
-          <Typography variant="h6" color="text.primary">
+          <Typography variant="h6" color="text.primary" sx={{ mb: 2 }}>
             Imágenes del producto
           </Typography>
           <Box sx={{ mb: 2 }}>
@@ -235,9 +235,9 @@ export function Vender() {
                 sx={{ mb: 2 }}
               >
                 <Grid item xs={12} md={6}>
-                  <DropzoneUploader
+                  <FileInputWithPreview
                     onUpload={handleImageUpload}
-                    currentFile={image.file}
+                    file={image.file}
                     index={index}
                   />
                 </Grid>
