@@ -8,7 +8,9 @@ import {
   IconButton,
   Typography,
   FormHelperText,
+  Box,
 } from "@mui/material";
+import DropzoneUploader from "../../../components/DropzoneUploader";
 import { RxCross1 } from "react-icons/rx";
 
 const FloatingFormDialog = ({
@@ -21,9 +23,11 @@ const FloatingFormDialog = ({
   title = "Form",
   handleChange,
 }) => {
-  const onChange = handleChange || ((e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  });
+  const onChange =
+    handleChange ||
+    ((e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    });
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
@@ -41,25 +45,40 @@ const FloatingFormDialog = ({
       <DialogContent dividers>
         {fields.map((field) => (
           <div key={field.name}>
-            <TextField
-              fullWidth
-              margin="normal"
-              label={field.label}
-              name={field.name}
-              type={field.type || "text"}
-              value={formData[field.name] || ""}
-              onChange={onChange}
-              multiline={field.multiline || false}
-              rows={field.rows || 1}
-              required={field.required || false}
-              error={field.error}
-              inputProps={{ 
-                maxLength: field.maxLength,
-                pattern: field.pattern
-              }}
-            />
-            {field.helperText && (
-              <FormHelperText>{field.helperText}</FormHelperText>
+            {field.type === "file" ? (
+              <>
+                <DropzoneUploader
+                  onUpload={(name, file) =>
+                    setFormData({ ...formData, [name]: file })
+                  }
+                  fieldName={field.name}
+                  currentFile={formData[field.name]}
+                />
+                {formData[field.name] && (
+                  <p className="text-black dark:text-white">
+                    Archivo seleccionado: {formData[field.name].name}
+                  </p>
+                )}
+              </>
+            ) : (
+              <>
+                <TextField
+                  fullWidth
+                  margin="normal"
+                  label={field.label}
+                  name={field.name}
+                  type={field.type || "text"}
+                  value={formData[field.name] || ""}
+                  onChange={onChange}
+                  multiline={field.multiline || false}
+                  rows={field.rows || 1}
+                  required={field.required || false}
+                  error={field.error}
+                />
+                {field.helperText && (
+                  <FormHelperText>{field.helperText}</FormHelperText>
+                )}
+              </>
             )}
           </div>
         ))}

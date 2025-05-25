@@ -5,6 +5,7 @@ import { useValidacion } from "@src/contexts/AuthContext";
 import { useUsuario } from "@src/contexts/UserContext";
 import FloatingFormDialog from "./components/FloatingForm";
 import { Divider, IconButton, Tooltip } from "@mui/material";
+import { uploadImages } from "@src/utils/UploadImages";
 import {
   updateFirstName,
   updateLastName,
@@ -66,13 +67,14 @@ export default function Configuracion() {
 
   const handleEditAvatar = () => {
     setEditingField("avatar");
-    setFormData({ avatar: user.avatar });
+    setFormData({ avatar: null });
     setFields([
       {
         name: "avatar",
-        label: "URL de la imagen",
-        helperText: "Introduce la URL de tu nueva imagen de perfil",
+        label: "Foto de Perfil",
         required: true,
+        type: "file",
+        helperText: "Formatos permitidos: JPG, PNG",
       },
     ]);
     setOpen(true);
@@ -120,11 +122,12 @@ export default function Configuracion() {
           await updatePassword(userId, formData.password);
           return alert("Contraseña actualizada correctamente.");
         case "avatar":
-          await updateAvatar(userId, formData.avatar);
-          updatePayload = { avatar: formData.avatar };
+          const urls = await uploadImages(formData.avatar);
+          const avatarUrl = urls[0];
+          await updateAvatar(userId, avatarUrl);
+          updatePayload = { avatar: avatarUrl };
           break;
         case "address":
-          // Procesar la actualización de toda la dirección
           const newAddress = {
             street: formData.street,
             state: formData.state,

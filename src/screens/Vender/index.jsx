@@ -4,7 +4,9 @@ import { useCategorias } from "@src/contexts/CategoryContext.jsx";
 import { CategoriasValidas } from "./components/CategoriasValidas.jsx";
 import { useProductos } from "../../contexts/ProductContext.jsx";
 import { useValidacion } from "@src/contexts/AuthContext.jsx";
+import { uploadImages } from "@src/utils/uploadImages";
 import talleres from "/sounds/talleres.mp3";
+import FileInputWithPreview from "./components/FileInputWithPreview.jsx";
 
 import {
   TextField,
@@ -21,6 +23,7 @@ export function Vender() {
   const { categorias } = useCategorias();
   const navigate = useNavigate();
   const { crearProducto } = useProductos();
+  const [imagenes, setImagenes] = useState([]);
 
   // Estados para categorías y subcategorías
   const [subcategorias, setSubcategorias] = useState([]);
@@ -40,7 +43,7 @@ export function Vender() {
     id: (Math.floor(Math.random() * 900) + 101).toString(),
     userId: user.id.toString(),
     title: "",
-    images: [{ url: "", isCover: true }],
+    images: [{ file: null, isCover: true }],
     description: "",
     price: "",
     stock: "",
@@ -69,9 +72,9 @@ export function Vender() {
   };
 
   // Manejador para imágenes
-  const handleImageChange = (index, e) => {
+  const handleImageUpload = (index, file) => {
     const newImages = [...formData.images];
-    newImages[index] = { ...newImages[index], url: e.target.value };
+    newImages[index] = { ...newImages[index], file };
     setFormData((prev) => ({ ...prev, images: newImages }));
   };
 
@@ -79,7 +82,7 @@ export function Vender() {
   const addImageField = () => {
     setFormData((prev) => ({
       ...prev,
-      images: [...prev.images, { url: "", isCover: false }],
+      images: [...prev.images, { file: null, isCover: false }],
     }));
   };
 
@@ -109,8 +112,8 @@ export function Vender() {
     if (!formData.price || isNaN(formData.price)) return "Precio inválido";
     if (!formData.stock || isNaN(formData.stock)) return "Stock inválido";
     if (!formData.categoryId) return "Debes seleccionar una categoría";
-    if (formData.images.some((img) => !img.url.trim()))
-      return "Todas las imágenes deben tener URL";
+    if (formData.images.some((img) => !img.file))
+      return "Todas las imágenes deben estar cargadas";
     return null;
   };
 
@@ -122,10 +125,23 @@ export function Vender() {
       alert(error);
       return;
     }
-    sonidito();
 
     try {
-      await crearProducto(user.id.toString(), formData);
+      // Subir imágenes al servidor
+      const imageFiles = formData.images.map((img) => img.file);
+      const uploadedUrls = await uploadImages(imageFiles);
+
+      // Reemplazar en formData
+      const finalImages = uploadedUrls.map((url, i) => ({
+        url,
+        isCover: formData.images[i].isCover,
+      }));
+
+      const finalFormData = { ...formData, images: finalImages };
+
+      await crearProducto(user.id.toString(), finalFormData);
+
+      sonidito();
       alert("Producto publicado exitosamente!");
       navigate("/mi-perfil");
     } catch (err) {
@@ -206,7 +222,7 @@ export function Vender() {
         {/* Sección de imágenes */}
 
         <Grid>
-          <Typography variant="h6" color="text.primary">
+          <Typography variant="h6" color="text.primary" sx={{ mb: 2 }}>
             Imágenes del producto
           </Typography>
           <Box sx={{ mb: 2 }}>
@@ -218,16 +234,14 @@ export function Vender() {
                 alignItems="center"
                 sx={{ mb: 2 }}
               >
-                <Grid>
-                  <TextField
-                    fullWidth
-                    label={`URL de la imagen ${index + 1}`}
-                    value={image.url}
-                    onChange={(e) => handleImageChange(index, e)}
-                    required
+                <Grid item xs={12} md={6}>
+                  <FileInputWithPreview
+                    onUpload={handleImageUpload}
+                    file={image.file}
+                    index={index}
                   />
                 </Grid>
-                <Grid>
+                <Grid item>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -237,14 +251,9 @@ export function Vender() {
                       />
                     }
                     label="Portada"
-                    sx={{
-                      "& .MuiFormControlLabel-label": {
-                        color: "text.primary",
-                      },
-                    }}
                   />
                 </Grid>
-                <Grid>
+                <Grid item>
                   {formData.images.length > 1 && (
                     <Button
                       variant="outlined"
