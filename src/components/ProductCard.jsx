@@ -59,7 +59,7 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
           className="relative cursor-pointer"
         >
           <img
-            src={producto.images[0].url}
+            src={producto.images.find(img => img.isCover)?.url}
             alt="Product image"
             className="w-full h-50 object-contain bg-white dark:bg-[#fff]"
           />
