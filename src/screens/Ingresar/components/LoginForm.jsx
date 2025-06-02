@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import Form from "@src/components/Form";
+import Form from "@src/components/forms/Form";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import {

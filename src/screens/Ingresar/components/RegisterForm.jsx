@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import Form from "@src/components/Form";
+import Form from "@src/components/forms/Form";
 import { useContext } from "react";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { CartContext } from "@src/contexts/CartContext";
