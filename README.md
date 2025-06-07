@@ -1,4 +1,4 @@
-# 🛒 Sistema de E-Commerce - Frontend React + JS
+# Sistema de E-Commerce - Frontend React + JS
 
 Este repositorio corresponde al **frontend** del Trabajo Práctico Obligatorio de la materia _Aplicaciones Interactivas_ (Primer Cuatrimestre 2025).
 
@@ -9,18 +9,18 @@ Para el desarrollo se utilizó **React** junto con **json-server** como servidor
 > 📁 Este repositorio representa **la primera entrega** enfocada exclusivamente en el frontend. La integración con el backend se realizará en próximas etapas del proyecto, reemplazando json-server.
 
 
-## 📑 Índice
+## Índice
 
-1. [📌 Contexto del proyecto](#-contexto-del-proyecto)
-2. [🧰 Requisitos](#-requisitos)
-3. [🚀 Instrucciones para levantar el proyecto](#-instrucciones-para-levantar-el-proyecto)
-   - [1️⃣ Clonar e instalar dependencias](#1️⃣-clonar-e-instalar-dependencias)
-   - [2️⃣ Levantar json-server](#2️⃣-levantar-json-server)
-   - [3️⃣ Obtener API Key de imgbb](#3️⃣-obtener-api-key-de-imgbb)
-   - [4️⃣ Iniciar servidor React](#4️⃣-iniciar-servidor-react)
-4. [✅ Acceso al proyecto](#-acceso-al-proyecto)
-5. [📦 Notas adicionales](#-notas-adicionales)
-6. [👥 Integrantes del grupo](#-integrantes-del-grupo)
+[1. Contexto del proyecto](#-contexto-del-proyecto)  
+[2. Requisitos](#-requisitos)  
+[3. Instrucciones para levantar el proyecto](#-instrucciones-para-levantar-el-proyecto)  
+  [3.1. Clonar e instalar dependencias](#1️⃣-clonar-e-instalar-dependencias)  
+  [3.2 Levantar json-server](#2️⃣-levantar-json-server)  
+  [3.3 Obtener API Key de imgbb](#3️⃣-obtener-api-key-de-imgbb)  
+  [3.4 Iniciar servidor React](#4️⃣-iniciar-servidor-react)  
+[4. Acceso al proyecto](#-acceso-al-proyecto)  
+[5. Notas adicionales](#-notas-adicionales)  
+[6. Integrantes del grupo](#-integrantes-del-grupo)  
 
 ## 📌 Contexto del proyecto
 
@@ -67,7 +67,7 @@ Abre una terminal y ejecuta:
 
 ```bash
 git clone https://github.com/jonathanmilo/APIS2025FRONT
-cd .\APIS2025FRONT\
+cd APIS2025FRONT
 npm install
 ```
 
