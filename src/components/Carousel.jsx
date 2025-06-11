@@ -41,15 +41,15 @@ export default function Carousel({ title, items }) {
   };
 
   return (
-    <section className="relative py-4">
+    <section className="relative">
       {title && (
-        <h2 className="md:text-xl px-4 mb-2 text-brand-black uppercase font-bold text-black dark:text-white">
+        <h2 className="md:text-xl mb-2 text-brand-black uppercase font-bold text-black dark:text-white">
           {title}
         </h2>
       )}
       <div
         ref={carouselRef}
-        className="overflow-x-auto no-scrollbar px-4 pb-4 scroll-smooth"
+        className="overflow-x-auto no-scrollbar scroll-smooth"
       >
         <div className="flex flex-row gap-4">
           {items.map((prod) => (
