@@ -7,15 +7,15 @@
 @theme {
   --color-primary: #85cd18;
   --color-primary-hover: #66a40f;
-  --color-white-mui: #ffffff;
+  --color-white-mui: #fff;
   --color-black-mui: #414141;
 }
 
 @layer base {
   :root {
-    --color-white: #ffffff;
+    --color-white: #fff;
     --color-black: #1d293d;
-    --color-gray: #a8a7a7;
+    --color-gray: #ebebeb;
     --color-light-gray: #cacaca;
   }
 
