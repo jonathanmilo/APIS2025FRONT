@@ -86,15 +86,15 @@ export default function ProductDetail() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-6 md:p-4">
+    <div className="max-w-5xl mx-auto min-h-screen my-5">
       <button
         onClick={() => navigate(-1)}
-        className="inline-block mb-4 text-primary hover:underline cursor-pointer"
+        className="inline-block text-lg mb-4 text-primary hover:underline cursor-pointer font-bold"
       >
-        ← Volver atrás
+        ← Volver
       </button>
 
-      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="flex flex-col lg:flex-row gap-6 bg-white dark:bg-black p-5 shadow-md">
         <GaleriaImagenes images={producto.images} />
 
         <div className="flex-1">
