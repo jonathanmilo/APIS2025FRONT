@@ -6,7 +6,7 @@ export default function Layout() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow bg-gray-50 dark:bg-[color:var(--color-gray)] min-h-screen transition-colors duration-300">
+      <main className="flex-grow bg-[color:var(--color-gray)] dark:bg-[color:var(--color-gray)] min-h-screen transition-colors duration-300">
         <Outlet />
       </main>
       <Footer />
