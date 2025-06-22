@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Carousel from "@src/components/Carousel.jsx";
 import { useProductos } from "@src/contexts/ProductContext.jsx";
-import { useCategorias } from "@src/contexts/CategoryContext.jsx";
 import ProductosPorCategoria from "./components/ProductosPorCategoria.jsx";
 import Banner from "./components/Banner.jsx";
 
@@ -12,7 +11,6 @@ import {
 
 export function Home() {
   const { productos } = useProductos();
-  const { categorias } = useCategorias();
 
   const [productosDestacados, setProductosDestacados] = useState([]);
   const [productosConDescuento, setProductosConDescuento] = useState([]);
@@ -38,7 +36,6 @@ export function Home() {
 
         <section className="categorias my-5">
           <ProductosPorCategoria
-            categorias={categorias}
             productos={productos}
           />
         </section>

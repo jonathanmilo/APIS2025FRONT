@@ -1,15 +1,31 @@
 import { useValidacion } from "@src/contexts/AuthContext";
 import { useOrdersData } from "@src/hooks/useOrdersData";
 import { useProductos } from "@src/contexts/ProductContext";
+import { fetchOrdersByUserId } from "@src/api/orders";
+import { useState, useEffect } from "react";
 
 export default function Compras() {
   const { user } = useValidacion();
-  const { orders } = useOrdersData();
   const { productos } = useProductos();
+  
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const comprasUsuario = orders
-    ?.filter((order) => order.userId === user?.id)
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  useEffect(() => {
+    if (user?.id) {
+      fetchOrdersByUserId(user.id)
+        .then((response) => {
+          setOrders(response.data);
+        })
+        .catch((err) => {
+          setError(err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }, [user?.id]);
 
   return (
     <div className="min-h-screen p-6 lg:m-5">
@@ -17,8 +33,8 @@ export default function Compras() {
         Últimas Compras
       </h1>
 
-      {comprasUsuario && comprasUsuario.length > 0 ? (
-        comprasUsuario.map((compra) => (
+      {orders && orders.length > 0 ? (
+        orders.map((compra) => (
           <div key={compra.id} className="bg-white dark:bg-black shadow-md p-4 mb-6">
             <div className="text-black dark:text-white font-semibold mb-2">
               Compra #{compra.id} —{" "}

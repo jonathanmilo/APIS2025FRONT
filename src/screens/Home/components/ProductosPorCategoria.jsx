@@ -1,8 +1,26 @@
 import { useState, useEffect } from "react";
+import { fetchAllCategories } from "@src/api/categories";
 import ListaProductos from "@src/components/ListaProductos";
 
-function ProductosPorCategoria({ categorias, productos }) {
+function ProductosPorCategoria({ productos }) {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
+
+  const [categorias, setCategorias] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchAllCategories()
+      .then((response) => {
+        setCategorias(response.data);
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
 
   useEffect(() => {
     if (categorias && categorias.length > 0) {
@@ -51,7 +69,7 @@ function ProductosPorCategoria({ categorias, productos }) {
                       : "text-gray-600 dark:text-white"
                   }`}
                 >
-                  {categoria.subcategories?.map((sub) => sub.name).join(" • ")}
+                  {categoria.subcategories?.join(" • ")}
                 </div>
               </button>
             </li>
@@ -69,8 +87,6 @@ function ProductosPorCategoria({ categorias, productos }) {
           <ListaProductos
             titulo={categoriaSeleccionada.name}
             productos={productosFiltrados}
-            // onRemoveProduct={...} TODO: implementar para que despues de cada crud en products se actualice la nueva lista de componentes sin forzar refresh
-            // onUpdateStock={...}
           />
         </div>
       )}

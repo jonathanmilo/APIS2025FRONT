@@ -8,6 +8,13 @@ const api = axios.create({
   },
 });
 
+const our_api = axios.create({
+  baseURL: "http://localhost:8080", 
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
 // agrega token al encabezado de cada solicitud
 api.interceptors.request.use(
   (config) => {
@@ -22,4 +29,4 @@ api.interceptors.request.use(
   }
 );
 
-export default api;
+export {api, our_api};
