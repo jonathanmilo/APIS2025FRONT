@@ -1,26 +1,10 @@
 import { useState, useEffect } from "react";
-import { fetchAllCategories } from "@src/api/categories";
+import { useCategorias } from "../../../contexts/CategoryContext";
 import ListaProductos from "@src/components/ListaProductos";
 
 function ProductosPorCategoria({ productos }) {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
-
-  const [categorias, setCategorias] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetchAllCategories()
-      .then((response) => {
-        setCategorias(response.data);
-      })
-      .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  const {categorias} = useCategorias();
 
   useEffect(() => {
     if (categorias && categorias.length > 0) {
