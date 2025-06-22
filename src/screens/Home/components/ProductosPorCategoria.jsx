@@ -61,7 +61,7 @@ function ProductosPorCategoria({ categorias, productos }) {
 
       {/* Productos filtrados */}
       {categoriaSeleccionada && (
-        <div className="mx-5 mt-5 lg:mx-20 lg:mt-10">
+        <div className="mt-5">
           <h2 className="md:text-xl font-bold text-black dark:text-white mb-4 uppercase">
             Productos en: {categoriaSeleccionada.name}
           </h2>

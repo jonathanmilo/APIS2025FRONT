@@ -3,7 +3,7 @@ import Carousel from "@src/components/Carousel.jsx";
 import { useProductos } from "@src/contexts/ProductContext.jsx";
 import { useCategorias } from "@src/contexts/CategoryContext.jsx";
 import ProductosPorCategoria from "./components/ProductosPorCategoria.jsx";
-import Banner from "./components/Banner.jsx"
+import Banner from "./components/Banner.jsx";
 
 import {
   filtrarDestacados,
@@ -26,24 +26,32 @@ export function Home() {
     <>
       <Banner />
 
-      {productosDestacados.length > 0 && (
-        <section className="productos-destacados relative lg:mx-20">
-          <Carousel title="Productos Destacados" items={productosDestacados} />
-        </section>
-      )}
+      <div className="m-5">
+        {productosDestacados.length > 0 && (
+          <section className="productos-destacados relative">
+            <Carousel
+              title="Productos Destacados"
+              items={productosDestacados}
+            />
+          </section>
+        )}
 
-      <section className="categorias py-5">
-        <ProductosPorCategoria categorias={categorias} productos={productos} />
-      </section>
-
-      {productosConDescuento.length > 0 && (
-        <section className="productos-descuento mt-8">
-          <Carousel
-            title="Productos con Descuento"
-            items={productosConDescuento}
+        <section className="categorias my-5">
+          <ProductosPorCategoria
+            categorias={categorias}
+            productos={productos}
           />
         </section>
-      )}
+
+        {productosConDescuento.length > 0 && (
+          <section className="productos-descuento mt-5">
+            <Carousel
+              title="Productos con Descuento"
+              items={productosConDescuento}
+            />
+          </section>
+        )}
+      </div>
     </>
   );
 }
