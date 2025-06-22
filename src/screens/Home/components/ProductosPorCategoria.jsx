@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useCategorias } from "../../../contexts/CategoryContext";
+import { useCategorias } from "@src/contexts/CategoryContext";
 import ListaProductos from "@src/components/ListaProductos";
 
 function ProductosPorCategoria({ productos }) {
@@ -14,7 +14,7 @@ function ProductosPorCategoria({ productos }) {
 
   const productosFiltrados = categoriaSeleccionada
     ? productos.filter(
-        (producto) => producto.categoryId === categoriaSeleccionada.id
+        (producto) => producto.category === categoriaSeleccionada.name
       )
     : [];
 

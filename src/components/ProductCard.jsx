@@ -11,10 +11,8 @@ import { FaPencilAlt } from "react-icons/fa";
 import { useProductos } from "@src/contexts/ProductContext";
 
 function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
-  const { usuarios } = useUsuario();
   const { eliminarProducto } = useProductos();
   const { user } = useValidacion();
-  const { usuario, loading } = useUserData(producto.userId, usuarios);
   const location = useLocation();
   const navigate = useNavigate();
   const { openStockDialog } = useProductos();
@@ -43,10 +41,8 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
     navigate(`/editar-producto/${producto.id}`);
   };
 
-  // Verificar si el usuario actual es el dueño del producto
   const isOwner = user && user.id.toString() === producto.userId.toString();
 
-  // Verificar si estamos en una página de gestión de productos (mi-perfil o mis-productos)
   const isManagementPage = ["/mi-perfil", "/mis-productos"].includes(
     location.pathname
   );
@@ -59,7 +55,7 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
           className="relative cursor-pointer"
         >
           <img
-            src={producto.images.find(img => img.isCover)?.url}
+            src={producto.images.find((img) => img.cover)?.url}
             alt="Product image"
             className="w-full h-50 object-contain bg-white dark:bg-[#fff]"
           />
@@ -86,18 +82,10 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
                 {producto.title}
               </h2>
               <div className="flex gap-1 items-center">
-                {loading ? (
-                  <p className="text-gray-400 dark:text-white text-sm italic">
-                    Cargando usuario...
-                  </p>
-                ) : (
-                  <>
-                    <p className="text-gray-500 dark:text-white text-sm">
-                      Por {usuario?.username}
-                    </p>
-                    <VscVerifiedFilled className="text-blue-500" />
-                  </>
-                )}
+                <p className="text-gray-500 dark:text-white text-sm">
+                  Por {producto.username}
+                </p>
+                <VscVerifiedFilled className="text-blue-500" />
               </div>
             </div>
           </div>

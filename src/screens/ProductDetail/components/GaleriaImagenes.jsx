@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 
 const GaleriaImagenes = ({ images }) => {
   const [imagenPrincipal, setImagenPrincipal] = useState(
-    images.find((img) => img.isCover) || images[0]
+    images.find((img) => img.cover) || images[0]
   );
 
   useEffect(() => {
-    setImagenPrincipal(images.find((img) => img.isCover) || images[0]);
+    setImagenPrincipal(images.find((img) => img.cover) || images[0]);
   }, [images]);
 
   return (

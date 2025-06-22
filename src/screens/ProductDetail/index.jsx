@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext,useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Carousel from "@src/components/Carousel";
-import { useCategorias } from "@src/contexts/CategoryContext";
 import { useProductos } from "@src/contexts/ProductContext";
 import GaleriaImagenes from "./components/GaleriaImagenes";
 import { calcularPrecio } from "@src/utils/calcularPrecio";
@@ -9,16 +8,12 @@ import { Button } from "@mui/material";
 import a_quien from '/sounds/a_quien.mp3';
 import {
   filtrarRelacionados,
-  obtenerNombresSubcategorias,
-  obtenerNombreCategoria,
 } from "@src/utils/filtrarProductos";
-
 import { CartContext } from "@src/contexts/CartContext";
 
 export default function ProductDetail() {
   const { id } = useParams();
   const { productos } = useProductos();
-  const { categorias } = useCategorias();
 
   const { cart, addToCart } = useContext(CartContext);
 
@@ -124,14 +119,14 @@ export default function ProductDetail() {
           <p className="mb-6 text-black dark:text-white font-bold">
             Categoría:{" "}
             <span className="font-medium">
-              {obtenerNombreCategoria(producto, categorias)}
+              {producto.category}
             </span>
           </p>
 
           <p className="mb-6 text-black dark:text-white font-bold">
             Sub-categorías:{" "}
             <span className="font-medium">
-              {obtenerNombresSubcategorias(producto, categorias).join(", ")}
+              {producto.subcategories.join(", ")}
             </span>
           </p>
 

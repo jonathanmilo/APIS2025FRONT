@@ -6,7 +6,7 @@ export function filtrarPorNombre(productos, termino) {
 }
 
 export function filtrarDestacados(productos) {
-  return productos.filter((p) => p.isFeatured);
+  return productos.filter((p) => p.featured);
 }
 
 export function filtrarPorUsuario(productos, userId) {
@@ -20,9 +20,10 @@ export function filtrarConDescuento(productos) {
 export function filtrarRelacionados(productos, productoActual) {
   return productos.filter(
     (p) =>
-      p.subcategoryIds.some((subId) =>
-        productoActual.subcategoryIds.includes(subId)
-      ) && p.id !== productoActual.id
+      p.id !== productoActual.id &&
+      p.subcategories.some((subcat) =>
+        productoActual.subcategories.includes(subcat)
+      )
   );
 }
 
