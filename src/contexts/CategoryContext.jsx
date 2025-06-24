@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { fetchAllCategories } from "@src/api/categories";
+import { useValidacion } from "./AuthContext";
 
 const CategoryContext = createContext();
 
@@ -8,14 +9,33 @@ export function useCategorias() {
 }
 
 export function CategoryProvider({ children }) {
+  const { user } = useValidacion();
+  
   const [categorias, setCategorias] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const cargarCategorias = async () => {
     try {
-      const res = await fetchAllCategories();
-      setCategorias(res.data); 
+      console.log("user", user);
+       const response = await fetch(`http://localhost:8080/categories`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+         // Authorization: 'Bearer '+user.token, // Asegúrate de que el token esté en el contexto de usuario          
+
+        },
+        
+      });
+       if (response.ok) {
+            const data = await response.json();
+            console.log("categorias", data);
+            setCategorias(data); 
+      }
+
+
+      
+      //setCategorias(res.data); 
     } catch (err) {
       console.error("Error al obtener categorías:", err);
       setError(err.message);

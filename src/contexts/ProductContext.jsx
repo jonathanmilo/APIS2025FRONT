@@ -15,8 +15,20 @@ export function ProductosProvider({ children }) {
 
   const getProductos = async () => {
     try {
-      const res = await fetchAllProducts();
-      setProductos(res.data);
+      const prods= await fetch(`http://localhost:8080/products`, {
+      
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          //Authorization: 'Bearer '+user.token, // Asegúrate de que el token esté en el contexto de usuario          
+
+        },});
+      
+      if (prods.ok) {
+        const data = await prods.json();
+        setProductos(data);
+      }
+
     } catch (error) {
       setError(error.message);
     } finally {

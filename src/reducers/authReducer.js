@@ -7,7 +7,7 @@ const initialState = {
 const authReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
-      localStorage.setItem("user", JSON.stringify(action.payload));
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
       localStorage.setItem("token", JSON.stringify(action.payload.token));
       return {
         ...state,
@@ -27,7 +27,7 @@ const authReducer = (state, action) => {
       };
 
     case "UPDATE_USER":
-      const updatedUser = { ...state.user, ...action.payload };
+      const updatedUser = { ...state.user, ...action.payload.user };
       localStorage.setItem("user", JSON.stringify(updatedUser));
       return {
         ...state,

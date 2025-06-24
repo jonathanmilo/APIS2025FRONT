@@ -9,14 +9,16 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
 import { FaPencilAlt } from "react-icons/fa";
 import { useProductos } from "@src/contexts/ProductContext";
+import { useState } from "react";
 
 function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
-  const { usuarios } = useUsuario();
+ // const { usuarios } = useUsuario();
   const { eliminarProducto } = useProductos();
-  const { user } = useValidacion();
-  const { usuario, loading } = useUserData(producto.userId, usuarios);
+  const { user,loading } = useValidacion();
+  //const { usuario, loading } = useUserData(producto.userId, usuarios);
   const location = useLocation();
   const navigate = useNavigate();
+  const{isOwner, setIsOwner} = useState(false);
   const { openStockDialog } = useProductos();
 
   const precioFinal = calcularPrecio(
@@ -44,8 +46,9 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
   };
 
   // Verificar si el usuario actual es el dueño del producto
-  const isOwner = user && user.id.toString() === producto.userId.toString();
-
+  if(user){
+  const isOwner = user && user.username === producto.username;
+}
   // Verificar si estamos en una página de gestión de productos (mi-perfil o mis-productos)
   const isManagementPage = ["/mi-perfil", "/mis-productos"].includes(
     location.pathname
@@ -58,8 +61,9 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
           to={`/catalogo/${producto.id}`}
           className="relative cursor-pointer"
         >
+         
           <img
-            src={producto.images.find(img => img.isCover)?.url}
+            src={producto.images.find(img => img.cover)?.url}
             alt="Product image"
             className="w-full h-50 object-contain bg-white dark:bg-[#fff]"
           />
@@ -93,7 +97,7 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
                 ) : (
                   <>
                     <p className="text-gray-500 dark:text-white text-sm">
-                      Por {usuario?.username}
+                      Por {user?.username}
                     </p>
                     <VscVerifiedFilled className="text-blue-500" />
                   </>

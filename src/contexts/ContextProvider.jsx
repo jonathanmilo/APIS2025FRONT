@@ -6,7 +6,7 @@ import { CategoryProvider } from "./CategoryContext";
 
 export function AppContextProvider({ children }) {
   return (
-    <UsuarioProvider>
+    //<UsuarioProvider>
       <ValidacionProvider>
         <CartProvider>
           <ProductosProvider>
@@ -14,6 +14,6 @@ export function AppContextProvider({ children }) {
           </ProductosProvider>
         </CartProvider>
       </ValidacionProvider>
-    </UsuarioProvider>
+    //</UsuarioProvider>
   );
 }

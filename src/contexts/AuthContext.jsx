@@ -11,15 +11,23 @@ export function useValidacion() {
 
 export function ValidacionProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
-  const { usuarios, cargarUsuarios } = useUsuario();
+//  const { usuarios, cargarUsuarios } = useUsuario();
 
-  const login = (usuario) => {
-    const { password, ...usuarioSeguro } = usuario; // excluir contraseña para que no figure en LocalStorage (temporal)
-    const token = "fake-jwt-token"; // token hardcodeado
-    const payload = { ...usuarioSeguro, token };
+const login = (data) => {
+  const { access_token, refresh_token, ...usuarioSeguro } = data;
 
-    dispatch({ type: "LOGIN", payload });
+  localStorage.setItem("token", access_token);
+
+  const payload = {
+    refresh_token,
+    user: usuarioSeguro,
+    token: access_token,
   };
+
+  dispatch({ type: "LOGIN", payload });
+  alert("Bienvenido " + usuarioSeguro.username);
+};
+
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
@@ -27,24 +35,36 @@ export function ValidacionProvider({ children }) {
 
   const validar = async (credentials) => {
     try {
-      const encontrado = usuarios.find(
-        (user) =>
-          user.email === credentials.email &&
-          user.password === credentials.password
-      );
+      const response = await fetch('http://localhost:8080/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: credentials.email,
+          password: credentials.password
+        })
+      });
 
-      if (encontrado) {
-        login(encontrado);
+      if (response.ok) {
+        const data = await response.json();
+        
+        login(data);
         return true;
       } else {
-        alert("Credenciales incorrectas");
+              alert("Credenciales incorrectas");
+              console.error('Error en login', response.status);
         return false;
       }
     } catch (error) {
-      console.error("Error al validar usuario:", error);
+      alert("Error en la petición");
+    console.error('Error en la petición:', error);
       return false;
     }
   };
+
+
+
 
   const register = async (userData) => {
     const existingUser = usuarios.find((user) => user.email === userData.email);

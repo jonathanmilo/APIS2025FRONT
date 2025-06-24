@@ -3,7 +3,6 @@ import ListaProductos from "@src/components/ListaProductos";
 
 function ProductosPorCategoria({ categorias, productos }) {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
-
   useEffect(() => {
     if (categorias && categorias.length > 0) {
       setCategoriaSeleccionada(categorias[0]);
@@ -12,7 +11,7 @@ function ProductosPorCategoria({ categorias, productos }) {
 
   const productosFiltrados = categoriaSeleccionada
     ? productos.filter(
-        (producto) => producto.categoryId === categoriaSeleccionada.id
+        (producto) => producto.category === categoriaSeleccionada.name
       )
     : [];
 
@@ -22,7 +21,8 @@ function ProductosPorCategoria({ categorias, productos }) {
       <ul className="flex flex-row gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-black-mui dark:scrollbar-thumb-[#e4e4e4] scrollbar-track-white dark:scrollbar-track-[#313131]">
         {categorias.map((categoria) => {
           const activa = categoriaSeleccionada?.name === categoria.name;
-
+          
+          //console.log("categoria", categoria);
           return (
             <li key={categoria.id} className="flex-shrink-0 shadow-md my-2">
               <button
