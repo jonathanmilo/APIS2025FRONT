@@ -22,7 +22,6 @@ function ProductosPorCategoria({ categorias, productos }) {
         {categorias.map((categoria) => {
           const activa = categoriaSeleccionada?.name === categoria.name;
           
-          //console.log("categoria", categoria);
           return (
             <li key={categoria.id} className="flex-shrink-0 shadow-md my-2">
               <button

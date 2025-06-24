@@ -18,17 +18,17 @@ export function filtrarConDescuento(productos) {
 }
 
 export function filtrarRelacionados(productos, productoActual) {
+
   return productos.filter(
     (p) =>
-      p.subcategoryIds.some((subId) =>
-        productoActual.subcategoryIds.includes(subId)
+      p.subcategories.some((subname) =>
+        productoActual.subcategories.includes(subname)
       ) && p.id !== productoActual.id
   );
 }
 
 export function obtenerNombresSubcategorias(producto, categorias) {
-  const subIds = producto.subcategoryIds;
-
+  const subIds = producto.subcategories;
   const todasSubcategorias = categorias.flatMap((c) => c.subcategories);
 
   const nombres = subIds

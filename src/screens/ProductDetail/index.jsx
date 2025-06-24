@@ -43,7 +43,7 @@ export default function ProductDetail() {
       if (prod) {
         setProducto(prod);
         setProductosRelacionados(filtrarRelacionados(productos, prod));
-
+        
         const inCart = cart.some((item) => item.productId === prod.id);
         setAlreadyInCart(inCart);
       } else {

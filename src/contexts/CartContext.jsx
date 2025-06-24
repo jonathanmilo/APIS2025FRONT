@@ -8,7 +8,7 @@ import { fetchUserCart } from "@src/api/cart/api";
 export const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const { user } = useValidacion();
+  const { user,token } = useValidacion();
 
   const [cart, dispatch] = useReducer(cartReducer, cartInitialState);
 
@@ -19,6 +19,7 @@ export function CartProvider({ children }) {
         productId: product.id,
         quantity,
         productData: {
+          productId: product.id,
           title: product.title,
           price: product.price,
           discountPercentage: product.discountPercentage || 0,
@@ -40,28 +41,31 @@ export function CartProvider({ children }) {
 
   const obtenerCarrito = async () => {
     if (!user) return;
+    console.log("user.user_Id", user.user_Id.toString());
+    console.log("user", user);
     try {
      // const response = await fetchUserCart(user.user.user_id),{;
 
        //const response = await fetch('http://localhost:8080/carts/user/6830d1f514aa9a83932da770
        //TODO hacer excepciones cuando el usuario no tiene carrito
-       console.log("user.user.user_id", `http://localhost:8080/carts/user/${user.user_Id}`);
-       const response = await fetch(`http://localhost:8080/carts/user/6830d1f514aa9a83932da770`, {
+      // console.log("user.user.user_id", `http://localhost:8080/carts/user/${user.user_Id}`);
+      var userId = user.user_Id.toString();
+       const response = await fetch(`http://localhost:8080/carts/user/${userId}`, {
       
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer '+user.token, // Asegúrate de que el token esté en el contexto de usuario          
+          Authorization: 'Bearer '+token.toString()    
 
         },
+
         
       });
       if (response.ok) {
             const data = await response.json();
             const products = data.products;
-            
             for (const p of products) {
-             
+            
               addToCart(p, p.quantity);
             }
       }

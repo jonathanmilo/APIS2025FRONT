@@ -13,7 +13,23 @@ export function useOrdersData() {
 
   const cargarOrdenes = async () => {
     setLoading(true);
+    console.log("usuario:",usuario)
     try {
+
+      const response = await fetch(`http://localhost:8080/carts/user/${user.user_Id}`, {
+      
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer '+user.token, // Asegúrate de que el token esté en el contexto de usuario          
+          userId: usuario ? usuario.id : null, // Enviar el ID del usuario si está disponible
+        },
+        
+      });
+
+
+
+
       const res = await fetchAllOrders();
       const userOrders = usuario
         ? res.data.filter((order) => order.userId === usuario.id)

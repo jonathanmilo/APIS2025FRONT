@@ -17,7 +17,6 @@ export function CategoryProvider({ children }) {
 
   const cargarCategorias = async () => {
     try {
-      console.log("user", user);
        const response = await fetch(`http://localhost:8080/categories`, {
         method: 'GET',
         headers: {
@@ -29,7 +28,6 @@ export function CategoryProvider({ children }) {
       });
        if (response.ok) {
             const data = await response.json();
-            console.log("categorias", data);
             setCategorias(data); 
       }
 

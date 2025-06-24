@@ -187,7 +187,7 @@ export default function Configuracion() {
         </Box>
         <div>
           <p className="text-xl font-semibold text-black dark:text-white">
-            {user.firstName} {user.lastName}
+            {user.first_name} {user.Last_name}
           </p>
           <p className="text-sm text-gray-600 dark:text-white">{user.email}</p>
         </div>
@@ -197,8 +197,8 @@ export default function Configuracion() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {[
-          { label: "Nombre", value: user.firstName, field: "firstName" },
-          { label: "Apellido", value: user.lastName, field: "lastName" },
+          { label: "Nombre", value: user.first_name, field: "firstName" },
+          { label: "Apellido", value: user.Last_name, field: "lastName" },
           { label: "Usuario", value: user.username, field: "username" },
           { label: "Email", value: user.email, field: "email" },
           {
