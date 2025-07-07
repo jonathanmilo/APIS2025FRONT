@@ -1,4 +1,3 @@
-import { UsuarioProvider } from "./UserContext";
 import { ValidacionProvider } from "./AuthContext";
 import { CartProvider } from "./CartContext";
 import { ProductosProvider } from "./ProductContext";
@@ -8,13 +7,13 @@ export function AppContextProvider({ children }) {
   return (
     
       <ValidacionProvider>
-        <UsuarioProvider>
+        
         <CartProvider>
           <ProductosProvider>
             <CategoryProvider>{children}</CategoryProvider>
           </ProductosProvider>
         </CartProvider>
-        </UsuarioProvider>
+        
       </ValidacionProvider>
 
   );

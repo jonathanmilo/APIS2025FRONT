@@ -1,7 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
 import { authReducer, initialState } from "@src/reducers/authReducer";
-import { useUsuario } from "./UserContext";
-import { createUser } from "../api/users";
 
 const AuthContext = createContext();
 
@@ -11,7 +9,6 @@ export function useValidacion() {
 
 export function ValidacionProvider({ children }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
-//  const { usuarios, cargarUsuarios } = useUsuario();
 
 const login = (data) => {
   const { access_token, refresh_token, ...usuarioSeguro } = data;
@@ -74,13 +71,25 @@ const login = (data) => {
     }
 
     try {
-      await createUser(userData);
-      alert("Usuario registrado exitosamente.");
 
-      if (cargarUsuarios) {
-        await cargarUsuarios();
-      }
+      const response = await fetch(`http://localhost:8080/auth/register`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' +token, 
+            },
+            body: JSON.stringify({ userData }),
+          });
 
+          if (!response.ok) {
+            console.error(`Error al crear usuario `);
+            alert("Usuario registrado exitosamente.");
+          }else{
+            console.log(response)
+          }
+      
+
+      
       return true;
     } catch (error) {
       console.error("Error al registrar el usuario:", error);

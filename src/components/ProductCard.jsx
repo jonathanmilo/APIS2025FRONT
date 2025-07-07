@@ -2,8 +2,6 @@ import { VscVerifiedFilled } from "react-icons/vsc";
 import { Divider, Tooltip, IconButton } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { calcularPrecio } from "@src/utils/calcularPrecio";
-import { useUserData } from "@src/hooks/useUserData";
-import { useUsuario } from "@src/contexts/UserContext";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
@@ -12,10 +10,8 @@ import { useProductos } from "@src/contexts/ProductContext";
 import { useState } from "react";
 
 function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
- // const { usuarios } = useUsuario();
   const { eliminarProducto } = useProductos();
   const { user,loading } = useValidacion();
-  //const { usuario, loading } = useUserData(producto.userId, usuarios);
   const location = useLocation();
   const navigate = useNavigate();
   const{isOwner, setIsOwner} = useState(false);

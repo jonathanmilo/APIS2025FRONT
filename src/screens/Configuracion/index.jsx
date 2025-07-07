@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Avatar, Box } from "@mui/material";
 import { MdEdit } from "react-icons/md";
 import { useValidacion } from "@src/contexts/AuthContext";
-import { useUsuario } from "@src/contexts/UserContext";
 import FloatingFormDialog from "./components/FloatingForm";
 import { Divider, IconButton, Tooltip } from "@mui/material";
 import { uploadImages } from "@src/utils/UploadImages";
@@ -23,7 +22,7 @@ export default function Configuracion() {
   const [formData, setFormData] = useState({});
   const [fields, setFields] = useState([]);
   const [avatarHover, setAvatarHover] = useState(false);
-  const { actualizarUsuario } = useUsuario();
+  //const { actualizarUsuario } = useUsuario();
 
   if (!user) return null;
 
@@ -142,7 +141,8 @@ export default function Configuracion() {
       }
 
       dispatch({ type: "UPDATE_USER", payload: updatePayload });
-      await actualizarUsuario();
+      // TO DO , actualizar usuario, no es igual al back
+      //await actualizarUsuario();
 
       alert(`Información actualizada correctamente.`);
       setOpen(false);

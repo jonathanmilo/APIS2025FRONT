@@ -1,9 +1,9 @@
 import { useReducer, createContext, useEffect } from "react";
 import { cartReducer, cartInitialState } from "@src/reducers/cartReducer";
 import { calcularTotal } from "@src/utils/calcularTotal";
-import { updateProductStock, fetchProductById } from "@src/api/products";
+//import { updateProductStock, fetchProductById } from "@src/api/products";
 import { useValidacion } from "./AuthContext";
-import { fetchUserCart } from "@src/api/cart/api";
+
 
 export const CartContext = createContext();
 
@@ -41,21 +41,16 @@ export function CartProvider({ children }) {
 
   const obtenerCarrito = async () => {
     if (!user) return;
-    console.log("user.user_Id", user.user_Id.toString());
-    console.log("user", user);
     try {
-     // const response = await fetchUserCart(user.user.user_id),{;
-
-       //const response = await fetch('http://localhost:8080/carts/user/6830d1f514aa9a83932da770
-       //TODO hacer excepciones cuando el usuario no tiene carrito
-      // console.log("user.user.user_id", `http://localhost:8080/carts/user/${user.user_Id}`);
-      var userId = user.user_Id.toString();
+      
+      
+      let userId = user.user.user_Id;
        const response = await fetch(`http://localhost:8080/carts/user/${userId}`, {
       
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer '+token.toString()    
+          Authorization: 'Bearer '+token,   
 
         },
 
@@ -68,26 +63,52 @@ export function CartProvider({ children }) {
             
               addToCart(p, p.quantity);
             }
-      }
-
+      } else if (response.status === 404) {
+      // Manejar el caso en que NO haya carrito
+      console.warn(`No hay carrito para el usuario ${userId}`);
+     
+    } else {
+      console.error(`Error inesperado al obtener carrito. Código: ${response.status}`);
+    }
 
     } catch (error) {
       console.error("Error al obtener el carrito:", error);
     }
   };
 
-  const finalizePurchase = async () => {
-    try {
-      for (const { productId, quantity, productData } of cart) {
-        await updateProductStock(productId, productData.stock - quantity);
+    const finalizePurchase = async () => {
+      try {
+        for (const { productId, quantity, productData } of cart) {
+          // calcula nuevo stock
+          
+
+          const response = await fetch(`http://localhost:8080/products/update/${productId}/stock`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' +token, 
+            },
+            body: JSON.stringify({ stock: productData.stock - quantity }),
+          });
+
+          if (!response.ok) {
+            console.error(`Error al actualizar stock para producto ${productId}`);
+          }else{
+            console.log(response)
+          }
+
+          // opcional, si quieres mantener la lógica
+//await updateProductStock(productId, stockActualizado.stock);
+        }
+
+        clearCart();
+        return new Promise((resolve) => setTimeout(() => resolve(true), 500));
+      } catch (error) {
+        console.error("Error al finalizar la compra:", error);
+        return false;
       }
-      clearCart();
-      return new Promise((resolve) => setTimeout(() => resolve(true), 500));
-    } catch (error) {
-      console.error("Error al finalizar la compra:", error);
-      return false;
-    }
-  };
+    };
+
 
   useEffect(() => {
       if (user) {

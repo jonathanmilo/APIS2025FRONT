@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useProductos } from "@src/contexts/ProductContext";
-import { useUsuario } from "@src/contexts/UserContext";
-import { fetchAllOrders } from "@src/api/orders";
+import { useValidacion } from "../contexts/AuthContext";
 
 export function useOrdersData() {
   const [orders, setOrders] = useState([]);
@@ -9,44 +8,45 @@ export function useOrdersData() {
   const [error, setError] = useState(null);
 
   const { productos } = useProductos();
-  const { usuario } = useUsuario();
+  const { user, token } = useValidacion();
 
   const cargarOrdenes = async () => {
     setLoading(true);
-    console.log("usuario:",usuario)
+    console.log("usuario en useOrdersData:", user);
     try {
+      const response = await fetch(
+        `http://localhost:8080/carts/user/${user.user_Id}`, 
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token
+          },
+        }
+      );
 
-      const response = await fetch(`http://localhost:8080/carts/user/${user.user_Id}`, {
-      
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer '+user.token, // Asegúrate de que el token esté en el contexto de usuario          
-          userId: usuario ? usuario.id : null, // Enviar el ID del usuario si está disponible
-        },
-        
-      });
+      if (response.ok) {
+        const data = await response.json();
+        setOrders(data.filter(order => order.userId === user.user_Id));
+      } else if (response.status === 404) {
+        console.warn(`No hay órdenes`);
+        setOrders([]); // opcional, limpiar si no hay
+      } else {
+        console.error(`Error inesperado al obtener órdenes. Código: ${response.status}`);
+      }
 
-
-
-
-      const res = await fetchAllOrders();
-      const userOrders = usuario
-        ? res.data.filter((order) => order.userId === usuario.id)
-        : res.data;
-      setOrders(userOrders);
-    } catch (err) {
-      setError(err.message);
+    } catch (error) {
+      setError(error.message);
     } finally {
       setLoading(false);
     }
   };
 
-  const ordenesConDetalles = orders.map((order) => ({
+  const ordenesConDetalles = orders.map(order => ({
     ...order,
-    products: order.products.map((item) => {
+    products: order.products.map(item => {
       const producto = productos.find(
-        (p) => String(p.id) === String(item.productId)
+        p => String(p.id) === String(item.productId)
       );
       return {
         ...item,
@@ -58,7 +58,7 @@ export function useOrdersData() {
 
   useEffect(() => {
     cargarOrdenes();
-  }, [usuario]);
+  }, [user]);
 
   return {
     orders: ordenesConDetalles,

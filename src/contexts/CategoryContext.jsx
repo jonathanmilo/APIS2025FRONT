@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { fetchAllCategories } from "@src/api/categories";
 import { useValidacion } from "./AuthContext";
 
 const CategoryContext = createContext();
@@ -9,7 +8,7 @@ export function useCategorias() {
 }
 
 export function CategoryProvider({ children }) {
-  const { user } = useValidacion();
+  const { user,token } = useValidacion();
   
   const [categorias, setCategorias] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,11 +16,12 @@ export function CategoryProvider({ children }) {
 
   const cargarCategorias = async () => {
     try {
+      
        const response = await fetch(`http://localhost:8080/categories`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-         // Authorization: 'Bearer '+user.token, // Asegúrate de que el token esté en el contexto de usuario          
+         // Authorization: 'Bearer '+token, // Asegúrate de que el token esté en el contexto de usuario          
 
         },
         
@@ -29,7 +29,13 @@ export function CategoryProvider({ children }) {
        if (response.ok) {
             const data = await response.json();
             setCategorias(data); 
-      }
+      }else if (response.status === 404) {
+      // Manejar el caso en que NO haya categorias
+      console.warn(`No hay categorias `);
+     
+    } else {
+      console.error(`Error inesperado al obtener categorías. Código: ${response.status}`);
+    }
 
 
       

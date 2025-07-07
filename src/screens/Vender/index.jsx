@@ -41,7 +41,7 @@ export function Vender() {
   // Estado del formulario
   const [formData, setFormData] = useState({
     id: (Math.floor(Math.random() * 900) + 101).toString(),
-    userId: user.id.toString(),
+    userId: user.user_Id,
     title: "",
     images: [{ file: null, isCover: true }],
     description: "",
@@ -139,7 +139,7 @@ export function Vender() {
 
       const finalFormData = { ...formData, images: finalImages };
 
-      await crearProducto(user.id.toString(), finalFormData);
+      await crearProducto(user.user_Id, finalFormData);
 
       sonidito();
       alert("Producto publicado exitosamente!");
