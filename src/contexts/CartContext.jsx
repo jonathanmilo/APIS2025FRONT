@@ -47,8 +47,8 @@ export function CartProvider({ children }) {
 
   const finalizePurchase = async () => {
     try {
-      for (const { productId, quantity, productData } of cart) {
-        await updateProductStock(productId, productData.stock - quantity);
+      for (const p of cart) { 
+        await updateProductStock(p.productId, p.stock - p.quantity);
       }
       clearCart();
       return new Promise((resolve) => setTimeout(() => resolve(true), 500));
