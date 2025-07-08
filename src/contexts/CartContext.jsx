@@ -3,7 +3,7 @@ import { cartReducer, cartInitialState } from "@src/reducers/cartReducer";
 import { calcularTotal } from "@src/utils/calcularTotal";
 import { updateProductStock, fetchProductById } from "@src/api/products";
 import { useValidacion } from "./AuthContext";
-import { fetchUserCart } from "@src/api/cart/api";
+import { fetchUserCart } from "@src/api/cart";
 
 export const CartContext = createContext();
 
@@ -15,15 +15,13 @@ export function CartProvider({ children }) {
     dispatch({
       type: "ADD_TO_CART",
       payload: {
-        productId: product.id,
+        productId: product.productId,
         quantity,
-        productData: {
-          title: product.title,
-          price: product.price,
-          discountPercentage: product.discountPercentage || 0,
-          images: product.images || [],
-          stock: product.stock,
-        },
+        title: product.title,
+        price: product.price,
+        discountPercentage: product.discountPercentage,
+        image: product.image,
+        stock: product.stock,
       },
     });
 
@@ -37,14 +35,12 @@ export function CartProvider({ children }) {
 
   const countProducts = () => cart.length;
 
-  const obtenerCarrito = async () => {
-    if (!user) return;
+  const obtenerCarrito = async (id) => {
     try {
-      const response = await fetchUserCart(user.id);
+      const response = await fetchUserCart(id);
       const products = response.data.products;
       for (const p of products) {
-        const res = await fetchProductById(p.productId);
-        addToCart(res.data, p.quantity);
+        addToCart(p, p.quantity);
       }
     } catch (error) {
       console.error("Error al obtener el carrito:", error);
@@ -63,12 +59,6 @@ export function CartProvider({ children }) {
       return false;
     }
   };
-
-  useEffect(() => {
-      if (user) {
-        obtenerCarrito();
-      }
-    }, [user]);
 
   return (
     <CartContext.Provider

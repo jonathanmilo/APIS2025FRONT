@@ -11,7 +11,7 @@ import Divider from "@mui/material/Divider";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { useContext } from "react";
 import { CartContext } from "@src/contexts/CartContext";
-import { guardarCarrito } from "@src/api/cart/cartService";
+import { saveUserCart } from "@src/api/cart";
 
 export default function UserMenu({ usuario }) {
   const { logout } = useValidacion();
@@ -27,8 +27,18 @@ export default function UserMenu({ usuario }) {
     setAnchorEl(null);
   };
 
-  const handleLogout = () => {
-    guardarCarrito(usuario.id, cart)
+  const handleLogout = async () => {
+    const products = cart.map((item) => ({
+      productId: item.productId,
+      quantity: item.quantity,
+    }));
+
+    try {
+      await saveUserCart(usuario.id, products);
+    } catch (error) {
+      console.error("Error al guardar el carrito:", error);
+    }
+
     clearCart();
     logout();
     handleClose();
@@ -52,7 +62,7 @@ export default function UserMenu({ usuario }) {
         </IconButton>
       </Tooltip>
 
-      <Menu 
+      <Menu
         anchorEl={anchorEl}
         id="user-menu"
         open={open}

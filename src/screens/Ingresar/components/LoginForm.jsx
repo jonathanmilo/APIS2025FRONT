@@ -2,6 +2,8 @@ import * as yup from "yup";
 import Form from "@src/components/forms/Form";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "@src/contexts/CartContext";
+import { useContext } from "react";
 import { login } from "@src/api/auth";
 import {
   emailField,
@@ -13,6 +15,7 @@ import {
 export default function LoginForm() {
   const navigate = useNavigate();
   const { validar } = useValidacion();
+  const { obtenerCarrito } = useContext(CartContext);
   const fields = [emailField, passwordField];
 
   const validationSchema = yup.object().shape({
@@ -23,7 +26,8 @@ export default function LoginForm() {
   const handleFormSubmit = async (loginRequest) => {
     try {
       const response = await login(loginRequest);
-      await validar(response);
+      const userId = await validar(response);
+      await obtenerCarrito(userId);
       navigate("/");
     } catch (error) {
       console.error("Error de login", error);

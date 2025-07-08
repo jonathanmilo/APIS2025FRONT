@@ -24,6 +24,8 @@ export function ValidacionProvider({ children }) {
       localStorage.setItem("user", JSON.stringify(payload));
 
       dispatch({ type: "LOGIN", payload });
+
+      return user.id;
     } catch (error) {
       console.error("Error obteniendo el perfil:", error);
       logout();

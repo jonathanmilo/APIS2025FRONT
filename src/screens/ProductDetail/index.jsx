@@ -1,14 +1,13 @@
-import { useState, useEffect, useContext,useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Carousel from "@src/components/Carousel";
 import { useProductos } from "@src/contexts/ProductContext";
+import { fetchProductById } from "@src/api/products";
 import GaleriaImagenes from "./components/GaleriaImagenes";
 import { calcularPrecio } from "@src/utils/calcularPrecio";
 import { Button } from "@mui/material";
-import a_quien from '/sounds/a_quien.mp3';
-import {
-  filtrarRelacionados,
-} from "@src/utils/filtrarProductos";
+import a_quien from "/sounds/a_quien.mp3";
+import { filtrarRelacionados } from "@src/utils/filtrarProductos";
 import { CartContext } from "@src/contexts/CartContext";
 
 export default function ProductDetail() {
@@ -23,29 +22,36 @@ export default function ProductDetail() {
   const [alreadyInCart, setAlreadyInCart] = useState(false);
 
   const navigate = useNavigate();
-  //audio
   const audioRef = useRef(null);
- const sonidito = () => {
-    // Reinicia el audio si ya estaba reproduciéndose
+  const sonidito = () => {
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
     }
   };
+
   useEffect(() => {
-    if (productos.length > 0) {
-      const prod = productos.find((p) => String(p.id) === id);
-      if (prod) {
+    const obtenerProducto = async () => {
+      try {
+        const response = await fetchProductById(id);
+        const prod = response.data;
+
         setProducto(prod);
-        setProductosRelacionados(filtrarRelacionados(productos, prod));
 
         const inCart = cart.some((item) => item.productId === prod.id);
         setAlreadyInCart(inCart);
-      } else {
+
+        if (productos.length > 0) {
+          setProductosRelacionados(filtrarRelacionados(productos, prod));
+        }
+      } catch (error) {
+        console.error("Error al obtener el producto:", error);
         setProducto(undefined);
       }
-    }
-  }, [productos, id, cart]);
+    };
+
+    obtenerProducto();
+  }, [id, cart, productos]);
 
   if (producto === undefined) {
     return (
@@ -74,7 +80,17 @@ export default function ProductDetail() {
       return;
     }
 
-    addToCart(producto, quantity);
+    const coverImage = producto.images.find((img) => img.cover);
+    const image = coverImage ? coverImage.url : null;
+
+    const productoAdaptado = {
+      ...producto,
+      productId: id,
+      image,
+    };
+    delete productoAdaptado.images; 
+
+    addToCart(productoAdaptado, quantity);
     setAlreadyInCart(true);
     alert(`${quantity} ${producto.title} agregado(s) al carrito`);
     setCantidad(1);
@@ -117,10 +133,7 @@ export default function ProductDetail() {
           )}
 
           <p className="mb-6 text-black dark:text-white font-bold">
-            Categoría:{" "}
-            <span className="font-medium">
-              {producto.category}
-            </span>
+            Categoría: <span className="font-medium">{producto.category}</span>
           </p>
 
           <p className="mb-6 text-black dark:text-white font-bold">
@@ -139,10 +152,12 @@ export default function ProductDetail() {
                 className="min-w-0"
               >
                 -
-              <audio ref={audioRef} src={a_quien} />
+                <audio ref={audioRef} src={a_quien} />
               </Button>
-              
-              <span className="mx-4 text-xl text-black dark:text-white">{quantity}</span>
+
+              <span className="mx-4 text-xl text-black dark:text-white">
+                {quantity}
+              </span>
               <Button
                 variant="outlined"
                 onClick={() => manejarCantidad("incrementar")}

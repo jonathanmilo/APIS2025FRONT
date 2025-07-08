@@ -66,16 +66,15 @@ export default function Carrito() {
               El carrito está vacío.
             </p>
           ) : (
-            cart.map((item) => {
-              const producto = item.productData;
+            cart.map((item, i) => {
               return (
                 <div
-                  key={item.productId}
+                  key={i}
                   className="mb-6 flex flex-col justify-between bg-white dark:bg-black p-6 shadow-md sm:flex-row sm:justify-start"
                 >
                   <img
-                    src={producto.images[0]?.url}
-                    alt={producto.title}
+                    src={item.image}
+                    alt={item.title}
                     onError={(e) => {
                       e.target.src = "/placeholder.jpg";
                     }}
@@ -84,10 +83,10 @@ export default function Carrito() {
                   <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                     <div className="mt-5 sm:mt-0">
                       <h2 className="text-lg font-bold text-black dark:text-white">
-                        {producto.title}
+                        {item.title}
                       </h2>
                       <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">
-                        Stock disponible: {producto.stock || "Stock no especificada"}
+                        Stock disponible: {item.stock}
                       </p>
                     </div>
                     <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
@@ -122,8 +121,8 @@ export default function Carrito() {
                         <p className="text-sm font-semibold text-black dark:text-white">
                           $
                           {calcularPrecio(
-                            producto.price,
-                            producto.discountPercentage
+                            item.price,
+                            item.discountPercentage
                           ).toFixed(2)}
                         </p>
                         <Tooltip title="Eliminar" arrow>
@@ -153,22 +152,22 @@ export default function Carrito() {
                 $
                 {cart
                   .reduce((sum, item) => {
-                    const precio = item.productData?.price || 0;
+                    const precio = item.price || 0;
                     return sum + precio * item.quantity;
                   }, 0)
                   .toFixed(2)}
               </p>
             </div>
-            {cart.some((item) => item.productData?.discountPercentage > 0) && (
+            {cart.some((item) => item.discountPercentage > 0) && (
               <div className="mb-2 flex justify-between">
                 <p className="text-black dark:text-white">Descuentos</p>
                 <p className="text-black dark:text-white">
                   -$
                   {cart
                     .reduce((sum, item) => {
-                      const precio = item.productData?.price || 0;
+                      const precio = item.price || 0;
                       const descuento =
-                        item.productData?.discountPercentage || 0;
+                        item.discountPercentage || 0;
                       return sum + precio * (descuento / 100) * item.quantity;
                     }, 0)
                     .toFixed(2)}

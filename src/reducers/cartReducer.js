@@ -36,7 +36,7 @@ export const cartReducer = (state, action) => {
 
       const newState = state.map((p) => {
         if (p.productId === productId) {
-          const maxStock = p.productData.stock || Infinity;
+          const maxStock = p.stock || Infinity;
           const newQuantity = Math.min(quantity, maxStock);
           return { ...p, quantity: newQuantity };
         }
