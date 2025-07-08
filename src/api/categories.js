@@ -1,3 +1,3 @@
-import {api, our_api} from './index';
+import {api} from './index';
 
-export const fetchAllCategories = () => our_api.get('/categories');
+export const fetchAllCategories = () => api.get('/categories');
