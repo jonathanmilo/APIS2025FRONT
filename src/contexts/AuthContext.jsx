@@ -19,10 +19,8 @@ export function ValidacionProvider({ children }) {
       localStorage.setItem("token", token);
       
       const { data: user } = await getProfile();
-      const payload = { ...user, token };
+      const payload = { ...user };
       
-      localStorage.setItem("user", JSON.stringify(payload));
-
       dispatch({ type: "LOGIN", payload });
 
       return user.id;

@@ -1,19 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { useState, useEffect, useCallback } from "react";
-import { fetchUserProducts,fetchProductsByUserId } from "@src/api/products.js";
+import { fetchProductsByUserId } from "@src/api/products.js";
 import { filtrarPorNombre } from "@src/utils/filtrarProductos";
-
 import ListaProductos from "@src/components/ListaProductos";
 import SearchBar from "@src/components/SearchBar";
-
 import { Tooltip } from "@mui/material";
 import { FaPlus } from "react-icons/fa6";
 
 const MiPerfil = () => {
   const navigate = useNavigate();
   const { user } = useValidacion();
-
   const [productosFiltrados, setProductosFiltrados] = useState([]);
   const [productosUsuario, setProductosUsuario] = useState([]);
   const [terminoBusqueda, setTerminoBusqueda] = useState("");

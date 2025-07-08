@@ -1,19 +1,16 @@
 const initialState = {
   isAuthenticated: localStorage.getItem("user") ? true : false,
   user: JSON.parse(localStorage.getItem("user")) || null,
-  token: localStorage.getItem("token") || null,
 };
 
 const authReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
       localStorage.setItem("user", JSON.stringify(action.payload));
-      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         isAuthenticated: true,
         user: action.payload,
-        token: action.payload.token,
       };
 
     case "LOGOUT":
