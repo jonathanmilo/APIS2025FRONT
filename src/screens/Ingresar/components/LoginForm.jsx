@@ -2,6 +2,7 @@ import * as yup from "yup";
 import Form from "@src/components/forms/Form";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { login } from "@src/api/auth";
 import {
   emailField,
   passwordField,
@@ -10,8 +11,8 @@ import {
 } from "@src/utils/formSchemas";
 
 export default function LoginForm() {
-  const { validar } = useValidacion();
   const navigate = useNavigate();
+  const { validar } = useValidacion();
   const fields = [emailField, passwordField];
 
   const validationSchema = yup.object().shape({
@@ -19,9 +20,14 @@ export default function LoginForm() {
     password: passwordValidation,
   });
 
-  const handleFormSubmit = async (data) => {
-    await validar(data);
-    navigate("/");
+  const handleFormSubmit = async (loginRequest) => {
+    try {
+      const response = await login(loginRequest);
+      await validar(response);
+      navigate("/");
+    } catch (error) {
+      console.error("Error de login", error);
+    }
   };
 
   return (

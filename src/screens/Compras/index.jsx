@@ -1,12 +1,9 @@
 import { useValidacion } from "@src/contexts/AuthContext";
-import { useOrdersData } from "@src/hooks/useOrdersData";
-import { useProductos } from "@src/contexts/ProductContext";
 import { fetchOrdersByUserId } from "@src/api/orders";
 import { useState, useEffect } from "react";
 
 export default function Compras() {
   const { user } = useValidacion();
-  const { productos } = useProductos();
   
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,10 +40,6 @@ export default function Compras() {
 
             <div className="space-y-4">
               {compra.products.map((p, i) => {
-                const producto = productos.find(
-                  (prod) => String(prod.id) === String(p.productId)
-                );
-
                 return (
                   <div
                     key={i}
@@ -54,18 +47,18 @@ export default function Compras() {
                   >
                     <img
                       src={
-                        producto?.images?.[0]?.url ||
+                        p.image ||
                         "/imagen-no-disponible.jpg"
                       }
-                      alt={producto?.title || "Producto"}
+                      alt={p.title || "Producto"}
                       className="w-16 h-16 object-cover rounded"
                     />
                     <div className="text-black dark:text-white">
                       <p className="font-medium">
-                        {producto ? producto.title : "Producto desconocido"}
+                        {p.title || "Producto desconocido"}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-white">
-                        x{p.quantity} — ${p.unit_price} c/u
+                        x{p.quantity} — ${p.unitPrice} c/u
                       </p>
                     </div>
                   </div>

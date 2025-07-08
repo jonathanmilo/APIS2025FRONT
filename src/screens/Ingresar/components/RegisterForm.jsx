@@ -1,9 +1,8 @@
 import * as yup from "yup";
 import Form from "@src/components/forms/Form";
 import { useContext } from "react";
-import { useValidacion } from "@src/contexts/AuthContext";
+import { register } from "@src/api/auth";
 import { CartContext } from "@src/contexts/CartContext";
-import { crearCarrito } from "@src/api/cart/cartService";
 import { buildUser } from "@src/builders";
 import {
   nameField,
@@ -18,7 +17,6 @@ import {
 
 export default function RegisterForm({ setFormMode }) {
   const { cart } = useContext(CartContext);
-  const { register } = useValidacion();
 
   const fields = [nameField, lastnameField, emailField, passwordField];
 
@@ -30,11 +28,10 @@ export default function RegisterForm({ setFormMode }) {
   });
 
   const handleFormSubmit = async (data) => {
-    const newUser = buildUser(data);
+    const newUser = buildUser(data, cart);
     const success = await register(newUser);
 
     if (success) {
-      await crearCarrito(newUser.id, cart);
       setFormMode("login");
     }
   };

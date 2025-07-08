@@ -2,8 +2,6 @@ import { VscVerifiedFilled } from "react-icons/vsc";
 import { Divider, Tooltip, IconButton } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { calcularPrecio } from "@src/utils/calcularPrecio";
-import { useUserData } from "@src/hooks/useUserData";
-import { useUsuario } from "@src/contexts/UserContext";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdEdit } from "react-icons/md";
@@ -41,7 +39,7 @@ function ProductCard({ producto, onRemoveProduct, onUpdateStock }) {
     navigate(`/editar-producto/${producto.id}`);
   };
 
-  const isOwner = user && user.id.toString() === producto.userId.toString();
+  const isOwner = user && user.id === producto.userId;
 
   const isManagementPage = ["/mi-perfil", "/mis-productos"].includes(
     location.pathname

@@ -1,30 +1,29 @@
-export const uploadImages = async (images) => {
-  const API_KEY = ""; 
-  const EXPIRATION_TIME = 1200; // 20 minutos
-  const urls = [];
+import {api} from '@src/api/index';
 
+export const uploadImages = async (images) => {
+  const urls = [];
   const files = Array.isArray(images) ? images : [images];
 
-  for (const image of files) {
-    const formData = new FormData();
-    formData.append("image", image);
+  const formData = new FormData();
+  files.forEach((file) => {
+    formData.append("file", file);
+  });
 
-    try {
-      const res = await fetch(`https://api.imgbb.com/1/upload?key=${API_KEY}&expiration=${EXPIRATION_TIME}`, {
-        method: "POST",
-        body: formData,
-      });
+  try {
+    const response = await api.post("/upload/images", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
-      const data = await res.json();
-      if (data.success) {
-        urls.push(data.data.url);
-      } else {
-        console.error("Upload failed:", data);
-      }
-    } catch (error) {
-      console.error("Error uploading image:", error);
+    if (response.status === 200 && Array.isArray(response.data)) {
+      return response.data; 
+    } else {
+      console.error("Error al subir las imágenes:", response);
     }
+  } catch (error) {
+    console.error("Fallo en uploadImages():", error);
   }
 
-  return urls;
+  return urls; // en caso de error devuelve array vacío
 };

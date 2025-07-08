@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useValidacion } from "@src/contexts/AuthContext";
 import { useState, useEffect, useCallback } from "react";
-import { fetchUserProducts } from "@src/api/products.js";
+import { fetchUserProducts,fetchProductsByUserId } from "@src/api/products.js";
 import { filtrarPorNombre } from "@src/utils/filtrarProductos";
 
 import ListaProductos from "@src/components/ListaProductos";
@@ -33,7 +33,7 @@ const MiPerfil = () => {
     if (user?.id) {
       setLoading(true);
       try {
-        const response = await fetchUserProducts(user.id);
+        const response = await fetchProductsByUserId(user.id);
         setProductosUsuario(response.data);
 
         if (terminoBusqueda) {

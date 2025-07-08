@@ -2,10 +2,9 @@ import { useState } from "react";
 import { Avatar, Box } from "@mui/material";
 import { MdEdit } from "react-icons/md";
 import { useValidacion } from "@src/contexts/AuthContext";
-import { useUsuario } from "@src/contexts/UserContext";
 import FloatingFormDialog from "./components/FloatingForm";
 import { Divider, IconButton, Tooltip } from "@mui/material";
-import { uploadImages } from "@src/utils/UploadImages";
+import { getImages } from "@src/api/upload";
 import {
   updateFirstName,
   updateLastName,
@@ -23,7 +22,6 @@ export default function Configuracion() {
   const [formData, setFormData] = useState({});
   const [fields, setFields] = useState([]);
   const [avatarHover, setAvatarHover] = useState(false);
-  const { actualizarUsuario } = useUsuario();
 
   if (!user) return null;
 
@@ -112,7 +110,7 @@ export default function Configuracion() {
           break;
         case "username":
           await updateUsername(userId, formData.username);
-          updatePayload = { username: formData.username };
+          updatePayload = { alias: formData.username };
           break;
         case "email":
           await updateEmail(userId, formData.email);
@@ -122,10 +120,13 @@ export default function Configuracion() {
           await updatePassword(userId, formData.password);
           return alert("Contraseña actualizada correctamente.");
         case "avatar":
-          const urls = await uploadImages(formData.avatar);
+          const res = await getImages(formData.avatar); 
+          const urls = res.data;
           const avatarUrl = urls[0];
-          await updateAvatar(userId, avatarUrl);
-          updatePayload = { avatar: avatarUrl };
+          const updateRes = await updateAvatar(userId, avatarUrl);
+          if (updateRes.status === 200) {
+            updatePayload = { avatar: avatarUrl };
+          }
           break;
         case "address":
           const newAddress = {
@@ -141,10 +142,11 @@ export default function Configuracion() {
           return;
       }
 
-      dispatch({ type: "UPDATE_USER", payload: updatePayload });
-      await actualizarUsuario();
+      if (Object.keys(updatePayload).length > 0) {
+        dispatch({ type: "UPDATE_USER", payload: updatePayload });
+        alert("Información actualizada correctamente.");
+      }
 
-      alert(`Información actualizada correctamente.`);
       setOpen(false);
     } catch (error) {
       console.error("Error al guardar los cambios:", error);
@@ -199,7 +201,7 @@ export default function Configuracion() {
         {[
           { label: "Nombre", value: user.firstName, field: "firstName" },
           { label: "Apellido", value: user.lastName, field: "lastName" },
-          { label: "Usuario", value: user.username, field: "username" },
+          { label: "Usuario", value: user.alias, field: "username" },
           { label: "Email", value: user.email, field: "email" },
           {
             label: "Dirección",
