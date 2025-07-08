@@ -49,7 +49,7 @@ const SearchBarDropdown = () => {
             <li className="text-gray-500 italic p-4">Sin resultados</li>
           ) : (
             filteredItems.map((item) => {
-              const coverImage = item.images.find((img) => img.isCover);
+              const coverImage = item.images.find((img) => img.cover);
               const precioFinal = calcularPrecio(
                 item.price,
                 item.discountPercentage
