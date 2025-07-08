@@ -53,7 +53,7 @@ function ProductosPorCategoria({ productos }) {
                       : "text-gray-600 dark:text-white"
                   }`}
                 >
-                  {categoria.subcategories?.join(" • ")}
+                  {categoria.subcategories?.map((sub) => sub.name).join(" • ")}
                 </div>
               </button>
             </li>
