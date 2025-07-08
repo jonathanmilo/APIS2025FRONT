@@ -16,7 +16,7 @@ import {
 } from "@src/utils/formSchemas";
 
 export default function RegisterForm({ setFormMode }) {
-  const { cart } = useContext(CartContext);
+  const { cart, clearCart } = useContext(CartContext);
 
   const fields = [nameField, lastnameField, emailField, passwordField];
 
@@ -30,6 +30,7 @@ export default function RegisterForm({ setFormMode }) {
   const handleFormSubmit = async (data) => {
     const newUser = buildUser(data, cart);
     const success = await register(newUser);
+    clearCart();
 
     if (success) {
       setFormMode("login");

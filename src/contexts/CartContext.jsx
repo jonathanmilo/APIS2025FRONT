@@ -1,14 +1,12 @@
-import { useReducer, createContext, useEffect } from "react";
+import { useReducer, createContext } from "react";
 import { cartReducer, cartInitialState } from "@src/reducers/cartReducer";
 import { calcularTotal } from "@src/utils/calcularTotal";
 import { updateProductStock, fetchProductById } from "@src/api/products";
-import { useValidacion } from "./AuthContext";
 import { fetchUserCart } from "@src/api/cart";
 
 export const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const { user } = useValidacion();
   const [cart, dispatch] = useReducer(cartReducer, cartInitialState);
 
   const addToCart = (product, quantity = 1) =>

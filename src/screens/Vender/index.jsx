@@ -40,7 +40,6 @@ export function Vender() {
   }
   // Estado del formulario
   const [formData, setFormData] = useState({
-    id: (Math.floor(Math.random() * 900) + 101).toString(),
     userId: user.id.toString(),
     title: "",
     images: [{ file: null, isCover: true }],
@@ -50,7 +49,6 @@ export function Vender() {
     categoryId: "",
     subcategoryIds: [],
     discountPercentage: "",
-    isFeatured: false,
   });
 
   // Actualizar formData cuando cambian las categorías
@@ -134,7 +132,7 @@ export function Vender() {
       // Reemplazar en formData
       const finalImages = uploadedUrls.map((url, i) => ({
         url,
-        isCover: formData.images[i].isCover,
+        cover: formData.images[i].isCover,
       }));
 
       const finalFormData = { ...formData, images: finalImages };
