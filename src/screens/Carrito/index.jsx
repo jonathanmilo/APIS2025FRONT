@@ -37,9 +37,9 @@ export default function Carrito() {
   }
 
   if (loading)
-    return <div className="text-center py-10">Cargando carrito...</div>;
+    return <div className="text-center text-black dark:text-white py-10">Cargando carrito...</div>;
   if (error)
-    return <div className="text-red-500 text-center py-10">Error: {error}</div>;
+    return <div className="text-red-500 dark:text-white text-center py-10">Error: {error}</div>;
 
   const handleCheckout = async () => {
     if (isAuthenticated) {
