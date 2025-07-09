@@ -32,17 +32,15 @@ export function EditarProducto() {
   const [subcategorias, setSubcategorias] = useState([]);
   const [categoria, setCategoria] = useState("");
   const [formData, setFormData] = useState({
-    id: "",
     userId: "",
     title: "",
-    images: [{ url: "", isCover: true }],
+    images: [{ url: "", cover: true }],
     description: "",
     price: "",
     stock: "",
     categoryId: "",
     subcategoryIds: [],
     discountPercentage: "",
-    isFeatured: false,
   });
 
   // Cargar datos del producto
@@ -102,7 +100,7 @@ export function EditarProducto() {
   const addImageField = () => {
     setFormData((prev) => ({
       ...prev,
-      images: [...prev.images, { url: "", isCover: false }],
+      images: [...prev.images, { url: "", cover: false }],
     }));
   };
 
@@ -110,8 +108,8 @@ export function EditarProducto() {
   const removeImageField = (index) => {
     const newImages = formData.images.filter((_, i) => i !== index);
     // Asegurar que al menos quede una imagen marcada como principal
-    if (newImages.length > 0 && !newImages.some((img) => img.isCover)) {
-      newImages[0].isCover = true;
+    if (newImages.length > 0 && !newImages.some((img) => img.cover)) {
+      newImages[0].cover = true;
     }
     setFormData((prev) => ({ ...prev, images: newImages }));
   };
@@ -120,7 +118,7 @@ export function EditarProducto() {
   const setCoverImage = (index) => {
     const newImages = formData.images.map((img, i) => ({
       ...img,
-      isCover: i === index,
+      cover: i === index,
     }));
     setFormData((prev) => ({ ...prev, images: newImages }));
   };
@@ -148,7 +146,7 @@ export function EditarProducto() {
 
     setLoading(true);
     try {
-      await actualizarProducto(formData.id, formData);
+      await actualizarProducto(id, formData);
       alert("Producto actualizado exitosamente!");
       navigate("/mi-perfil");
     } catch (err) {
@@ -286,7 +284,7 @@ export function EditarProducto() {
                   <FormControlLabel
                     control={
                       <Checkbox
-                        checked={image.isCover}
+                        checked={image.cover}
                         onChange={() => setCoverImage(index)}
                         color="primary"
                       />
