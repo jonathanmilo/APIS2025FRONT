@@ -47,6 +47,6 @@ npm run dev
 
 Esto levantará el frontend en: [http://localhost:5173](http://localhost:5173)
 
-## 4. Acceso al proyecto
+## 3. Acceso al proyecto
 
 - **Frontend React:** [http://localhost:5173](http://localhost:5173)
