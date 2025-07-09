@@ -84,9 +84,9 @@ const MiPerfil = () => {
       </div>
 
       {loading ? (
-        <p className="text-center">Cargando productos...</p>
+        <p className="text-center text-black dark:text-white">Cargando productos...</p>
       ) : error ? (
-        <p className="text-center text-red-500">{error}</p>
+        <p className="text-center text-red-500 dark:text-white">{error}</p>
       ) : (
         <ListaProductos
           titulo="Mis publicaciones"

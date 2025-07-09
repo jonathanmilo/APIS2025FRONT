@@ -23,6 +23,7 @@ export default function ProductDetail() {
 
   const navigate = useNavigate();
   const audioRef = useRef(null);
+
   const sonidito = () => {
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
@@ -55,12 +56,12 @@ export default function ProductDetail() {
 
   if (producto === undefined) {
     return (
-      <div className="p-8 text-center text-red-500">Producto no encontrado</div>
+      <div className="p-8 text-center text-red-500 dark:text-white">Producto no encontrado</div>
     );
   }
 
   if (!producto) {
-    return <div className="p-8 text-center">Cargando producto…</div>;
+    return <div className="p-8 text-center text-black dark:text-white">Cargando producto…</div>;
   }
 
   const manejarCantidad = (operacion) => {
@@ -188,7 +189,7 @@ export default function ProductDetail() {
           </Button>
 
           {alreadyInCart && (
-            <div className="mt-2 text-green-700 text-sm">
+            <div className="mt-2 text-primary dark:text-white text-sm">
               Este producto ya está en tu carrito
             </div>
           )}
