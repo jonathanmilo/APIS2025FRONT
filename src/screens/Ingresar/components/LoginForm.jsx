@@ -31,6 +31,7 @@ export default function LoginForm() {
       navigate("/");
     } catch (error) {
       console.error("Error de login", error);
+      alert("Credenciales incorrectas.");
     }
   };
 

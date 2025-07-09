@@ -9,6 +9,6 @@ export const updateLastName = (id, newLastName) => api.patch(`/users/${id}/lastN
 export const updateAddress = (id, newAddress) => api.patch(`/users/${id}/address`, { country: newAddress.country, state: newAddress.state, street: newAddress.street });
 export const updateAvatar = (id, newAvatar) => api.patch(`/users/${id}/avatar`, { avatar: newAvatar });
 export const updateEmail = (id, newEmail) => api.patch(`/users/${id}/email`, { email: newEmail });
-export const updatePassword = (id, newPassword) => api.patch(`/users/${id}/password`, { password: newPassword });
+export const updatePassword = (id, newPassword) => api.patch(`/users/${id}/password`, { newPassword: newPassword });
 
 export const getProfile = () => api.get('/users/me'); 
